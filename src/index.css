@@ -89,9 +89,9 @@ Palette: Indigo #071e2d, Deep Coral #f4524a, Cenote Aqua #14f1f4, Ether Blue #10
 }
 
 @layer utilities {
-  /* Lime gradient for headlines */
+  /* Warm yellow-gold gradient for headlines — blends with lime */
   .gold-gradient {
-    background: linear-gradient(135deg, hsl(68 100% 50%), hsl(80 100% 55%));
+    background: linear-gradient(135deg, #c9a227, #f0d060, #c9a227);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
