@@ -105,11 +105,8 @@ const Index = () => {
           </div>
 
           {/* Tagline */}
-          <p className="text-2xl md:text-3xl text-muted-foreground font-light mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
-            5050 Crowdfunding™
-          </p>
           <p className="text-lg md:text-xl text-muted-foreground mb-2">
-            Team Crowdfunding™ — <span className="text-foreground">Redefined.</span>
+            Cooperative Crowdfunding™ — <span className="text-foreground">Redefined.</span>
           </p>
 
           <p className="text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
