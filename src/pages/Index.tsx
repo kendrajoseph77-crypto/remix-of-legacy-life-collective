@@ -54,12 +54,12 @@ const Index = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20 hero-glow relative overflow-hidden">
+      <section className="min-h-screen flex flex-col items-center justify-center text-center px-4 sm:px-6 pt-24 sm:pt-20 hero-glow relative overflow-hidden">
         <OrbitalRings />
 
-        <div className="relative z-10 max-w-5xl mx-auto">
+        <div className="relative z-10 w-full max-w-5xl mx-auto">
           {/* Anniversary Banner */}
-          <div className="relative w-full max-w-3xl mx-auto mb-12">
+          <div className="relative w-full max-w-3xl mx-auto mb-8 sm:mb-12">
             {/* Ambient glow */}
             <div className="absolute inset-0 rounded-xl blur-3xl opacity-30"
               style={{ background: "linear-gradient(90deg, hsl(43 74% 47%), hsl(68 100% 50%), hsl(181 90% 52%), hsl(43 74% 47%))" }} />
@@ -75,14 +75,15 @@ const Index = () => {
               <div className="absolute inset-0"
                 style={{ background: "linear-gradient(135deg, hsl(210 45% 5% / 0.97) 0%, hsl(210 40% 9% / 0.97) 50%, hsl(210 45% 5% / 0.97) 100%)" }} />
 
-              {/* Content */}
-              <div className="relative flex items-center justify-between px-8 py-5 gap-6">
+              {/* Content — stacks on mobile, row on desktop */}
+              <div className="relative flex flex-col sm:flex-row items-center justify-between px-5 sm:px-8 py-4 sm:py-5 gap-3 sm:gap-6">
 
-                {/* Left — trophy + number */}
-                <div className="flex items-center gap-4 shrink-0">
-                  <Trophy size={32} style={{ color: "hsl(43 74% 62%)" }} />
+                {/* Trophy + number */}
+                <div className="flex items-center gap-3 sm:gap-4 shrink-0">
+                  <Trophy size={24} className="sm:hidden" style={{ color: "hsl(43 74% 62%)" }} />
+                  <Trophy size={32} className="hidden sm:block" style={{ color: "hsl(43 74% 62%)" }} />
                   <div>
-                    <div className="text-5xl font-black leading-none tracking-tight"
+                    <div className="text-3xl sm:text-5xl font-black leading-none tracking-tight"
                       style={{ fontFamily: "'Playfair Display', serif", background: "linear-gradient(135deg, hsl(43 74% 55%), hsl(43 74% 80%), hsl(43 74% 55%))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                       25
                     </div>
@@ -92,25 +93,25 @@ const Index = () => {
                   </div>
                 </div>
 
-                {/* Center divider */}
-                <div className="h-14 w-px shrink-0" style={{ background: "linear-gradient(180deg, transparent, hsl(43 74% 50% / 0.6), transparent)" }} />
+                {/* Divider — horizontal on mobile, vertical on desktop */}
+                <div className="w-full h-px sm:w-px sm:h-14 shrink-0" style={{ background: "linear-gradient(90deg, transparent, hsl(43 74% 50% / 0.6), transparent)" }} />
 
                 {/* Center — main text */}
                 <div className="flex-1 text-center">
-                  <div className="text-base font-bold tracking-[0.15em] uppercase mb-1"
+                  <div className="text-xs sm:text-base font-bold tracking-[0.1em] sm:tracking-[0.15em] uppercase mb-1"
                     style={{ color: "hsl(30 20% 92%)" }}>
                     Celebrating a Quarter Century
                   </div>
-                  <div className="text-xs tracking-[0.25em] uppercase" style={{ color: "hsl(43 74% 65%)" }}>
+                  <div className="text-xs tracking-[0.2em] sm:tracking-[0.25em] uppercase" style={{ color: "hsl(43 74% 65%)" }}>
                     of Cooperative Crowdfunding™
                   </div>
                 </div>
 
-                {/* Center divider */}
-                <div className="h-14 w-px shrink-0" style={{ background: "linear-gradient(180deg, transparent, hsl(43 74% 50% / 0.6), transparent)" }} />
+                {/* Divider */}
+                <div className="w-full h-px sm:w-px sm:h-14 shrink-0" style={{ background: "linear-gradient(90deg, transparent, hsl(43 74% 50% / 0.6), transparent)" }} />
 
                 {/* Right — founder */}
-                <div className="text-right shrink-0">
+                <div className="text-center sm:text-right shrink-0">
                   <div className="text-xs tracking-widest uppercase mb-1" style={{ color: "hsl(43 74% 60%)" }}>Founded by</div>
                   <div className="text-sm font-semibold tracking-wide" style={{ fontFamily: "'Playfair Display', serif", color: "hsl(30 20% 92%)" }}>
                     David T. Rosen
@@ -126,33 +127,33 @@ const Index = () => {
           </div>
 
           {/* Logo */}
-          <div className="flex items-center justify-center mb-8">
-            <Logo heightClass="h-16" />
+          <div className="flex items-center justify-center mb-6 sm:mb-8">
+            <Logo heightClass="h-12 sm:h-16" />
           </div>
 
           {/* Tagline */}
-          <p className="text-lg md:text-xl text-muted-foreground mb-2">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-2 px-2">
             Cooperative Crowdfunding™ — <span className="text-foreground">Redefined.</span>
           </p>
 
-          <p className="text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
+          <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-12 leading-relaxed px-2">
             The world's most elite peer-to-peer crowdfunding system.
             Transparent. Automated. Unstoppable. 100% of every royalty goes
             directly to you — the participants.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <Link
               to="/join"
-              className="flex items-center gap-2 px-10 py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:scale-105"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 sm:px-10 py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:scale-105"
               style={{ background: "linear-gradient(135deg, hsl(var(--coral)), hsl(15 95% 65%))", color: "hsl(var(--indigo))" }}
             >
               Join Us <ArrowRight size={16} />
             </Link>
             <Link
               to="/how-it-works"
-              className="flex items-center gap-2 px-10 py-4 rounded-sm font-medium tracking-widest uppercase text-sm border border-border hover:border-primary/50 transition-all duration-300 text-muted-foreground hover:text-foreground"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 sm:px-10 py-4 rounded-sm font-medium tracking-widest uppercase text-sm border border-border hover:border-primary/50 transition-all duration-300 text-muted-foreground hover:text-foreground"
             >
               How It Works
             </Link>
@@ -160,8 +161,8 @@ const Index = () => {
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-          <div className="w-px h-12 bg-gradient-to-b from-transparent to-primary/50" />
+        <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
+          <div className="w-px h-10 sm:h-12 bg-gradient-to-b from-transparent to-primary/50" />
           <div className="w-1 h-1 rounded-full bg-primary" />
         </div>
       </section>
