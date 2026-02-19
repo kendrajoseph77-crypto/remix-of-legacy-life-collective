@@ -6,8 +6,8 @@ import { CheckCircle } from "lucide-react";
 const tiers = [
   {
     name: "Gold",
-    entry: "$5,000",
-    receive: "$15,000",
+    entry: "$2,500",
+    receive: "$7,500",
     colorClass: "tier-gold",
     textClass: "text-primary",
     borderActive: "ring-primary",
@@ -22,8 +22,8 @@ const tiers = [
   },
   {
     name: "Platinum",
-    entry: "$10,000",
-    receive: "$30,000",
+    entry: "$5,000",
+    receive: "$15,000",
     colorClass: "tier-platinum",
     textClass: "text-secondary",
     borderActive: "ring-secondary",
@@ -39,8 +39,8 @@ const tiers = [
   },
   {
     name: "Diamond",
-    entry: "$25,000",
-    receive: "$75,000",
+    entry: "$10,000",
+    receive: "$30,000",
     colorClass: "tier-diamond",
     textClass: "text-accent",
     borderActive: "ring-accent",
@@ -103,7 +103,7 @@ const Join = () => {
                 <p className={`text-4xl font-bold mb-1 ${tier.textClass}`} style={{ fontFamily: "'Playfair Display', serif" }}>
                   {tier.entry}
                 </p>
-                <p className="text-muted-foreground text-sm">one-time entry donation</p>
+                <p className="text-muted-foreground text-sm">one-time entry contribution</p>
               </div>
 
               <div className="border-t border-border/50 pt-6 mb-6">
