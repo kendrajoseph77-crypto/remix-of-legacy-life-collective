@@ -1,4 +1,4 @@
-import logoFull from "@/assets/logo-icon.png";
+import logoFull from "@/assets/logo-globe.png";
 
 interface LogoProps {
   heightClass?: string;
@@ -20,12 +20,11 @@ const Logo = ({ heightClass = "h-10", className = "" }: LogoProps) => {
 
   return (
     <div className={`flex items-center gap-2 ${className}`}>
-      {/* Globe icon — screen blend removes the black background naturally */}
+      {/* Globe icon */}
       <img
         src={logoFull}
         alt="coop5050Life globe"
         className={`${heightClass} w-auto`}
-        style={{ mixBlendMode: "screen" }}
       />
       {/* Text: 5050 lime, Life white */}
       <span className={`${textSize} font-extrabold leading-none`} style={{ fontFamily: "'Playfair Display', serif" }}>
