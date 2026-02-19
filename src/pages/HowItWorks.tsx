@@ -122,9 +122,7 @@ const HowItWorks = () => {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-10">
             <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3">Begin Where You Fit In</p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              The Income Center Levels
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">The Income Center Levels</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto text-sm">
               Your ultimate goal is to be on all 3 Income Centers simultaneously.
               Cycling just once puts you on a path to exceptional returns.
@@ -133,27 +131,23 @@ const HowItWorks = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
             {tiers.map((tier, i) => (
-              <div key={i} className={`rounded-xl p-6 ${tier.colorClass} text-center relative transition-all duration-300 hover:scale-[1.02]`}>
+              <div key={i} className="rounded-xl p-6 bg-background border border-border text-center relative transition-all duration-300 hover:border-muted-foreground/40">
                 {i === 2 && (
-                  <div className="absolute top-3 right-3 px-2 py-1 rounded text-xs font-bold tracking-widest uppercase bg-accent text-accent-foreground">
+                  <div className="absolute top-3 right-3 px-2 py-1 rounded text-xs font-bold tracking-widest uppercase bg-muted text-muted-foreground">
                     Elite
                   </div>
                 )}
                 <p className="text-muted-foreground text-xs tracking-widest uppercase mb-2">{tier.name} Level</p>
-                <p className={`text-4xl font-bold mb-1 ${tier.textClass}`}>{tier.entry}</p>
+                <p className="text-4xl font-bold mb-1 text-foreground">{tier.entry}</p>
                 <p className="text-muted-foreground text-sm mb-4">Entry Contribution</p>
-                <div className="border-t border-border/50 pt-4 mb-4">
+                <div className="border-t border-border pt-4 mb-4">
                   <p className="text-muted-foreground text-xs uppercase tracking-wider mb-1">You Receive</p>
-                  <p className={`text-2xl font-bold ${tier.textClass}`}>{tier.receive}</p>
+                  <p className="text-2xl font-bold text-foreground">{tier.receive}</p>
                   <p className="text-muted-foreground text-xs mt-1">per cycle</p>
                 </div>
                 <Link
                   to="/join"
-                  className="block text-center py-3 rounded-sm text-xs font-bold tracking-widest uppercase transition-all duration-300 hover:opacity-90 border border-current"
-                  style={{
-                    color: tier.name === "Diamond" ? "hsl(var(--accent))" : tier.name === "Platinum" ? "hsl(var(--secondary))" : "hsl(var(--primary))",
-                    borderColor: "currentColor"
-                  }}
+                  className="block text-center py-3 rounded-sm text-xs font-bold tracking-widest uppercase transition-all duration-300 border border-border text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary"
                 >
                   Select {tier.name}
                 </Link>
