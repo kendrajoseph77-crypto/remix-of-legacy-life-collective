@@ -62,7 +62,7 @@ const WheelhouseDiagram = () => {
           fill="none" stroke={lineColor} strokeWidth="1.5" strokeDasharray={lineDash} />
 
         <line x1={cx} y1={cy - centerR} x2={cx} y2={cy - 90 + innerR}
-          stroke="hsl(2 88% 62% / 0.4)" strokeWidth="1.5" strokeDasharray={lineDash} />
+          stroke="hsl(68 100% 50% / 0.4)" strokeWidth="1.5" strokeDasharray={lineDash} />
         <line x1={cx} y1={cy + centerR} x2={cx} y2={cy + 90 - innerR}
           stroke="hsl(68 100% 50% / 0.4)" strokeWidth="1.5" strokeDasharray={lineDash} />
 
@@ -103,12 +103,12 @@ const WheelhouseDiagram = () => {
         <text x={388} y={333} textAnchor="middle" fontSize="9" fontWeight="700" fill={aqua} fontFamily="monospace">06</text>
 
         {/* === INNER NODE 01 — above center (Inviter) === */}
-        <circle cx={cx} cy={cy - 90} r={innerR} fill={card} stroke={coral} strokeWidth="2.5" />
+        <circle cx={cx} cy={cy - 90} r={innerR} fill={card} stroke={lime} strokeWidth="2.5" />
         <image href={avatarUrls[1]} x={cx - innerR + 3} y={cy - 90 - innerR + 3}
           width={(innerR - 3) * 2} height={(innerR - 3) * 2} clipPath="url(#clip01)" preserveAspectRatio="xMidYMid slice" />
-        <circle cx={cx} cy={cy - 90} r={innerR} fill="none" stroke={coral} strokeWidth="2.5" filter="url(#glow)" />
-        <circle cx={cx - innerR + 4} cy={cy - 90 - innerR + 4} r="11" fill={navy} stroke={coral} strokeWidth="1.5" />
-        <text x={cx - innerR + 4} y={cy - 90 - innerR + 9} textAnchor="middle" fontSize="8" fontWeight="700" fill={coral} fontFamily="monospace">01</text>
+        <circle cx={cx} cy={cy - 90} r={innerR} fill="none" stroke={lime} strokeWidth="2.5" filter="url(#glow)" />
+        <circle cx={cx - innerR + 4} cy={cy - 90 - innerR + 4} r="11" fill={navy} stroke={lime} strokeWidth="1.5" />
+        <text x={cx - innerR + 4} y={cy - 90 - innerR + 9} textAnchor="middle" fontSize="8" fontWeight="700" fill={lime} fontFamily="monospace">01</text>
 
         {/* === INNER NODE 02 — below center (Your Direct) === */}
         <circle cx={cx} cy={cy + 90} r={innerR} fill={card} stroke={lime} strokeWidth="2.5" />
@@ -137,7 +137,7 @@ const WheelhouseDiagram = () => {
       {/* Legend */}
       <div className="flex items-center justify-center gap-6 mt-2 text-xs">
         <div className="flex items-center gap-1.5">
-          <div className="w-3 h-3 rounded-full" style={{ background: coral }} />
+          <div className="w-3 h-3 rounded-full" style={{ background: lime }} />
           <span className="text-muted-foreground">Your Inviter (01)</span>
         </div>
         <div className="flex items-center gap-1.5">
