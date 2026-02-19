@@ -1,45 +1,44 @@
 import logoFull from "@/assets/logo-full.png";
 
 interface LogoProps {
-  heightClass?: string; // e.g. "h-10"
+  heightClass?: string;
   className?: string;
 }
 
 /**
- * Renders the original coop5050Life logo recolored via CSS:
- *  - Globe + figures + text all shifted to aqua (close to brand aqua #14f1f4)
- * Then overlays "5050" lime / "Life" white as a CSS text layer on top.
- *
- * We achieve the split color by rendering the image filtered to aqua for
- * the globe/figures, and using a separate text lockup for "5050Life".
+ * Logo: gold-gradient globe with aqua figures (from image) + "5050" lime / "Life" white text.
  */
 const Logo = ({ heightClass = "h-10", className = "" }: LogoProps) => {
+  // Approximate globe portion width: the globe takes ~28% of the full image width
+  const globeWidths: Record<string, string> = {
+    "h-8":  "2.2rem",
+    "h-10": "2.8rem",
+    "h-12": "3.3rem",
+    "h-16": "4.4rem",
+  };
+  const textSizes: Record<string, string> = {
+    "h-8":  "text-2xl",
+    "h-10": "text-3xl",
+    "h-12": "text-3xl",
+    "h-16": "text-5xl",
+  };
+
+  const maxW = globeWidths[heightClass] ?? "2.8rem";
+  const textSize = textSizes[heightClass] ?? "text-3xl";
+
   return (
-    <div className={`flex items-center gap-1.5 ${className}`}>
-      {/* Globe only: clip to left portion of the full image */}
-      <div
-        style={{
-          overflow: "hidden",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
+    <div className={`flex items-center gap-2 ${className}`}>
+      {/* Globe icon — clipped to show only the left portion of the full image */}
+      <div style={{ overflow: "hidden", flexShrink: 0, display: "flex", alignItems: "center" }}>
         <img
           src={logoFull}
-          alt="coop5050Life"
-          className={`${heightClass} w-auto object-cover object-left`}
-          style={{
-            // Show roughly the left 27% — the globe portion of the wide logo
-            maxWidth: "calc(var(--logo-h, 2.5rem) * 1.05)",
-            filter: "hue-rotate(-5deg) saturate(1.3) brightness(1.1)",
-          }}
+          alt="coop5050Life globe"
+          className={`${heightClass} w-auto`}
+          style={{ maxWidth: maxW, objectFit: "cover", objectPosition: "left center" }}
         />
       </div>
-      {/* Text lockup: 5050 in lime, Life in white */}
-      <span
-        className={`font-extrabold leading-none ${heightClass === "h-8" ? "text-2xl" : heightClass === "h-16" ? "text-5xl" : "text-3xl"}`}
-        style={{ fontFamily: "'Playfair Display', serif" }}
-      >
+      {/* Text: 5050 lime, Life white */}
+      <span className={`${textSize} font-extrabold leading-none`} style={{ fontFamily: "'Playfair Display', serif" }}>
         <span style={{ color: "hsl(var(--lime))" }}>5050</span>
         <span style={{ color: "#ffffff" }}>Life</span>
       </span>
@@ -48,3 +47,4 @@ const Logo = ({ heightClass = "h-10", className = "" }: LogoProps) => {
 };
 
 export default Logo;
+
