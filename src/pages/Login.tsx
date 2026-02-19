@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
-import Logo from "@/components/Logo";
 
 const Login = () => {
   return (
@@ -11,9 +10,6 @@ const Login = () => {
       <section className="min-h-screen flex items-center justify-center pt-20 pb-20 hero-glow">
         <div className="w-full max-w-md mx-auto px-6">
           <div className="text-center mb-8">
-            <div className="flex justify-center mb-6">
-              <Logo heightClass="h-12" />
-            </div>
             <h1 className="text-3xl font-bold mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>
               Welcome Back
             </h1>
