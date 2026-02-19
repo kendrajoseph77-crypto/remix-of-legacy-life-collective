@@ -1,19 +1,13 @@
-const PersonIcon = ({ color }: { color: string }) => (
-  <svg viewBox="0 0 40 50" fill={color} xmlns="http://www.w3.org/2000/svg" className="w-full h-full opacity-80">
-    <circle cx="20" cy="13" r="9" />
-    <path d="M4 46c0-8.837 7.163-16 16-16s16 7.163 16 16" />
-  </svg>
-);
-
-interface NodeProps {
-  cx: number;
-  cy: number;
-  r: number;
-  label: string;
-  num?: string;
-  color: string;
-  isCenter?: boolean;
-}
+// Real person photo avatars — diverse set from UI Faces / randomuser
+const avatarUrls = [
+  "https://randomuser.me/api/portraits/men/32.jpg",   // center YOU
+  "https://randomuser.me/api/portraits/women/44.jpg", // 01 inviter
+  "https://randomuser.me/api/portraits/men/75.jpg",   // 02 direct
+  "https://randomuser.me/api/portraits/women/65.jpg", // 03
+  "https://randomuser.me/api/portraits/men/22.jpg",   // 04
+  "https://randomuser.me/api/portraits/women/28.jpg", // 05
+  "https://randomuser.me/api/portraits/men/58.jpg",   // 06
+];
 
 const WheelhouseDiagram = () => {
   const aqua = "hsl(181 90% 52%)";
@@ -22,26 +16,12 @@ const WheelhouseDiagram = () => {
   const navy = "hsl(210 45% 8%)";
   const card = "hsl(210 40% 12%)";
 
-  // Layout positions (SVG viewBox 500x440)
-  const cx = 250; const cy = 220; // center
-
-  const outerNodes = [
-    { id: "03", x: 70,  y: 70,  color: aqua },
-    { id: "04", x: 430, y: 70,  color: aqua },
-    { id: "05", x: 70,  y: 370, color: aqua },
-    { id: "06", x: 430, y: 370, color: aqua },
-  ];
-
-  const innerNodes = [
-    { id: "01", x: cx, y: cy - 90, color: coral },
-    { id: "02", x: cx, y: cy + 90, color: lime },
-  ];
+  const cx = 250; const cy = 220;
 
   const outerR = 52;
   const innerR = 34;
   const centerR = 68;
 
-  // Lines from center to outer corners — L-shaped
   const lineColor = "hsl(181 90% 52% / 0.35)";
   const lineDash = "6 4";
 
@@ -49,10 +29,6 @@ const WheelhouseDiagram = () => {
     <div className="relative w-full max-w-[520px] mx-auto">
       <svg viewBox="0 0 500 440" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <defs>
-          <radialGradient id="centerGrad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="hsl(2 88% 62% / 0.3)" />
-            <stop offset="100%" stopColor="hsl(210 45% 8% / 0.0)" />
-          </radialGradient>
           <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
             <feGaussianBlur stdDeviation="3" result="blur" />
             <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
@@ -61,111 +37,101 @@ const WheelhouseDiagram = () => {
             <feGaussianBlur stdDeviation="6" result="blur" />
             <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
           </filter>
-          <clipPath id="clip03"><circle cx={70} cy={70} r={outerR - 3} /></clipPath>
-          <clipPath id="clip04"><circle cx={430} cy={70} r={outerR - 3} /></clipPath>
-          <clipPath id="clip05"><circle cx={70} cy={370} r={outerR - 3} /></clipPath>
-          <clipPath id="clip06"><circle cx={430} cy={370} r={outerR - 3} /></clipPath>
+          <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="2" stdDeviation="4" floodColor="hsl(0 0% 0% / 0.5)" />
+          </filter>
+
+          {/* Clip paths for circular photo crops */}
+          <clipPath id="clip03"><circle cx={70} cy={70} r={outerR - 4} /></clipPath>
+          <clipPath id="clip04"><circle cx={430} cy={70} r={outerR - 4} /></clipPath>
+          <clipPath id="clip05"><circle cx={70} cy={370} r={outerR - 4} /></clipPath>
+          <clipPath id="clip06"><circle cx={430} cy={370} r={outerR - 4} /></clipPath>
+          <clipPath id="clip01"><circle cx={cx} cy={cy - 90} r={innerR - 3} /></clipPath>
+          <clipPath id="clip02"><circle cx={cx} cy={cy + 90} r={innerR - 3} /></clipPath>
           <clipPath id="clipCenter"><circle cx={cx} cy={cy} r={centerR - 4} /></clipPath>
         </defs>
 
-        {/* === CONNECTING LINES (behind nodes) === */}
-
-        {/* Center to 03 (top-left) — L-shape */}
+        {/* === CONNECTING LINES === */}
         <path d={`M ${cx} ${cy - centerR} L ${cx} ${70} L ${70 + outerR} ${70}`}
           fill="none" stroke={lineColor} strokeWidth="1.5" strokeDasharray={lineDash} />
-        {/* Center to 04 (top-right) */}
         <path d={`M ${cx} ${cy - centerR} L ${cx} ${70} L ${430 - outerR} ${70}`}
           fill="none" stroke={lineColor} strokeWidth="1.5" strokeDasharray={lineDash} />
-        {/* Center to 05 (bottom-left) */}
         <path d={`M ${cx} ${cy + centerR} L ${cx} ${370} L ${70 + outerR} ${370}`}
           fill="none" stroke={lineColor} strokeWidth="1.5" strokeDasharray={lineDash} />
-        {/* Center to 06 (bottom-right) */}
         <path d={`M ${cx} ${cy + centerR} L ${cx} ${370} L ${430 - outerR} ${370}`}
           fill="none" stroke={lineColor} strokeWidth="1.5" strokeDasharray={lineDash} />
 
-        {/* Center to 01 (top inner) */}
-        <line x1={cx} y1={cy - centerR} x2={cx} y2={innerNodes[0].y + innerR}
+        <line x1={cx} y1={cy - centerR} x2={cx} y2={cy - 90 + innerR}
           stroke="hsl(2 88% 62% / 0.4)" strokeWidth="1.5" strokeDasharray={lineDash} />
-        {/* Center to 02 (bottom inner) */}
-        <line x1={cx} y1={cy + centerR} x2={cx} y2={innerNodes[1].y - innerR}
+        <line x1={cx} y1={cy + centerR} x2={cx} y2={cy + 90 - innerR}
           stroke="hsl(68 100% 50% / 0.4)" strokeWidth="1.5" strokeDasharray={lineDash} />
 
-        {/* Corner dots at line bends */}
+        {/* Corner bend dots */}
         <circle cx={cx} cy={70} r="4" fill={aqua} filter="url(#glow)" />
         <circle cx={cx} cy={370} r="4" fill={aqua} filter="url(#glow)" />
 
         {/* === OUTER NODE 03 — top left === */}
         <circle cx={70} cy={70} r={outerR} fill={card} stroke={aqua} strokeWidth="2.5" />
-        {/* Person fill */}
-        <rect x={18} y={20} width={104} height={104} fill="hsl(181 90% 52% / 0.12)" clipPath="url(#clip03)" />
-        <g clipPath="url(#clip03)" transform="translate(30, 22) scale(1.15)">
-          <PersonIcon color={aqua} />
-        </g>
-        {/* Number badge */}
+        <image href={avatarUrls[3]} x={70 - outerR + 4} y={70 - outerR + 4}
+          width={(outerR - 4) * 2} height={(outerR - 4) * 2} clipPath="url(#clip03)" preserveAspectRatio="xMidYMid slice" />
+        <circle cx={70} cy={70} r={outerR} fill="none" stroke={aqua} strokeWidth="2.5" />
         <circle cx={28} cy={28} r="13" fill={navy} stroke={aqua} strokeWidth="1.5" />
         <text x={28} y={33} textAnchor="middle" fontSize="9" fontWeight="700" fill={aqua} fontFamily="monospace">03</text>
 
         {/* === OUTER NODE 04 — top right === */}
         <circle cx={430} cy={70} r={outerR} fill={card} stroke={aqua} strokeWidth="2.5" />
-        <g clipPath="url(#clip04)" transform="translate(390, 22) scale(1.15)">
-          <PersonIcon color={aqua} />
-        </g>
+        <image href={avatarUrls[4]} x={430 - outerR + 4} y={70 - outerR + 4}
+          width={(outerR - 4) * 2} height={(outerR - 4) * 2} clipPath="url(#clip04)" preserveAspectRatio="xMidYMid slice" />
+        <circle cx={430} cy={70} r={outerR} fill="none" stroke={aqua} strokeWidth="2.5" />
         <circle cx={388} cy={28} r="13" fill={navy} stroke={aqua} strokeWidth="1.5" />
         <text x={388} y={33} textAnchor="middle" fontSize="9" fontWeight="700" fill={aqua} fontFamily="monospace">04</text>
 
         {/* === OUTER NODE 05 — bottom left === */}
         <circle cx={70} cy={370} r={outerR} fill={card} stroke={aqua} strokeWidth="2.5" />
-        <g clipPath="url(#clip05)" transform="translate(30, 322) scale(1.15)">
-          <PersonIcon color={aqua} />
-        </g>
+        <image href={avatarUrls[5]} x={70 - outerR + 4} y={370 - outerR + 4}
+          width={(outerR - 4) * 2} height={(outerR - 4) * 2} clipPath="url(#clip05)" preserveAspectRatio="xMidYMid slice" />
+        <circle cx={70} cy={370} r={outerR} fill="none" stroke={aqua} strokeWidth="2.5" />
         <circle cx={28} cy={328} r="13" fill={navy} stroke={aqua} strokeWidth="1.5" />
         <text x={28} y={333} textAnchor="middle" fontSize="9" fontWeight="700" fill={aqua} fontFamily="monospace">05</text>
 
         {/* === OUTER NODE 06 — bottom right === */}
         <circle cx={430} cy={370} r={outerR} fill={card} stroke={aqua} strokeWidth="2.5" />
-        <g clipPath="url(#clip06)" transform="translate(390, 322) scale(1.15)">
-          <PersonIcon color={aqua} />
-        </g>
+        <image href={avatarUrls[6]} x={430 - outerR + 4} y={370 - outerR + 4}
+          width={(outerR - 4) * 2} height={(outerR - 4) * 2} clipPath="url(#clip06)" preserveAspectRatio="xMidYMid slice" />
+        <circle cx={430} cy={370} r={outerR} fill="none" stroke={aqua} strokeWidth="2.5" />
         <circle cx={388} cy={328} r="13" fill={navy} stroke={aqua} strokeWidth="1.5" />
         <text x={388} y={333} textAnchor="middle" fontSize="9" fontWeight="700" fill={aqua} fontFamily="monospace">06</text>
 
-        {/* === INNER NODE 01 — above center === */}
-        <circle cx={cx} cy={innerNodes[0].y} r={innerR} fill={card} stroke={coral} strokeWidth="2" />
-        <g transform={`translate(${cx - 14}, ${innerNodes[0].y - 22}) scale(0.7)`}>
-          <PersonIcon color={coral} />
-        </g>
-        <circle cx={cx - innerR + 4} cy={innerNodes[0].y - innerR + 4} r="11" fill={navy} stroke={coral} strokeWidth="1.5" />
-        <text x={cx - innerR + 4} y={innerNodes[0].y - innerR + 9} textAnchor="middle" fontSize="8" fontWeight="700" fill={coral} fontFamily="monospace">01</text>
+        {/* === INNER NODE 01 — above center (Inviter) === */}
+        <circle cx={cx} cy={cy - 90} r={innerR} fill={card} stroke={coral} strokeWidth="2.5" />
+        <image href={avatarUrls[1]} x={cx - innerR + 3} y={cy - 90 - innerR + 3}
+          width={(innerR - 3) * 2} height={(innerR - 3) * 2} clipPath="url(#clip01)" preserveAspectRatio="xMidYMid slice" />
+        <circle cx={cx} cy={cy - 90} r={innerR} fill="none" stroke={coral} strokeWidth="2.5" filter="url(#glow)" />
+        <circle cx={cx - innerR + 4} cy={cy - 90 - innerR + 4} r="11" fill={navy} stroke={coral} strokeWidth="1.5" />
+        <text x={cx - innerR + 4} y={cy - 90 - innerR + 9} textAnchor="middle" fontSize="8" fontWeight="700" fill={coral} fontFamily="monospace">01</text>
 
-        {/* === INNER NODE 02 — below center === */}
-        <circle cx={cx} cy={innerNodes[1].y} r={innerR} fill={card} stroke={lime} strokeWidth="2" />
-        <g transform={`translate(${cx - 14}, ${innerNodes[1].y - 22}) scale(0.7)`}>
-          <PersonIcon color={lime} />
-        </g>
-        <circle cx={cx - innerR + 4} cy={innerNodes[1].y - innerR + 4} r="11" fill={navy} stroke={lime} strokeWidth="1.5" />
-        <text x={cx - innerR + 4} y={innerNodes[1].y - innerR + 9} textAnchor="middle" fontSize="8" fontWeight="700" fill={lime} fontFamily="monospace">02</text>
+        {/* === INNER NODE 02 — below center (Your Direct) === */}
+        <circle cx={cx} cy={cy + 90} r={innerR} fill={card} stroke={lime} strokeWidth="2.5" />
+        <image href={avatarUrls[2]} x={cx - innerR + 3} y={cy + 90 - innerR + 3}
+          width={(innerR - 3) * 2} height={(innerR - 3) * 2} clipPath="url(#clip02)" preserveAspectRatio="xMidYMid slice" />
+        <circle cx={cx} cy={cy + 90} r={innerR} fill="none" stroke={lime} strokeWidth="2.5" filter="url(#glow)" />
+        <circle cx={cx - innerR + 4} cy={cy + 90 - innerR + 4} r="11" fill={navy} stroke={lime} strokeWidth="1.5" />
+        <text x={cx - innerR + 4} y={cy + 90 - innerR + 9} textAnchor="middle" fontSize="8" fontWeight="700" fill={lime} fontFamily="monospace">02</text>
 
         {/* === CENTER "YOU" CIRCLE === */}
-        {/* Outer glow ring */}
+        {/* Glow rings */}
         <circle cx={cx} cy={cy} r={centerR + 10} fill="none" stroke="hsl(2 88% 62% / 0.15)" strokeWidth="8" />
-        <circle cx={cx} cy={cy} r={centerR + 4} fill="none" stroke="hsl(2 88% 62% / 0.25)" strokeWidth="2" />
+        <circle cx={cx} cy={cy} r={centerR + 4} fill="none" stroke="hsl(2 88% 62% / 0.3)" strokeWidth="2" />
 
-        {/* Center bg */}
-        <circle cx={cx} cy={cy} r={centerR} fill={card} stroke={coral} strokeWidth="2.5" filter="url(#softGlow)" />
-
-        {/* Pie dividers inside center */}
-        <line x1={cx} y1={cy - centerR} x2={cx} y2={cy + centerR} stroke="hsl(210 40% 20%)" strokeWidth="1" />
-        <line x1={cx - centerR} y1={cy} x2={cx + centerR} y2={cy} stroke="hsl(210 40% 20%)" strokeWidth="1" />
-
-        {/* Center person icon */}
-        <clipPath id="clipCenterPerson"><circle cx={cx} cy={cy} r={centerR - 4} /></clipPath>
-        <g clipPath="url(#clipCenterPerson)" transform={`translate(${cx - 28}, ${cy - 36}) scale(1.4)`}>
-          <PersonIcon color="hsl(2 88% 70%)" />
-        </g>
+        {/* Center photo */}
+        <circle cx={cx} cy={cy} r={centerR} fill={card} stroke={coral} strokeWidth="3" filter="url(#softGlow)" />
+        <image href={avatarUrls[0]} x={cx - centerR + 4} y={cy - centerR + 4}
+          width={(centerR - 4) * 2} height={(centerR - 4) * 2} clipPath="url(#clipCenter)" preserveAspectRatio="xMidYMid slice" />
+        <circle cx={cx} cy={cy} r={centerR} fill="none" stroke={coral} strokeWidth="3" filter="url(#glow)" />
 
         {/* YOU label */}
-        <rect x={cx - 22} y={cy + 32} width="44" height="20" rx="4" fill="hsl(2 88% 62% / 0.85)" />
-        <text x={cx} y={cy + 46} textAnchor="middle" fontSize="11" fontWeight="800" fill="white" fontFamily="sans-serif">YOU</text>
+        <rect x={cx - 22} y={cy + centerR - 26} width="44" height="20" rx="4" fill="hsl(2 88% 62% / 0.92)" />
+        <text x={cx} y={cy + centerR - 12} textAnchor="middle" fontSize="11" fontWeight="800" fill="white" fontFamily="sans-serif">YOU</text>
       </svg>
 
       {/* Legend */}
