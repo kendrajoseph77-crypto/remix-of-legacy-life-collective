@@ -62,7 +62,7 @@ const Index = () => {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border mb-8"
             style={{ borderColor: "hsl(43 74% 47% / 0.5)", background: "hsl(43 74% 47% / 0.10)" }}>
             <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#c9a227" }} />
-            <span className="text-xs font-medium tracking-widest uppercase gold-gradient">Celebrating 25 Years · Cooperative Crowdfunding™ · Invented by David T. Rosen</span>
+            <span className="text-xs font-medium tracking-widest uppercase gold-gradient">Celebrating 25 Years · Cooperative Crowdfunding™ · By David T. Rosen</span>
           </div>
 
           {/* Logo */}
