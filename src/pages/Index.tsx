@@ -31,7 +31,7 @@ const features = [
   { icon: Zap, title: "Fully Automated", desc: "From positioning to payments — the system handles everything." },
   { icon: Shield, title: "Transparent & Secure", desc: "No middlemen. Decentralized wallets. Your money, your way." },
   { icon: Globe, title: "Global Reach", desc: "150+ FIAT and 100+ crypto currencies accepted worldwide." },
-  { icon: TrendingUp, title: "50/50 Always", desc: "You always receive exactly 50% — guaranteed by the system." },
+  { icon: TrendingUp, title: "50/50 Always", desc: "You always receive exactly 50% — enforced by the system." },
   { icon: RefreshCw, title: "Infinite Cycling", desc: "Every time your Wheelhouse fills, a new one opens automatically." },
   { icon: Star, title: "Team Loyalty", desc: "The Möbius Loop ensures your team always follows you." },
 ];
@@ -143,7 +143,7 @@ const Index = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
               { value: "100%", label: "Peer-to-Peer" },
-              { value: "50/50", label: "Always Guaranteed" },
+              { value: "50/50", label: "Always" },
               { value: "3", label: "Elite Income Centers" },
               { value: "$52.5K+", label: "Max Cycle Earnings" },
             ].map((stat, i) => (
