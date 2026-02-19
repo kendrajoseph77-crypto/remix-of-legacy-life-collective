@@ -60,7 +60,7 @@ const Index = () => {
         <div className="relative z-10 max-w-5xl mx-auto">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border mb-8"
-            style={{ borderColor: "hsl(var(--lime) / 0.4)", background: "hsl(var(--lime) / 0.08)" }}>
+            style={{ borderColor: "hsl(var(--coral) / 0.4)", background: "hsl(var(--coral) / 0.08)" }}>
             <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
             <span className="text-primary text-xs font-medium tracking-widest uppercase">5050 Crowdfunding™ · Elite Platform</span>
           </div>
@@ -89,7 +89,7 @@ const Index = () => {
             <Link
               to="/join"
               className="flex items-center gap-2 px-10 py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:scale-105"
-              style={{ background: "linear-gradient(135deg, hsl(var(--lime)), hsl(80 100% 55%))", color: "hsl(var(--indigo))" }}
+              style={{ background: "linear-gradient(135deg, hsl(var(--coral)), hsl(15 95% 65%))", color: "hsl(var(--indigo))" }}
             >
               Join Us <ArrowRight size={16} />
             </Link>
@@ -159,7 +159,7 @@ const Index = () => {
           <div className="grid grid-cols-2 gap-4">
             {features.map((f, i) => (
               <div key={i} className="p-5 rounded-xl bg-card border border-border card-glow hover:border-primary/30 transition-all duration-300">
-                <div className="p-2 rounded-lg w-fit mb-3" style={{ background: "hsl(var(--lime) / 0.1)" }}>
+                <div className="p-2 rounded-lg w-fit mb-3" style={{ background: "hsl(var(--coral) / 0.1)" }}>
                   <f.icon size={18} className="text-primary" />
                 </div>
                 <h4 className="text-foreground font-semibold text-sm mb-1">{f.title}</h4>
@@ -189,7 +189,7 @@ const Index = () => {
               <div key={i} className={`rounded-xl p-8 ${tier.colorClass} relative overflow-hidden transition-all duration-300 hover:scale-[1.02]`}>
                 {tier.elite && (
                   <div className="absolute top-4 right-4 px-3 py-1 rounded text-xs font-bold tracking-widest uppercase"
-                    style={{ background: "hsl(var(--lime))", color: "hsl(var(--indigo))" }}>
+                    style={{ background: "hsl(var(--coral))", color: "hsl(var(--indigo))" }}>
                     Elite
                   </div>
                 )}
@@ -212,7 +212,7 @@ const Index = () => {
                   to="/join"
                   className="block text-center py-3 rounded-sm text-xs font-bold tracking-widest uppercase transition-all duration-300 hover:opacity-90 border border-current"
                   style={{
-                    color: tier.name === "Diamond" ? "hsl(var(--lime))" : tier.name === "Platinum" ? "hsl(var(--aqua))" : "hsl(var(--coral))",
+                    color: tier.name === "Diamond" ? "hsl(var(--aqua))" : tier.name === "Platinum" ? "hsl(var(--aqua))" : "hsl(var(--coral))",
                     borderColor: "currentColor"
                   }}
                 >
@@ -223,7 +223,7 @@ const Index = () => {
           </div>
 
           <div className="text-center rounded-xl p-8"
-            style={{ background: "linear-gradient(135deg, hsl(var(--lime) / 0.07), hsl(var(--aqua) / 0.06))", border: "1px solid hsl(var(--lime) / 0.2)" }}>
+            style={{ background: "linear-gradient(135deg, hsl(var(--coral) / 0.08), hsl(var(--aqua) / 0.06))", border: "1px solid hsl(var(--coral) / 0.2)" }}>
             <p className="text-muted-foreground mb-2">On all 3 Income Centers — cycling just once every month:</p>
             <p className="text-5xl font-bold gold-gradient mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>$120,000</p>
             <p className="text-muted-foreground text-sm">Imagine doing that 2 or 3 or more times a month — it's possible and easily doable!</p>
@@ -287,7 +287,7 @@ const Index = () => {
                 <p className="text-foreground text-sm leading-relaxed mb-6 italic">"{t.quote}"</p>
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold"
-                    style={{ background: "hsl(var(--lime) / 0.2)", color: "hsl(var(--lime))" }}>
+                    style={{ background: "hsl(var(--coral) / 0.2)", color: "hsl(var(--coral))" }}>
                     {t.name.charAt(0)}
                   </div>
                   <div>
@@ -317,7 +317,7 @@ const Index = () => {
             <Link
               to="/join"
               className="flex items-center gap-2 px-12 py-5 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:scale-105"
-              style={{ background: "linear-gradient(135deg, hsl(var(--lime)), hsl(80 100% 55%))", color: "hsl(var(--indigo))" }}
+              style={{ background: "linear-gradient(135deg, hsl(var(--coral)), hsl(15 95% 65%))", color: "hsl(var(--indigo))" }}
             >
               Join Us Right Now <ArrowRight size={16} />
             </Link>
