@@ -60,7 +60,7 @@ const Index = () => {
         <div className="relative z-10 max-w-5xl mx-auto">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border mb-8"
-            style={{ borderColor: "hsl(var(--coral) / 0.4)", background: "hsl(var(--coral) / 0.08)" }}>
+            style={{ borderColor: "hsl(var(--lime) / 0.4)", background: "hsl(var(--lime) / 0.08)" }}>
             <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
             <span className="text-primary text-xs font-medium tracking-widest uppercase">5050 Crowdfunding™ · Elite Platform</span>
           </div>
@@ -94,7 +94,7 @@ const Index = () => {
             <Link
               to="/join"
               className="flex items-center gap-2 px-10 py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:scale-105"
-              style={{ background: "linear-gradient(135deg, hsl(var(--coral)), hsl(15 95% 65%))", color: "hsl(var(--indigo))" }}
+              style={{ background: "linear-gradient(135deg, hsl(var(--lime)), hsl(80 100% 55%))", color: "hsl(var(--indigo))" }}
             >
               Join Us <ArrowRight size={16} />
             </Link>
@@ -164,7 +164,7 @@ const Index = () => {
           <div className="grid grid-cols-2 gap-4">
             {features.map((f, i) => (
               <div key={i} className="p-5 rounded-xl bg-card border border-border card-glow hover:border-primary/30 transition-all duration-300">
-                <div className="p-2 rounded-lg w-fit mb-3" style={{ background: "hsl(var(--coral) / 0.1)" }}>
+                <div className="p-2 rounded-lg w-fit mb-3" style={{ background: "hsl(var(--lime) / 0.1)" }}>
                   <f.icon size={18} className="text-primary" />
                 </div>
                 <h4 className="text-foreground font-semibold text-sm mb-1">{f.title}</h4>
@@ -228,7 +228,7 @@ const Index = () => {
           </div>
 
           <div className="text-center rounded-xl p-8"
-            style={{ background: "linear-gradient(135deg, hsl(var(--coral) / 0.08), hsl(var(--aqua) / 0.06))", border: "1px solid hsl(var(--coral) / 0.2)" }}>
+            style={{ background: "linear-gradient(135deg, hsl(var(--lime) / 0.07), hsl(var(--aqua) / 0.06))", border: "1px solid hsl(var(--lime) / 0.2)" }}>
             <p className="text-muted-foreground mb-2">On all 3 Income Centers — cycling just once every month:</p>
             <p className="text-5xl font-bold gold-gradient mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>$120,000</p>
             <p className="text-muted-foreground text-sm">Imagine doing that 2 or 3 or more times a month — it's possible and easily doable!</p>
@@ -292,7 +292,7 @@ const Index = () => {
                 <p className="text-foreground text-sm leading-relaxed mb-6 italic">"{t.quote}"</p>
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold"
-                    style={{ background: "hsl(var(--coral) / 0.2)", color: "hsl(var(--coral))" }}>
+                    style={{ background: "hsl(var(--lime) / 0.2)", color: "hsl(var(--lime))" }}>
                     {t.name.charAt(0)}
                   </div>
                   <div>
@@ -308,7 +308,7 @@ const Index = () => {
 
       {/* Final CTA */}
       <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(2_88%_62%/0.08)_0%,transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(68_100%_50%/0.07)_0%,transparent_70%)]" />
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <p className="text-secondary text-sm tracking-[0.3em] uppercase font-medium mb-4">Start Now</p>
           <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
@@ -322,7 +322,7 @@ const Index = () => {
             <Link
               to="/join"
               className="flex items-center gap-2 px-12 py-5 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:scale-105"
-              style={{ background: "linear-gradient(135deg, hsl(var(--coral)), hsl(15 95% 65%))", color: "hsl(var(--indigo))" }}
+              style={{ background: "linear-gradient(135deg, hsl(var(--lime)), hsl(80 100% 55%))", color: "hsl(var(--indigo))" }}
             >
               Join Us Right Now <ArrowRight size={16} />
             </Link>
