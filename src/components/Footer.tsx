@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logoIcon from "@/assets/logo-icon.png";
+import logoFull from "@/assets/logo-full.png";
 
 const Footer = () => {
   return (
@@ -9,13 +9,12 @@ const Footer = () => {
           {/* Brand */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <img src={logoIcon} alt="coop5050Life" className="h-10 w-10 object-contain" />
-              <span className="text-lg font-bold" style={{ fontFamily: "'Playfair Display', serif" }}>
-                <span className="gold-gradient">coop</span>
-                <span className="text-foreground">5050</span>
-                <span className="cyan-gradient">Life</span>
-                <span className="text-xs align-super text-muted-foreground">™</span>
-              </span>
+              <img
+                src={logoFull}
+                alt="coop5050Life"
+                className="h-8 object-contain"
+                style={{ filter: "brightness(0) invert(1)" }}
+              />
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed">
               The elite peer-to-peer crowdfunding platform built for legacy wealth.

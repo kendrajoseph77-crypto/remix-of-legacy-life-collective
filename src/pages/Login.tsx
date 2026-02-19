@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
-import logoIcon from "@/assets/logo-icon.png";
+import logoFull from "@/assets/logo-full.png";
 
 const Login = () => {
   return (
@@ -11,7 +11,12 @@ const Login = () => {
       <section className="min-h-screen flex items-center justify-center pt-20 pb-20 hero-glow">
         <div className="w-full max-w-md mx-auto px-6">
           <div className="text-center mb-8">
-            <img src={logoIcon} alt="coop5050Life" className="h-16 w-16 object-contain mx-auto mb-4" />
+            <img
+              src={logoFull}
+              alt="coop5050Life"
+              className="h-12 object-contain mx-auto mb-6"
+              style={{ filter: "brightness(0) invert(1)" }}
+            />
             <h1 className="text-3xl font-bold mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>
               Welcome Back
             </h1>
@@ -49,7 +54,7 @@ const Login = () => {
               <button
                 type="submit"
                 className="w-full py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:opacity-90"
-                style={{ background: "linear-gradient(135deg, hsl(45 95% 55%), hsl(35 100% 65%))", color: "hsl(220 20% 5%)" }}
+                style={{ background: "linear-gradient(135deg, hsl(var(--coral)), hsl(15 95% 65%))", color: "hsl(var(--indigo))" }}
               >
                 Sign In
               </button>
