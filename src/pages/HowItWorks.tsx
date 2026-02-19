@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import WheelhouseDiagram from "@/components/WheelhouseDiagram";
 import { Link } from "react-router-dom";
 import { CheckCircle, Zap, RefreshCw, Shield, TrendingUp, Globe } from "lucide-react";
 
@@ -74,7 +75,7 @@ const HowItWorks = () => {
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <p className="text-secondary text-sm tracking-[0.3em] uppercase font-medium mb-4">The System</p>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
-            How <span style={{ color: "#14b8d4" }}>Coop5050</span><span className="lime-gradient">Life</span><br />Works
+            How <span style={{ color: "#14b8d4" }}>Coop5050</span><span style={{ color: "#14b8d4" }}>Life</span><br />Works
           </h1>
           <p className="text-muted-foreground text-lg leading-relaxed max-w-2xl mx-auto">
             Your success begins with the system. A great system produces great results.
@@ -241,72 +242,8 @@ const HowItWorks = () => {
               </div>
             </div>
 
-            {/* Wheelhouse Diagram — 2×2 tree layout */}
-            <div className="flex justify-center">
-              <div className="relative w-80 h-80">
-                {/* SVG connecting lines behind circles */}
-                <svg className="absolute inset-0 w-full h-full" style={{ zIndex: 1 }}>
-                  {/* Center to You */}
-                  <line x1="160" y1="80" x2="80" y2="160" stroke="hsl(2 88% 62% / 0.3)" strokeWidth="1.5" strokeDasharray="4 3" />
-                  {/* You to #3 */}
-                  <line x1="80" y1="160" x2="40" y2="260" stroke="hsl(181 90% 52% / 0.3)" strokeWidth="1.5" strokeDasharray="4 3" />
-                  {/* You to #4 */}
-                  <line x1="80" y1="160" x2="120" y2="260" stroke="hsl(181 90% 52% / 0.3)" strokeWidth="1.5" strokeDasharray="4 3" />
-                  {/* Center to #5 */}
-                  <line x1="160" y1="80" x2="200" y2="160" stroke="hsl(2 88% 62% / 0.3)" strokeWidth="1.5" strokeDasharray="4 3" />
-                  {/* #5 to sub-positions */}
-                  <line x1="200" y1="160" x2="200" y2="260" stroke="hsl(210 30% 40% / 0.4)" strokeWidth="1.5" strokeDasharray="4 3" />
-                  <line x1="200" y1="160" x2="270" y2="260" stroke="hsl(210 30% 40% / 0.4)" strokeWidth="1.5" strokeDasharray="4 3" />
-                  {/* Möbius loop circle */}
-                  <circle cx="160" cy="160" r="130" fill="none" stroke="hsl(68 100% 50% / 0.07)" strokeWidth="60" />
-                </svg>
-
-                {/* Inviter — top center */}
-                <div className="absolute flex items-center justify-center w-16 h-16 rounded-full z-20"
-                  style={{
-                    top: "48px", left: "50%", marginLeft: "-32px",
-                    background: "linear-gradient(135deg, hsl(var(--coral)), hsl(15 95% 65%))"
-                  }}>
-                  <span className="text-[10px] font-bold text-center leading-tight" style={{ color: "hsl(var(--indigo))" }}>INVITER</span>
-                </div>
-
-                {/* YOU — left middle */}
-                <div className="absolute flex items-center justify-center w-14 h-14 rounded-full border-2 border-secondary z-20"
-                  style={{ top: "143px", left: "53px", background: "hsl(var(--aqua) / 0.2)" }}>
-                  <span className="text-xs font-bold text-secondary">YOU</span>
-                </div>
-
-                {/* Position 5 — right middle */}
-                <div className="absolute flex items-center justify-center w-12 h-12 rounded-full border border-border bg-card z-20"
-                  style={{ top: "148px", left: "194px" }}>
-                  <span className="text-xs text-muted-foreground">#5</span>
-                </div>
-
-                {/* Position 3 — bottom left of YOU */}
-                <div className="absolute flex items-center justify-center w-12 h-12 rounded-full border border-border bg-card z-20"
-                  style={{ top: "248px", left: "14px" }}>
-                  <span className="text-xs text-muted-foreground">#3</span>
-                </div>
-
-                {/* Position 4 — bottom right of YOU */}
-                <div className="absolute flex items-center justify-center w-12 h-12 rounded-full border border-border bg-card z-20"
-                  style={{ top: "248px", left: "94px" }}>
-                  <span className="text-xs text-muted-foreground">#4</span>
-                </div>
-
-                {/* Position 6 — bottom left of #5 */}
-                <div className="absolute flex items-center justify-center w-12 h-12 rounded-full border border-border bg-card z-20"
-                  style={{ top: "248px", left: "194px" }}>
-                  <span className="text-xs text-muted-foreground">#6</span>
-                </div>
-
-                {/* Position 7 (overflow) — bottom right of #5 */}
-                <div className="absolute flex items-center justify-center w-12 h-12 rounded-full border border-border bg-card z-20"
-                  style={{ top: "248px", left: "264px" }}>
-                  <span className="text-xs text-muted-foreground">#7</span>
-                </div>
-              </div>
-            </div>
+            {/* Wheelhouse Diagram */}
+            <WheelhouseDiagram />
           </div>
         </div>
       </section>
