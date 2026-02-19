@@ -13,7 +13,6 @@ const Footer = () => {
                 src={logoFull}
                 alt="coop5050Life"
                 className="h-8 object-contain"
-                style={{ filter: "brightness(0) invert(1)" }}
               />
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed">

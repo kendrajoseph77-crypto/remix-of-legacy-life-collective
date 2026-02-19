@@ -15,7 +15,6 @@ const Login = () => {
               src={logoFull}
               alt="coop5050Life"
               className="h-12 object-contain mx-auto mb-6"
-              style={{ filter: "brightness(0) invert(1)" }}
             />
             <h1 className="text-3xl font-bold mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>
               Welcome Back
