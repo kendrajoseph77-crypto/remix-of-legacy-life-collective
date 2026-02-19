@@ -224,9 +224,9 @@ const HowItWorks = () => {
                 The Möbius Loop<br /><span className="lime-gradient">Wheelhouse</span>
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                Your inviter is in the center, YOU are in position #2, and the two people
-                you invited are in positions #3 and beyond. The 2×2 Wheelhouse holds
-                6 Active Donors.
+                YOU are in the center. Your Inviter is in position #1, your Direct is in
+                position #2, and the four people your team invites fill positions #3–#6.
+                The 2×2 Wheelhouse holds 6 Active Donors.
               </p>
               <p className="text-muted-foreground leading-relaxed mb-6">
                 <span className="text-foreground font-semibold">You Never Lose Your Team!</span> Each time your Wheelhouse fills,
