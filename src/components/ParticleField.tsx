@@ -67,7 +67,7 @@ const ParticleField = () => {
         // Draw dot — using coral color at very low opacity
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(2, 88%, 72%, ${p.opacity})`;
+        ctx.fillStyle = `hsla(68, 100%, 55%, ${p.opacity})`;
         ctx.fill();
       }
 
