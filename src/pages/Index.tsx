@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import ParticleField from "@/components/ParticleField";
 import Logo from "@/components/Logo";
 import { Link } from "react-router-dom";
-import { ArrowRight, CheckCircle, Zap, Shield, Globe, TrendingUp, RefreshCw, Star } from "lucide-react";
+import { ArrowRight, CheckCircle, Zap, Shield, Globe, TrendingUp, RefreshCw, Star, Trophy, Sparkles } from "lucide-react";
 
 const tiers = [
   {
@@ -58,11 +58,45 @@ const Index = () => {
         <ParticleField />
 
         <div className="relative z-10 max-w-5xl mx-auto">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border mb-8"
-            style={{ borderColor: "hsl(43 74% 47% / 0.5)", background: "hsl(43 74% 47% / 0.10)" }}>
-            <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#c9a227" }} />
-            <span className="text-xs font-medium tracking-widest uppercase gold-gradient">Celebrating 25 Years · Cooperative Crowdfunding™ · By David T. Rosen</span>
+          {/* Anniversary Badge */}
+          <div className="relative inline-flex flex-col items-center gap-3 mb-10">
+            {/* Glow ring */}
+            <div className="absolute inset-0 rounded-2xl blur-2xl opacity-40"
+              style={{ background: "linear-gradient(135deg, hsl(43 74% 47%), hsl(68 100% 50%), hsl(43 74% 47%))" }} />
+
+            <div className="relative flex flex-col items-center gap-2 px-8 py-5 rounded-2xl border-2"
+              style={{
+                borderColor: "hsl(43 74% 47% / 0.8)",
+                background: "linear-gradient(135deg, hsl(43 74% 47% / 0.15), hsl(68 100% 50% / 0.08), hsl(43 74% 47% / 0.15))",
+              }}>
+
+              {/* Top row — icon + years */}
+              <div className="flex items-center gap-3">
+                <Trophy size={22} style={{ color: "hsl(43 74% 47%)" }} className="animate-bounce" />
+                <span className="text-4xl font-black tracking-tight gold-gradient" style={{ fontFamily: "'Playfair Display', serif" }}>
+                  25 YEARS
+                </span>
+                <Trophy size={22} style={{ color: "hsl(43 74% 47%)" }} className="animate-bounce" />
+              </div>
+
+              {/* Divider */}
+              <div className="w-full h-px" style={{ background: "linear-gradient(90deg, transparent, hsl(43 74% 47% / 0.6), transparent)" }} />
+
+              {/* Bottom row — subtitle */}
+              <div className="flex items-center gap-2">
+                <Sparkles size={13} style={{ color: "hsl(68 100% 50%)" }} />
+                <span className="text-xs font-semibold tracking-[0.25em] uppercase"
+                  style={{ color: "hsl(43 74% 70%)" }}>
+                  Cooperative Crowdfunding™
+                </span>
+                <span className="text-xs" style={{ color: "hsl(43 74% 47% / 0.6)" }}>·</span>
+                <span className="text-xs font-medium tracking-widest uppercase"
+                  style={{ color: "hsl(43 74% 60%)" }}>
+                  By David T. Rosen
+                </span>
+                <Sparkles size={13} style={{ color: "hsl(68 100% 50%)" }} />
+              </div>
+            </div>
           </div>
 
           {/* Logo */}
