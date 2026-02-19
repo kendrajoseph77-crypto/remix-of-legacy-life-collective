@@ -221,7 +221,7 @@ const HowItWorks = () => {
             <div>
               <p className="text-secondary text-sm tracking-[0.3em] uppercase font-medium mb-3">The Technology</p>
               <h2 className="text-4xl font-bold mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>
-                The Möbius Loop<br /><span className="lime-gradient">Wheelhouse</span>
+                The Mobius Loop<br /><span className="lime-gradient">Wheelhouse</span>
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-6">
                 YOU are in the center. Your Inviter is in position #1, your Direct is in
