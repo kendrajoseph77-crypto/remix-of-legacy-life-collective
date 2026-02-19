@@ -27,7 +27,7 @@ const tiers = [
     entry: "$25,000",
     receive: "$75,000",
     colorClass: "tier-diamond",
-    textClass: "text-accent",
+    textClass: "gold-gradient",
     desc: "Elite tier. Maximum returns. Legacy-class wealth.",
     elite: true,
   },
