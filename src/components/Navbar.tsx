@@ -29,7 +29,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center group">
-          <Logo heightClass="h-40" />
+          <Logo />
         </Link>
 
         {/* Desktop Nav */}

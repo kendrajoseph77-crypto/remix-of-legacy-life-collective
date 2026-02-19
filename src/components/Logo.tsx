@@ -5,14 +5,14 @@ interface LogoProps {
   className?: string;
 }
 
-const Logo = ({ heightClass = "h-10", className = "" }: LogoProps) => {
+const Logo = ({ heightClass, className = "" }: LogoProps) => {
   return (
     <div className={`flex items-center ${className}`}>
       <img
         src={logoLife}
         alt="Life logo"
-        className={`${heightClass} w-auto`}
-        style={{ mixBlendMode: "screen" }}
+        className={`w-auto ${heightClass ?? ""}`}
+        style={{ mixBlendMode: "screen", height: heightClass ? undefined : "220px" }}
       />
     </div>
   );
