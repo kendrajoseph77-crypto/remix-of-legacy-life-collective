@@ -1,4 +1,4 @@
-import logoRecolored from "@/assets/logo-recolored.png";
+import logoOriginal from "@/assets/logo-original.png";
 
 interface LogoProps {
   heightClass?: string;
@@ -9,10 +9,10 @@ const Logo = ({ heightClass = "h-10", className = "" }: LogoProps) => {
   return (
     <div className={`flex items-center ${className}`}>
       <img
-        src={logoRecolored}
+        src={logoOriginal}
         alt="Coop5050Life"
         className={`${heightClass} w-auto`}
-        style={{ mixBlendMode: "screen" }}
+        style={{ mixBlendMode: "multiply" }}
       />
     </div>
   );
