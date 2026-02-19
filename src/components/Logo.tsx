@@ -40,7 +40,7 @@ const Logo = ({ heightClass = "h-10", className = "" }: LogoProps) => {
       {/* Text: 5050 lime, Life white */}
       <span className={`${textSize} font-extrabold leading-none`} style={{ fontFamily: "'Playfair Display', serif" }}>
         <span style={{ color: "#14b8d4" }}>5050</span>
-        <span style={{ background: "linear-gradient(135deg, #b8860b, #FFD700, #b8860b)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Life</span>
+        <span style={{ background: "linear-gradient(135deg, #c9a227, #f0d060, #c9a227)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>Life</span>
       </span>
     </div>
   );
