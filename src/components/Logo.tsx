@@ -12,6 +12,7 @@ const Logo = ({ heightClass = "h-10", className = "" }: LogoProps) => {
         src={logoRecolored}
         alt="Coop5050Life"
         className={`${heightClass} w-auto`}
+        style={{ mixBlendMode: "screen" }}
       />
     </div>
   );
