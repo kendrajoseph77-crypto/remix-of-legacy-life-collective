@@ -58,44 +58,70 @@ const Index = () => {
         <ParticleField />
 
         <div className="relative z-10 max-w-5xl mx-auto">
-          {/* Anniversary Badge */}
-          <div className="relative inline-flex flex-col items-center gap-3 mb-10">
-            {/* Glow ring */}
-            <div className="absolute inset-0 rounded-2xl blur-2xl opacity-50"
-              style={{ background: "linear-gradient(135deg, hsl(43 74% 47%), hsl(68 100% 50%), hsl(43 74% 47%))" }} />
+          {/* Anniversary Banner */}
+          <div className="relative w-full max-w-3xl mx-auto mb-12">
+            {/* Ambient glow */}
+            <div className="absolute inset-0 rounded-xl blur-3xl opacity-30"
+              style={{ background: "linear-gradient(90deg, hsl(43 74% 47%), hsl(68 100% 50%), hsl(181 90% 52%), hsl(43 74% 47%))" }} />
 
-            <div className="relative flex flex-col items-center gap-2 px-8 py-5 rounded-2xl border-2"
-              style={{
-                borderColor: "hsl(43 74% 60%)",
-                background: "linear-gradient(135deg, hsl(210 45% 6% / 0.95), hsl(210 45% 10% / 0.95))",
-              }}>
+            <div className="relative rounded-xl overflow-hidden"
+              style={{ border: "1px solid hsl(43 74% 50% / 0.4)" }}>
 
-              {/* Top row — icon + years */}
-              <div className="flex items-center gap-3">
-                <Trophy size={22} style={{ color: "hsl(43 74% 65%)" }} className="animate-bounce" />
-                <span className="text-4xl font-black tracking-tight" style={{ fontFamily: "'Playfair Display', serif", color: "hsl(43 74% 80%)" }}>
-                  25 YEARS
-                </span>
-                <Trophy size={22} style={{ color: "hsl(43 74% 65%)" }} className="animate-bounce" />
+              {/* Shimmer top edge */}
+              <div className="absolute top-0 left-0 right-0 h-px"
+                style={{ background: "linear-gradient(90deg, transparent, hsl(43 74% 70%), hsl(68 100% 70%), hsl(43 74% 70%), transparent)" }} />
+
+              {/* Background */}
+              <div className="absolute inset-0"
+                style={{ background: "linear-gradient(135deg, hsl(210 45% 5% / 0.97) 0%, hsl(210 40% 9% / 0.97) 50%, hsl(210 45% 5% / 0.97) 100%)" }} />
+
+              {/* Content */}
+              <div className="relative flex items-center justify-between px-8 py-5 gap-6">
+
+                {/* Left — trophy + number */}
+                <div className="flex items-center gap-4 shrink-0">
+                  <Trophy size={32} style={{ color: "hsl(43 74% 62%)" }} />
+                  <div>
+                    <div className="text-5xl font-black leading-none tracking-tight"
+                      style={{ fontFamily: "'Playfair Display', serif", background: "linear-gradient(135deg, hsl(43 74% 55%), hsl(43 74% 80%), hsl(43 74% 55%))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+                      25
+                    </div>
+                    <div className="text-xs font-bold tracking-[0.3em] uppercase mt-0.5" style={{ color: "hsl(43 74% 60%)" }}>
+                      Years
+                    </div>
+                  </div>
+                </div>
+
+                {/* Center divider */}
+                <div className="h-14 w-px shrink-0" style={{ background: "linear-gradient(180deg, transparent, hsl(43 74% 50% / 0.6), transparent)" }} />
+
+                {/* Center — main text */}
+                <div className="flex-1 text-center">
+                  <div className="text-base font-bold tracking-[0.15em] uppercase mb-1"
+                    style={{ color: "hsl(30 20% 92%)" }}>
+                    Celebrating a Quarter Century
+                  </div>
+                  <div className="text-xs tracking-[0.25em] uppercase" style={{ color: "hsl(43 74% 65%)" }}>
+                    of Cooperative Crowdfunding™
+                  </div>
+                </div>
+
+                {/* Center divider */}
+                <div className="h-14 w-px shrink-0" style={{ background: "linear-gradient(180deg, transparent, hsl(43 74% 50% / 0.6), transparent)" }} />
+
+                {/* Right — founder */}
+                <div className="text-right shrink-0">
+                  <div className="text-xs tracking-widest uppercase mb-1" style={{ color: "hsl(43 74% 60%)" }}>Founded by</div>
+                  <div className="text-sm font-semibold tracking-wide" style={{ fontFamily: "'Playfair Display', serif", color: "hsl(30 20% 92%)" }}>
+                    David T. Rosen
+                  </div>
+                </div>
+
               </div>
 
-              {/* Divider */}
-              <div className="w-full h-px" style={{ background: "linear-gradient(90deg, transparent, hsl(43 74% 60% / 0.8), transparent)" }} />
-
-              {/* Bottom row — subtitle */}
-              <div className="flex items-center gap-2">
-                <Sparkles size={13} style={{ color: "hsl(68 100% 60%)" }} />
-                <span className="text-sm font-semibold tracking-[0.2em] uppercase"
-                  style={{ color: "hsl(30 20% 88%)" }}>
-                  Cooperative Crowdfunding™
-                </span>
-                <span className="text-sm" style={{ color: "hsl(43 74% 60%)" }}>·</span>
-                <span className="text-sm font-medium tracking-widest uppercase"
-                  style={{ color: "hsl(30 20% 88%)" }}>
-                  By David T. Rosen
-                </span>
-                <Sparkles size={13} style={{ color: "hsl(68 100% 60%)" }} />
-              </div>
+              {/* Shimmer bottom edge */}
+              <div className="absolute bottom-0 left-0 right-0 h-px"
+                style={{ background: "linear-gradient(90deg, transparent, hsl(43 74% 50% / 0.3), transparent)" }} />
             </div>
           </div>
 
