@@ -212,7 +212,7 @@ const Index = () => {
                   to="/join"
                   className="block text-center py-3 rounded-sm text-xs font-bold tracking-widest uppercase transition-all duration-300 hover:opacity-90 border border-current"
                   style={{
-                    color: tier.name === "Diamond" ? "hsl(var(--aqua))" : tier.name === "Platinum" ? "hsl(var(--aqua))" : "hsl(var(--coral))",
+                    color: tier.name === "Diamond" ? "#c9a227" : tier.name === "Platinum" ? "hsl(var(--aqua))" : "hsl(var(--coral))",
                     borderColor: "currentColor"
                   }}
                 >
