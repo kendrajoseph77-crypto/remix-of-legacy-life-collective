@@ -136,9 +136,9 @@
     border: 1px solid hsl(205 73% 34% / 0.5);
   }
 
-  /* Tier: Diamond → Aqua tinted */
+  /* Tier: Diamond → Gold tinted */
   .tier-diamond {
-    background: linear-gradient(135deg, hsl(181 90% 52% / 0.18), hsl(181 90% 52% / 0.06));
-    border: 1px solid hsl(181 90% 52% / 0.45);
+    background: linear-gradient(135deg, hsl(43 74% 47% / 0.20), hsl(43 74% 47% / 0.07));
+    border: 1px solid hsl(43 74% 47% / 0.50);
   }
 }
