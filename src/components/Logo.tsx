@@ -29,12 +29,12 @@ const Logo = ({ heightClass = "h-10", className = "" }: LogoProps) => {
   return (
     <div className={`flex items-center gap-2 ${className}`}>
       {/* Globe icon — clipped to show only the left portion of the full image */}
-      <div style={{ overflow: "hidden", flexShrink: 0, display: "flex", alignItems: "center" }}>
+      <div style={{ position: "relative", overflow: "hidden", flexShrink: 0, display: "flex", alignItems: "center" }}>
         <img
           src={logoFull}
           alt="coop5050Life globe"
           className={`${heightClass} w-auto`}
-          style={{ maxWidth: maxW, objectFit: "cover", objectPosition: "left center", filter: "brightness(0) saturate(100%) invert(87%) sepia(100%) saturate(500%) hue-rotate(30deg) brightness(105%)" }}
+          style={{ maxWidth: maxW, objectFit: "cover", objectPosition: "left center", filter: "hue-rotate(25deg) saturate(180%) brightness(1.1)" }}
         />
       </div>
       {/* Text: 5050 lime, Life white */}
