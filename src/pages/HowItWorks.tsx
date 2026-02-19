@@ -6,22 +6,22 @@ import { CheckCircle, ArrowRight } from "lucide-react";
 
 const tiers = [
   {
-    entry: "$5,000",
-    receive: "$15,000",
+    entry: "$2,500",
+    receive: "$7,500",
     name: "Gold",
     colorClass: "tier-gold",
     textClass: "text-primary",
   },
   {
-    entry: "$10,000",
-    receive: "$30,000",
+    entry: "$5,000",
+    receive: "$15,000",
     name: "Platinum",
     colorClass: "tier-platinum",
     textClass: "text-secondary",
   },
   {
-    entry: "$25,000",
-    receive: "$75,000",
+    entry: "$10,000",
+    receive: "$30,000",
     name: "Diamond",
     colorClass: "tier-diamond",
     textClass: "text-accent",
@@ -32,7 +32,7 @@ const steps = [
   {
     number: "01",
     title: "Register & Activate",
-    desc: "Register and become an Active Donor by making a donation at your chosen level.",
+    desc: "Register and become an Active Donor by making a contribution at your chosen level.",
   },
   {
     number: "02",
@@ -93,7 +93,7 @@ const HowItWorks = () => {
               There is no middleman. You immediately receive all your money.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              You always receive <span className="text-foreground font-semibold">50%</span> of each donation cycle —
+              You always receive <span className="text-foreground font-semibold">50%</span> of each contribution cycle —
               the other <span className="text-foreground font-semibold">50%</span> goes to a teammate.
               Together, we each do a little so all can receive a lot.
             </p>
@@ -111,7 +111,7 @@ const HowItWorks = () => {
               </div>
             </div>
             <div className="p-4 bg-muted/30 text-center border-t border-border">
-              <p className="text-muted-foreground text-xs tracking-widest uppercase">100% of every donation — no middlemen</p>
+              <p className="text-muted-foreground text-xs tracking-widest uppercase">100% of every contribution — no middlemen</p>
             </div>
           </div>
         </div>
@@ -141,7 +141,7 @@ const HowItWorks = () => {
                 )}
                 <p className="text-muted-foreground text-xs tracking-widest uppercase mb-2">{tier.name} Level</p>
                 <p className={`text-4xl font-bold mb-1 ${tier.textClass}`}>{tier.entry}</p>
-                <p className="text-muted-foreground text-sm mb-4">Entry Donation</p>
+                <p className="text-muted-foreground text-sm mb-4">Entry Contribution</p>
                 <div className="border-t border-border/50 pt-4 mb-4">
                   <p className="text-muted-foreground text-xs uppercase tracking-wider mb-1">You Receive</p>
                   <p className={`text-2xl font-bold ${tier.textClass}`}>{tier.receive}</p>
@@ -163,7 +163,7 @@ const HowItWorks = () => {
 
           <div className="rounded-xl p-6 bg-muted/30 border border-border text-center mb-8">
             <p className="text-muted-foreground text-sm mb-1">On all 3 Income Centers — cycling just once:</p>
-            <p className="text-4xl font-bold text-foreground mb-1">$120,000</p>
+            <p className="text-4xl font-bold text-foreground mb-1">$52,500</p>
             <p className="text-muted-foreground text-sm">Imagine cycling 2, 3, or more times — it's possible and easily doable!</p>
           </div>
 
@@ -221,7 +221,7 @@ const HowItWorks = () => {
               </p>
               <p className="text-muted-foreground leading-relaxed mb-5 text-sm">
                 <span className="text-foreground font-semibold">You Never Lose Your Team!</span> Each time your Wheelhouse fills,
-                another automatically re-opens — you receive another 6 donations
+                another automatically re-opens — you receive another 6 contributions
                 without additional effort or qualifications.
               </p>
               <div className="flex items-center gap-3 p-4 rounded-lg bg-muted/30 border border-border">
