@@ -66,12 +66,11 @@ const Join = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-32 pb-20 hero-glow relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(2_88%_62%/0.06)_0%,transparent_70%)]" />
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <p className="text-secondary text-sm tracking-[0.3em] uppercase font-medium mb-4">Choose Your Level</p>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
-            Begin Your <span className="gold-gradient">Legacy</span><br />Today
+      <section className="pt-32 pb-16 relative">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-4">Choose Your Level</p>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            Begin Your Legacy Today
           </h1>
           <p className="text-muted-foreground text-lg leading-relaxed max-w-2xl mx-auto">
             Select the Income Center that fits where you are — then grow into all three.
@@ -87,44 +86,38 @@ const Join = () => {
             <div
               key={i}
               onClick={() => setSelected(i)}
-              className={`rounded-xl p-8 cursor-pointer transition-all duration-300 ${tier.colorClass} relative ${
-                selected === i ? `ring-2 ${tier.borderActive} scale-[1.02]` : "hover:scale-[1.01]"
+              className={`rounded-xl p-8 cursor-pointer transition-all duration-300 bg-card border relative ${
+                selected === i ? "ring-2 ring-primary border-primary scale-[1.02]" : "border-border hover:border-muted-foreground/40 hover:scale-[1.01]"
               }`}
             >
               {tier.elite && (
-                <div className="absolute top-4 right-4 px-2 py-1 rounded text-xs font-bold tracking-widest uppercase"
-                  style={{ background: "hsl(var(--lime))", color: "hsl(var(--indigo))" }}>
+                <div className="absolute top-4 right-4 px-2 py-1 rounded text-xs font-bold tracking-widest uppercase bg-muted text-muted-foreground">
                   Elite
                 </div>
               )}
 
               <div className="mb-6">
                 <p className="text-muted-foreground text-xs tracking-widest uppercase mb-2">{tier.name} Level</p>
-                <p className={`text-4xl font-bold mb-1 ${tier.textClass}`} style={{ fontFamily: "'Playfair Display', serif" }}>
-                  {tier.entry}
-                </p>
+                <p className="text-4xl font-bold mb-1 text-foreground">{tier.entry}</p>
                 <p className="text-muted-foreground text-sm">one-time entry contribution</p>
               </div>
 
               <div className="border-t border-border/50 pt-6 mb-6">
                 <p className="text-muted-foreground text-xs uppercase tracking-wider mb-1">You Receive Per Cycle</p>
-                <p className={`text-3xl font-bold ${tier.textClass}`} style={{ fontFamily: "'Playfair Display', serif" }}>
-                  {tier.receive}
-                </p>
+                <p className="text-3xl font-bold text-foreground">{tier.receive}</p>
               </div>
 
               <div className="flex flex-col gap-3">
                 {tier.features.map((f, j) => (
                   <div key={j} className="flex items-center gap-2">
-                    <CheckCircle size={14} className={tier.textClass} />
+                    <CheckCircle size={14} className="text-muted-foreground" />
                     <span className="text-muted-foreground text-xs">{f}</span>
                   </div>
                 ))}
               </div>
 
               {selected === i && (
-                <div className="mt-6 p-3 rounded-lg text-center text-xs font-bold tracking-widest uppercase"
-                  style={{ background: tier.name === "Diamond" ? "hsl(var(--aqua) / 0.2)" : "hsl(var(--coral) / 0.2)" }}>
+                <div className="mt-6 p-3 rounded-lg text-center text-xs font-bold tracking-widest uppercase bg-primary/10 text-primary">
                   ✓ Selected
                 </div>
               )}
@@ -208,8 +201,7 @@ const Join = () => {
 
             <button
               type="submit"
-              className="mt-4 w-full py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:opacity-90"
-              style={{ background: "linear-gradient(135deg, hsl(var(--coral)), hsl(15 95% 65%))", color: "hsl(var(--indigo))" }}
+              className="mt-4 w-full py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:opacity-90 bg-primary text-primary-foreground"
             >
               Confirm & Join
             </button>
