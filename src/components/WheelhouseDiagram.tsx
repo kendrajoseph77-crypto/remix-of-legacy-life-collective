@@ -1,12 +1,12 @@
-// Real person photo avatars — diverse set from UI Faces / randomuser
+// Real person photo avatars — diverse Black and Brown representation
 const avatarUrls = [
-  "https://randomuser.me/api/portraits/men/32.jpg",   // center YOU
-  "https://randomuser.me/api/portraits/women/44.jpg", // 01 inviter
-  "https://randomuser.me/api/portraits/men/75.jpg",   // 02 direct
-  "https://randomuser.me/api/portraits/women/65.jpg", // 03
-  "https://randomuser.me/api/portraits/men/22.jpg",   // 04
-  "https://randomuser.me/api/portraits/women/28.jpg", // 05
-  "https://randomuser.me/api/portraits/men/58.jpg",   // 06
+  "https://randomuser.me/api/portraits/men/83.jpg",   // center YOU  — Black man
+  "https://randomuser.me/api/portraits/women/92.jpg", // 01 inviter  — Black woman
+  "https://randomuser.me/api/portraits/men/6.jpg",    // 02 direct   — Brown man
+  "https://randomuser.me/api/portraits/women/95.jpg", // 03          — Black woman
+  "https://randomuser.me/api/portraits/men/11.jpg",   // 04          — Brown man
+  "https://randomuser.me/api/portraits/women/74.jpg", // 05          — Brown woman
+  "https://randomuser.me/api/portraits/men/36.jpg",   // 06          — Black man
 ];
 
 const WheelhouseDiagram = () => {
