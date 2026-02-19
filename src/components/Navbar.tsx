@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logoFull from "@/assets/logo-full.png";
+import Logo from "@/components/Logo";
 import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
@@ -29,11 +29,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center group">
-          <img
-            src={logoFull}
-            alt="coop5050Life Logo"
-            className="h-10 object-contain"
-          />
+          <Logo heightClass="h-10" />
         </Link>
 
         {/* Desktop Nav */}

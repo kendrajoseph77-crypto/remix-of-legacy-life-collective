@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logoFull from "@/assets/logo-full.png";
+import Logo from "@/components/Logo";
 
 const Footer = () => {
   return (
@@ -8,13 +8,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Brand */}
           <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-3">
-              <img
-                src={logoFull}
-                alt="coop5050Life"
-                className="h-8 object-contain"
-              />
-            </div>
+            <Logo heightClass="h-8" />
             <p className="text-muted-foreground text-sm leading-relaxed">
               The elite peer-to-peer crowdfunding platform built for legacy wealth.
               Transparent. Automated. Unstoppable.
