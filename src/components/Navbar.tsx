@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logoIcon from "@/assets/logo-icon.png";
+import logoFull from "@/assets/logo-full.png";
 import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
@@ -28,16 +28,13 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-3 group">
-          <img src={logoIcon} alt="coop5050Life Logo" className="h-10 w-10 object-contain" />
-          <div className="flex flex-col leading-tight">
-            <span className="text-lg font-bold tracking-wider" style={{ fontFamily: "'Playfair Display', serif" }}>
-              <span className="gold-gradient">coop</span>
-              <span className="text-foreground">5050</span>
-              <span className="cyan-gradient">Life</span>
-              <span className="text-xs align-super text-muted-foreground">™</span>
-            </span>
-          </div>
+        <Link to="/" className="flex items-center group">
+          <img
+            src={logoFull}
+            alt="coop5050Life Logo"
+            className="h-10 object-contain"
+            style={{ filter: "brightness(0) invert(1)" }}
+          />
         </Link>
 
         {/* Desktop Nav */}
@@ -47,10 +44,10 @@ const Navbar = () => {
               <Link
                 key={link.label}
                 to={link.path}
-                className="px-6 py-2 rounded-sm text-sm font-semibold tracking-widest uppercase transition-all duration-300"
+                className="px-6 py-2 rounded-sm text-sm font-semibold tracking-widest uppercase transition-all duration-300 hover:opacity-90"
                 style={{
-                  background: "linear-gradient(135deg, hsl(45 95% 55%), hsl(35 100% 65%))",
-                  color: "hsl(220 20% 5%)",
+                  background: "linear-gradient(135deg, hsl(2 88% 62%), hsl(15 95% 65%))",
+                  color: "hsl(207 73% 10%)",
                 }}
               >
                 Join Us

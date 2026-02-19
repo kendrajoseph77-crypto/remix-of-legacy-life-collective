@@ -10,7 +10,7 @@ const tiers = [
     receive: "$15,000",
     colorClass: "tier-gold",
     textClass: "text-primary",
-    borderActive: "border-primary",
+    borderActive: "ring-primary",
     features: [
       "Gold Income Center Access",
       "2×2 Wheelhouse Position",
@@ -25,9 +25,8 @@ const tiers = [
     entry: "$10,000",
     receive: "$30,000",
     colorClass: "tier-platinum",
-    textClass: "text-foreground",
-    borderActive: "border-muted-foreground",
-    popular: false,
+    textClass: "text-secondary",
+    borderActive: "ring-secondary",
     features: [
       "Platinum Income Center Access",
       "2×2 Wheelhouse Position",
@@ -43,8 +42,8 @@ const tiers = [
     entry: "$25,000",
     receive: "$75,000",
     colorClass: "tier-diamond",
-    textClass: "text-secondary",
-    borderActive: "border-secondary",
+    textClass: "text-accent",
+    borderActive: "ring-accent",
     elite: true,
     features: [
       "Diamond Income Center Access",
@@ -68,7 +67,7 @@ const Join = () => {
 
       {/* Hero */}
       <section className="pt-32 pb-20 hero-glow relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(45_95%_55%/0.06)_0%,transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(2_88%_62%/0.06)_0%,transparent_70%)]" />
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <p className="text-secondary text-sm tracking-[0.3em] uppercase font-medium mb-4">Choose Your Level</p>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
@@ -94,7 +93,7 @@ const Join = () => {
             >
               {tier.elite && (
                 <div className="absolute top-4 right-4 px-2 py-1 rounded text-xs font-bold tracking-widest uppercase"
-                  style={{ background: "hsl(190 90% 50%)", color: "hsl(220 20% 5%)" }}>
+                  style={{ background: "hsl(var(--lime))", color: "hsl(var(--indigo))" }}>
                   Elite
                 </div>
               )}
@@ -125,7 +124,7 @@ const Join = () => {
 
               {selected === i && (
                 <div className="mt-6 p-3 rounded-lg text-center text-xs font-bold tracking-widest uppercase"
-                  style={{ background: tier.name === "Diamond" ? "hsl(190 90% 50% / 0.2)" : "hsl(45 95% 55% / 0.2)" }}>
+                  style={{ background: tier.name === "Diamond" ? "hsl(var(--aqua) / 0.2)" : "hsl(var(--coral) / 0.2)" }}>
                   ✓ Selected
                 </div>
               )}
@@ -210,7 +209,7 @@ const Join = () => {
             <button
               type="submit"
               className="mt-4 w-full py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:opacity-90"
-              style={{ background: "linear-gradient(135deg, hsl(45 95% 55%), hsl(35 100% 65%))", color: "hsl(220 20% 5%)" }}
+              style={{ background: "linear-gradient(135deg, hsl(var(--coral)), hsl(15 95% 65%))", color: "hsl(var(--indigo))" }}
             >
               Confirm & Join
             </button>

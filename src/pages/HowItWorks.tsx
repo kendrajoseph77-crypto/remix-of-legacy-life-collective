@@ -16,14 +16,14 @@ const tiers = [
     receive: "$30,000",
     name: "Platinum",
     colorClass: "tier-platinum",
-    textClass: "text-foreground",
+    textClass: "text-secondary",
   },
   {
     entry: "$25,000",
     receive: "$75,000",
     name: "Diamond",
     colorClass: "tier-diamond",
-    textClass: "text-secondary",
+    textClass: "text-accent",
   },
 ];
 
@@ -70,7 +70,7 @@ const HowItWorks = () => {
 
       {/* Hero */}
       <section className="pt-32 pb-20 hero-glow relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(190_90%_50%/0.06)_0%,transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(181_90%_52%/0.06)_0%,transparent_70%)]" />
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <p className="text-secondary text-sm tracking-[0.3em] uppercase font-medium mb-4">The System</p>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
@@ -107,12 +107,12 @@ const HowItWorks = () => {
             {/* Visual 50/50 Split */}
             <div className="rounded-xl overflow-hidden border border-border card-glow">
               <div className="flex">
-                <div className="flex-1 p-8 text-center" style={{ background: "linear-gradient(135deg, hsl(45 95% 55% / 0.2), hsl(45 95% 55% / 0.05))" }}>
+                <div className="flex-1 p-8 text-center" style={{ background: "linear-gradient(135deg, hsl(var(--coral) / 0.2), hsl(var(--coral) / 0.05))" }}>
                   <p className="text-primary text-4xl font-bold" style={{ fontFamily: "'Playfair Display', serif" }}>50%</p>
                   <p className="text-muted-foreground text-sm mt-2">Goes to <span className="text-foreground font-medium">YOU</span></p>
                 </div>
                 <div className="w-px bg-border" />
-                <div className="flex-1 p-8 text-center" style={{ background: "linear-gradient(135deg, hsl(190 90% 50% / 0.15), hsl(190 90% 50% / 0.05))" }}>
+                <div className="flex-1 p-8 text-center" style={{ background: "linear-gradient(135deg, hsl(var(--aqua) / 0.15), hsl(var(--aqua) / 0.05))" }}>
                   <p className="text-secondary text-4xl font-bold" style={{ fontFamily: "'Playfair Display', serif" }}>50%</p>
                   <p className="text-muted-foreground text-sm mt-2">Goes to your <span className="text-foreground font-medium">Teammate</span></p>
                 </div>
@@ -144,7 +144,7 @@ const HowItWorks = () => {
               <div key={i} className={`rounded-xl p-8 ${tier.colorClass} text-center relative overflow-hidden`}>
                 {i === 2 && (
                   <div className="absolute top-3 right-3 px-2 py-1 rounded text-xs font-bold tracking-widest uppercase"
-                    style={{ background: "hsl(190 90% 50%)", color: "hsl(220 20% 5%)" }}>
+                    style={{ background: "hsl(var(--lime))", color: "hsl(var(--indigo))" }}>
                     Elite
                   </div>
                 )}
@@ -236,13 +236,13 @@ const HowItWorks = () => {
               <div className="relative w-72 h-72">
                 {/* Center - Inviter */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full flex items-center justify-center z-20"
-                  style={{ background: "linear-gradient(135deg, hsl(45 95% 55%), hsl(35 100% 65%))" }}>
-                  <span className="text-xs font-bold text-background">INVITER</span>
+                  style={{ background: "linear-gradient(135deg, hsl(var(--coral)), hsl(15 95% 65%))" }}>
+                  <span className="text-xs font-bold" style={{ color: "hsl(var(--indigo))" }}>INVITER</span>
                 </div>
 
                 {/* You - Position 2 */}
                 <div className="absolute top-1/2 left-8 -translate-y-1/2 w-14 h-14 rounded-full flex items-center justify-center border-2 border-secondary z-20"
-                  style={{ background: "hsl(190 90% 50% / 0.2)" }}>
+                  style={{ background: "hsl(var(--aqua) / 0.2)" }}>
                   <span className="text-xs font-bold text-secondary">YOU</span>
                 </div>
 
@@ -268,7 +268,7 @@ const HowItWorks = () => {
 
                 {/* Connecting lines */}
                 <svg className="absolute inset-0 w-full h-full" style={{ zIndex: 10 }}>
-                  <circle cx="50%" cy="50%" r="100" fill="none" stroke="hsl(45 95% 55% / 0.15)" strokeWidth="1" strokeDasharray="4 4" />
+                  <circle cx="50%" cy="50%" r="100" fill="none" stroke="hsl(2 88% 62% / 0.15)" strokeWidth="1" strokeDasharray="4 4" />
                 </svg>
 
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/5 to-secondary/5 border border-border" />
@@ -334,7 +334,7 @@ const HowItWorks = () => {
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           {benefits.map((b, i) => (
             <div key={i} className="flex items-center gap-4 p-5 rounded-xl bg-card border border-border card-glow">
-              <div className="p-3 rounded-lg" style={{ background: "hsl(45 95% 55% / 0.1)" }}>
+              <div className="p-3 rounded-lg" style={{ background: "hsl(var(--coral) / 0.1)" }}>
                 <b.icon size={20} className="text-primary" />
               </div>
               <span className="text-foreground text-sm font-medium">{b.label}</span>
@@ -343,13 +343,13 @@ const HowItWorks = () => {
         </div>
 
         <div className="text-center p-8 rounded-xl"
-          style={{ background: "linear-gradient(135deg, hsl(45 95% 55% / 0.1), hsl(190 90% 50% / 0.08))", border: "1px solid hsl(45 95% 55% / 0.3)" }}>
+          style={{ background: "linear-gradient(135deg, hsl(var(--coral) / 0.1), hsl(var(--aqua) / 0.08))", border: "1px solid hsl(var(--coral) / 0.3)" }}>
           <p className="text-muted-foreground text-sm mb-2">Use over 150 FIAT currencies and 100+ cryptocurrencies</p>
           <p className="text-foreground font-semibold text-lg mb-6">Your Fastest Way To Wealth!</p>
           <Link
             to="/join"
             className="inline-block px-10 py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:opacity-90"
-            style={{ background: "linear-gradient(135deg, hsl(45 95% 55%), hsl(35 100% 65%))", color: "hsl(220 20% 5%)" }}
+            style={{ background: "linear-gradient(135deg, hsl(var(--coral)), hsl(15 95% 65%))", color: "hsl(var(--indigo))" }}
           >
             Start Receiving Today
           </Link>

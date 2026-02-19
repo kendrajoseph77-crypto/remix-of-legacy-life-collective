@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
-import logoIcon from "@/assets/logo-icon.png";
+import logoFull from "@/assets/logo-full.png";
 import { ArrowRight, CheckCircle, Zap, Shield, Globe, TrendingUp, RefreshCw, Star } from "lucide-react";
 
 const tiers = [
@@ -18,7 +18,7 @@ const tiers = [
     entry: "$10,000",
     receive: "$30,000",
     colorClass: "tier-platinum",
-    textClass: "text-foreground",
+    textClass: "text-secondary",
     desc: "Elevated access for the serious wealth builder.",
   },
   {
@@ -26,7 +26,7 @@ const tiers = [
     entry: "$25,000",
     receive: "$75,000",
     colorClass: "tier-diamond",
-    textClass: "text-secondary",
+    textClass: "text-accent",
     desc: "Elite tier. Maximum returns. Legacy-class wealth.",
     elite: true,
   },
@@ -56,31 +56,29 @@ const Index = () => {
       <section className="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20 hero-glow relative overflow-hidden">
         {/* Background Orbs */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-10"
-          style={{ background: "hsl(45 95% 55%)" }} />
+          style={{ background: "hsl(var(--coral))" }} />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-8"
-          style={{ background: "hsl(190 90% 50%)" }} />
+          style={{ background: "hsl(var(--aqua))" }} />
 
         <div className="relative z-10 max-w-5xl mx-auto">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border mb-8"
-            style={{ borderColor: "hsl(45 95% 55% / 0.4)", background: "hsl(45 95% 55% / 0.08)" }}>
+            style={{ borderColor: "hsl(var(--coral) / 0.4)", background: "hsl(var(--coral) / 0.08)" }}>
             <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
             <span className="text-primary text-xs font-medium tracking-widest uppercase">5050 Crowdfunding™ · Elite Platform</span>
           </div>
 
-          {/* Logo + Name */}
-          <div className="flex items-center justify-center gap-4 mb-8">
-            <img src={logoIcon} alt="coop5050Life" className="h-16 w-16 object-contain" />
+          {/* Logo */}
+          <div className="flex items-center justify-center mb-8">
+            <img
+              src={logoFull}
+              alt="coop5050Life"
+              className="h-16 object-contain"
+              style={{ filter: "brightness(0) invert(1)" }}
+            />
           </div>
 
-          {/* Headline */}
-          <h1 className="text-6xl md:text-8xl font-black mb-6 leading-[0.95] tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
-            <span className="gold-gradient">coop</span>
-            <span className="text-foreground">5050</span>
-            <span className="cyan-gradient">Life</span>
-            <span className="text-muted-foreground text-3xl align-super">™</span>
-          </h1>
-
+          {/* Tagline */}
           <p className="text-2xl md:text-3xl text-muted-foreground font-light mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
             5050 Crowdfunding™
           </p>
@@ -99,7 +97,7 @@ const Index = () => {
             <Link
               to="/join"
               className="flex items-center gap-2 px-10 py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:scale-105"
-              style={{ background: "linear-gradient(135deg, hsl(45 95% 55%), hsl(35 100% 65%))", color: "hsl(220 20% 5%)" }}
+              style={{ background: "linear-gradient(135deg, hsl(var(--coral)), hsl(15 95% 65%))", color: "hsl(var(--indigo))" }}
             >
               Join Us <ArrowRight size={16} />
             </Link>
@@ -169,7 +167,7 @@ const Index = () => {
           <div className="grid grid-cols-2 gap-4">
             {features.map((f, i) => (
               <div key={i} className="p-5 rounded-xl bg-card border border-border card-glow hover:border-primary/30 transition-all duration-300">
-                <div className="p-2 rounded-lg w-fit mb-3" style={{ background: "hsl(45 95% 55% / 0.1)" }}>
+                <div className="p-2 rounded-lg w-fit mb-3" style={{ background: "hsl(var(--coral) / 0.1)" }}>
                   <f.icon size={18} className="text-primary" />
                 </div>
                 <h4 className="text-foreground font-semibold text-sm mb-1">{f.title}</h4>
@@ -199,7 +197,7 @@ const Index = () => {
               <div key={i} className={`rounded-xl p-8 ${tier.colorClass} relative overflow-hidden transition-all duration-300 hover:scale-[1.02]`}>
                 {tier.elite && (
                   <div className="absolute top-4 right-4 px-3 py-1 rounded text-xs font-bold tracking-widest uppercase"
-                    style={{ background: "hsl(190 90% 50%)", color: "hsl(220 20% 5%)" }}>
+                    style={{ background: "hsl(var(--lime))", color: "hsl(var(--indigo))" }}>
                     Elite
                   </div>
                 )}
@@ -221,7 +219,10 @@ const Index = () => {
                 <Link
                   to="/join"
                   className="block text-center py-3 rounded-sm text-xs font-bold tracking-widest uppercase transition-all duration-300 hover:opacity-90 border border-current"
-                  style={{ color: tier.name === "Diamond" ? "hsl(190 90% 50%)" : "hsl(45 95% 55%)", borderColor: "currentColor" }}
+                  style={{
+                    color: tier.name === "Diamond" ? "hsl(var(--lime))" : tier.name === "Platinum" ? "hsl(var(--aqua))" : "hsl(var(--coral))",
+                    borderColor: "currentColor"
+                  }}
                 >
                   Select {tier.name}
                 </Link>
@@ -230,7 +231,7 @@ const Index = () => {
           </div>
 
           <div className="text-center rounded-xl p-8"
-            style={{ background: "linear-gradient(135deg, hsl(45 95% 55% / 0.08), hsl(190 90% 50% / 0.06))", border: "1px solid hsl(45 95% 55% / 0.2)" }}>
+            style={{ background: "linear-gradient(135deg, hsl(var(--coral) / 0.08), hsl(var(--aqua) / 0.06))", border: "1px solid hsl(var(--coral) / 0.2)" }}>
             <p className="text-muted-foreground mb-2">On all 3 Income Centers — cycling just once every month:</p>
             <p className="text-5xl font-bold gold-gradient mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>$120,000</p>
             <p className="text-muted-foreground text-sm">Imagine doing that 2 or 3 or more times a month — it's possible and easily doable!</p>
@@ -294,7 +295,7 @@ const Index = () => {
                 <p className="text-foreground text-sm leading-relaxed mb-6 italic">"{t.quote}"</p>
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold"
-                    style={{ background: "hsl(45 95% 55% / 0.2)", color: "hsl(45 95% 55%)" }}>
+                    style={{ background: "hsl(var(--coral) / 0.2)", color: "hsl(var(--coral))" }}>
                     {t.name.charAt(0)}
                   </div>
                   <div>
@@ -310,7 +311,7 @@ const Index = () => {
 
       {/* Final CTA */}
       <section className="py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(45_95%_55%/0.08)_0%,transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(2_88%_62%/0.08)_0%,transparent_70%)]" />
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <p className="text-secondary text-sm tracking-[0.3em] uppercase font-medium mb-4">Start Now</p>
           <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
@@ -324,7 +325,7 @@ const Index = () => {
             <Link
               to="/join"
               className="flex items-center gap-2 px-12 py-5 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:scale-105"
-              style={{ background: "linear-gradient(135deg, hsl(45 95% 55%), hsl(35 100% 65%))", color: "hsl(220 20% 5%)" }}
+              style={{ background: "linear-gradient(135deg, hsl(var(--coral)), hsl(15 95% 65%))", color: "hsl(var(--indigo))" }}
             >
               Join Us Right Now <ArrowRight size={16} />
             </Link>

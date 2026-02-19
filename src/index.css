@@ -6,54 +6,68 @@
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
+Palette: Indigo #071e2d, Deep Coral #f4524a, Cenote Aqua #14f1f4, Ether Blue #106ba0,
+         Lime #deff00, Slate #232323, Cool Grey #888888, Off White #ece7e1
 */
 
 @layer base {
   :root {
-    --background: 220 20% 5%;
-    --foreground: 0 0% 97%;
+    /* Base: Indigo deep navy background */
+    --background: 207 73% 10%;
+    --foreground: 30 20% 93%;
 
-    --card: 220 18% 8%;
-    --card-foreground: 0 0% 97%;
+    /* Card: Slate dark surface */
+    --card: 0 0% 14%;
+    --card-foreground: 30 20% 93%;
 
-    --popover: 220 18% 8%;
-    --popover-foreground: 0 0% 97%;
+    --popover: 0 0% 14%;
+    --popover-foreground: 30 20% 93%;
 
-    --primary: 45 95% 55%;
-    --primary-foreground: 220 20% 5%;
+    /* Primary: Deep Coral — bold CTA */
+    --primary: 2 88% 62%;
+    --primary-foreground: 207 73% 10%;
 
-    --secondary: 190 90% 50%;
-    --secondary-foreground: 220 20% 5%;
+    /* Secondary: Cenote Aqua */
+    --secondary: 181 90% 52%;
+    --secondary-foreground: 207 73% 10%;
 
-    --muted: 220 15% 12%;
-    --muted-foreground: 220 10% 55%;
+    --muted: 207 30% 16%;
+    --muted-foreground: 0 0% 53%;
 
-    --accent: 190 90% 50%;
-    --accent-foreground: 220 20% 5%;
+    /* Accent: Lime electric */
+    --accent: 68 100% 50%;
+    --accent-foreground: 207 73% 10%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 97%;
+    --destructive: 2 88% 62%;
+    --destructive-foreground: 30 20% 93%;
 
-    --border: 220 15% 15%;
-    --input: 220 15% 15%;
-    --ring: 45 95% 55%;
+    --border: 205 73% 34%;
+    --input: 207 30% 16%;
+    --ring: 2 88% 62%;
 
     --radius: 0.5rem;
 
     /* Custom tokens */
-    --gold: 45 95% 55%;
-    --cyan: 190 90% 50%;
-    --dark-surface: 220 18% 8%;
-    --darker-surface: 220 20% 5%;
+    --coral: 2 88% 62%;
+    --aqua: 181 90% 52%;
+    --lime: 68 100% 50%;
+    --ether-blue: 205 73% 34%;
+    --indigo: 207 73% 10%;
+    --slate: 0 0% 14%;
+    --cool-grey: 0 0% 53%;
+    --off-white: 30 20% 93%;
 
-    --sidebar-background: 220 20% 5%;
-    --sidebar-foreground: 0 0% 97%;
-    --sidebar-primary: 45 95% 55%;
-    --sidebar-primary-foreground: 220 20% 5%;
-    --sidebar-accent: 220 15% 12%;
-    --sidebar-accent-foreground: 0 0% 97%;
-    --sidebar-border: 220 15% 15%;
-    --sidebar-ring: 45 95% 55%;
+    --dark-surface: 0 0% 14%;
+    --darker-surface: 207 73% 10%;
+
+    --sidebar-background: 207 73% 10%;
+    --sidebar-foreground: 30 20% 93%;
+    --sidebar-primary: 2 88% 62%;
+    --sidebar-primary-foreground: 207 73% 10%;
+    --sidebar-accent: 207 30% 16%;
+    --sidebar-accent-foreground: 30 20% 93%;
+    --sidebar-border: 205 73% 34%;
+    --sidebar-ring: 2 88% 62%;
   }
 }
 
@@ -73,54 +87,67 @@ All colors MUST be HSL.
 }
 
 @layer utilities {
+  /* Coral gradient for headlines */
   .gold-gradient {
-    background: linear-gradient(135deg, hsl(45 95% 55%), hsl(35 100% 65%));
+    background: linear-gradient(135deg, hsl(2 88% 62%), hsl(15 95% 65%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
+  /* Aqua gradient for accents */
   .cyan-gradient {
-    background: linear-gradient(135deg, hsl(190 90% 50%), hsl(200 90% 60%));
+    background: linear-gradient(135deg, hsl(181 90% 52%), hsl(170 90% 55%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  .gold-border {
-    border-color: hsl(var(--gold));
+  /* Lime gradient for electric highlights */
+  .lime-gradient {
+    background: linear-gradient(135deg, hsl(68 100% 50%), hsl(80 100% 55%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .coral-border {
+    border-color: hsl(var(--coral));
   }
 
   .hero-glow {
-    background: radial-gradient(ellipse 80% 60% at 50% 0%, hsl(45 95% 55% / 0.12), transparent);
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, hsl(2 88% 62% / 0.10), transparent);
   }
 
   .card-glow {
-    box-shadow: 0 0 40px hsl(45 95% 55% / 0.08), 0 1px 0 hsl(45 95% 55% / 0.2) inset;
+    box-shadow: 0 0 40px hsl(2 88% 62% / 0.07), 0 1px 0 hsl(2 88% 62% / 0.15) inset;
   }
 
-  .cyan-glow {
-    box-shadow: 0 0 40px hsl(190 90% 50% / 0.12), 0 1px 0 hsl(190 90% 50% / 0.2) inset;
+  .aqua-glow {
+    box-shadow: 0 0 40px hsl(181 90% 52% / 0.12), 0 1px 0 hsl(181 90% 52% / 0.2) inset;
   }
 
   .glass {
-    background: hsl(220 18% 8% / 0.8);
+    background: hsl(0 0% 14% / 0.85);
     backdrop-filter: blur(12px);
-    border: 1px solid hsl(220 15% 18%);
+    border: 1px solid hsl(205 73% 34% / 0.4);
   }
 
+  /* Tier: Gold → Coral tinted */
   .tier-gold {
-    background: linear-gradient(135deg, hsl(45 95% 55% / 0.15), hsl(45 95% 55% / 0.05));
-    border: 1px solid hsl(45 95% 55% / 0.4);
+    background: linear-gradient(135deg, hsl(2 88% 62% / 0.18), hsl(2 88% 62% / 0.06));
+    border: 1px solid hsl(2 88% 62% / 0.45);
   }
 
+  /* Tier: Platinum → Ether Blue tinted */
   .tier-platinum {
-    background: linear-gradient(135deg, hsl(220 20% 15%), hsl(220 20% 10%));
-    border: 1px solid hsl(220 15% 25%);
+    background: linear-gradient(135deg, hsl(205 73% 34% / 0.25), hsl(205 73% 34% / 0.10));
+    border: 1px solid hsl(205 73% 34% / 0.5);
   }
 
+  /* Tier: Diamond → Aqua tinted */
   .tier-diamond {
-    background: linear-gradient(135deg, hsl(190 90% 50% / 0.15), hsl(190 90% 50% / 0.05));
-    border: 1px solid hsl(190 90% 50% / 0.4);
+    background: linear-gradient(135deg, hsl(181 90% 52% / 0.18), hsl(181 90% 52% / 0.06));
+    border: 1px solid hsl(181 90% 52% / 0.45);
   }
 }
