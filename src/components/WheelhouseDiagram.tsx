@@ -138,16 +138,16 @@ const WheelhouseDiagram = () => {
       {/* Legend */}
       <div className="flex items-center justify-center gap-6 mt-2 text-xs">
         <div className="flex items-center gap-1.5">
+          <div className="w-3 h-3 rounded-full border-2" style={{ background: coral, borderColor: coral }} />
+          <span className="text-muted-foreground">You (Center)</span>
+        </div>
+        <div className="flex items-center gap-1.5">
           <div className="w-3 h-3 rounded-full" style={{ background: lime }} />
-          <span className="text-muted-foreground">Your Inviter (01)</span>
+          <span className="text-muted-foreground">Inviter #1 · Direct #2</span>
         </div>
         <div className="flex items-center gap-1.5">
           <div className="w-3 h-3 rounded-full" style={{ background: aqua }} />
-          <span className="text-muted-foreground">Team Members</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <div className="w-3 h-3 rounded-full" style={{ background: lime }} />
-          <span className="text-muted-foreground">Your Direct (02)</span>
+          <span className="text-muted-foreground">Team #3–#6</span>
         </div>
       </div>
     </div>
