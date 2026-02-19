@@ -74,11 +74,11 @@ const HowItWorks = () => {
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <p className="text-secondary text-sm tracking-[0.3em] uppercase font-medium mb-4">The System</p>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
-            How <span className="gold-gradient">coop5050Life</span><br />Works
+            How <span style={{ color: "#14b8d4" }}>Coop5050</span><span className="lime-gradient">Life</span><br />Works
           </h1>
           <p className="text-muted-foreground text-lg leading-relaxed max-w-2xl mx-auto">
             Your success begins with the system. A great system produces great results.
-            coop5050Life™ is a 2×2 peer-to-peer crowdfunding platform where 100% of every
+            Coop5050Life™ is a 2×2 peer-to-peer crowdfunding platform where 100% of every
             royalty goes to you — the participants.
           </p>
         </div>
@@ -90,10 +90,10 @@ const HowItWorks = () => {
           <div>
             <p className="text-primary text-sm tracking-[0.3em] uppercase font-medium mb-3">The 50/50 Promise</p>
             <h2 className="text-4xl font-bold mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>
-              You Always Receive <span className="gold-gradient">50%</span>
+              You Always Receive <span className="lime-gradient">50%</span>
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-              coop5050Life™ is transparent, fully automated, and cannot be manipulated.
+              Coop5050Life™ is transparent, fully automated, and cannot be manipulated.
               There is no middleman. You immediately receive all your money to put towards
               any purpose you choose.
             </p>
@@ -131,7 +131,7 @@ const HowItWorks = () => {
           <div className="text-center mb-14">
             <p className="text-secondary text-sm tracking-[0.3em] uppercase font-medium mb-3">Begin Where You Fit In</p>
             <h2 className="text-4xl font-bold mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
-              The <span className="gold-gradient">Income Center</span> Levels
+              The <span className="lime-gradient">Income Center</span> Levels
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Your ultimate goal is to be on all 3 Income Centers simultaneously.
@@ -141,7 +141,7 @@ const HowItWorks = () => {
 
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             {tiers.map((tier, i) => (
-              <div key={i} className={`rounded-xl p-8 ${tier.colorClass} text-center relative overflow-hidden`}>
+              <div key={i} className={`rounded-xl p-8 ${tier.colorClass} text-center relative overflow-hidden transition-all duration-300 hover:scale-[1.02]`}>
                 {i === 2 && (
                   <div className="absolute top-3 right-3 px-2 py-1 rounded text-xs font-bold tracking-widest uppercase"
                     style={{ background: "hsl(var(--lime))", color: "hsl(var(--indigo))" }}>
@@ -153,20 +153,30 @@ const HowItWorks = () => {
                   {tier.entry}
                 </p>
                 <p className="text-muted-foreground text-sm mb-6">Entry Donation</p>
-                <div className="border-t border-border/50 pt-6">
+                <div className="border-t border-border/50 pt-6 mb-6">
                   <p className="text-muted-foreground text-xs uppercase tracking-wider mb-1">You Receive</p>
                   <p className={`text-3xl font-bold ${tier.textClass}`} style={{ fontFamily: "'Playfair Display', serif" }}>
                     {tier.receive}
                   </p>
                   <p className="text-muted-foreground text-xs mt-1">per cycle</p>
                 </div>
+                <Link
+                  to="/join"
+                  className="block text-center py-3 rounded-sm text-xs font-bold tracking-widest uppercase transition-all duration-300 hover:opacity-90 border border-current"
+                  style={{
+                    color: tier.name === "Diamond" ? "hsl(var(--lime))" : tier.name === "Platinum" ? "hsl(var(--aqua))" : "hsl(var(--coral))",
+                    borderColor: "currentColor"
+                  }}
+                >
+                  Select {tier.name}
+                </Link>
               </div>
             ))}
           </div>
 
           <div className="text-center p-8 rounded-xl glass">
             <p className="text-muted-foreground text-sm mb-2">On all 3 Income Centers — cycling just once:</p>
-            <p className="text-4xl font-bold gold-gradient mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
+            <p className="text-4xl font-bold lime-gradient mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
               $120,000
             </p>
             <p className="text-muted-foreground text-sm">Imagine cycling 2, 3, or more times — it's possible and easily doable!</p>
@@ -179,7 +189,7 @@ const HowItWorks = () => {
         <div className="text-center mb-14">
           <p className="text-primary text-sm tracking-[0.3em] uppercase font-medium mb-3">Simple Process</p>
           <h2 className="text-4xl font-bold" style={{ fontFamily: "'Playfair Display', serif" }}>
-            Just <span className="gold-gradient">3 Simple</span> Doable Steps
+            Just <span className="lime-gradient">3 Simple</span> Doable Steps
           </h2>
         </div>
 
@@ -190,7 +200,7 @@ const HowItWorks = () => {
                 <div className="hidden md:block absolute top-8 left-full w-full h-px bg-gradient-to-r from-primary/50 to-transparent z-10" />
               )}
               <div className="rounded-xl p-8 bg-card border border-border card-glow relative">
-                <div className="text-6xl font-bold mb-4 gold-gradient opacity-30" style={{ fontFamily: "'Playfair Display', serif" }}>
+                <div className="text-6xl font-bold mb-4 lime-gradient opacity-50" style={{ fontFamily: "'Playfair Display', serif" }}>
                   {step.number}
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-foreground" style={{ fontFamily: "'Playfair Display', serif" }}>
@@ -203,14 +213,14 @@ const HowItWorks = () => {
         </div>
       </section>
 
-      {/* Wheelhouse Visual */}
+      {/* Wheelhouse / Möbius Loop Visual */}
       <section className="py-20 bg-card border-y border-border">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
               <p className="text-secondary text-sm tracking-[0.3em] uppercase font-medium mb-3">The Technology</p>
               <h2 className="text-4xl font-bold mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>
-                The Möbius Loop<br /><span className="gold-gradient">Wheelhouse</span>
+                The Möbius Loop<br /><span className="lime-gradient">Wheelhouse</span>
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-6">
                 Your inviter is in the center, YOU are in position #2, and the two people
@@ -231,47 +241,70 @@ const HowItWorks = () => {
               </div>
             </div>
 
-            {/* Wheelhouse Diagram */}
+            {/* Wheelhouse Diagram — 2×2 tree layout */}
             <div className="flex justify-center">
-              <div className="relative w-72 h-72">
-                {/* Center - Inviter */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full flex items-center justify-center z-20"
-                  style={{ background: "linear-gradient(135deg, hsl(var(--coral)), hsl(15 95% 65%))" }}>
-                  <span className="text-xs font-bold" style={{ color: "hsl(var(--indigo))" }}>INVITER</span>
+              <div className="relative w-80 h-80">
+                {/* SVG connecting lines behind circles */}
+                <svg className="absolute inset-0 w-full h-full" style={{ zIndex: 1 }}>
+                  {/* Center to You */}
+                  <line x1="160" y1="80" x2="80" y2="160" stroke="hsl(2 88% 62% / 0.3)" strokeWidth="1.5" strokeDasharray="4 3" />
+                  {/* You to #3 */}
+                  <line x1="80" y1="160" x2="40" y2="260" stroke="hsl(181 90% 52% / 0.3)" strokeWidth="1.5" strokeDasharray="4 3" />
+                  {/* You to #4 */}
+                  <line x1="80" y1="160" x2="120" y2="260" stroke="hsl(181 90% 52% / 0.3)" strokeWidth="1.5" strokeDasharray="4 3" />
+                  {/* Center to #5 */}
+                  <line x1="160" y1="80" x2="200" y2="160" stroke="hsl(2 88% 62% / 0.3)" strokeWidth="1.5" strokeDasharray="4 3" />
+                  {/* #5 to sub-positions */}
+                  <line x1="200" y1="160" x2="200" y2="260" stroke="hsl(210 30% 40% / 0.4)" strokeWidth="1.5" strokeDasharray="4 3" />
+                  <line x1="200" y1="160" x2="270" y2="260" stroke="hsl(210 30% 40% / 0.4)" strokeWidth="1.5" strokeDasharray="4 3" />
+                  {/* Möbius loop circle */}
+                  <circle cx="160" cy="160" r="130" fill="none" stroke="hsl(68 100% 50% / 0.07)" strokeWidth="60" />
+                </svg>
+
+                {/* Inviter — top center */}
+                <div className="absolute flex items-center justify-center w-16 h-16 rounded-full z-20"
+                  style={{
+                    top: "48px", left: "50%", marginLeft: "-32px",
+                    background: "linear-gradient(135deg, hsl(var(--coral)), hsl(15 95% 65%))"
+                  }}>
+                  <span className="text-[10px] font-bold text-center leading-tight" style={{ color: "hsl(var(--indigo))" }}>INVITER</span>
                 </div>
 
-                {/* You - Position 2 */}
-                <div className="absolute top-1/2 left-8 -translate-y-1/2 w-14 h-14 rounded-full flex items-center justify-center border-2 border-secondary z-20"
-                  style={{ background: "hsl(var(--aqua) / 0.2)" }}>
+                {/* YOU — left middle */}
+                <div className="absolute flex items-center justify-center w-14 h-14 rounded-full border-2 border-secondary z-20"
+                  style={{ top: "143px", left: "53px", background: "hsl(var(--aqua) / 0.2)" }}>
                   <span className="text-xs font-bold text-secondary">YOU</span>
                 </div>
 
-                {/* Position 3 */}
-                <div className="absolute top-4 left-1/2 -translate-x-6 w-12 h-12 rounded-full flex items-center justify-center border border-border bg-card z-20">
-                  <span className="text-xs text-muted-foreground">#3</span>
-                </div>
-
-                {/* Position 4 */}
-                <div className="absolute top-4 right-6 w-12 h-12 rounded-full flex items-center justify-center border border-border bg-card z-20">
-                  <span className="text-xs text-muted-foreground">#4</span>
-                </div>
-
-                {/* Position 5 */}
-                <div className="absolute bottom-4 left-4 w-12 h-12 rounded-full flex items-center justify-center border border-border bg-card z-20">
+                {/* Position 5 — right middle */}
+                <div className="absolute flex items-center justify-center w-12 h-12 rounded-full border border-border bg-card z-20"
+                  style={{ top: "148px", left: "194px" }}>
                   <span className="text-xs text-muted-foreground">#5</span>
                 </div>
 
-                {/* Position 6 */}
-                <div className="absolute bottom-4 right-8 w-12 h-12 rounded-full flex items-center justify-center border border-border bg-card z-20">
+                {/* Position 3 — bottom left of YOU */}
+                <div className="absolute flex items-center justify-center w-12 h-12 rounded-full border border-border bg-card z-20"
+                  style={{ top: "248px", left: "14px" }}>
+                  <span className="text-xs text-muted-foreground">#3</span>
+                </div>
+
+                {/* Position 4 — bottom right of YOU */}
+                <div className="absolute flex items-center justify-center w-12 h-12 rounded-full border border-border bg-card z-20"
+                  style={{ top: "248px", left: "94px" }}>
+                  <span className="text-xs text-muted-foreground">#4</span>
+                </div>
+
+                {/* Position 6 — bottom left of #5 */}
+                <div className="absolute flex items-center justify-center w-12 h-12 rounded-full border border-border bg-card z-20"
+                  style={{ top: "248px", left: "194px" }}>
                   <span className="text-xs text-muted-foreground">#6</span>
                 </div>
 
-                {/* Connecting lines */}
-                <svg className="absolute inset-0 w-full h-full" style={{ zIndex: 10 }}>
-                  <circle cx="50%" cy="50%" r="100" fill="none" stroke="hsl(2 88% 62% / 0.15)" strokeWidth="1" strokeDasharray="4 4" />
-                </svg>
-
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/5 to-secondary/5 border border-border" />
+                {/* Position 7 (overflow) — bottom right of #5 */}
+                <div className="absolute flex items-center justify-center w-12 h-12 rounded-full border border-border bg-card z-20"
+                  style={{ top: "248px", left: "264px" }}>
+                  <span className="text-xs text-muted-foreground">#7</span>
+                </div>
               </div>
             </div>
           </div>
@@ -283,7 +316,7 @@ const HowItWorks = () => {
         <div className="text-center mb-14">
           <p className="text-primary text-sm tracking-[0.3em] uppercase font-medium mb-3">Income Streams</p>
           <h2 className="text-4xl font-bold mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
-            <span className="gold-gradient">6 Ways</span> to Receive Donations
+            <span className="lime-gradient">6 Ways</span> to Receive Donations
           </h2>
           <p className="text-muted-foreground">So many ways to receive — the donations might never stop coming in.</p>
         </div>
@@ -291,7 +324,7 @@ const HowItWorks = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {["Personals", "Help From Above", "Help From Below", "Re-Entries", "One Direct", "Donations to You"].map((way, i) => (
             <div key={i} className="rounded-xl p-6 bg-card border border-border hover:border-primary/40 transition-all duration-300 text-center">
-              <div className="text-3xl font-bold gold-gradient mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>
+              <div className="text-3xl font-bold lime-gradient mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>
                 {String(i + 1).padStart(2, "0")}
               </div>
               <p className="text-foreground font-medium text-sm">{way}</p>
@@ -306,7 +339,7 @@ const HowItWorks = () => {
           <div className="text-center mb-14">
             <p className="text-secondary text-sm tracking-[0.3em] uppercase font-medium mb-3">Technology</p>
             <h2 className="text-4xl font-bold mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
-              Everything Is <span className="gold-gradient">Automated</span>
+              Everything Is <span className="lime-gradient">Automated</span>
             </h2>
             <p className="text-muted-foreground text-lg italic">You Invite. We Ignite.</p>
           </div>
@@ -327,7 +360,7 @@ const HowItWorks = () => {
         <div className="text-center mb-14">
           <p className="text-primary text-sm tracking-[0.3em] uppercase font-medium mb-3">What You Get</p>
           <h2 className="text-4xl font-bold" style={{ fontFamily: "'Playfair Display', serif" }}>
-            So Many <span className="gold-gradient">Benefits</span>
+            So Many <span className="lime-gradient">Benefits</span>
           </h2>
         </div>
 

@@ -12,7 +12,7 @@ const tiers = [
     receive: "$15,000",
     colorClass: "tier-gold",
     textClass: "text-primary",
-    desc: "Your gateway into the coop5050Life™ ecosystem.",
+    desc: "Your gateway into the Coop5050Life™ ecosystem.",
   },
   {
     name: "Platinum",
@@ -27,7 +27,7 @@ const tiers = [
     entry: "$25,000",
     receive: "$75,000",
     colorClass: "tier-diamond",
-    textClass: "gold-gradient",
+    textClass: "text-accent",
     desc: "Elite tier. Maximum returns. Legacy-class wealth.",
     elite: true,
   },
@@ -43,7 +43,7 @@ const features = [
 ];
 
 const testimonials = [
-  { quote: "I never imagined a system this transparent and powerful. coop5050Life changed everything.", name: "M. Dawson", tier: "Diamond Member" },
+  { quote: "I never imagined a system this transparent and powerful. Coop5050Life changed everything.", name: "M. Dawson", tier: "Diamond Member" },
   { quote: "The automation is incredible. I just invited two people and watched the cycle begin.", name: "A. Rodriguez", tier: "Gold Member" },
   { quote: "This is legacy wealth — not just income. I'm building something that lasts.", name: "T. Williams", tier: "Platinum Member" },
 ];
@@ -120,7 +120,7 @@ const Index = () => {
               { value: "$120K+", label: "Max Monthly Cycle" },
             ].map((stat, i) => (
               <div key={i}>
-                <p className="text-3xl font-bold gold-gradient mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
+                <p className="text-3xl font-bold lime-gradient mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
                   {stat.value}
                 </p>
                 <p className="text-muted-foreground text-xs tracking-widest uppercase">{stat.label}</p>
@@ -136,10 +136,10 @@ const Index = () => {
           <div>
             <p className="text-secondary text-sm tracking-[0.3em] uppercase font-medium mb-4">The System</p>
             <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
-              We Each Do a Little<br />to <span className="gold-gradient">All Receive a Lot</span>
+              We Each Do a Little<br />to <span className="lime-gradient">All Receive a Lot</span>
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-              coop5050Life™ is a 2×2 peer-to-peer crowdfunding system where 100% of every
+              <span style={{ color: "#14b8d4" }}>Coop5050</span>Life™ is a 2×2 peer-to-peer crowdfunding system where 100% of every
               donation goes to you — the participants. No middlemen. No manipulation.
               No exceptions.
             </p>
@@ -176,7 +176,7 @@ const Index = () => {
           <div className="text-center mb-16">
             <p className="text-primary text-sm tracking-[0.3em] uppercase font-medium mb-4">The Income Centers</p>
             <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>
-              Begin Where <span className="gold-gradient">You Fit In</span>
+              Begin Where <span className="lime-gradient">You Fit In</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
               There are 3 elite Income Center levels. Your ultimate goal is to be on all 3 —
@@ -186,16 +186,16 @@ const Index = () => {
 
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             {tiers.map((tier, i) => (
-              <div key={i} className={`rounded-xl p-8 ${tier.colorClass} relative overflow-hidden transition-all duration-300 hover:scale-[1.02]`}>
+              <div key={i} className={`rounded-xl p-8 ${tier.colorClass} text-center relative overflow-hidden transition-all duration-300 hover:scale-[1.02]`}>
                 {tier.elite && (
-                  <div className="absolute top-4 right-4 px-3 py-1 rounded text-xs font-bold tracking-widest uppercase"
-                    style={{ background: "hsl(var(--coral))", color: "hsl(var(--indigo))" }}>
+                  <div className="absolute top-3 right-3 px-2 py-1 rounded text-xs font-bold tracking-widest uppercase"
+                    style={{ background: "hsl(var(--lime))", color: "hsl(var(--indigo))" }}>
                     Elite
                   </div>
                 )}
 
-                <p className="text-muted-foreground text-xs tracking-widest uppercase mb-3">{tier.name} Level</p>
-                <p className={`text-5xl font-bold mb-1 ${tier.textClass}`} style={{ fontFamily: "'Playfair Display', serif" }}>
+                <p className="text-muted-foreground text-xs tracking-widest uppercase mb-2">{tier.name} Level</p>
+                <p className={`text-5xl font-bold mb-2 ${tier.textClass}`} style={{ fontFamily: "'Playfair Display', serif" }}>
                   {tier.entry}
                 </p>
                 <p className="text-muted-foreground text-sm mb-2">Entry Donation</p>
@@ -212,7 +212,7 @@ const Index = () => {
                   to="/join"
                   className="block text-center py-3 rounded-sm text-xs font-bold tracking-widest uppercase transition-all duration-300 hover:opacity-90 border border-current"
                   style={{
-                    color: tier.name === "Diamond" ? "#c9a227" : tier.name === "Platinum" ? "hsl(var(--aqua))" : "hsl(var(--coral))",
+                    color: tier.name === "Diamond" ? "hsl(var(--lime))" : tier.name === "Platinum" ? "hsl(var(--aqua))" : "hsl(var(--coral))",
                     borderColor: "currentColor"
                   }}
                 >
@@ -225,7 +225,7 @@ const Index = () => {
           <div className="text-center rounded-xl p-8"
             style={{ background: "linear-gradient(135deg, hsl(var(--coral) / 0.08), hsl(var(--aqua) / 0.06))", border: "1px solid hsl(var(--coral) / 0.2)" }}>
             <p className="text-muted-foreground mb-2">On all 3 Income Centers — cycling just once every month:</p>
-            <p className="text-5xl font-bold gold-gradient mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>$120,000</p>
+            <p className="text-5xl font-bold lime-gradient mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>$120,000</p>
             <p className="text-muted-foreground text-sm">Imagine doing that 2 or 3 or more times a month — it's possible and easily doable!</p>
           </div>
         </div>
@@ -236,7 +236,7 @@ const Index = () => {
         <div className="text-center mb-16">
           <p className="text-secondary text-sm tracking-[0.3em] uppercase font-medium mb-4">Simple Process</p>
           <h2 className="text-4xl md:text-5xl font-bold" style={{ fontFamily: "'Playfair Display', serif" }}>
-            Just <span className="gold-gradient">3 Simple</span> Steps
+            Just <span className="lime-gradient">3 Simple</span> Steps
           </h2>
         </div>
 
@@ -247,7 +247,7 @@ const Index = () => {
             { n: "03", title: "Your Team Grows", desc: "Your 2 each help 2 or more. The cycle of giving and receiving continues — automatically." },
           ].map((step, i) => (
             <div key={i} className="rounded-xl p-8 bg-card border border-border card-glow text-center">
-              <div className="text-6xl font-bold gold-gradient opacity-25 mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
+              <div className="text-6xl font-bold lime-gradient opacity-50 mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
                 {step.n}
               </div>
               <h3 className="text-xl font-bold mb-3 text-foreground" style={{ fontFamily: "'Playfair Display', serif" }}>{step.title}</h3>
@@ -272,7 +272,7 @@ const Index = () => {
           <div className="text-center mb-16">
             <p className="text-primary text-sm tracking-[0.3em] uppercase font-medium mb-4">Community</p>
             <h2 className="text-4xl font-bold" style={{ fontFamily: "'Playfair Display', serif" }}>
-              Built on <span className="gold-gradient">Real Results</span>
+              Built on <span className="lime-gradient">Real Results</span>
             </h2>
           </div>
 
@@ -308,10 +308,10 @@ const Index = () => {
           <p className="text-secondary text-sm tracking-[0.3em] uppercase font-medium mb-4">Start Now</p>
           <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
             Money When You Want It.<br />
-            <span className="gold-gradient">Life The Way You Deserve It.</span>
+            <span className="lime-gradient">Life The Way You Deserve It.</span>
           </h2>
           <p className="text-muted-foreground text-lg mb-10 max-w-2xl mx-auto">
-            Join coop5050Life™ today. Start receiving. Never stop.
+            Join <span style={{ color: "#14b8d4" }}>Coop5050</span>Life™ today. Start receiving. Never stop.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
