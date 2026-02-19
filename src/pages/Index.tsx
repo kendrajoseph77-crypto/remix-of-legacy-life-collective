@@ -60,9 +60,9 @@ const Index = () => {
         <div className="relative z-10 max-w-5xl mx-auto">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border mb-8"
-            style={{ borderColor: "hsl(var(--coral) / 0.4)", background: "hsl(var(--coral) / 0.08)" }}>
-            <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="text-primary text-xs font-medium tracking-widest uppercase">5050 Crowdfunding™ · Elite Platform</span>
+            style={{ borderColor: "hsl(43 74% 47% / 0.5)", background: "hsl(43 74% 47% / 0.10)" }}>
+            <div className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#c9a227" }} />
+            <span className="text-xs font-medium tracking-widest uppercase gold-gradient">5050 Crowdfunding™ · Elite Platform</span>
           </div>
 
           {/* Logo */}
