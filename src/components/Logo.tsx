@@ -34,7 +34,7 @@ const Logo = ({ heightClass = "h-10", className = "" }: LogoProps) => {
           src={logoFull}
           alt="coop5050Life globe"
           className={`${heightClass} w-auto`}
-          style={{ maxWidth: maxW, objectFit: "cover", objectPosition: "left center" }}
+          style={{ maxWidth: maxW, objectFit: "cover", objectPosition: "left center", filter: "brightness(0) saturate(100%) invert(87%) sepia(100%) saturate(500%) hue-rotate(30deg) brightness(105%)" }}
         />
       </div>
       {/* Text: 5050 lime, Life white */}
