@@ -61,40 +61,40 @@ const Index = () => {
           {/* Anniversary Badge */}
           <div className="relative inline-flex flex-col items-center gap-3 mb-10">
             {/* Glow ring */}
-            <div className="absolute inset-0 rounded-2xl blur-2xl opacity-40"
+            <div className="absolute inset-0 rounded-2xl blur-2xl opacity-50"
               style={{ background: "linear-gradient(135deg, hsl(43 74% 47%), hsl(68 100% 50%), hsl(43 74% 47%))" }} />
 
             <div className="relative flex flex-col items-center gap-2 px-8 py-5 rounded-2xl border-2"
               style={{
-                borderColor: "hsl(43 74% 47% / 0.8)",
-                background: "linear-gradient(135deg, hsl(43 74% 47% / 0.15), hsl(68 100% 50% / 0.08), hsl(43 74% 47% / 0.15))",
+                borderColor: "hsl(43 74% 60%)",
+                background: "linear-gradient(135deg, hsl(210 45% 6% / 0.95), hsl(210 45% 10% / 0.95))",
               }}>
 
               {/* Top row — icon + years */}
               <div className="flex items-center gap-3">
-                <Trophy size={22} style={{ color: "hsl(43 74% 47%)" }} className="animate-bounce" />
-                <span className="text-4xl font-black tracking-tight gold-gradient" style={{ fontFamily: "'Playfair Display', serif" }}>
+                <Trophy size={22} style={{ color: "hsl(43 74% 65%)" }} className="animate-bounce" />
+                <span className="text-4xl font-black tracking-tight" style={{ fontFamily: "'Playfair Display', serif", color: "hsl(43 74% 80%)" }}>
                   25 YEARS
                 </span>
-                <Trophy size={22} style={{ color: "hsl(43 74% 47%)" }} className="animate-bounce" />
+                <Trophy size={22} style={{ color: "hsl(43 74% 65%)" }} className="animate-bounce" />
               </div>
 
               {/* Divider */}
-              <div className="w-full h-px" style={{ background: "linear-gradient(90deg, transparent, hsl(43 74% 47% / 0.6), transparent)" }} />
+              <div className="w-full h-px" style={{ background: "linear-gradient(90deg, transparent, hsl(43 74% 60% / 0.8), transparent)" }} />
 
               {/* Bottom row — subtitle */}
               <div className="flex items-center gap-2">
-                <Sparkles size={13} style={{ color: "hsl(68 100% 50%)" }} />
-                <span className="text-xs font-semibold tracking-[0.25em] uppercase"
-                  style={{ color: "hsl(43 74% 70%)" }}>
+                <Sparkles size={13} style={{ color: "hsl(68 100% 60%)" }} />
+                <span className="text-sm font-semibold tracking-[0.2em] uppercase"
+                  style={{ color: "hsl(30 20% 88%)" }}>
                   Cooperative Crowdfunding™
                 </span>
-                <span className="text-xs" style={{ color: "hsl(43 74% 47% / 0.6)" }}>·</span>
-                <span className="text-xs font-medium tracking-widest uppercase"
-                  style={{ color: "hsl(43 74% 60%)" }}>
+                <span className="text-sm" style={{ color: "hsl(43 74% 60%)" }}>·</span>
+                <span className="text-sm font-medium tracking-widest uppercase"
+                  style={{ color: "hsl(30 20% 88%)" }}>
                   By David T. Rosen
                 </span>
-                <Sparkles size={13} style={{ color: "hsl(68 100% 50%)" }} />
+                <Sparkles size={13} style={{ color: "hsl(68 100% 60%)" }} />
               </div>
             </div>
           </div>
