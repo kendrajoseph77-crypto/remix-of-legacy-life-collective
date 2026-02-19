@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import OrbitalRings from "@/components/OrbitalRings";
-import Logo from "@/components/Logo";
+
 import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle, Zap, Shield, Globe, TrendingUp, RefreshCw, Star, Trophy } from "lucide-react";
 
@@ -99,10 +99,8 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Logo */}
-          <div className="flex items-center justify-center mb-6 sm:mb-8">
-            <Logo heightClass="h-12 sm:h-16" />
-          </div>
+
+
 
           {/* Tagline */}
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-2 px-2">
