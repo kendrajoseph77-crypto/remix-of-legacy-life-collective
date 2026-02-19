@@ -54,11 +54,11 @@ const Index = () => {
 
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20 hero-glow relative overflow-hidden">
-        {/* Background Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-10"
+        {/* Background Orbs — kept very subtle so hero text stays readable */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-5"
           style={{ background: "hsl(var(--coral))" }} />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-8"
-          style={{ background: "hsl(var(--aqua))" }} />
+        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 rounded-full blur-3xl opacity-5"
+          style={{ background: "hsl(var(--indigo))" }} />
 
         <div className="relative z-10 max-w-5xl mx-auto">
           {/* Badge */}
