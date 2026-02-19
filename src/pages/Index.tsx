@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ParticleField from "@/components/ParticleField";
+import OrbitalRings from "@/components/OrbitalRings";
 import Logo from "@/components/Logo";
 import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle, Zap, Shield, Globe, TrendingUp, RefreshCw, Star, Trophy, Sparkles } from "lucide-react";
@@ -55,7 +55,7 @@ const Index = () => {
 
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20 hero-glow relative overflow-hidden">
-        <ParticleField />
+        <OrbitalRings />
 
         <div className="relative z-10 max-w-5xl mx-auto">
           {/* Anniversary Banner */}
