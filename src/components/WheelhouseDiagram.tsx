@@ -115,8 +115,9 @@ const WheelhouseDiagram = () => {
         <image href={avatarUrls[2]} x={cx - innerR + 3} y={cy + 90 - innerR + 3}
           width={(innerR - 3) * 2} height={(innerR - 3) * 2} clipPath="url(#clip02)" preserveAspectRatio="xMidYMid slice" />
         <circle cx={cx} cy={cy + 90} r={innerR} fill="none" stroke={lime} strokeWidth="2.5" filter="url(#glow)" />
-        <circle cx={cx - innerR + 4} cy={cy + 90 - innerR + 4} r="11" fill={navy} stroke={lime} strokeWidth="1.5" />
-        <text x={cx - innerR + 4} y={cy + 90 - innerR + 9} textAnchor="middle" fontSize="8" fontWeight="700" fill={lime} fontFamily="monospace">02</text>
+        {/* Badge moved to bottom-left to avoid center glow overlap */}
+        <circle cx={cx - innerR + 4} cy={cy + 90 + innerR - 4} r="11" fill={navy} stroke={lime} strokeWidth="1.5" />
+        <text x={cx - innerR + 4} y={cy + 90 + innerR + 1} textAnchor="middle" fontSize="8" fontWeight="700" fill={lime} fontFamily="monospace">02</text>
 
         {/* === CENTER "YOU" CIRCLE === */}
         {/* Glow rings */}
