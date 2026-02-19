@@ -1,8 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ParticleField from "@/components/ParticleField";
+import Logo from "@/components/Logo";
 import { Link } from "react-router-dom";
-import logoFull from "@/assets/logo-full.png";
 import { ArrowRight, CheckCircle, Zap, Shield, Globe, TrendingUp, RefreshCw, Star } from "lucide-react";
 
 const tiers = [
@@ -67,11 +67,7 @@ const Index = () => {
 
           {/* Logo */}
           <div className="flex items-center justify-center mb-8">
-            <img
-              src={logoFull}
-              alt="coop5050Life"
-              className="h-16 object-contain"
-            />
+            <Logo heightClass="h-16" />
           </div>
 
           {/* Tagline */}
