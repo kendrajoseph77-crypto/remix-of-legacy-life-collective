@@ -66,7 +66,7 @@ const HowItWorks = () => {
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3">The System</p>
           <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
-            How <span style={{ color: "#14b8d4" }}>Coop5050Life</span> Works
+            How Coop5050Life Works
           </h1>
           <p className="text-muted-foreground text-base leading-relaxed max-w-2xl mx-auto mb-8">
             A 2×2 peer-to-peer crowdfunding platform where 100% of every royalty goes directly to you — the participants. No middlemen. No exceptions.
@@ -86,7 +86,7 @@ const HowItWorks = () => {
           <div>
             <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3">The 50/50 Promise</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-5">
-              You Always Receive <span className="text-primary">50%</span>
+              You Always Receive 50%
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
               Coop5050Life™ is transparent, fully automated, and cannot be manipulated.
@@ -212,7 +212,7 @@ const HowItWorks = () => {
             <div>
               <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3">The Technology</p>
               <h2 className="text-3xl md:text-4xl font-bold mb-5">
-                The Mobius Loop <span className="text-secondary">Wheelhouse</span>
+                The Mobius Loop Wheelhouse
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4 text-sm">
                 YOU are in the center. Your Inviter is in position #1, your Direct is in
@@ -242,7 +242,7 @@ const HowItWorks = () => {
         <div className="text-center mb-10">
           <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3">Technology</p>
           <h2 className="text-3xl md:text-4xl font-bold mb-3">
-            Everything Is <span className="text-secondary">Automated</span>
+            Everything Is Automated
           </h2>
           <p className="text-muted-foreground text-base italic">You Invite. We Ignite.</p>
         </div>
