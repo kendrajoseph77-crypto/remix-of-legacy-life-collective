@@ -33,7 +33,6 @@ const Navbar = () => {
             src={logoFull}
             alt="coop5050Life Logo"
             className="h-10 object-contain"
-            style={{ filter: "brightness(0) invert(1)" }}
           />
         </Link>
 

@@ -71,7 +71,6 @@ const Index = () => {
               src={logoFull}
               alt="coop5050Life"
               className="h-16 object-contain"
-              style={{ filter: "brightness(0) invert(1)" }}
             />
           </div>
 
