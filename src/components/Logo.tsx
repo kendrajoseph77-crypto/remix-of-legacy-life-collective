@@ -1,19 +1,21 @@
 import logoLife from "@/assets/logo-life.png";
 
 interface LogoProps {
-  height?: number;
   className?: string;
-  /** @deprecated use height instead */
+  /** @deprecated */
   heightClass?: string;
+  /** @deprecated */
+  height?: number;
 }
 
-const Logo = ({ height = 220, className = "" }: LogoProps) => {
+const Logo = ({ className = "" }: LogoProps) => {
   return (
     <div className={`flex items-center ${className}`}>
       <img
         src={logoLife}
         alt="Life logo"
-        style={{ height: `${height}px`, width: "auto", mixBlendMode: "screen" }}
+        style={{ mixBlendMode: "screen" }}
+        className="h-[160px] sm:h-[280px] w-auto"
       />
     </div>
   );
