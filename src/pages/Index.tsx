@@ -232,21 +232,6 @@ const Index = () => {
             <p className="text-muted-foreground leading-relaxed mb-6">
               At the center sits <span className="text-foreground font-semibold">you</span>. Your Wheelhouse fills with 6 participants — 2 you invite directly, and 4 who join through your team. The moment it's full, you receive <span className="text-primary font-semibold">50% of the pool</span> and a brand-new Wheelhouse opens automatically.
             </p>
-            <ul className="flex flex-col gap-3">
-              {[
-                { color: "bg-primary", label: "You (Center)", desc: "Your position — always paid first." },
-                { color: "bg-secondary", label: "Inviter #1 · Direct #2", desc: "The 2 people you bring in directly." },
-                { color: "bg-foreground", label: "Team #3–#6", desc: "Filled by your network's network." },
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <div className={`mt-1 w-3 h-3 rounded-full shrink-0 ${item.color}`} />
-                  <div>
-                    <span className="text-foreground text-sm font-semibold">{item.label}</span>
-                    <span className="text-muted-foreground text-sm"> — {item.desc}</span>
-                  </div>
-                </li>
-              ))}
-            </ul>
           </div>
           <div className="flex-1 max-w-md mx-auto lg:mx-0">
             <WheelhouseDiagram />
