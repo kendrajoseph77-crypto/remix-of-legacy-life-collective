@@ -129,7 +129,7 @@ const Index = () => {
 
           {/* Combined total callout */}
           <div className="rounded-xl p-6 text-center border border-secondary/20 bg-background/40 mb-14">
-            <p className="text-muted-foreground text-sm mb-1">All 3 levels activated, you receive $52,500 every cycle, forever.</p>
+            
             <p className="text-4xl font-bold text-foreground">$52,500</p>
           </div>
 
