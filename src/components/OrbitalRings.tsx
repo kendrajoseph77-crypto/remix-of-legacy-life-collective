@@ -23,29 +23,29 @@ const OrbitalRings = () => {
           {/* Ring 1 gradient */}
           <linearGradient id="ring1grad" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="hsl(181 90% 52%)" stopOpacity="0" />
-            <stop offset="30%" stopColor="hsl(181 90% 52%)" stopOpacity="0.5" />
-            <stop offset="70%" stopColor="hsl(2 88% 62%)" stopOpacity="0.3" />
+            <stop offset="30%" stopColor="hsl(181 90% 52%)" stopOpacity="0.9" />
+            <stop offset="70%" stopColor="hsl(2 88% 62%)" stopOpacity="0.6" />
             <stop offset="100%" stopColor="hsl(2 88% 62%)" stopOpacity="0" />
           </linearGradient>
 
           {/* Ring 2 gradient */}
           <linearGradient id="ring2grad" x1="100%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stopColor="hsl(68 100% 50%)" stopOpacity="0" />
-            <stop offset="40%" stopColor="hsl(68 100% 50%)" stopOpacity="0.35" />
-            <stop offset="60%" stopColor="hsl(181 90% 52%)" stopOpacity="0.25" />
+            <stop offset="40%" stopColor="hsl(68 100% 50%)" stopOpacity="0.7" />
+            <stop offset="60%" stopColor="hsl(181 90% 52%)" stopOpacity="0.55" />
             <stop offset="100%" stopColor="hsl(181 90% 52%)" stopOpacity="0" />
           </linearGradient>
 
           {/* Ring 3 gradient */}
           <linearGradient id="ring3grad" x1="0%" y1="100%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="hsl(2 88% 62%)" stopOpacity="0" />
-            <stop offset="50%" stopColor="hsl(2 88% 62%)" stopOpacity="0.2" />
+            <stop offset="50%" stopColor="hsl(2 88% 62%)" stopOpacity="0.5" />
             <stop offset="100%" stopColor="hsl(43 74% 55%)" stopOpacity="0" />
           </linearGradient>
 
           {/* Dot glow filter */}
           <filter id="dotGlow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feGaussianBlur stdDeviation="4" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
@@ -54,7 +54,7 @@ const OrbitalRings = () => {
 
           {/* Ring glow filter */}
           <filter id="ringGlow" x="-5%" y="-5%" width="110%" height="110%">
-            <feGaussianBlur stdDeviation="1.5" result="blur" />
+            <feGaussianBlur stdDeviation="2.5" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
@@ -117,13 +117,13 @@ const OrbitalRings = () => {
             cx="600" cy="400"
             rx="600" ry="120"
             fill="none"
-            stroke="hsl(181 90% 52% / 0.12)"
-            strokeWidth="0.7"
+            stroke="hsl(181 90% 52% / 0.28)"
+            strokeWidth="0.9"
             strokeDasharray="800 1200"
             transform="rotate(5, 600, 400)"
           />
-          <circle cx="200" cy="394" r="2" fill="hsl(181 90% 70%)" filter="url(#dotGlow)" />
-          <circle cx="998" cy="410" r="2" fill="hsl(181 90% 70%)" filter="url(#dotGlow)" />
+          <circle cx="200" cy="394" r="2.5" fill="hsl(181 90% 70%)" filter="url(#dotGlow)" />
+          <circle cx="998" cy="410" r="2.5" fill="hsl(181 90% 70%)" filter="url(#dotGlow)" />
         </g>
 
         {/* === RING 5 — Steep arc left === */}
@@ -132,12 +132,12 @@ const OrbitalRings = () => {
             cx="600" cy="400"
             rx="450" ry="260"
             fill="none"
-            stroke="hsl(2 88% 62% / 0.1)"
-            strokeWidth="0.8"
+            stroke="hsl(2 88% 62% / 0.22)"
+            strokeWidth="1"
             strokeDasharray="500 1000"
             transform="rotate(-60, 600, 400)"
           />
-          <circle cx="196" cy="260" r="2.5" fill="hsl(2 88% 70%)" filter="url(#dotGlow)" />
+          <circle cx="196" cy="260" r="3" fill="hsl(2 88% 70%)" filter="url(#dotGlow)" />
         </g>
       </svg>
 
@@ -156,8 +156,8 @@ const OrbitalRings = () => {
         style={{
           top: "20%", left: "50%",
           transform: "translate(-50%, 0)",
-          width: "600px", height: "400px",
-          background: "radial-gradient(ellipse at center, hsl(181 90% 52% / 0.06) 0%, transparent 70%)",
+          width: "700px", height: "500px",
+          background: "radial-gradient(ellipse at center, hsl(181 90% 52% / 0.14) 0%, transparent 70%)",
           pointerEvents: "none",
         }}
       />
