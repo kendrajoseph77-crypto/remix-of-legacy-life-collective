@@ -14,8 +14,8 @@ const Logo = ({ className = "" }: LogoProps) => {
       <img
         src={logoLife}
         alt="Life logo"
-        className="h-16 sm:h-24 w-auto -my-5 sm:-my-8"
-        style={{ mixBlendMode: "screen", filter: "hue-rotate(150deg) saturate(2) brightness(1.4)" }}
+        className="h-8 sm:h-12 w-auto"
+        style={{ mixBlendMode: "screen" }}
       />
     </div>
   );
