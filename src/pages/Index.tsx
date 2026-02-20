@@ -221,9 +221,8 @@ const Index = () => {
         </div>
 
         {/* Mobius Loop / Wheelhouse Diagram */}
-        <div className="flex flex-col lg:flex-row items-center gap-12">
-          <div className="flex-1 max-w-lg">
-
+        <div className="flex flex-col md:flex-row items-center gap-12">
+          <div className="flex-1">
             <p className="text-secondary text-xs tracking-[0.4em] uppercase font-medium mb-4">The Mobius Loop</p>
             <h3 className="text-3xl md:text-4xl font-bold mb-5 leading-tight">
               Your Wheelhouse.<br />
@@ -233,7 +232,7 @@ const Index = () => {
               At the center sits <span className="text-foreground font-semibold">you</span>. Your Wheelhouse fills with 6 participants — 2 you invite directly, and 4 who join through your team. The moment it's full, you receive <span className="text-primary font-semibold">50% of the pool</span> and a brand-new Wheelhouse opens automatically.
             </p>
           </div>
-          <div className="flex-1 max-w-md mx-auto lg:mx-0">
+          <div className="flex-1">
             <WheelhouseDiagram />
           </div>
         </div>
