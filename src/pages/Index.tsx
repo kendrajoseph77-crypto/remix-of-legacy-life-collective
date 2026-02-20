@@ -21,7 +21,7 @@ const tiers = [
     receive: "$15,000",
     desc: "Elevated access for the serious wealth builder.",
     colorClass: "tier-platinum",
-    receiveColor: "text-aqua",
+    receiveColor: "text-secondary",
     ringColor: "ring-secondary border-secondary",
   },
   {
@@ -30,7 +30,7 @@ const tiers = [
     receive: "$30,000",
     desc: "Maximum returns. Legacy-class wealth.",
     colorClass: "tier-diamond",
-    receiveColor: "text-lime",
+    receiveColor: "text-accent",
     ringColor: "ring-accent border-accent",
   },
 ];
@@ -135,12 +135,13 @@ const Index = () => {
 
           {/* ── Join Form ── */}
           <div className="max-w-lg mx-auto rounded-xl p-8 bg-background border border-border">
-            <h3 className="text-2xl font-bold mb-1 text-foreground text-center">Create Your Account</h3>
-            <p className="text-muted-foreground text-sm text-center mb-8">
-              {selected !== null
-                ? `${tiers[selected].name} — ${tiers[selected].entry} entry`
-                : "Select a level above, then register below"}
-            </p>
+            <h3 className="text-2xl font-bold mb-1 text-foreground text-center">Activate Your Account</h3>
+            {selected !== null && (
+              <p className="text-muted-foreground text-sm text-center mb-8">
+                {tiers[selected].name} — {tiers[selected].entry} entry
+              </p>
+            )}
+            {selected === null && <div className="mb-8" />}
 
             <form className="flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
               <div className="grid grid-cols-2 gap-4">
@@ -165,19 +166,6 @@ const Index = () => {
                 <label className="text-xs text-muted-foreground tracking-wide uppercase block mb-1.5">Referral Code <span className="normal-case">(optional)</span></label>
                 <input type="text" placeholder="Inviter's code" className="w-full px-4 py-3 rounded-lg bg-muted/20 border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
               </div>
-              <div>
-                <label className="text-xs text-muted-foreground tracking-wide uppercase block mb-1.5">Income Level</label>
-                <select
-                  value={selected !== null ? tiers[selected].name : ""}
-                  onChange={(e) => setSelected(tiers.findIndex((t) => t.name === e.target.value))}
-                  className="w-full px-4 py-3 rounded-lg bg-muted/20 border border-border text-foreground focus:outline-none focus:border-primary text-sm transition-colors"
-                >
-                  <option value="">Select a level…</option>
-                  {tiers.map((t) => (
-                    <option key={t.name} value={t.name}>{t.name} — {t.entry}</option>
-                  ))}
-                </select>
-              </div>
               <button
                 type="submit"
                 className="mt-2 w-full py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:opacity-90 bg-primary text-primary-foreground"
@@ -200,10 +188,10 @@ const Index = () => {
         <div className="max-w-4xl mx-auto px-6 relative">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { value: "100%", label: "Peer-to-Peer", color: "text-aqua" },
+              { value: "100%", label: "Peer-to-Peer", color: "text-secondary" },
               { value: "50/50", label: "Always", color: "text-primary" },
-              { value: "3", label: "Income Levels", color: "text-lime" },
-              { value: "$52.5K+", label: "Max Per Cycle", color: "text-aqua" },
+              { value: "3", label: "Income Levels", color: "text-accent" },
+              { value: "$52.5K+", label: "Max Per Cycle", color: "text-secondary" },
             ].map((s, i) => (
               <div key={i}>
                 <p className={`text-3xl font-bold mb-1 ${s.color}`}>{s.value}</p>
@@ -244,13 +232,13 @@ const Index = () => {
               <span className="text-muted-foreground">Always in Motion.</span>
             </h3>
             <p className="text-muted-foreground leading-relaxed mb-6">
-              At the center sits <span className="text-foreground font-semibold">you</span>. Your Wheelhouse fills with 6 participants — 2 you invite directly (Lime), and 4 who join through your team (Aqua). The moment it's full, you receive <span className="text-primary font-semibold">50% of the pool</span> and a brand-new Wheelhouse opens automatically.
+              At the center sits <span className="text-foreground font-semibold">you</span>. Your Wheelhouse fills with 6 participants — 2 you invite directly, and 4 who join through your team. The moment it's full, you receive <span className="text-primary font-semibold">50% of the pool</span> and a brand-new Wheelhouse opens automatically.
             </p>
             <ul className="flex flex-col gap-3">
               {[
                 { color: "bg-primary", label: "You (Center)", desc: "Your position — always paid first." },
-                { color: "bg-lime", label: "Inviter #1 · Direct #2", desc: "The 2 people you bring in directly." },
-                { color: "bg-aqua", label: "Team #3–#6", desc: "Filled by your network's network." },
+                { color: "bg-accent", label: "Inviter #1 · Direct #2", desc: "The 2 people you bring in directly." },
+                { color: "bg-secondary", label: "Team #3–#6", desc: "Filled by your network's network." },
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <div className={`mt-1 w-3 h-3 rounded-full shrink-0 ${item.color}`} />
