@@ -66,9 +66,10 @@ const Join = () => {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 relative">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-4">Choose Your Level</p>
+      <section className="pt-32 pb-16 relative overflow-hidden">
+        <div className="absolute inset-0 glow-aqua-top pointer-events-none" />
+        <div className="max-w-4xl mx-auto px-6 text-center relative">
+          <p className="text-aqua text-sm tracking-[0.3em] uppercase font-medium mb-4">Choose Your Level</p>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
             Begin Your Legacy Today
           </h1>
@@ -82,47 +83,55 @@ const Join = () => {
       {/* Tiers */}
       <section className="py-16 max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-3 gap-6 mb-12">
-          {tiers.map((tier, i) => (
-            <div
-              key={i}
-              onClick={() => setSelected(i)}
-              className={`rounded-xl p-8 cursor-pointer transition-all duration-300 bg-card border relative ${
-                selected === i ? "ring-2 ring-primary border-primary scale-[1.02]" : "border-border hover:border-muted-foreground/40 hover:scale-[1.01]"
-              }`}
-            >
-              {tier.elite && (
-                <div className="absolute top-4 right-4 px-2 py-1 rounded text-xs font-bold tracking-widest uppercase bg-muted text-muted-foreground">
-                  Elite
-                </div>
-              )}
-
-              <div className="mb-6">
-                <p className="text-muted-foreground text-xs tracking-widest uppercase mb-2">{tier.name} Level</p>
-                <p className="text-4xl font-bold mb-1 text-foreground">{tier.entry}</p>
-                <p className="text-muted-foreground text-sm">one-time entry contribution</p>
-              </div>
-
-              <div className="border-t border-border/50 pt-6 mb-6">
-                <p className="text-muted-foreground text-xs uppercase tracking-wider mb-1">You Receive Per Cycle</p>
-                <p className="text-3xl font-bold text-foreground">{tier.receive}</p>
-              </div>
-
-              <div className="flex flex-col gap-3">
-                {tier.features.map((f, j) => (
-                  <div key={j} className="flex items-center gap-2">
-                    <CheckCircle size={14} className="text-muted-foreground" />
-                    <span className="text-muted-foreground text-xs">{f}</span>
+          {tiers.map((tier, i) => {
+            const receiveColors = ["text-primary", "text-aqua", "text-lime"];
+            const checkColors = ["text-primary", "text-aqua", "text-lime"];
+            const eliteBadge = ["bg-primary/10 text-primary border-primary/30", "bg-aqua/10 text-aqua border-aqua/30", "bg-lime/10 text-lime border-lime/30"];
+            const selectedRing = ["ring-primary border-primary", "ring-secondary border-secondary", "ring-accent border-accent"];
+            return (
+              <div
+                key={i}
+                onClick={() => setSelected(i)}
+                className={`rounded-xl p-8 cursor-pointer transition-all duration-300 ${tier.colorClass} relative ${
+                  selected === i
+                    ? `ring-2 ${selectedRing[i]} scale-[1.02]`
+                    : "hover:border-muted-foreground/40 hover:scale-[1.01]"
+                }`}
+              >
+                {tier.elite && (
+                  <div className={`absolute top-4 right-4 px-2 py-1 rounded text-xs font-bold tracking-widest uppercase border ${eliteBadge[i]}`}>
+                    Elite
                   </div>
-                ))}
-              </div>
+                )}
 
-              {selected === i && (
-                <div className="mt-6 p-3 rounded-lg text-center text-xs font-bold tracking-widest uppercase bg-primary/10 text-primary">
-                  ✓ Selected
+                <div className="mb-6">
+                  <p className="text-muted-foreground text-xs tracking-widest uppercase mb-2">{tier.name} Level</p>
+                  <p className="text-4xl font-bold mb-1 text-foreground">{tier.entry}</p>
+                  <p className="text-muted-foreground text-sm">one-time entry contribution</p>
                 </div>
-              )}
-            </div>
-          ))}
+
+                <div className="border-t border-border/50 pt-6 mb-6">
+                  <p className="text-muted-foreground text-xs uppercase tracking-wider mb-1">You Receive Per Cycle</p>
+                  <p className={`text-3xl font-bold ${receiveColors[i]}`}>{tier.receive}</p>
+                </div>
+
+                <div className="flex flex-col gap-3">
+                  {tier.features.map((f, j) => (
+                    <div key={j} className="flex items-center gap-2">
+                      <CheckCircle size={14} className={checkColors[i]} />
+                      <span className="text-muted-foreground text-xs">{f}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {selected === i && (
+                  <div className={`mt-6 p-3 rounded-lg text-center text-xs font-bold tracking-widest uppercase bg-primary/10 ${receiveColors[i]}`}>
+                    ✓ Selected
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
 
         {/* Sign Up Form */}
