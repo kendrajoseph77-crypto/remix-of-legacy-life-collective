@@ -14,7 +14,7 @@ const Logo = ({ className = "" }: LogoProps) => {
       <img
         src={logoLife}
         alt="Life logo"
-        className="h-10 sm:h-14 w-auto"
+        className="h-20 sm:h-28 w-auto"
         style={{ mixBlendMode: "screen" }}
       />
     </div>
