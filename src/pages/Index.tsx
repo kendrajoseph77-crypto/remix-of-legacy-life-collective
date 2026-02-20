@@ -30,8 +30,8 @@ const tiers = [
     receive: "$30,000",
     desc: "Maximum returns. Legacy-class wealth.",
     colorClass: "tier-diamond",
-    receiveColor: "text-foreground",
-    ringColor: "ring-foreground/30 border-foreground/30",
+    receiveColor: "text-accent",
+    ringColor: "ring-accent border-accent",
   },
 ];
 
@@ -52,7 +52,7 @@ const Index = () => {
       <section className="min-h-[85vh] flex flex-col items-center justify-center text-center px-6 pt-32 pb-12 relative overflow-hidden">
         <OrbitalRings />
         <div className="relative z-10 max-w-3xl mx-auto">
-          <p className="text-secondary text-xs tracking-[0.4em] uppercase font-medium mb-6">
+          <p className="text-secondary text-sm tracking-[0.35em] uppercase font-semibold mb-6">
             25 Years of Cooperative Crowdfunding™
           </p>
           <h1 className="text-5xl md:text-7xl font-bold leading-[1.08] mb-6 tracking-tight">
@@ -98,10 +98,10 @@ const Index = () => {
         <div className="absolute inset-0 glow-coral-top pointer-events-none" />
         <div className="max-w-5xl mx-auto px-6 relative">
           <div className="text-center mb-14">
-            <p className="text-muted-foreground text-xs tracking-[0.4em] uppercase mb-4">Income Centers</p>
+            <p className="text-secondary text-xs tracking-[0.4em] uppercase mb-4">How It Works</p>
             <h2 className="text-4xl md:text-5xl font-bold">Begin Where You Fit In</h2>
             <p className="text-muted-foreground mt-4 max-w-lg mx-auto">
-              3 levels. Your goal is to be on all 3 — cycling simultaneously.
+              3 levels. Simple. Focused. Fast.
             </p>
           </div>
 
@@ -128,14 +128,14 @@ const Index = () => {
           </div>
 
           {/* Combined total callout */}
-          <div className="rounded-xl p-6 text-center border border-aqua/10 bg-background/40 mb-14">
-            <p className="text-muted-foreground text-sm mb-1">All 3 levels cycling once:</p>
+          <div className="rounded-xl p-6 text-center border border-secondary/20 bg-background/40 mb-14">
+            <p className="text-muted-foreground text-sm mb-1">All 3 levels activated, you receive $52,500 every cycle, forever.</p>
             <p className="text-4xl font-bold text-foreground">$52,500</p>
           </div>
 
           {/* ── Join Form ── */}
           <div className="max-w-lg mx-auto rounded-xl p-8 bg-background border border-border">
-            <h3 className="text-2xl font-bold mb-1 text-foreground text-center">Activate Your Account</h3>
+            <h3 className="text-2xl font-bold mb-1 text-secondary text-center">Activate Your Membership</h3>
             {selected !== null && (
               <p className="text-muted-foreground text-sm text-center mb-8">
                 {tiers[selected].name} — {tiers[selected].entry} entry
@@ -205,7 +205,7 @@ const Index = () => {
       {/* ── How It Works ── */}
       <section id="how-it-works" className="py-24 max-w-6xl mx-auto px-6">
         <div className="text-center mb-14">
-          <p className="text-muted-foreground text-xs tracking-[0.4em] uppercase mb-4">The Process</p>
+          <p className="text-secondary text-xs tracking-[0.4em] uppercase mb-4">The Process</p>
           <h2 className="text-4xl md:text-5xl font-bold">3 Steps. Infinite Cycles.</h2>
         </div>
 
