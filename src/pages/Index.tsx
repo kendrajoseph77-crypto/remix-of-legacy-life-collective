@@ -129,8 +129,8 @@ const Index = () => {
 
           {/* Combined total callout */}
           <div className="rounded-xl p-6 text-center border border-secondary/20 bg-background/40 mb-14">
-            
             <p className="text-4xl font-bold text-foreground">$52,500</p>
+            <p className="text-muted-foreground text-sm mt-2">earned every cycle when you are active on all 3 levels simultaneously</p>
           </div>
 
           {/* ── Join Form ── */}
