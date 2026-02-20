@@ -2,39 +2,35 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import OrbitalRings from "@/components/OrbitalRings";
 import { useState } from "react";
-import { ArrowRight, CheckCircle, Play } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 
 const tiers = [
   {
-    name: "Gold",
+    name: "Level 1",
     entry: "$2,500",
     receive: "$7,500",
     desc: "Your gateway into the ecosystem.",
     colorClass: "tier-gold",
     receiveColor: "text-primary",
-    checkColor: "text-primary",
     ringColor: "ring-primary border-primary",
   },
   {
-    name: "Platinum",
+    name: "Level 2",
     entry: "$5,000",
     receive: "$15,000",
     desc: "Elevated access for the serious wealth builder.",
     colorClass: "tier-platinum",
     receiveColor: "text-aqua",
-    checkColor: "text-aqua",
     ringColor: "ring-secondary border-secondary",
   },
   {
-    name: "Diamond",
+    name: "Level 3",
     entry: "$10,000",
     receive: "$30,000",
-    desc: "Elite tier. Maximum returns. Legacy-class wealth.",
+    desc: "Maximum returns. Legacy-class wealth.",
     colorClass: "tier-diamond",
     receiveColor: "text-lime",
-    checkColor: "text-lime",
     ringColor: "ring-accent border-accent",
-    elite: true,
   },
 ];
 
@@ -63,15 +59,16 @@ const Index = () => {
             <span className="text-muted-foreground">We All Receive a Lot.</span>
           </h1>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto mb-10 leading-relaxed">
-            The world's most transparent peer-to-peer crowdfunding system.
-            100% of every royalty goes directly to participants. No middlemen. Ever.
+            The world's most advanced peer-to-peer crowdfunding system.
+            100% of every royalty goes directly to participants.
+            3 levels. Infinite income potential.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
               href="#join"
               className="flex items-center gap-2 px-8 py-3.5 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:opacity-90 bg-primary text-primary-foreground"
             >
-              Get Started <ArrowRight size={15} />
+              Join Us <ArrowRight size={15} />
             </a>
             <a
               href="#video"
@@ -86,7 +83,6 @@ const Index = () => {
       {/* ── Video ── */}
       <section id="video" className="py-16 max-w-4xl mx-auto px-6">
         <div className="rounded-2xl overflow-hidden border border-border bg-card aspect-video flex items-center justify-center relative group cursor-pointer">
-          {/* Placeholder — swap src for your embed URL */}
           <div className="absolute inset-0 bg-gradient-to-br from-muted/40 to-background/80" />
           <div className="relative z-10 flex flex-col items-center gap-4 text-center px-6">
             <div className="w-16 h-16 rounded-full border border-border bg-card/80 backdrop-blur flex items-center justify-center group-hover:border-primary/50 transition-colors duration-300">
@@ -98,44 +94,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── Stats ── */}
-      <section className="py-12 border-y border-border bg-card relative overflow-hidden">
-        <div className="absolute inset-0 glow-aqua-top pointer-events-none" />
-        <div className="max-w-4xl mx-auto px-6 relative">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { value: "100%", label: "Peer-to-Peer", color: "text-aqua" },
-              { value: "50/50", label: "Always", color: "text-primary" },
-              { value: "3", label: "Income Centers", color: "text-lime" },
-              { value: "$52.5K+", label: "Max Per Cycle", color: "text-aqua" },
-            ].map((s, i) => (
-              <div key={i}>
-                <p className={`text-3xl font-bold mb-1 ${s.color}`}>{s.value}</p>
-                <p className="text-muted-foreground text-xs tracking-widest uppercase">{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── How It Works ── */}
-      <section className="py-24 max-w-5xl mx-auto px-6">
-        <div className="text-center mb-14">
-          <p className="text-muted-foreground text-xs tracking-[0.4em] uppercase mb-4">The Process</p>
-          <h2 className="text-4xl md:text-5xl font-bold">3 Steps. Infinite Cycles.</h2>
-        </div>
-        <div className="grid md:grid-cols-3 gap-6">
-          {steps.map((step, i) => (
-            <div key={i} className="rounded-xl p-8 bg-card border border-border">
-              <div className="text-5xl font-bold mb-5 text-border">{step.n}</div>
-              <h3 className="text-lg font-bold mb-2 text-foreground">{step.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── Income Centers ── */}
+      {/* ── Income Centers (Begin Where You Fit In) ── */}
       <section id="join" className="py-24 bg-card border-y border-border relative overflow-hidden">
         <div className="absolute inset-0 glow-coral-top pointer-events-none" />
         <div className="max-w-5xl mx-auto px-6 relative">
@@ -143,7 +102,7 @@ const Index = () => {
             <p className="text-muted-foreground text-xs tracking-[0.4em] uppercase mb-4">Income Centers</p>
             <h2 className="text-4xl md:text-5xl font-bold">Begin Where You Fit In</h2>
             <p className="text-muted-foreground mt-4 max-w-lg mx-auto">
-              3 elite levels. Your goal is to be on all 3 — cycling simultaneously.
+              3 levels. Your goal is to be on all 3 — cycling simultaneously.
             </p>
           </div>
 
@@ -158,11 +117,6 @@ const Index = () => {
                     : "hover:scale-[1.01]"
                 }`}
               >
-                {tier.elite && (
-                  <div className="absolute top-4 right-4 px-2 py-0.5 rounded text-xs font-bold tracking-widest uppercase bg-lime/10 text-lime border border-lime/30">
-                    Elite
-                  </div>
-                )}
                 <p className="text-muted-foreground text-xs tracking-widest uppercase mb-2">{tier.name}</p>
                 <p className="text-4xl font-bold text-foreground mb-1">{tier.entry}</p>
                 <p className="text-muted-foreground text-xs mb-6">one-time contribution</p>
@@ -176,7 +130,7 @@ const Index = () => {
 
           {/* Combined total callout */}
           <div className="rounded-xl p-6 text-center border border-aqua/10 bg-background/40 mb-14">
-            <p className="text-muted-foreground text-sm mb-1">All 3 centers cycling once:</p>
+            <p className="text-muted-foreground text-sm mb-1">All 3 levels cycling once:</p>
             <p className="text-4xl font-bold text-foreground">$52,500</p>
           </div>
 
@@ -185,7 +139,7 @@ const Index = () => {
             <h3 className="text-2xl font-bold mb-1 text-foreground text-center">Create Your Account</h3>
             <p className="text-muted-foreground text-sm text-center mb-8">
               {selected !== null
-                ? `${tiers[selected].name} Level — ${tiers[selected].entry} entry`
+                ? `${tiers[selected].name} — ${tiers[selected].entry} entry`
                 : "Select a level above, then register below"}
             </p>
 
@@ -213,7 +167,7 @@ const Index = () => {
                 <input type="text" placeholder="Inviter's code" className="w-full px-4 py-3 rounded-lg bg-muted/20 border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
               </div>
               <div>
-                <label className="text-xs text-muted-foreground tracking-wide uppercase block mb-1.5">Income Center</label>
+                <label className="text-xs text-muted-foreground tracking-wide uppercase block mb-1.5">Income Level</label>
                 <select
                   value={selected !== null ? tiers[selected].name : ""}
                   onChange={(e) => setSelected(tiers.findIndex((t) => t.name === e.target.value))}
@@ -238,6 +192,43 @@ const Index = () => {
               </p>
             </form>
           </div>
+        </div>
+      </section>
+
+      {/* ── Stats ── */}
+      <section className="py-12 border-b border-border bg-background relative overflow-hidden">
+        <div className="absolute inset-0 glow-aqua-top pointer-events-none" />
+        <div className="max-w-4xl mx-auto px-6 relative">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {[
+              { value: "100%", label: "Peer-to-Peer", color: "text-aqua" },
+              { value: "50/50", label: "Always", color: "text-primary" },
+              { value: "3", label: "Income Levels", color: "text-lime" },
+              { value: "$52.5K+", label: "Max Per Cycle", color: "text-aqua" },
+            ].map((s, i) => (
+              <div key={i}>
+                <p className={`text-3xl font-bold mb-1 ${s.color}`}>{s.value}</p>
+                <p className="text-muted-foreground text-xs tracking-widest uppercase">{s.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── How It Works ── */}
+      <section id="how-it-works" className="py-24 max-w-5xl mx-auto px-6">
+        <div className="text-center mb-14">
+          <p className="text-muted-foreground text-xs tracking-[0.4em] uppercase mb-4">The Process</p>
+          <h2 className="text-4xl md:text-5xl font-bold">3 Steps. Infinite Cycles.</h2>
+        </div>
+        <div className="grid md:grid-cols-3 gap-6">
+          {steps.map((step, i) => (
+            <div key={i} className="rounded-xl p-8 bg-card border border-border">
+              <div className="text-5xl font-bold mb-5 text-border">{step.n}</div>
+              <h3 className="text-lg font-bold mb-2 text-foreground">{step.title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 
