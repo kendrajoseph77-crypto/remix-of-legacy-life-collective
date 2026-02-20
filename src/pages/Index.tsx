@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import OrbitalRings from "@/components/OrbitalRings";
+import WheelhouseDiagram from "@/components/WheelhouseDiagram";
 import { useState } from "react";
 import { ArrowRight, Play } from "lucide-react";
 
@@ -48,7 +49,7 @@ const Index = () => {
       <Navbar />
 
       {/* ── Hero ── */}
-      <section className="min-h-[85vh] flex flex-col items-center justify-center text-center px-6 pt-24 pb-12 relative overflow-hidden">
+      <section className="min-h-[85vh] flex flex-col items-center justify-center text-center px-6 pt-32 pb-12 relative overflow-hidden">
         <OrbitalRings />
         <div className="relative z-10 max-w-3xl mx-auto">
           <p className="text-aqua text-xs tracking-[0.4em] uppercase font-medium mb-6">
@@ -59,9 +60,7 @@ const Index = () => {
             <span className="text-muted-foreground">We All Receive a Lot.</span>
           </h1>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto mb-10 leading-relaxed">
-            The world's most advanced peer-to-peer crowdfunding system.
-            100% of every royalty goes directly to participants.
-            3 levels. Infinite income potential.
+            The elite cooperative crowdfunding platform built for legacy-class wealth. Global. Automated. Unstoppable.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
@@ -216,12 +215,14 @@ const Index = () => {
       </section>
 
       {/* ── How It Works ── */}
-      <section id="how-it-works" className="py-24 max-w-5xl mx-auto px-6">
+      <section id="how-it-works" className="py-24 max-w-6xl mx-auto px-6">
         <div className="text-center mb-14">
           <p className="text-muted-foreground text-xs tracking-[0.4em] uppercase mb-4">The Process</p>
           <h2 className="text-4xl md:text-5xl font-bold">3 Steps. Infinite Cycles.</h2>
         </div>
-        <div className="grid md:grid-cols-3 gap-6">
+
+        {/* Steps */}
+        <div className="grid md:grid-cols-3 gap-6 mb-20">
           {steps.map((step, i) => (
             <div key={i} className="rounded-xl p-8 bg-card border border-border">
               <div className="text-5xl font-bold mb-5 text-border">{step.n}</div>
@@ -229,6 +230,38 @@ const Index = () => {
               <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
             </div>
           ))}
+        </div>
+
+        {/* Mobius Loop / Wheelhouse Diagram */}
+        <div className="flex flex-col lg:flex-row items-center gap-12">
+          <div className="flex-1 max-w-md mx-auto lg:mx-0">
+            <WheelhouseDiagram />
+          </div>
+          <div className="flex-1 max-w-lg">
+            <p className="text-aqua text-xs tracking-[0.4em] uppercase font-medium mb-4">The Mobius Loop</p>
+            <h3 className="text-3xl md:text-4xl font-bold mb-5 leading-tight">
+              Your Wheelhouse.<br />
+              <span className="text-muted-foreground">Always in Motion.</span>
+            </h3>
+            <p className="text-muted-foreground leading-relaxed mb-6">
+              At the center sits <span className="text-foreground font-semibold">you</span>. Your Wheelhouse fills with 6 participants — 2 you invite directly (Lime), and 4 who join through your team (Aqua). The moment it's full, you receive <span className="text-primary font-semibold">50% of the pool</span> and a brand-new Wheelhouse opens automatically.
+            </p>
+            <ul className="flex flex-col gap-3">
+              {[
+                { color: "bg-primary", label: "You (Center)", desc: "Your position — always paid first." },
+                { color: "bg-lime", label: "Inviter #1 · Direct #2", desc: "The 2 people you bring in directly." },
+                { color: "bg-aqua", label: "Team #3–#6", desc: "Filled by your network's network." },
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <div className={`mt-1 w-3 h-3 rounded-full shrink-0 ${item.color}`} />
+                  <div>
+                    <span className="text-foreground text-sm font-semibold">{item.label}</span>
+                    <span className="text-muted-foreground text-sm"> — {item.desc}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
