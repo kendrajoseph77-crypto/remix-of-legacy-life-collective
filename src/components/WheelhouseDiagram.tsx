@@ -9,6 +9,12 @@ const avatarUrls = [
   "https://randomuser.me/api/portraits/men/36.jpg",   // 06          — Black man
 ];
 
+// Node layout: positions 01–02 are lime (Inviter/Direct), 03–06 are aqua (Team)
+// Arranged clockwise: 01 top, 03 top-right, 04 bottom-right, 02 bottom, 05 bottom-left, 06 top-left
+const nodeOrder = [1, 3, 4, 2, 5, 6]; // avatar index
+const nodeColors = ["lime", "aqua", "aqua", "lime", "aqua", "aqua"];
+const nodeLabels = ["01", "03", "04", "02", "05", "06"];
+
 const WheelhouseDiagram = () => {
   const aqua = "hsl(181 90% 52%)";
   const coral = "hsl(2 88% 62%)";
@@ -16,127 +22,155 @@ const WheelhouseDiagram = () => {
   const navy = "hsl(210 45% 8%)";
   const card = "hsl(210 40% 12%)";
 
-  const cx = 250; const cy = 220;
+  const cx = 250;
+  const cy = 230;
+  const ringR = 155;      // orbit circle radius
+  const nodeR = 42;       // outer node circle radius
+  const centerR = 60;     // center YOU radius
+  const badgeR = 12;
 
-  const outerR = 52;
-  const innerR = 34;
-  const centerR = 68;
-
-  const lineColor = "hsl(181 90% 52% / 0.35)";
-  const lineDash = "6 4";
+  // 6 nodes evenly spaced, starting from top (−90°)
+  const nodes = nodeOrder.map((avatarIdx, i) => {
+    const angleDeg = -90 + i * 60;
+    const angleRad = (angleDeg * Math.PI) / 180;
+    const x = cx + ringR * Math.cos(angleRad);
+    const y = cy + ringR * Math.sin(angleRad);
+    const color = nodeColors[i] === "lime" ? lime : aqua;
+    const label = nodeLabels[i];
+    return { x, y, avatarIdx, color, label, angleDeg };
+  });
 
   return (
     <div className="relative w-full max-w-[520px] mx-auto">
-      <svg viewBox="0 0 500 440" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+      <svg viewBox="0 0 500 460" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <defs>
-          <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="3" result="blur" />
+          <filter id="wh-glow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="3.5" result="blur" />
             <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
           </filter>
-          <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="6" result="blur" />
+          <filter id="wh-softGlow" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="7" result="blur" />
             <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
           </filter>
-          <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+          <filter id="wh-shadow">
             <feDropShadow dx="0" dy="2" stdDeviation="4" floodColor="hsl(0 0% 0% / 0.5)" />
           </filter>
 
-          {/* Clip paths for circular photo crops */}
-          <clipPath id="clip03"><circle cx={70} cy={70} r={outerR - 4} /></clipPath>
-          <clipPath id="clip04"><circle cx={430} cy={70} r={outerR - 4} /></clipPath>
-          <clipPath id="clip05"><circle cx={70} cy={370} r={outerR - 4} /></clipPath>
-          <clipPath id="clip06"><circle cx={430} cy={370} r={outerR - 4} /></clipPath>
-          <clipPath id="clip01"><circle cx={cx} cy={cy - 90} r={innerR - 3} /></clipPath>
-          <clipPath id="clip02"><circle cx={cx} cy={cy + 90} r={innerR - 3} /></clipPath>
-          <clipPath id="clipCenter"><circle cx={cx} cy={cy} r={centerR - 4} /></clipPath>
+          {/* Clip paths */}
+          <clipPath id="wh-clipCenter">
+            <circle cx={cx} cy={cy} r={centerR - 4} />
+          </clipPath>
+          {nodes.map((n, i) => (
+            <clipPath key={i} id={`wh-clip${i}`}>
+              <circle cx={n.x} cy={n.y} r={nodeR - 4} />
+            </clipPath>
+          ))}
         </defs>
 
-        {/* === CONNECTING LINES === */}
-        <path d={`M ${cx} ${cy - centerR} L ${cx} ${70} L ${70 + outerR} ${70}`}
-          fill="none" stroke={lineColor} strokeWidth="1.5" strokeDasharray={lineDash} />
-        <path d={`M ${cx} ${cy - centerR} L ${cx} ${70} L ${430 - outerR} ${70}`}
-          fill="none" stroke={lineColor} strokeWidth="1.5" strokeDasharray={lineDash} />
-        <path d={`M ${cx} ${cy + centerR} L ${cx} ${370} L ${70 + outerR} ${370}`}
-          fill="none" stroke={lineColor} strokeWidth="1.5" strokeDasharray={lineDash} />
-        <path d={`M ${cx} ${cy + centerR} L ${cx} ${370} L ${430 - outerR} ${370}`}
-          fill="none" stroke={lineColor} strokeWidth="1.5" strokeDasharray={lineDash} />
+        {/* ── Outer glow ring (decorative) ── */}
+        <circle
+          cx={cx} cy={cy} r={ringR + nodeR * 0.7}
+          fill="none"
+          stroke="hsl(181 90% 52% / 0.06)"
+          strokeWidth={nodeR * 1.4}
+        />
 
-        <line x1={cx} y1={cy - centerR} x2={cx} y2={cy - 90 + innerR}
-          stroke="hsl(68 100% 50% / 0.4)" strokeWidth="1.5" strokeDasharray={lineDash} />
-        <line x1={cx} y1={cy + centerR} x2={cx} y2={cy + 90 - innerR}
-          stroke="hsl(68 100% 50% / 0.4)" strokeWidth="1.5" strokeDasharray={lineDash} />
+        {/* ── Main orbit circle ── */}
+        <circle
+          cx={cx} cy={cy} r={ringR}
+          fill="none"
+          stroke="hsl(181 90% 52% / 0.22)"
+          strokeWidth="1.5"
+          strokeDasharray="6 5"
+          filter="url(#wh-glow)"
+        />
 
-        {/* Corner bend dots */}
-        <circle cx={cx} cy={70} r="4" fill={aqua} filter="url(#glow)" />
-        <circle cx={cx} cy={370} r="4" fill={aqua} filter="url(#glow)" />
+        {/* ── Spoke lines from center to each node ── */}
+        {nodes.map((n, i) => {
+          const color = nodeColors[i] === "lime"
+            ? "hsl(68 100% 50% / 0.3)"
+            : "hsl(181 90% 52% / 0.25)";
+          // shorten line so it doesn't overlap the circles
+          const dx = n.x - cx;
+          const dy = n.y - cy;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const fromX = cx + (dx / dist) * (centerR + 2);
+          const fromY = cy + (dy / dist) * (centerR + 2);
+          const toX = n.x - (dx / dist) * (nodeR + 2);
+          const toY = n.y - (dy / dist) * (nodeR + 2);
+          return (
+            <line
+              key={i}
+              x1={fromX} y1={fromY}
+              x2={toX} y2={toY}
+              stroke={color}
+              strokeWidth="1.2"
+              strokeDasharray="5 4"
+            />
+          );
+        })}
 
-        {/* === OUTER NODE 03 — top left === */}
-        <circle cx={70} cy={70} r={outerR} fill={card} stroke={aqua} strokeWidth="2.5" />
-        <image href={avatarUrls[3]} x={70 - outerR + 4} y={70 - outerR + 4}
-          width={(outerR - 4) * 2} height={(outerR - 4) * 2} clipPath="url(#clip03)" preserveAspectRatio="xMidYMid slice" />
-        <circle cx={70} cy={70} r={outerR} fill="none" stroke={aqua} strokeWidth="2.5" />
-        <circle cx={28} cy={28} r="13" fill={navy} stroke={aqua} strokeWidth="1.5" />
-        <text x={28} y={33} textAnchor="middle" fontSize="9" fontWeight="700" fill={aqua} fontFamily="monospace">03</text>
+        {/* ── Outer nodes ── */}
+        {nodes.map((n, i) => {
+          // Badge position: push it outward from center
+          const angleDeg = n.angleDeg;
+          const badgeAngle = (angleDeg * Math.PI) / 180;
+          const badgeX = n.x + (nodeR - 2) * Math.cos(badgeAngle);
+          const badgeY = n.y + (nodeR - 2) * Math.sin(badgeAngle);
 
-        {/* === OUTER NODE 04 — top right === */}
-        <circle cx={430} cy={70} r={outerR} fill={card} stroke={aqua} strokeWidth="2.5" />
-        <image href={avatarUrls[4]} x={430 - outerR + 4} y={70 - outerR + 4}
-          width={(outerR - 4) * 2} height={(outerR - 4) * 2} clipPath="url(#clip04)" preserveAspectRatio="xMidYMid slice" />
-        <circle cx={430} cy={70} r={outerR} fill="none" stroke={aqua} strokeWidth="2.5" />
-        <circle cx={388} cy={28} r="13" fill={navy} stroke={aqua} strokeWidth="1.5" />
-        <text x={388} y={33} textAnchor="middle" fontSize="9" fontWeight="700" fill={aqua} fontFamily="monospace">04</text>
+          return (
+            <g key={i}>
+              {/* Background circle */}
+              <circle cx={n.x} cy={n.y} r={nodeR} fill={card} stroke={n.color} strokeWidth="2.5" />
+              {/* Photo */}
+              <image
+                href={avatarUrls[n.avatarIdx]}
+                x={n.x - nodeR + 4} y={n.y - nodeR + 4}
+                width={(nodeR - 4) * 2} height={(nodeR - 4) * 2}
+                clipPath={`url(#wh-clip${i})`}
+                preserveAspectRatio="xMidYMid slice"
+              />
+              {/* Stroke ring on top */}
+              <circle cx={n.x} cy={n.y} r={nodeR} fill="none" stroke={n.color} strokeWidth="2.5" filter="url(#wh-glow)" />
+              {/* Number badge */}
+              <circle cx={badgeX} cy={badgeY} r={badgeR} fill={navy} stroke={n.color} strokeWidth="1.5" />
+              <text
+                x={badgeX} y={badgeY + 4}
+                textAnchor="middle"
+                fontSize="8.5"
+                fontWeight="700"
+                fill={n.color}
+                fontFamily="monospace"
+              >
+                {n.label}
+              </text>
+            </g>
+          );
+        })}
 
-        {/* === OUTER NODE 05 — bottom left === */}
-        <circle cx={70} cy={370} r={outerR} fill={card} stroke={aqua} strokeWidth="2.5" />
-        <image href={avatarUrls[5]} x={70 - outerR + 4} y={370 - outerR + 4}
-          width={(outerR - 4) * 2} height={(outerR - 4) * 2} clipPath="url(#clip05)" preserveAspectRatio="xMidYMid slice" />
-        <circle cx={70} cy={370} r={outerR} fill="none" stroke={aqua} strokeWidth="2.5" />
-        <circle cx={28} cy={328} r="13" fill={navy} stroke={aqua} strokeWidth="1.5" />
-        <text x={28} y={333} textAnchor="middle" fontSize="9" fontWeight="700" fill={aqua} fontFamily="monospace">05</text>
+        {/* ── Center YOU circle ── */}
+        {/* Pulse rings */}
+        <circle cx={cx} cy={cy} r={centerR + 14} fill="none" stroke="hsl(2 88% 62% / 0.10)" strokeWidth="10" />
+        <circle cx={cx} cy={cy} r={centerR + 5} fill="none" stroke="hsl(2 88% 62% / 0.25)" strokeWidth="2" />
 
-        {/* === OUTER NODE 06 — bottom right === */}
-        <circle cx={430} cy={370} r={outerR} fill={card} stroke={aqua} strokeWidth="2.5" />
-        <image href={avatarUrls[6]} x={430 - outerR + 4} y={370 - outerR + 4}
-          width={(outerR - 4) * 2} height={(outerR - 4) * 2} clipPath="url(#clip06)" preserveAspectRatio="xMidYMid slice" />
-        <circle cx={430} cy={370} r={outerR} fill="none" stroke={aqua} strokeWidth="2.5" />
-        <circle cx={388} cy={328} r="13" fill={navy} stroke={aqua} strokeWidth="1.5" />
-        <text x={388} y={333} textAnchor="middle" fontSize="9" fontWeight="700" fill={aqua} fontFamily="monospace">06</text>
-
-        {/* === INNER NODE 01 — above center (Inviter) === */}
-        <circle cx={cx} cy={cy - 90} r={innerR} fill={card} stroke={lime} strokeWidth="2.5" />
-        <image href={avatarUrls[1]} x={cx - innerR + 3} y={cy - 90 - innerR + 3}
-          width={(innerR - 3) * 2} height={(innerR - 3) * 2} clipPath="url(#clip01)" preserveAspectRatio="xMidYMid slice" />
-        <circle cx={cx} cy={cy - 90} r={innerR} fill="none" stroke={lime} strokeWidth="2.5" filter="url(#glow)" />
-        <circle cx={cx - innerR + 4} cy={cy - 90 - innerR + 4} r="11" fill={navy} stroke={lime} strokeWidth="1.5" />
-        <text x={cx - innerR + 4} y={cy - 90 - innerR + 9} textAnchor="middle" fontSize="8" fontWeight="700" fill={lime} fontFamily="monospace">01</text>
-
-        {/* === INNER NODE 02 — below center (Your Direct) === */}
-        <circle cx={cx} cy={cy + 90} r={innerR} fill={card} stroke={lime} strokeWidth="2.5" />
-        <image href={avatarUrls[2]} x={cx - innerR + 3} y={cy + 90 - innerR + 3}
-          width={(innerR - 3) * 2} height={(innerR - 3) * 2} clipPath="url(#clip02)" preserveAspectRatio="xMidYMid slice" />
-        <circle cx={cx} cy={cy + 90} r={innerR} fill="none" stroke={lime} strokeWidth="2.5" filter="url(#glow)" />
-        {/* Badge moved to bottom-left to avoid center glow overlap */}
-        <circle cx={cx - innerR + 4} cy={cy + 90 + innerR - 4} r="11" fill={navy} stroke={lime} strokeWidth="1.5" />
-        <text x={cx - innerR + 4} y={cy + 90 + innerR + 1} textAnchor="middle" fontSize="8" fontWeight="700" fill={lime} fontFamily="monospace">02</text>
-
-        {/* === CENTER "YOU" CIRCLE === */}
-        {/* Glow rings */}
-        <circle cx={cx} cy={cy} r={centerR + 10} fill="none" stroke="hsl(2 88% 62% / 0.15)" strokeWidth="8" />
-        <circle cx={cx} cy={cy} r={centerR + 4} fill="none" stroke="hsl(2 88% 62% / 0.3)" strokeWidth="2" />
-
-        {/* Center photo */}
-        <circle cx={cx} cy={cy} r={centerR} fill={card} stroke={coral} strokeWidth="3" filter="url(#softGlow)" />
-        <image href={avatarUrls[0]} x={cx - centerR + 4} y={cy - centerR + 4}
-          width={(centerR - 4) * 2} height={(centerR - 4) * 2} clipPath="url(#clipCenter)" preserveAspectRatio="xMidYMid slice" />
-        <circle cx={cx} cy={cy} r={centerR} fill="none" stroke={coral} strokeWidth="3" filter="url(#glow)" />
+        {/* Photo */}
+        <circle cx={cx} cy={cy} r={centerR} fill={card} stroke={coral} strokeWidth="3" filter="url(#wh-softGlow)" />
+        <image
+          href={avatarUrls[0]}
+          x={cx - centerR + 4} y={cy - centerR + 4}
+          width={(centerR - 4) * 2} height={(centerR - 4) * 2}
+          clipPath="url(#wh-clipCenter)"
+          preserveAspectRatio="xMidYMid slice"
+        />
+        <circle cx={cx} cy={cy} r={centerR} fill="none" stroke={coral} strokeWidth="3" filter="url(#wh-glow)" />
 
         {/* YOU label */}
-        <rect x={cx - 22} y={cy + centerR - 26} width="44" height="20" rx="4" fill="hsl(2 88% 62% / 0.92)" />
-        <text x={cx} y={cy + centerR - 12} textAnchor="middle" fontSize="11" fontWeight="800" fill="white" fontFamily="sans-serif">YOU</text>
+        <rect x={cx - 22} y={cy + centerR - 24} width="44" height="19" rx="4" fill="hsl(2 88% 62% / 0.92)" />
+        <text x={cx} y={cy + centerR - 11} textAnchor="middle" fontSize="11" fontWeight="800" fill="white" fontFamily="sans-serif">YOU</text>
       </svg>
 
       {/* Legend */}
-      <div className="flex items-center justify-center gap-6 mt-2 text-xs">
+      <div className="flex items-center justify-center gap-6 mt-1 text-xs">
         <div className="flex items-center gap-1.5">
           <div className="w-3 h-3 rounded-full border-2" style={{ background: coral, borderColor: coral }} />
           <span className="text-muted-foreground">You (Center)</span>
