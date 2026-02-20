@@ -138,17 +138,18 @@ const Index = () => {
       </section>
 
       {/* Stats Bar */}
-      <section className="py-12 border-y border-border bg-card">
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="py-12 border-y border-border bg-card relative overflow-hidden">
+        <div className="absolute inset-0 glow-aqua-top pointer-events-none" />
+        <div className="max-w-6xl mx-auto px-6 relative">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { value: "100%", label: "Peer-to-Peer" },
-              { value: "50/50", label: "Always" },
-              { value: "3", label: "Elite Income Centers" },
-              { value: "$52.5K+", label: "Max Cycle Earnings" },
+              { value: "100%", label: "Peer-to-Peer", color: "text-aqua" },
+              { value: "50/50", label: "Always", color: "text-primary" },
+              { value: "3", label: "Elite Income Centers", color: "text-lime" },
+              { value: "$52.5K+", label: "Max Cycle Earnings", color: "text-aqua" },
             ].map((stat, i) => (
               <div key={i}>
-                <p className="text-3xl font-bold text-foreground mb-1">{stat.value}</p>
+                <p className={`text-3xl font-bold mb-1 ${stat.color}`}>{stat.value}</p>
                 <p className="text-muted-foreground text-xs tracking-widest uppercase">{stat.label}</p>
               </div>
             ))}
@@ -157,50 +158,64 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section className="py-24 max-w-6xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div>
-            <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-4">The System</p>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-              We Each Do a Little<br />to All Receive a Lot
-            </h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
-              Coop5050Life™ is a 2×2 peer-to-peer crowdfunding system where 100% of every
-              contribution goes to you — the participants. No middlemen. No manipulation.
-              No exceptions.
-            </p>
-            <p className="text-muted-foreground leading-relaxed mb-8">
-              You always receive <span className="text-foreground font-semibold">50%</span> and the other{" "}
-              <span className="text-foreground font-semibold">50%</span> goes to a teammate. Together we build
-              legacy-class wealth that keeps cycling — automatically.
-            </p>
-            <Link
-              to="/how-it-works"
-              className="inline-flex items-center gap-2 text-foreground hover:gap-3 transition-all duration-200 font-medium border-b border-border pb-0.5"
-            >
-              Learn How It Works <ArrowRight size={16} />
-            </Link>
-          </div>
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 glow-aqua-left pointer-events-none" />
+        <div className="max-w-6xl mx-auto px-6 relative">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+              <p className="text-aqua text-sm tracking-[0.3em] uppercase font-medium mb-4">The System</p>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                We Each Do a Little<br />to All Receive a Lot
+              </h2>
+              <p className="text-muted-foreground leading-relaxed mb-6">
+                Coop5050Life™ is a 2×2 peer-to-peer crowdfunding system where 100% of every
+                contribution goes to you — the participants. No middlemen. No manipulation.
+                No exceptions.
+              </p>
+              <p className="text-muted-foreground leading-relaxed mb-8">
+                You always receive <span className="text-aqua font-semibold">50%</span> and the other{" "}
+                <span className="text-aqua font-semibold">50%</span> goes to a teammate. Together we build
+                legacy-class wealth that keeps cycling — automatically.
+              </p>
+              <Link
+                to="/how-it-works"
+                className="inline-flex items-center gap-2 text-foreground hover:gap-3 transition-all duration-200 font-medium border-b border-border pb-0.5"
+              >
+                Learn How It Works <ArrowRight size={16} />
+              </Link>
+            </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            {features.map((f, i) => (
-              <div key={i} className="p-5 rounded-xl bg-card border border-border hover:border-muted-foreground/30 transition-all duration-300">
-                <div className="p-2 rounded-lg w-fit mb-3 bg-muted/50">
-                  <f.icon size={18} className="text-foreground" />
-                </div>
-                <h4 className="text-foreground font-semibold text-sm mb-1">{f.title}</h4>
-                <p className="text-muted-foreground text-xs leading-relaxed">{f.desc}</p>
-              </div>
-            ))}
+            <div className="grid grid-cols-2 gap-4">
+              {features.map((f, i) => {
+                const iconColors = [
+                  "text-aqua bg-aqua/10",
+                  "text-primary bg-primary/10",
+                  "text-lime bg-lime/10",
+                  "text-aqua bg-aqua/10",
+                  "text-primary bg-primary/10",
+                  "text-lime bg-lime/10",
+                ];
+                return (
+                  <div key={i} className="p-5 rounded-xl bg-card border border-border hover:border-muted-foreground/30 transition-all duration-300">
+                    <div className={`p-2 rounded-lg w-fit mb-3 ${iconColors[i]}`}>
+                      <f.icon size={18} />
+                    </div>
+                    <h4 className="text-foreground font-semibold text-sm mb-1">{f.title}</h4>
+                    <p className="text-muted-foreground text-xs leading-relaxed">{f.desc}</p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Income Center Levels */}
-      <section className="py-24 bg-card border-y border-border">
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="py-24 bg-card border-y border-border relative overflow-hidden">
+        <div className="absolute inset-0 glow-coral-top pointer-events-none" />
+        <div className="max-w-6xl mx-auto px-6 relative">
           <div className="text-center mb-16">
-            <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-4">The Income Centers</p>
+            <p className="text-primary text-sm tracking-[0.3em] uppercase font-medium mb-4">The Income Centers</p>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Begin Where You Fit In
             </h2>
@@ -211,35 +226,43 @@ const Index = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 mb-12">
-            {tiers.map((tier, i) => (
-              <div key={i} className="rounded-xl p-8 bg-background border border-border text-center relative transition-all duration-300 hover:scale-[1.02] hover:border-muted-foreground/40">
-                {tier.elite && (
-                  <div className="absolute top-3 right-3 px-2 py-1 rounded text-xs font-bold tracking-widest uppercase bg-muted text-muted-foreground">
-                    Elite
+            {tiers.map((tier, i) => {
+              const tierStyles = [
+                { card: "tier-gold", receive: "text-primary", badge: "bg-primary/10 text-primary border border-primary/30" },
+                { card: "tier-platinum", receive: "text-aqua", badge: "bg-aqua/10 text-aqua border border-aqua/30" },
+                { card: "tier-diamond", receive: "text-lime", badge: "bg-lime/10 text-lime border border-lime/30" },
+              ];
+              const ts = tierStyles[i];
+              return (
+                <div key={i} className={`rounded-xl p-8 border text-center relative transition-all duration-300 hover:scale-[1.02] ${ts.card}`}>
+                  {tier.elite && (
+                    <div className={`absolute top-3 right-3 px-2 py-1 rounded text-xs font-bold tracking-widest uppercase ${ts.badge}`}>
+                      Elite
+                    </div>
+                  )}
+
+                  <p className="text-muted-foreground text-xs tracking-widest uppercase mb-2">{tier.name} Level</p>
+                  <p className="text-5xl font-bold mb-2 text-foreground">{tier.entry}</p>
+                  <p className="text-muted-foreground text-sm mb-2">Entry Contribution</p>
+                  <p className="text-muted-foreground text-xs leading-relaxed mb-6">{tier.desc}</p>
+
+                  <div className="border-t border-border pt-6 mb-6">
+                    <p className="text-muted-foreground text-xs uppercase tracking-wider mb-1">You Receive Per Cycle</p>
+                    <p className={`text-3xl font-bold ${ts.receive}`}>{tier.receive}</p>
                   </div>
-                )}
 
-                <p className="text-muted-foreground text-xs tracking-widest uppercase mb-2">{tier.name} Level</p>
-                <p className="text-5xl font-bold mb-2 text-foreground">{tier.entry}</p>
-                <p className="text-muted-foreground text-sm mb-2">Entry Contribution</p>
-                <p className="text-muted-foreground text-xs leading-relaxed mb-6">{tier.desc}</p>
-
-                <div className="border-t border-border pt-6 mb-6">
-                  <p className="text-muted-foreground text-xs uppercase tracking-wider mb-1">You Receive Per Cycle</p>
-                  <p className="text-3xl font-bold text-foreground">{tier.receive}</p>
+                  <Link
+                    to="/join"
+                    className="block text-center py-3 rounded-sm text-xs font-bold tracking-widest uppercase transition-all duration-300 hover:bg-primary hover:text-primary-foreground border border-border text-foreground"
+                  >
+                    Select {tier.name}
+                  </Link>
                 </div>
-
-                <Link
-                  to="/join"
-                  className="block text-center py-3 rounded-sm text-xs font-bold tracking-widest uppercase transition-all duration-300 hover:bg-primary hover:text-primary-foreground border border-border text-foreground"
-                >
-                  Select {tier.name}
-                </Link>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
-          <div className="text-center rounded-xl p-8 bg-muted/30 border border-border">
+          <div className="text-center rounded-xl p-8 bg-muted/20 border border-aqua/20" style={{ background: "linear-gradient(135deg, hsl(181 90% 52% / 0.05), hsl(2 88% 62% / 0.04))" }}>
             <p className="text-muted-foreground mb-2">On all 3 Income Centers — cycling just once:</p>
             <p className="text-5xl font-bold text-foreground mb-2">$52,500</p>
             <p className="text-muted-foreground text-sm">Imagine doing that 2 or 3 or more times — it's possible and easily doable!</p>
@@ -248,57 +271,61 @@ const Index = () => {
       </section>
 
       {/* How It Works Preview */}
-      <section className="py-24 max-w-6xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-4">Simple Process</p>
-          <h2 className="text-4xl md:text-5xl font-bold">
-            Just 3 Simple Steps
-          </h2>
-        </div>
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 glow-lime-right pointer-events-none" />
+        <div className="max-w-6xl mx-auto px-6 relative">
+          <div className="text-center mb-16">
+            <p className="text-lime text-sm tracking-[0.3em] uppercase font-medium mb-4">Simple Process</p>
+            <h2 className="text-4xl md:text-5xl font-bold">
+              Just 3 Simple Steps
+            </h2>
+          </div>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
-          {[
-            { n: "01", title: "Register & Activate", desc: "Register and become an Active Donor by making a contribution at your chosen level." },
-            { n: "02", title: "Invite 2 Members", desc: "You help 2 or more people become Active Donors — your Wheelhouse begins to fill." },
-            { n: "03", title: "Your Team Grows", desc: "Your 2 each help 2 or more. The cycle of giving and receiving continues — automatically." },
-          ].map((step, i) => (
-            <div key={i} className="rounded-xl p-8 bg-card border border-border text-center">
-              <div className="text-6xl font-bold text-muted-foreground/20 mb-4">{step.n}</div>
-              <h3 className="text-xl font-bold mb-3 text-foreground">{step.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
-            </div>
-          ))}
-        </div>
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            {[
+              { n: "01", title: "Register & Activate", desc: "Register and become an Active Donor by making a contribution at your chosen level.", color: "text-aqua/30" },
+              { n: "02", title: "Invite 2 Members", desc: "You help 2 or more people become Active Donors — your Wheelhouse begins to fill.", color: "text-primary/30" },
+              { n: "03", title: "Your Team Grows", desc: "Your 2 each help 2 or more. The cycle of giving and receiving continues — automatically.", color: "text-lime/30" },
+            ].map((step, i) => (
+              <div key={i} className="rounded-xl p-8 bg-card border border-border text-center">
+                <div className={`text-6xl font-bold mb-4 ${step.color}`}>{step.n}</div>
+                <h3 className="text-xl font-bold mb-3 text-foreground">{step.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
+              </div>
+            ))}
+          </div>
 
-        <div className="text-center">
-          <Link
-            to="/how-it-works"
-            className="inline-flex items-center gap-2 px-8 py-3 rounded-sm font-medium tracking-widest uppercase text-sm border border-border text-muted-foreground hover:text-foreground hover:border-muted-foreground/40 transition-all duration-300"
-          >
-            Full Explanation <ArrowRight size={16} />
-          </Link>
+          <div className="text-center">
+            <Link
+              to="/how-it-works"
+              className="inline-flex items-center gap-2 px-8 py-3 rounded-sm font-medium tracking-widest uppercase text-sm border border-border text-muted-foreground hover:text-foreground hover:border-muted-foreground/40 transition-all duration-300"
+            >
+              Full Explanation <ArrowRight size={16} />
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Testimonials */}
-      <section className="py-24 bg-card border-y border-border">
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="py-24 bg-card border-y border-border relative overflow-hidden">
+        <div className="absolute inset-0 glow-aqua-top pointer-events-none" />
+        <div className="max-w-6xl mx-auto px-6 relative">
           <div className="text-center mb-16">
-            <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-4">Community</p>
+            <p className="text-aqua text-sm tracking-[0.3em] uppercase font-medium mb-4">Community</p>
             <h2 className="text-4xl font-bold">Built on Real Results</h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {testimonials.map((t, i) => (
-              <div key={i} className="rounded-xl p-8 bg-background border border-border hover:border-muted-foreground/30 transition-all duration-300">
+              <div key={i} className="rounded-xl p-8 bg-background border border-border hover:border-aqua/20 transition-all duration-300">
                 <div className="flex gap-1 mb-4">
                   {[...Array(5)].map((_, j) => (
-                    <Star key={j} size={14} className="fill-foreground text-foreground opacity-60" />
+                    <Star key={j} size={14} className="fill-primary text-primary opacity-80" />
                   ))}
                 </div>
                 <p className="text-foreground text-sm leading-relaxed mb-6 italic">"{t.quote}"</p>
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold bg-muted text-muted-foreground">
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold bg-aqua/10 text-aqua border border-aqua/20">
                     {t.name[0]}
                   </div>
                   <div>
@@ -313,8 +340,8 @@ const Index = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 max-w-4xl mx-auto px-6 text-center">
-        <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-4">Ready?</p>
+      <section className="py-24 max-w-4xl mx-auto px-6 text-center relative">
+        <p className="text-primary text-sm tracking-[0.3em] uppercase font-medium mb-4">Ready?</p>
         <h2 className="text-4xl md:text-5xl font-bold mb-6">Your Fastest Way To Wealth</h2>
         <p className="text-muted-foreground text-lg max-w-xl mx-auto mb-10">
           Join thousands who are already receiving. The system is live and waiting for you.
