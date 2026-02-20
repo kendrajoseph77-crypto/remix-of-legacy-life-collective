@@ -15,7 +15,7 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { label: "How It Works", path: "/#video" },
+    { label: "How It Works", path: "/#how-it-works" },
     { label: "Join Us", path: "/#join" },
     { label: "Login", path: "/login" },
   ];
