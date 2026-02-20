@@ -30,8 +30,8 @@ const tiers = [
     receive: "$30,000",
     desc: "Maximum returns. Legacy-class wealth.",
     colorClass: "tier-diamond",
-    receiveColor: "text-accent",
-    ringColor: "ring-accent border-accent",
+    receiveColor: "text-foreground",
+    ringColor: "ring-foreground/30 border-foreground/30",
   },
 ];
 
@@ -52,7 +52,7 @@ const Index = () => {
       <section className="min-h-[85vh] flex flex-col items-center justify-center text-center px-6 pt-32 pb-12 relative overflow-hidden">
         <OrbitalRings />
         <div className="relative z-10 max-w-3xl mx-auto">
-          <p className="text-aqua text-xs tracking-[0.4em] uppercase font-medium mb-6">
+          <p className="text-secondary text-xs tracking-[0.4em] uppercase font-medium mb-6">
             25 Years of Cooperative Crowdfunding™
           </p>
           <h1 className="text-5xl md:text-7xl font-bold leading-[1.08] mb-6 tracking-tight">
@@ -190,8 +190,8 @@ const Index = () => {
             {[
               { value: "100%", label: "Peer-to-Peer", color: "text-secondary" },
               { value: "50/50", label: "Always", color: "text-primary" },
-              { value: "3", label: "Income Levels", color: "text-accent" },
-              { value: "$52.5K+", label: "Max Per Cycle", color: "text-secondary" },
+              { value: "3", label: "Income Levels", color: "text-secondary" },
+              { value: "$52.5K+", label: "Max Per Cycle", color: "text-primary" },
             ].map((s, i) => (
               <div key={i}>
                 <p className={`text-3xl font-bold mb-1 ${s.color}`}>{s.value}</p>
@@ -226,7 +226,7 @@ const Index = () => {
             <WheelhouseDiagram />
           </div>
           <div className="flex-1 max-w-lg">
-            <p className="text-aqua text-xs tracking-[0.4em] uppercase font-medium mb-4">The Mobius Loop</p>
+            <p className="text-secondary text-xs tracking-[0.4em] uppercase font-medium mb-4">The Mobius Loop</p>
             <h3 className="text-3xl md:text-4xl font-bold mb-5 leading-tight">
               Your Wheelhouse.<br />
               <span className="text-muted-foreground">Always in Motion.</span>
@@ -237,8 +237,8 @@ const Index = () => {
             <ul className="flex flex-col gap-3">
               {[
                 { color: "bg-primary", label: "You (Center)", desc: "Your position — always paid first." },
-                { color: "bg-accent", label: "Inviter #1 · Direct #2", desc: "The 2 people you bring in directly." },
-                { color: "bg-secondary", label: "Team #3–#6", desc: "Filled by your network's network." },
+                { color: "bg-secondary", label: "Inviter #1 · Direct #2", desc: "The 2 people you bring in directly." },
+                { color: "bg-foreground", label: "Team #3–#6", desc: "Filled by your network's network." },
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <div className={`mt-1 w-3 h-3 rounded-full shrink-0 ${item.color}`} />
