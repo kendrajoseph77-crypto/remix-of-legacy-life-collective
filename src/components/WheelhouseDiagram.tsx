@@ -184,9 +184,6 @@ const WheelhouseDiagram = () => {
         <rect x={cx - 22} y={cy + centerR - 24} width="44" height="19" rx="4" fill="hsl(2 88% 62% / 0.92)" />
         <text x={cx} y={cy + centerR - 11} textAnchor="middle" fontSize="11" fontWeight="800" fill="white" fontFamily="sans-serif">YOU</text>
 
-        {/* Total received pill above YOU label */}
-        <rect x={cx - 24} y={cy - 12} width="48" height="20" rx="10" fill={navy} stroke={coral} strokeWidth="1.5" />
-        <text x={cx} y={cy + 3} textAnchor="middle" fontSize="9.5" fontWeight="800" fill={coral} fontFamily="monospace">3× 50%</text>
       </svg>
 
       {/* Legend */}
