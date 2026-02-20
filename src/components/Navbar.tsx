@@ -15,8 +15,8 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { label: "How It Works", path: "/how-it-works" },
-    { label: "Join Us", path: "/join" },
+    { label: "How It Works", path: "/#video" },
+    { label: "Join Us", path: "/#join" },
     { label: "Login", path: "/login" },
   ];
 
@@ -36,9 +36,9 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) =>
             link.label === "Join Us" ? (
-              <Link
+              <a
                 key={link.label}
-                to={link.path}
+                href={link.path}
                 className="px-6 py-2 rounded-sm text-sm font-semibold tracking-widest uppercase transition-all duration-300 hover:opacity-90"
                 style={{
                   background: "linear-gradient(135deg, hsl(2 88% 62%), hsl(15 95% 65%))",
@@ -46,7 +46,15 @@ const Navbar = () => {
                 }}
               >
                 Join Us
-              </Link>
+              </a>
+            ) : link.path.startsWith("/#") ? (
+              <a
+                key={link.label}
+                href={link.path}
+                className="text-sm font-medium tracking-wide transition-colors duration-200 text-muted-foreground hover:text-foreground"
+              >
+                {link.label}
+              </a>
             ) : (
               <Link
                 key={link.label}
@@ -75,18 +83,29 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="md:hidden glass mt-2 mx-4 rounded-lg p-6 flex flex-col gap-4">
-          {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              to={link.path}
-              onClick={() => setMenuOpen(false)}
-              className={`text-sm font-medium tracking-wide transition-colors ${
-                link.label === "Join Us" ? "text-primary font-bold" : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) =>
+            link.path.startsWith("/#") || link.label === "Join Us" ? (
+              <a
+                key={link.label}
+                href={link.path}
+                onClick={() => setMenuOpen(false)}
+                className={`text-sm font-medium tracking-wide transition-colors ${
+                  link.label === "Join Us" ? "text-primary font-bold" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.label}
+                to={link.path}
+                onClick={() => setMenuOpen(false)}
+                className="text-sm font-medium tracking-wide transition-colors text-muted-foreground hover:text-foreground"
+              >
+                {link.label}
+              </Link>
+            )
+          )}
         </div>
       )}
     </nav>
