@@ -10,11 +10,11 @@ interface LogoProps {
 
 const Logo = ({ className = "" }: LogoProps) => {
   return (
-    <div className={`flex items-center ${className}`}>
+    <div className={`flex items-center overflow-hidden ${className}`}>
       <img
         src={logoLife}
         alt="Life logo"
-        className="h-20 sm:h-28 w-auto"
+        className="h-36 sm:h-52 w-auto -m-6"
         style={{ mixBlendMode: "screen" }}
       />
     </div>
