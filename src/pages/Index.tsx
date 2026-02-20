@@ -222,10 +222,8 @@ const Index = () => {
 
         {/* Mobius Loop / Wheelhouse Diagram */}
         <div className="flex flex-col lg:flex-row items-center gap-12">
-          <div className="flex-1 max-w-md mx-auto lg:mx-0">
-            <WheelhouseDiagram />
-          </div>
           <div className="flex-1 max-w-lg">
+
             <p className="text-secondary text-xs tracking-[0.4em] uppercase font-medium mb-4">The Mobius Loop</p>
             <h3 className="text-3xl md:text-4xl font-bold mb-5 leading-tight">
               Your Wheelhouse.<br />
@@ -249,6 +247,9 @@ const Index = () => {
                 </li>
               ))}
             </ul>
+          </div>
+          <div className="flex-1 max-w-md mx-auto lg:mx-0">
+            <WheelhouseDiagram />
           </div>
         </div>
       </section>
