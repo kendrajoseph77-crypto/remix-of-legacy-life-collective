@@ -62,9 +62,12 @@ const HowItWorks = () => {
 
       {/* Hero */}
       <section className="pt-28 pb-12 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(181_90%_52%/0.04)_0%,transparent_70%)]" />
+        {/* Layered ambient glows */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,hsl(181_90%_52%/0.13)_0%,transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_50%_0%,hsl(181_90%_52%/0.08)_0%,transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_30%_30%_at_50%_10%,hsl(181_90%_52%/0.06)_0%,transparent_50%)]" />
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3">The System</p>
+          <p className="text-aqua text-sm tracking-[0.3em] uppercase font-medium mb-3">The System</p>
           <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
             How Coop5050Life Works
           </h1>
