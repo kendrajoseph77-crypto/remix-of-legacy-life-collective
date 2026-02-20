@@ -1,7 +1,11 @@
 const OrbitalRings = () => {
+  // Motion path helper: ellipse centered at 600,400 with given rx,ry
+  const ellipsePath = (rx: number, ry: number) =>
+    `M ${600 + rx} 400 A ${rx} ${ry} 0 1 0 ${600 - rx} 400 A ${rx} ${ry} 0 1 0 ${600 + rx} 400`;
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Radial gradient base glow */}
+      {/* Background */}
       <div
         className="absolute inset-0"
         style={{
@@ -10,7 +14,6 @@ const OrbitalRings = () => {
         }}
       />
 
-      {/* SVG orbital rings */}
       <svg
         className="absolute inset-0 w-full h-full"
         viewBox="0 0 1200 800"
@@ -18,28 +21,29 @@ const OrbitalRings = () => {
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          <linearGradient id="ring1grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="hsl(181 90% 52%)" stopOpacity="0" />
-            <stop offset="40%" stopColor="hsl(181 90% 52%)" stopOpacity="0.6" />
-            <stop offset="100%" stopColor="hsl(181 90% 52%)" stopOpacity="0" />
-          </linearGradient>
+          {/* Planet glow — strong bloom */}
+          <filter id="planetGlow" x="-80%" y="-80%" width="260%" height="260%">
+            <feGaussianBlur stdDeviation="7" result="blur1" />
+            <feGaussianBlur stdDeviation="3" result="blur2" in="SourceGraphic" />
+            <feMerge>
+              <feMergeNode in="blur1" />
+              <feMergeNode in="blur2" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
 
-          <linearGradient id="ring2grad" x1="100%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="hsl(2 88% 62%)" stopOpacity="0" />
-            <stop offset="50%" stopColor="hsl(2 88% 62%)" stopOpacity="0.45" />
-            <stop offset="100%" stopColor="hsl(2 88% 62%)" stopOpacity="0" />
-          </linearGradient>
-
-          <filter id="dotGlow" x="-60%" y="-60%" width="220%" height="220%">
-            <feGaussianBlur stdDeviation="4" result="blur" />
+          {/* Ring glow */}
+          <filter id="ringGlow" x="-5%" y="-5%" width="110%" height="110%">
+            <feGaussianBlur stdDeviation="1.5" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
 
-          <filter id="ringGlow" x="-5%" y="-5%" width="110%" height="110%">
-            <feGaussianBlur stdDeviation="2" result="blur" />
+          {/* Centre star glow */}
+          <filter id="starGlow" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="12" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
@@ -47,68 +51,78 @@ const OrbitalRings = () => {
           </filter>
         </defs>
 
-        {/* Ring 1 — large, slow */}
-        <g style={{ animation: "spin1 50s linear infinite", transformOrigin: "600px 400px" }}>
-          <ellipse
-            cx="600" cy="400"
-            rx="520" ry="190"
-            fill="none"
-            stroke="url(#ring1grad)"
-            strokeWidth="1"
-            strokeDasharray="700 900"
-            filter="url(#ringGlow)"
-            transform="rotate(-18, 600, 400)"
-          />
-          <circle cx="600" cy="212" r="3" fill="hsl(181 90% 70%)" filter="url(#dotGlow)" />
+        {/* ── Centre star ── */}
+        <circle cx="600" cy="340" r="5" fill="hsl(181 90% 85%)" filter="url(#starGlow)" opacity="0.6" />
+
+        {/* ══ ORBIT 1 — large, tilted -18° ══ */}
+        <ellipse
+          cx="600" cy="400" rx="500" ry="180"
+          fill="none"
+          stroke="hsl(181 90% 52% / 0.18)"
+          strokeWidth="1"
+          filter="url(#ringGlow)"
+          transform="rotate(-18, 600, 400)"
+        />
+        {/* Planet A — aqua */}
+        <g transform="rotate(-18, 600, 400)">
+          <circle r="6" fill="hsl(181 90% 72%)" filter="url(#planetGlow)">
+            <animateMotion dur="52s" repeatCount="indefinite" rotate="0"
+              path={ellipsePath(500, 180)} />
+          </circle>
+        </g>
+        {/* Planet B — smaller, offset start */}
+        <g transform="rotate(-18, 600, 400)">
+          <circle r="3.5" fill="hsl(181 80% 60%)" filter="url(#planetGlow)" opacity="0.7">
+            <animateMotion dur="52s" begin="-26s" repeatCount="indefinite" rotate="0"
+              path={ellipsePath(500, 180)} />
+          </circle>
         </g>
 
-        {/* Ring 2 — medium, counter */}
-        <g style={{ animation: "spin2 38s linear infinite reverse", transformOrigin: "600px 400px" }}>
-          <ellipse
-            cx="600" cy="400"
-            rx="370" ry="140"
-            fill="none"
-            stroke="url(#ring2grad)"
-            strokeWidth="1"
-            strokeDasharray="500 700"
-            filter="url(#ringGlow)"
-            transform="rotate(12, 600, 400)"
-          />
-          <circle cx="230" cy="397" r="2.5" fill="hsl(2 88% 70%)" filter="url(#dotGlow)" />
+        {/* ══ ORBIT 2 — medium, tilted +14° ══ */}
+        <ellipse
+          cx="600" cy="400" rx="340" ry="125"
+          fill="none"
+          stroke="hsl(2 88% 62% / 0.18)"
+          strokeWidth="1"
+          filter="url(#ringGlow)"
+          transform="rotate(14, 600, 400)"
+        />
+        {/* Planet C — coral */}
+        <g transform="rotate(14, 600, 400)">
+          <circle r="5" fill="hsl(2 88% 72%)" filter="url(#planetGlow)">
+            <animateMotion dur="34s" repeatCount="indefinite" rotate="0"
+              path={ellipsePath(340, 125)} />
+          </circle>
         </g>
 
-        {/* Ring 3 — wide flat, very slow */}
-        <g style={{ animation: "spin3 65s linear infinite", transformOrigin: "600px 400px" }}>
-          <ellipse
-            cx="600" cy="400"
-            rx="580" ry="100"
-            fill="none"
-            stroke="hsl(181 90% 52% / 0.18)"
-            strokeWidth="0.7"
-            strokeDasharray="600 1100"
-            transform="rotate(3, 600, 400)"
-          />
-          <circle cx="1176" cy="403" r="2" fill="hsl(181 90% 70%)" filter="url(#dotGlow)" />
+        {/* ══ ORBIT 3 — wide & flat, barely tilted ══ */}
+        <ellipse
+          cx="600" cy="400" rx="570" ry="90"
+          fill="none"
+          stroke="hsl(210 50% 60% / 0.12)"
+          strokeWidth="0.8"
+          transform="rotate(4, 600, 400)"
+        />
+        {/* Planet D — pale blue, slow */}
+        <g transform="rotate(4, 600, 400)">
+          <circle r="4" fill="hsl(210 70% 75%)" filter="url(#planetGlow)" opacity="0.65">
+            <animateMotion dur="80s" repeatCount="indefinite" rotate="0"
+              path={ellipsePath(570, 90)} />
+          </circle>
         </g>
       </svg>
 
-      {/* Centre bloom */}
+      {/* Centre aqua bloom */}
       <div
         className="absolute"
         style={{
-          top: "15%", left: "50%",
+          top: "10%", left: "50%",
           transform: "translate(-50%, 0)",
-          width: "700px", height: "500px",
-          background: "radial-gradient(ellipse at center, hsl(181 90% 52% / 0.10) 0%, transparent 70%)",
+          width: "600px", height: "420px",
+          background: "radial-gradient(ellipse at center, hsl(181 90% 52% / 0.09) 0%, transparent 70%)",
           pointerEvents: "none",
         }}
       />
-
-      <style>{`
-        @keyframes spin1 { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes spin2 { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
-        @keyframes spin3 { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-      `}</style>
     </div>
   );
 };
