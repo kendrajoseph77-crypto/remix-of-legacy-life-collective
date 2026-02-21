@@ -1,22 +1,22 @@
-import logoLife from "@/assets/logo-life.png";
-
 interface LogoProps {
   className?: string;
-  /** @deprecated */
-  heightClass?: string;
-  /** @deprecated */
-  height?: number;
 }
 
 const Logo = ({ className = "" }: LogoProps) => {
   return (
     <div className={`flex items-center ${className}`}>
-      <img
-        src={logoLife}
-        alt="Life logo"
-        className="h-8 sm:h-12 w-auto"
-        style={{ mixBlendMode: "screen" }}
-      />
+      <span
+        className="text-xl sm:text-2xl font-bold tracking-tight"
+        style={{
+          background: "linear-gradient(135deg, hsl(38 70% 60%), hsl(38 65% 75%), hsl(38 70% 60%))",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+          fontFamily: "'Playfair Display', serif",
+        }}
+      >
+        5050L
+      </span>
     </div>
   );
 };

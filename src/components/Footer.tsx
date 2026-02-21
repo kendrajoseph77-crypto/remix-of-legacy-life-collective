@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 gap-12 mb-12">
           {/* Brand */}
           <div className="flex flex-col gap-4">
-            <Logo heightClass="h-8" />
+            <Logo />
             <p className="text-muted-foreground text-sm leading-relaxed">
               The elite peer-to-peer crowdfunding platform built for legacy wealth.
               Transparent. Automated. Unstoppable.
