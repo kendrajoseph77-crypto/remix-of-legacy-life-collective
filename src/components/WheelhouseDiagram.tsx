@@ -9,11 +9,11 @@ const avatarUrls = [
 ];
 
 const WheelhouseDiagram = () => {
-  const aqua = "hsl(181 90% 52%)";
-  const coral = "hsl(2 88% 62%)";
-  const lime = "hsl(68 100% 50%)";
-  const navy = "hsl(210 45% 8%)";
-  const card = "hsl(210 40% 12%)";
+  const aqua = "hsl(229 77% 65%)";
+  const coral = "hsl(229 77% 55%)";
+  const lime = "hsl(229 90% 75%)";
+  const navy = "hsl(254 60% 10%)";
+  const card = "hsl(254 55% 14%)";
 
   const cx = 250, cy = 250;
   const wheelR = 120; // main wheel radius
@@ -136,7 +136,7 @@ const WheelhouseDiagram = () => {
             <path key={`elbow-${i}`}
               d={`M ${sx} ${sy} L ${ep.midX} ${ep.midY} L ${ex} ${ey}`}
               fill="none"
-              stroke="hsl(181 90% 52% / 0.4)"
+              stroke="hsl(229 77% 65% / 0.4)"
               strokeWidth="2"
               strokeLinejoin="round"
               markerEnd="url(#arrow-aqua)"
@@ -145,9 +145,9 @@ const WheelhouseDiagram = () => {
         })}
 
         {/* ── Main wheel circle ── */}
-        <circle cx={cx} cy={cy} r={wheelR} fill="none" stroke="hsl(181 90% 52% / 0.15)" strokeWidth="2" />
-        <circle cx={cx} cy={cy} r={wheelR} fill="none" stroke="hsl(181 90% 52% / 0.06)" strokeWidth="10" />
-        <circle cx={cx} cy={cy} r={wheelR + 8} fill="none" stroke="hsl(181 90% 52% / 0.04)" strokeWidth="4" />
+        <circle cx={cx} cy={cy} r={wheelR} fill="none" stroke="hsl(229 77% 55% / 0.15)" strokeWidth="2" />
+        <circle cx={cx} cy={cy} r={wheelR} fill="none" stroke="hsl(229 77% 55% / 0.06)" strokeWidth="10" />
+        <circle cx={cx} cy={cy} r={wheelR + 8} fill="none" stroke="hsl(229 77% 55% / 0.04)" strokeWidth="4" />
 
         {/* ── Inner connectors: #01 → YOU, #02 → YOU ── */}
         {innerNodes.map((n, i) => {
@@ -160,7 +160,7 @@ const WheelhouseDiagram = () => {
           return (
             <line key={`inner-line-${i}`}
               x1={sx} y1={sy} x2={ex} y2={ey}
-              stroke="hsl(181 90% 52% / 0.45)" strokeWidth="2"
+              stroke="hsl(229 77% 65% / 0.45)" strokeWidth="2"
               markerEnd="url(#arrow-aqua)"
             />
           );
@@ -173,7 +173,7 @@ const WheelhouseDiagram = () => {
         {innerNodes.map((n, i) => renderNode(n, `wh-clip-inner-${i}`))}
 
         {/* ── Center YOU ── */}
-        <circle cx={cx} cy={cy} r={centerR + 6} fill="none" stroke="hsl(2 88% 62% / 0.12)" strokeWidth="6" />
+        <circle cx={cx} cy={cy} r={centerR + 6} fill="none" stroke="hsl(229 77% 55% / 0.12)" strokeWidth="6" />
         <circle cx={cx} cy={cy} r={centerR} fill={card} stroke={coral} strokeWidth="3" filter="url(#wh-softGlow)" />
         <image
           href={avatarUrls[0]}
@@ -185,7 +185,7 @@ const WheelhouseDiagram = () => {
         <circle cx={cx} cy={cy} r={centerR} fill="none" stroke={coral} strokeWidth="3" filter="url(#wh-glow)" />
 
         {/* YOU label */}
-        <rect x={cx - 18} y={cy + 8} width="36" height="16" rx="4" fill="hsl(2 88% 62% / 0.92)" />
+        <rect x={cx - 18} y={cy + 8} width="36" height="16" rx="4" fill="hsl(229 77% 55% / 0.92)" />
         <text x={cx} y={cy + 19.5} textAnchor="middle" fontSize="9" fontWeight="800" fill="white" fontFamily="sans-serif">YOU</text>
 
         {/* $125 pill */}
