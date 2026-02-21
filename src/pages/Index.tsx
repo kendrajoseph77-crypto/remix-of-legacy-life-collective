@@ -69,14 +69,6 @@ const Index = () => {
       <section id="join" className="py-24 bg-card border-y border-border relative overflow-hidden">
         <div className="absolute inset-0 glow-coral-top pointer-events-none" />
         <div className="max-w-5xl mx-auto px-6 relative">
-          <div className="text-center mb-14">
-            <p className="text-secondary text-xs tracking-[0.4em] uppercase mb-4">How It Works</p>
-            <h2 className="text-4xl md:text-5xl font-bold">Begin Where You Fit In</h2>
-            <p className="text-muted-foreground mt-4 max-w-lg mx-auto">
-              3 levels. Simple. Focused. Fast.
-            </p>
-          </div>
-
           <div className="grid md:grid-cols-3 gap-6 mb-10">
             {tiers.map((tier, i) => (
               <div
