@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import OrbitalRings from "@/components/OrbitalRings";
 import WheelhouseDiagram from "@/components/WheelhouseDiagram";
 import { useState } from "react";
-import anniversarySeal from "@/assets/anniversary-seal.jpeg";
+import anniversarySeal from "@/assets/anniversary-seal.png";
 
 import { Link } from "react-router-dom";
 
@@ -59,7 +59,6 @@ const Index = () => {
             src={anniversarySeal}
             alt="David T. Rosen — 25th Anniversary — Creator of the First Online Crowdfunding System — 2001–2026"
             className="w-32 md:w-40 mx-auto mb-6 drop-shadow-[0_0_30px_hsl(38_70%_60%_/_0.3)]"
-            style={{ mixBlendMode: "screen" }}
           />
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-10 tracking-tight">
             25 Years of Cooperative Crowdfunding™
