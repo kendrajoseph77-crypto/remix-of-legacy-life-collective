@@ -16,11 +16,11 @@ const YOU_CUT_PER_MEMBER = CONTRIBUTION_PER_MEMBER / 2;
 const MEMBER_COUNT = 6;
 
 // Layout — 3 concentric rings
-const cx = 250, cy = 250;
-const CENTER_R = 46;
-const RING2_R = 125;  // #01, #02
-const RING3_R = 200;  // #03–#06
-const NODE_R = 28;
+const cx = 300, cy = 310;
+const CENTER_R = 50;
+const RING2_R = 140;  // #01, #02
+const RING3_R = 220;  // #03–#06
+const NODE_R = 30;
 
 const navy = "hsl(220 50% 12%)";
 const card = "hsl(215 45% 16%)";
@@ -324,12 +324,12 @@ const WheelhouseDiagram = () => {
   };
 
   return (
-    <div ref={sectionRef} className="relative w-full max-w-[540px] mx-auto">
+    <div ref={sectionRef} className="relative w-full max-w-[660px] mx-auto">
       <p className="text-center text-sm font-semibold tracking-widest uppercase text-primary mb-1">2 × 2 Wheelhouse</p>
       <h3 className="text-center text-xl md:text-2xl font-bold text-foreground mb-2 tracking-wide">
         {activeMembers} of {MEMBER_COUNT} Members Joined
       </h3>
-      <svg viewBox="0 0 500 520" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+      <svg viewBox="0 0 600 640" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <defs>
           <filter id="wh-glow" x="-30%" y="-30%" width="160%" height="160%">
             <feGaussianBlur stdDeviation="3" result="blur" />
@@ -394,7 +394,7 @@ const WheelhouseDiagram = () => {
           return renderMemberNode(pos.x, pos.y, n.label, n.avatarIdx, lime, i < activeMembers, i, n.angle);
         })}
 
-        {/* Persistent earnings for #01 and #02 from their children */}
+        {/* Persistent earnings for #01 (above) and #02 (below) */}
         {ring2Nodes.map((n, parentIdx) => {
           const childrenActive = ring3Nodes.filter(
             (r3, i) => r3.parentIdx === parentIdx && (i + 2) < activeMembers
@@ -402,21 +402,27 @@ const WheelhouseDiagram = () => {
           if (childrenActive === 0) return null;
 
           const parentPos = getPos(RING2_R, n.angle);
-          // Position pill to the right side of the node to avoid overlapping center
-          const sideAngle = parentIdx === 0 ? n.angle + Math.PI / 3 : n.angle - Math.PI / 3;
-          const pillX = parentPos.x + (NODE_R + 26) * Math.cos(sideAngle);
-          const pillY = parentPos.y + (NODE_R + 26) * Math.sin(sideAngle);
           const totalEarned = childrenActive * YOU_CUT_PER_MEMBER;
+
+          // #01 is at top (parentIdx 0) → show above; #02 is at bottom (parentIdx 1) → show below
+          const pillX = parentPos.x;
+          const pillY = parentIdx === 0
+            ? parentPos.y - NODE_R - 32  // above #01
+            : parentPos.y + NODE_R + 22; // below #02
+
+          const labelY = parentIdx === 0
+            ? pillY - 16
+            : pillY + 30;
 
           return (
             <g key={`r2-earn-${parentIdx}`} className="animate-fade-in">
-              <text x={pillX} y={pillY - 15} textAnchor="middle" fontSize="8" fontWeight="700"
-                fill={brightYellow} fontFamily="monospace" opacity="0.85">
+              <text x={pillX} y={labelY} textAnchor="middle" fontSize="10" fontWeight="700"
+                fill={brightYellow} fontFamily="monospace" opacity="0.9">
                 earns 50%
               </text>
-              <rect x={pillX - 40} y={pillY - 10} width="80" height="20" rx="10"
+              <rect x={pillX - 44} y={pillY - 12} width="88" height="24" rx="12"
                 fill={navy} stroke={brightYellow} strokeWidth="1.5" opacity="0.95" />
-              <text x={pillX} y={pillY + 5} textAnchor="middle" fontSize="10" fontWeight="800"
+              <text x={pillX} y={pillY + 5} textAnchor="middle" fontSize="12" fontWeight="800"
                 fill={brightYellow} fontFamily="monospace">
                 +{formatCurrency(totalEarned)}
               </text>
