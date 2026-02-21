@@ -252,7 +252,7 @@ const WheelhouseDiagram = () => {
   ) => {
     if (showContribution !== stepIdx) return null;
     const above = labelAbove[stepIdx];
-    const labelY = above ? nodeY - NODE_R - 14 : nodeY + NODE_R + 22;
+    const labelY = above ? nodeY - NODE_R - 30 : nodeY + NODE_R + 38;
 
     return (
       <g className="animate-fade-in">
