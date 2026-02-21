@@ -41,8 +41,8 @@ const Navbar = () => {
                 href={link.path}
                 className="px-6 py-2 rounded-sm text-sm font-semibold tracking-widest uppercase transition-all duration-300 hover:opacity-90"
                 style={{
-                  background: "linear-gradient(135deg, hsl(2 88% 62%), hsl(15 95% 65%))",
-                  color: "hsl(207 73% 10%)",
+                  background: "linear-gradient(135deg, hsl(229 77% 55%), hsl(229 90% 65%))",
+                  color: "hsl(300 100% 100%)",
                 }}
               >
                 Join Us

@@ -10,7 +10,7 @@ const OrbitalRings = () => {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 40%, hsl(210 60% 14%) 0%, hsl(210 45% 8%) 60%, hsl(210 45% 6%) 100%)",
+            "radial-gradient(ellipse 80% 60% at 50% 40%, hsl(254 55% 16%) 0%, hsl(254 60% 10%) 60%, hsl(254 60% 8%) 100%)",
         }}
       />
 
@@ -52,27 +52,25 @@ const OrbitalRings = () => {
         </defs>
 
         {/* ── Centre star ── */}
-        <circle cx="600" cy="340" r="5" fill="hsl(181 90% 85%)" filter="url(#starGlow)" opacity="0.6" />
+        <circle cx="600" cy="340" r="5" fill="hsl(229 90% 85%)" filter="url(#starGlow)" opacity="0.6" />
 
         {/* ══ ORBIT 1 — large, tilted -18° ══ */}
         <ellipse
           cx="600" cy="400" rx="500" ry="180"
           fill="none"
-          stroke="hsl(181 90% 52% / 0.18)"
+          stroke="hsl(229 77% 55% / 0.18)"
           strokeWidth="1"
           filter="url(#ringGlow)"
           transform="rotate(-18, 600, 400)"
         />
-        {/* Planet A — aqua */}
         <g transform="rotate(-18, 600, 400)">
-          <circle r="6" fill="hsl(181 90% 72%)" filter="url(#planetGlow)">
+          <circle r="6" fill="hsl(229 77% 72%)" filter="url(#planetGlow)">
             <animateMotion dur="52s" repeatCount="indefinite" rotate="0"
               path={ellipsePath(500, 180)} />
           </circle>
         </g>
-        {/* Planet B — smaller, offset start */}
         <g transform="rotate(-18, 600, 400)">
-          <circle r="3.5" fill="hsl(181 80% 60%)" filter="url(#planetGlow)" opacity="0.7">
+          <circle r="3.5" fill="hsl(229 70% 60%)" filter="url(#planetGlow)" opacity="0.7">
             <animateMotion dur="52s" begin="-26s" repeatCount="indefinite" rotate="0"
               path={ellipsePath(500, 180)} />
           </circle>
@@ -82,14 +80,13 @@ const OrbitalRings = () => {
         <ellipse
           cx="600" cy="400" rx="340" ry="125"
           fill="none"
-          stroke="hsl(2 88% 62% / 0.18)"
+          stroke="hsl(229 77% 55% / 0.14)"
           strokeWidth="1"
           filter="url(#ringGlow)"
           transform="rotate(14, 600, 400)"
         />
-        {/* Planet C — coral */}
         <g transform="rotate(14, 600, 400)">
-          <circle r="5" fill="hsl(2 88% 72%)" filter="url(#planetGlow)">
+          <circle r="5" fill="hsl(229 90% 75%)" filter="url(#planetGlow)">
             <animateMotion dur="34s" repeatCount="indefinite" rotate="0"
               path={ellipsePath(340, 125)} />
           </circle>
@@ -99,13 +96,12 @@ const OrbitalRings = () => {
         <ellipse
           cx="600" cy="400" rx="570" ry="90"
           fill="none"
-          stroke="hsl(210 50% 60% / 0.12)"
+          stroke="hsl(254 40% 50% / 0.12)"
           strokeWidth="0.8"
           transform="rotate(4, 600, 400)"
         />
-        {/* Planet D — pale blue, slow */}
         <g transform="rotate(4, 600, 400)">
-          <circle r="4" fill="hsl(210 70% 75%)" filter="url(#planetGlow)" opacity="0.65">
+          <circle r="4" fill="hsl(254 50% 65%)" filter="url(#planetGlow)" opacity="0.65">
             <animateMotion dur="80s" repeatCount="indefinite" rotate="0"
               path={ellipsePath(570, 90)} />
           </circle>
@@ -119,7 +115,7 @@ const OrbitalRings = () => {
           top: "10%", left: "50%",
           transform: "translate(-50%, 0)",
           width: "600px", height: "420px",
-          background: "radial-gradient(ellipse at center, hsl(181 90% 52% / 0.09) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse at center, hsl(229 77% 55% / 0.09) 0%, transparent 70%)",
           pointerEvents: "none",
         }}
       />
