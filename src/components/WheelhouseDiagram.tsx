@@ -55,13 +55,13 @@ const activationOrder = [
 ];
 
 const WheelhouseDiagram = () => {
-  const royal = "hsl(229 77% 65%)";
-  const lime = "hsl(100 70% 50%)";
-  const coral = "hsl(0 80% 60%)";
-  const navy = "hsl(254 60% 10%)";
-  const card = "hsl(254 55% 14%)";
+  const royal = "hsl(210 80% 70%)";
+  const lime = "hsl(160 70% 55%)";
+  const coral = "hsl(30 90% 65%)";
+  const navy = "hsl(220 50% 12%)";
+  const card = "hsl(215 45% 16%)";
   const gold = "hsl(45 100% 55%)";
-  const brightYellow = "hsl(50 100% 60%)";
+  const brightYellow = "hsl(45 100% 65%)";
 
   const [activeMembers, setActiveMembers] = useState(0);
   const [currentEarnings, setCurrentEarnings] = useState(0);
@@ -302,8 +302,8 @@ const WheelhouseDiagram = () => {
             <circle cx={cx} cy={cy} r={CENTER_R - 3} />
           </clipPath>
           <radialGradient id="celebGrad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor={lime} stopOpacity="0.15" />
-            <stop offset="70%" stopColor={lime} stopOpacity="0.05" />
+            <stop offset="0%" stopColor={lime} stopOpacity="0.12" />
+            <stop offset="70%" stopColor={lime} stopOpacity="0.04" />
             <stop offset="100%" stopColor={lime} stopOpacity="0" />
           </radialGradient>
         </defs>
@@ -323,10 +323,10 @@ const WheelhouseDiagram = () => {
 
         {/* Ring guides */}
         <circle cx={cx} cy={cy} r={RING2_R} fill="none"
-          stroke={cycleComplete ? "hsl(100 70% 50% / 0.15)" : "hsl(229 77% 55% / 0.1)"}
+          stroke={cycleComplete ? "hsl(160 70% 55% / 0.15)" : "hsl(210 80% 70% / 0.12)"}
           strokeWidth="1.5" strokeDasharray="4 4" style={{ transition: "stroke 1s ease" }} />
         <circle cx={cx} cy={cy} r={RING3_R} fill="none"
-          stroke={cycleComplete ? "hsl(100 70% 50% / 0.15)" : "hsl(229 77% 55% / 0.1)"}
+          stroke={cycleComplete ? "hsl(160 70% 55% / 0.15)" : "hsl(210 80% 70% / 0.12)"}
           strokeWidth="1.5" strokeDasharray="4 4" style={{ transition: "stroke 1s ease" }} />
 
         {/* Connectors: Ring2 nodes → YOU (center) */}
@@ -342,7 +342,7 @@ const WheelhouseDiagram = () => {
           return (
             <g key={`conn-r2-${i}`}>
               <line x1={sx} y1={sy} x2={ex} y2={ey}
-                stroke="hsl(100 70% 50% / 0.5)"
+                stroke="hsl(160 70% 55% / 0.5)"
                 strokeWidth={showContribution === i ? 3 : 2}
                 markerEnd="url(#arrow-coral)"
                 style={{ transition: "opacity 0.5s ease, stroke-width 0.3s ease", opacity: active ? 1 : 0.12 }}
@@ -363,7 +363,7 @@ const WheelhouseDiagram = () => {
           return (
             <g key={`conn-r3-${i}`}>
               {renderConnector(childPos.x, childPos.y, parentPos.x, parentPos.y,
-                "hsl(229 77% 65% / 0.45)", "arrow-lime", active, showContribution === stepIdx)}
+                "hsl(210 80% 70% / 0.45)", "arrow-lime", active, showContribution === stepIdx)}
             </g>
           );
         })}
@@ -384,7 +384,7 @@ const WheelhouseDiagram = () => {
 
         {/* Center YOU — coral ring, yellow glow on complete */}
         <circle cx={cx} cy={cy} r={CENTER_R + 6} fill="none"
-          stroke={cycleComplete ? "hsl(50 100% 60% / 0.35)" : "hsl(0 80% 60% / 0.2)"}
+          stroke={cycleComplete ? "hsl(45 100% 65% / 0.35)" : "hsl(30 90% 65% / 0.2)"}
           strokeWidth="6" style={{ transition: "stroke 1s ease" }} />
         <circle cx={cx} cy={cy} r={CENTER_R} fill={card} stroke={cycleComplete ? brightYellow : coral}
           strokeWidth="3.5" filter="url(#wh-softGlow)" style={{ transition: "stroke 0.8s ease" }} />
@@ -400,7 +400,7 @@ const WheelhouseDiagram = () => {
           style={{ transition: "stroke 0.8s ease" }} />
 
         {/* YOU label */}
-        <rect x={cx - 26} y={cy + 12} width="52" height="24" rx="6" fill="hsl(0 80% 50% / 0.92)" />
+        <rect x={cx - 26} y={cy + 12} width="52" height="24" rx="6" fill="hsl(30 90% 55% / 0.92)" />
         <text x={cx} y={cy + 29} textAnchor="middle" fontSize="14" fontWeight="800" fill="white" fontFamily="sans-serif">YOU</text>
 
         {/* Earnings pill */}
