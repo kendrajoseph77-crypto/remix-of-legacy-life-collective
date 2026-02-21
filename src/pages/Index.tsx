@@ -55,6 +55,12 @@ const Index = () => {
         <OrbitalRings />
         <div className="absolute inset-0 glow-coral-top pointer-events-none" />
         <div className="relative z-10 w-full max-w-6xl mx-auto">
+          <img
+            src={anniversarySeal}
+            alt="David T. Rosen — 25th Anniversary — Creator of the First Online Crowdfunding System — 2001–2026"
+            className="w-32 md:w-40 mx-auto mb-6 drop-shadow-[0_0_30px_hsl(38_70%_60%_/_0.3)]"
+            style={{ mixBlendMode: "screen" }}
+          />
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-10 tracking-tight">
             25 Years of Cooperative Crowdfunding™
           </h1>
@@ -126,14 +132,6 @@ const Index = () => {
             </div>
           </div>
         </div>
-      </section>
-      {/* ── Anniversary Seal ── */}
-      <section className="py-16 flex justify-center">
-        <img
-          src={anniversarySeal}
-          alt="David T. Rosen — 25th Anniversary — Creator of the First Online Crowdfunding System — 2001–2026"
-          className="w-48 md:w-64 lg:w-72 drop-shadow-[0_0_40px_hsl(38_70%_60%_/_0.25)]"
-        />
       </section>
 
       {/* ── How It Works ── */}
