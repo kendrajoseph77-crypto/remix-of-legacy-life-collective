@@ -269,7 +269,8 @@ const WheelhouseDiagram = () => {
 
   return (
     <div ref={sectionRef} className="relative w-full max-w-[540px] mx-auto">
-      <h3 className="text-center text-xl md:text-2xl font-bold text-foreground mb-4 tracking-wide">
+      <p className="text-center text-sm font-semibold tracking-widest uppercase text-primary mb-1">2 × 2 Wheelhouse</p>
+      <h3 className="text-center text-xl md:text-2xl font-bold text-foreground mb-2 tracking-wide">
         {activeMembers} of {MEMBER_COUNT} Members Joined
       </h3>
       <svg viewBox="0 0 500 560" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
@@ -309,11 +310,6 @@ const WheelhouseDiagram = () => {
           </radialGradient>
         </defs>
 
-        {/* Title + member count */}
-        <text x={cx} y={28} textAnchor="middle" fontSize="13" fontWeight="700"
-          letterSpacing="0.15em" fill={royal} fontFamily="monospace">
-          2 × 2 Wheelhouse
-        </text>
 
         {/* Celebration glow */}
         {cycleComplete && (
