@@ -6,14 +6,14 @@
 
 @layer base {
   :root {
-    /* Bunting-based dark background */
-    --background: 254 60% 10%;
+    /* Dark teal-navy background inspired by Circle.so */
+    --background: 220 50% 12%;
     --foreground: 300 100% 100%;
 
-    --card: 254 55% 14%;
+    --card: 215 45% 16%;
     --card-foreground: 300 100% 100%;
 
-    --popover: 254 55% 14%;
+    --popover: 215 45% 16%;
     --popover-foreground: 300 100% 100%;
 
     /* Primary: Royal Blue */
@@ -24,8 +24,8 @@
     --secondary: 229 77% 65%;
     --secondary-foreground: 254 60% 10%;
 
-    --muted: 254 45% 18%;
-    --muted-foreground: 254 20% 65%;
+    --muted: 215 40% 20%;
+    --muted-foreground: 210 20% 60%;
 
     /* Accent: Royal Blue bright */
     --accent: 229 77% 55%;
@@ -34,8 +34,8 @@
     --destructive: 0 72% 51%;
     --destructive-foreground: 300 100% 100%;
 
-    --border: 254 40% 22%;
-    --input: 254 45% 18%;
+    --border: 215 35% 24%;
+    --input: 215 40% 20%;
     --ring: 229 77% 55%;
 
     --radius: 0.5rem;
@@ -45,21 +45,21 @@
     --aqua: 229 77% 65%;
     --lime: 229 90% 75%;
     --ether-blue: 229 77% 45%;
-    --indigo: 254 60% 10%;
-    --slate: 254 55% 14%;
-    --cool-grey: 254 20% 65%;
+    --indigo: 220 50% 12%;
+    --slate: 215 45% 16%;
+    --cool-grey: 210 20% 60%;
     --off-white: 300 100% 100%;
 
-    --dark-surface: 254 55% 14%;
-    --darker-surface: 254 60% 10%;
+    --dark-surface: 215 45% 16%;
+    --darker-surface: 220 50% 12%;
 
-    --sidebar-background: 254 60% 10%;
+    --sidebar-background: 220 50% 12%;
     --sidebar-foreground: 300 100% 100%;
     --sidebar-primary: 229 77% 55%;
     --sidebar-primary-foreground: 300 100% 100%;
-    --sidebar-accent: 254 45% 18%;
+    --sidebar-accent: 215 40% 20%;
     --sidebar-accent-foreground: 300 100% 100%;
-    --sidebar-border: 254 40% 22%;
+    --sidebar-border: 215 35% 24%;
     --sidebar-ring: 229 77% 55%;
   }
 }
@@ -134,9 +134,9 @@
   }
 
   .glass {
-    background: hsl(254 55% 14% / 0.9);
+    background: hsl(215 45% 16% / 0.9);
     backdrop-filter: blur(12px);
-    border: 1px solid hsl(254 40% 26% / 0.6);
+    border: 1px solid hsl(215 35% 28% / 0.6);
   }
 
   /* Tier: Gold → Royal Blue tinted */

@@ -10,7 +10,7 @@ const OrbitalRings = () => {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 40%, hsl(254 55% 16%) 0%, hsl(254 60% 10%) 60%, hsl(254 60% 8%) 100%)",
+            "radial-gradient(ellipse 80% 60% at 50% 40%, hsl(200 45% 18%) 0%, hsl(220 50% 12%) 50%, hsl(240 45% 10%) 100%)",
         }}
       />
 
