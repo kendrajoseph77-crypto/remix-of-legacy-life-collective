@@ -210,9 +210,9 @@ const WheelhouseDiagram = () => {
 
         {showContribution === stepIdx && (
           <g className="animate-fade-in">
-            <rect x={contribX - 28} y={contribY - 8} width="56" height="16" rx="8"
-              fill={navy} stroke={color} strokeWidth="1" opacity="0.95" />
-            <text x={contribX} y={contribY + 3} textAnchor="middle" fontSize="8" fontWeight="800"
+            <rect x={contribX - 38} y={contribY - 11} width="76" height="22" rx="11"
+              fill={navy} stroke={color} strokeWidth="1.5" opacity="0.95" />
+            <text x={contribX} y={contribY + 5} textAnchor="middle" fontSize="12" fontWeight="800"
               fill={color} fontFamily="monospace">
               {formatCurrency(CONTRIBUTION_PER_MEMBER)}
             </text>
@@ -257,9 +257,9 @@ const WheelhouseDiagram = () => {
 
     return (
       <g className="animate-fade-in">
-        <rect x={perpX - 34} y={perpY - 12} width="68" height="24" rx="12"
+        <rect x={perpX - 42} y={perpY - 14} width="84" height="28" rx="14"
           fill={gold} opacity="0.95" filter="url(#wh-earningsGlow)" />
-        <text x={perpX} y={perpY + 5} textAnchor="middle" fontSize="11" fontWeight="900"
+        <text x={perpX} y={perpY + 6} textAnchor="middle" fontSize="14" fontWeight="900"
           fill={navy} fontFamily="monospace" letterSpacing="0.05em">
           50% → YOU
         </text>
@@ -402,14 +402,14 @@ const WheelhouseDiagram = () => {
           style={{ transition: "stroke 0.8s ease" }} />
 
         {/* YOU label */}
-        <rect x={cx - 22} y={cy + 12} width="44" height="20" rx="5" fill="hsl(0 80% 50% / 0.92)" />
-        <text x={cx} y={cy + 26} textAnchor="middle" fontSize="12" fontWeight="800" fill="white" fontFamily="sans-serif">YOU</text>
+        <rect x={cx - 26} y={cy + 12} width="52" height="24" rx="6" fill="hsl(0 80% 50% / 0.92)" />
+        <text x={cx} y={cy + 29} textAnchor="middle" fontSize="14" fontWeight="800" fill="white" fontFamily="sans-serif">YOU</text>
 
         {/* Earnings pill */}
-        <rect x={cx - 52} y={cy + 38} width="104" height="32" rx="16"
-          fill={navy} stroke={cycleComplete ? brightYellow : coral} strokeWidth="2"
+        <rect x={cx - 62} y={cy + 42} width="124" height="38" rx="19"
+          fill={navy} stroke={cycleComplete ? brightYellow : coral} strokeWidth="2.5"
           style={{ transition: "stroke 0.8s ease" }} />
-        <text x={cx} y={cy + 60} textAnchor="middle" fontSize="22" fontWeight="900"
+        <text x={cx} y={cy + 67} textAnchor="middle" fontSize="26" fontWeight="900"
           fill={cycleComplete ? brightYellow : "hsl(0 0% 100%)"}  fontFamily="monospace"
           filter="url(#wh-earningsGlow)"
           style={{ transition: "fill 0.8s ease" }}>
