@@ -52,7 +52,10 @@ const OrbitalRings = () => {
         </defs>
 
         {/* ── Centre star ── */}
-        <circle cx="600" cy="340" r="3" fill="hsl(229 90% 85%)" filter="url(#starGlow)" opacity="0.35" />
+        <circle r="3" fill="hsl(229 90% 85%)" filter="url(#starGlow)" opacity="0.4">
+          <animateMotion dur="90s" repeatCount="indefinite"
+            path="M 600 340 A 15 10 0 1 1 599.99 340 A 15 10 0 1 1 600 340" />
+        </circle>
 
         {/* ══ ORBIT 1 — large, tilted -18° ══ */}
         <ellipse
