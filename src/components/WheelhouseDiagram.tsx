@@ -306,10 +306,14 @@ const WheelhouseDiagram = () => {
           </radialGradient>
         </defs>
 
-        {/* Title */}
-        <text x={cx} y={30} textAnchor="middle" fontSize="13" fontWeight="700"
+        {/* Title + member count */}
+        <text x={cx} y={28} textAnchor="middle" fontSize="13" fontWeight="700"
           letterSpacing="0.15em" fill={royal} fontFamily="monospace">
           2 × 2 Wheelhouse
+        </text>
+        <text x={cx} y={48} textAnchor="middle" fontSize="11" fontWeight="600"
+          fill="hsl(254 20% 65%)" fontFamily="sans-serif">
+          {activeMembers} of {MEMBER_COUNT} members joined
         </text>
 
         {/* Celebration glow */}
@@ -437,7 +441,7 @@ const WheelhouseDiagram = () => {
             🎉 Wheelhouse Complete!
           </p>
           <p className="text-lg md:text-xl font-semibold tracking-widest mt-1" style={{ color: brightYellow, opacity: 0.85 }}>
-            Möbius Loop Activated.
+            Mobius Loop Activated.
           </p>
         </div>
       )}
@@ -458,9 +462,6 @@ const WheelhouseDiagram = () => {
         </div>
       </div>
 
-      <p className="text-center text-muted-foreground text-xs mt-3 tracking-wide">
-        {activeMembers} of {MEMBER_COUNT} members joined
-      </p>
     </div>
   );
 };
