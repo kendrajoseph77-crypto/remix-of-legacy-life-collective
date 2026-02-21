@@ -16,11 +16,11 @@ const YOU_CUT_PER_MEMBER = CONTRIBUTION_PER_MEMBER / 2;
 const MEMBER_COUNT = 6;
 
 // Layout — 3 concentric rings
-const cx = 250, cy = 260;
-const CENTER_R = 50;
-const RING2_R = 130;  // #01, #02
-const RING3_R = 210;  // #03–#06
-const NODE_R = 30;
+const cx = 250, cy = 250;
+const CENTER_R = 46;
+const RING2_R = 125;  // #01, #02
+const RING3_R = 200;  // #03–#06
+const NODE_R = 28;
 
 const navy = "hsl(220 50% 12%)";
 const card = "hsl(215 45% 16%)";
@@ -266,7 +266,7 @@ const WheelhouseDiagram = () => {
     color: string, isActive: boolean, stepIdx: number, outAngle: number
   ) => {
     const clipId = `wh-clip-${label}`;
-    const opacity = isActive ? 1 : 0.2;
+    const opacity = isActive ? 1 : 0;
     const badgeAngle = -Math.PI / 4;
     const badgeX = x + (NODE_R - 1) * Math.cos(badgeAngle);
     const badgeY = y + (NODE_R - 1) * Math.sin(badgeAngle);
@@ -396,28 +396,27 @@ const WheelhouseDiagram = () => {
 
         {/* Persistent earnings for #01 and #02 from their children */}
         {ring2Nodes.map((n, parentIdx) => {
-          // Count how many of this parent's children have activated
           const childrenActive = ring3Nodes.filter(
             (r3, i) => r3.parentIdx === parentIdx && (i + 2) < activeMembers
           ).length;
           if (childrenActive === 0) return null;
 
           const parentPos = getPos(RING2_R, n.angle);
-          // Same outward position as the $17,500 contribution pill
-          const outAngle = n.angle;
-          const pillX = parentPos.x + (NODE_R + 22) * Math.cos(outAngle);
-          const pillY = parentPos.y + (NODE_R + 22) * Math.sin(outAngle);
+          // Position pill to the right side of the node to avoid overlapping center
+          const sideAngle = parentIdx === 0 ? n.angle + Math.PI / 3 : n.angle - Math.PI / 3;
+          const pillX = parentPos.x + (NODE_R + 26) * Math.cos(sideAngle);
+          const pillY = parentPos.y + (NODE_R + 26) * Math.sin(sideAngle);
           const totalEarned = childrenActive * YOU_CUT_PER_MEMBER;
 
           return (
             <g key={`r2-earn-${parentIdx}`} className="animate-fade-in">
-              <text x={pillX} y={pillY - 16} textAnchor="middle" fontSize="9" fontWeight="700"
-                fill={brightYellow} fontFamily="monospace" opacity="0.8">
+              <text x={pillX} y={pillY - 15} textAnchor="middle" fontSize="8" fontWeight="700"
+                fill={brightYellow} fontFamily="monospace" opacity="0.85">
                 earns 50%
               </text>
-              <rect x={pillX - 42} y={pillY - 11} width="84" height="22" rx="11"
+              <rect x={pillX - 40} y={pillY - 10} width="80" height="20" rx="10"
                 fill={navy} stroke={brightYellow} strokeWidth="1.5" opacity="0.95" />
-              <text x={pillX} y={pillY + 5} textAnchor="middle" fontSize="11" fontWeight="800"
+              <text x={pillX} y={pillY + 5} textAnchor="middle" fontSize="10" fontWeight="800"
                 fill={brightYellow} fontFamily="monospace">
                 +{formatCurrency(totalEarned)}
               </text>
