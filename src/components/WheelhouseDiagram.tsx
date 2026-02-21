@@ -350,7 +350,6 @@ const WheelhouseDiagram = () => {
                 markerEnd="url(#arrow-coral)"
                 style={{ transition: "opacity 0.5s ease, stroke-width 0.3s ease", opacity: active ? 1 : 0.12 }}
               />
-              {renderFlowLabel(pos.x, pos.y, cx, cy, i)}
             </g>
           );
         })}
@@ -368,7 +367,6 @@ const WheelhouseDiagram = () => {
             <g key={`conn-r3-${i}`}>
               {renderConnector(childPos.x, childPos.y, parentPos.x, parentPos.y,
                 "hsl(229 77% 65% / 0.45)", "arrow-lime", active, showContribution === stepIdx)}
-              {renderFlowLabel(childPos.x, childPos.y, cx, cy, stepIdx)}
             </g>
           );
         })}
@@ -418,6 +416,18 @@ const WheelhouseDiagram = () => {
           style={{ transition: "fill 0.8s ease" }}>
           {formatCurrency(Math.round(currentEarnings))}
         </text>
+
+        {/* Flow labels — rendered last so they appear on top of everything */}
+        {ring2Nodes.map((n, i) => {
+          const pos = getNodePos(2, n.angle);
+          return <g key={`flow-r2-${i}`}>{renderFlowLabel(pos.x, pos.y, cx, cy, i)}</g>;
+        })}
+        {ring3Nodes.map((n, i) => {
+          const step = activationOrder.find(a => a.ring === 3 && a.idx === i)!;
+          const stepIdx = activationOrder.indexOf(step);
+          const childPos = getNodePos(3, n.angle);
+          return <g key={`flow-r3-${i}`}>{renderFlowLabel(childPos.x, childPos.y, cx, cy, stepIdx)}</g>;
+        })}
       </svg>
 
       {/* Completion text — below the SVG */}
