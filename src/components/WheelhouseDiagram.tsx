@@ -394,6 +394,37 @@ const WheelhouseDiagram = () => {
           return renderMemberNode(pos.x, pos.y, n.label, n.avatarIdx, lime, i < activeMembers, i, n.angle);
         })}
 
+        {/* Earnings received by #01 and #02 when their children register */}
+        {ring2Nodes.map((n, parentIdx) => {
+          // Find which ring3 child is currently being shown
+          const activeChild = ring3Nodes.find(
+            (r3, i) => r3.parentIdx === parentIdx && showContribution === i + 2
+          );
+          if (!activeChild) return null;
+
+          const parentPos = getPos(RING2_R, n.angle);
+          // Position the earning pill on the opposite side of the spoke (toward center)
+          const inwardAngle = Math.atan2(cy - parentPos.y, cx - parentPos.x);
+          const pillX = parentPos.x + (NODE_R + 28) * Math.cos(inwardAngle);
+          const pillY = parentPos.y + (NODE_R + 28) * Math.sin(inwardAngle);
+
+          return (
+            <g key={`r2-earn-${parentIdx}`} className="animate-fade-in">
+              <rect x={pillX - 42} y={pillY - 11} width="84" height="22" rx="11"
+                fill={navy} stroke={brightYellow} strokeWidth="1.5" opacity="0.95" />
+              <text x={pillX} y={pillY + 5} textAnchor="middle" fontSize="11" fontWeight="800"
+                fill={brightYellow} fontFamily="monospace">
+                +{formatCurrency(YOU_CUT_PER_MEMBER)}
+              </text>
+              {/* Small "50%" label */}
+              <text x={pillX} y={pillY - 16} textAnchor="middle" fontSize="10" fontWeight="700"
+                fill={brightYellow} fontFamily="monospace" opacity="0.85">
+                earns 50%
+              </text>
+            </g>
+          );
+        })}
+
         {/* Center YOU */}
         <circle cx={cx} cy={cy} r={CENTER_R + 5} fill="none"
           stroke={cycleComplete ? "hsl(45 100% 65% / 0.35)" : "hsl(30 90% 65% / 0.2)"}
