@@ -3,7 +3,8 @@ import Footer from "@/components/Footer";
 import OrbitalRings from "@/components/OrbitalRings";
 import WheelhouseDiagram from "@/components/WheelhouseDiagram";
 import { useState } from "react";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const tiers = [
   {
@@ -49,37 +50,22 @@ const Index = () => {
       <Navbar />
 
       {/* ── Hero ── */}
-      <section className="min-h-[85vh] flex flex-col items-center justify-center text-center px-6 pt-32 pb-12 relative overflow-hidden">
+      <section className="min-h-[60vh] flex flex-col items-center justify-center text-center px-6 pt-32 pb-12 relative overflow-hidden">
         <OrbitalRings />
         <div className="relative z-10 max-w-3xl mx-auto">
-          <p className="text-secondary text-sm tracking-[0.35em] uppercase font-semibold mb-6">
+          <p className="text-secondary text-sm tracking-[0.35em] uppercase font-semibold mb-10">
             25 Years of Cooperative Crowdfunding™
           </p>
-          <h1 className="text-5xl md:text-7xl font-bold leading-[1.08] mb-6 tracking-tight">
-            We Each Do a Little.<br />
-            <span className="text-muted-foreground">We All Receive a Lot.</span>
-          </h1>
-          <p className="text-muted-foreground text-lg max-w-xl mx-auto mb-10 leading-relaxed">
-            The elite cooperative crowdfunding platform built for legacy-class wealth. Global. Automated. Unstoppable.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a
-              href="#join"
-              className="flex items-center gap-2 px-8 py-3.5 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:opacity-90 bg-primary text-primary-foreground"
-            >
-              Join Us <ArrowRight size={15} />
-            </a>
-            <a
-              href="#video"
-              className="flex items-center gap-2 px-8 py-3.5 rounded-sm font-medium tracking-widest uppercase text-sm border border-border text-muted-foreground hover:text-foreground hover:border-muted-foreground/40 transition-all duration-300"
-            >
-              <Play size={14} /> Watch Overview
-            </a>
-          </div>
+          <a
+            href="#join"
+            className="flex items-center gap-2 px-8 py-3.5 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:opacity-90 bg-primary text-primary-foreground mx-auto w-fit"
+          >
+            Join Us <ArrowRight size={15} />
+          </a>
         </div>
       </section>
 
-      {/* ── Income Centers (Begin Where You Fit In) ── */}
+      {/* ── Activate Your Membership (directly below hero) ── */}
       <section id="join" className="py-24 bg-card border-y border-border relative overflow-hidden">
         <div className="absolute inset-0 glow-coral-top pointer-events-none" />
         <div className="max-w-5xl mx-auto px-6 relative">
@@ -119,7 +105,7 @@ const Index = () => {
             <p className="text-muted-foreground text-sm mt-2">earned every cycle when you are active on all 3 levels simultaneously</p>
           </div>
 
-          {/* ── Stats (moved under income levels) ── */}
+          {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center mb-14">
             {[
               { value: "100%", label: "Peer-to-Peer", color: "text-secondary" },
@@ -134,7 +120,7 @@ const Index = () => {
             ))}
           </div>
 
-          {/* ── Join Form ── */}
+          {/* Join Form */}
           <div className="max-w-lg mx-auto rounded-xl p-8 bg-background border border-border">
             <h3 className="text-2xl font-bold mb-1 text-secondary text-center">Activate Your Membership</h3>
             {selected !== null && (
@@ -178,21 +164,11 @@ const Index = () => {
                 <a href="#" className="text-primary hover:underline">Terms</a>{" "}and{" "}
                 <a href="#" className="text-primary hover:underline">Privacy Policy</a>.
               </p>
+              <p className="text-muted-foreground text-sm text-center mt-2">
+                Existing member?{" "}
+                <Link to="/login" className="text-primary hover:underline font-medium">Login here</Link>
+              </p>
             </form>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Video ── */}
-      <section id="video" className="py-16 max-w-4xl mx-auto px-6">
-        <div className="rounded-2xl overflow-hidden border border-border bg-card aspect-video flex items-center justify-center relative group cursor-pointer">
-          <div className="absolute inset-0 bg-gradient-to-br from-muted/40 to-background/80" />
-          <div className="relative z-10 flex flex-col items-center gap-4 text-center px-6">
-            <div className="w-16 h-16 rounded-full border border-border bg-card/80 backdrop-blur flex items-center justify-center group-hover:border-primary/50 transition-colors duration-300">
-              <Play size={24} className="text-foreground ml-1" />
-            </div>
-            <p className="text-muted-foreground text-sm tracking-widest uppercase">Introduction Video</p>
-            <p className="text-xs text-muted-foreground/60">Replace this placeholder with your video embed</p>
           </div>
         </div>
       </section>
@@ -215,7 +191,7 @@ const Index = () => {
           ))}
         </div>
 
-        {/* Mobius Loop / Wheelhouse Diagram */}
+        {/* Wheelhouse Diagram */}
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="flex-1">
             <p className="text-secondary text-xs tracking-[0.4em] uppercase font-medium mb-4">The Mobius Loop</p>

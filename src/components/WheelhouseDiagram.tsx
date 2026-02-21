@@ -1,3 +1,5 @@
+import { useState, useEffect, useRef } from "react";
+
 const avatarUrls = [
   "https://randomuser.me/api/portraits/men/83.jpg",
   "https://randomuser.me/api/portraits/women/92.jpg",
@@ -8,57 +10,127 @@ const avatarUrls = [
   "https://randomuser.me/api/portraits/men/36.jpg",
 ];
 
+// Each member contributes and YOU earns incrementally
+// Level 1: $2,500 entry → 6 members × $2,500 = $15,000 pool → YOU gets 50% = $7,500
+// Level 2: $5,000 entry → 6 members × $5,000 = $30,000 pool → YOU gets 50% = $15,000
+// Level 3: $10,000 entry → 6 members × $10,000 = $60,000 pool → YOU gets 50% = $30,000
+// Total across all 3 levels = $52,500
+// Starting base = $17,500 (already earned before this cycle visualization)
+// Each of the 6 members joining adds ($52,500 - $17,500) / 6 ≈ $5,833.33
+const BASE_EARNINGS = 17500;
+const FINAL_EARNINGS = 52500;
+const MEMBER_COUNT = 6;
+const PER_MEMBER = (FINAL_EARNINGS - BASE_EARNINGS) / MEMBER_COUNT;
+
+// Member join order: #01, #02, #03, #04, #05, #06
+const joinOrder = [0, 1, 2, 3, 4, 5]; // indices into allNodes
+
 const WheelhouseDiagram = () => {
-  const aqua = "hsl(229 77% 65%)";
-  const coral = "hsl(229 77% 55%)";
-  const lime = "hsl(229 90% 75%)";
+  const royal = "hsl(229 77% 65%)";
+  const lime = "hsl(100 70% 50%)";
   const navy = "hsl(254 60% 10%)";
   const card = "hsl(254 55% 14%)";
 
   const cx = 250, cy = 250;
-  const wheelR = 120; // main wheel radius
+  const wheelR = 140;
   const centerR = 48;
-  const innerNodeR = 38;
-  const outerNodeR = 34;
-  const badgeR = 12;
+  const nodeR = 36;
 
-  // #01 top, #02 bottom inside the wheel
-  const innerNodes = [
-    { label: "01", avatarIdx: 1, color: lime, x: cx, y: cy - 78, r: innerNodeR },
-    { label: "02", avatarIdx: 2, color: lime, x: cx, y: cy + 78, r: innerNodeR },
-  ];
+  // Place all 6 nodes evenly around the circle
+  const allNodes = Array.from({ length: 6 }, (_, i) => {
+    const angle = -Math.PI / 2 + (i * 2 * Math.PI) / 6;
+    // Inner ring (direct invites #01, #02) use lime, outer (#03-#06) use royal
+    const isInner = i < 2;
+    return {
+      label: String(i + 1).padStart(2, "0"),
+      avatarIdx: i + 1,
+      color: isInner ? lime : royal,
+      x: cx + wheelR * Math.cos(angle),
+      y: cy + wheelR * Math.sin(angle),
+      r: nodeR,
+    };
+  });
 
-  // #03 top-left, #04 top-right, #05 bottom-left, #06 bottom-right
-  const outerNodes = [
-    { label: "03", avatarIdx: 3, color: aqua, x: 68,  y: 62,  r: outerNodeR },
-    { label: "04", avatarIdx: 4, color: aqua, x: 432, y: 62,  r: outerNodeR },
-    { label: "05", avatarIdx: 5, color: aqua, x: 68,  y: 438, r: outerNodeR },
-    { label: "06", avatarIdx: 6, color: aqua, x: 432, y: 438, r: outerNodeR },
-  ];
+  const [activeMembers, setActiveMembers] = useState(0);
+  const [currentEarnings, setCurrentEarnings] = useState(BASE_EARNINGS);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const animationRef = useRef<number | null>(null);
+  const hasStarted = useRef(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
-  // L-shaped paths: outer → inner
-  // #03 (top-left) → #01 (top)
-  // #04 (top-right) → #01 (top)
-  // #05 (bottom-left) → #02 (bottom)
-  // #06 (bottom-right) → #02 (bottom)
-  const elbowPaths = [
-    { from: outerNodes[0], to: innerNodes[0], midX: outerNodes[0].x, midY: innerNodes[0].y },
-    { from: outerNodes[1], to: innerNodes[0], midX: outerNodes[1].x, midY: innerNodes[0].y },
-    { from: outerNodes[2], to: innerNodes[1], midX: outerNodes[2].x, midY: innerNodes[1].y },
-    { from: outerNodes[3], to: innerNodes[1], midX: outerNodes[3].x, midY: innerNodes[1].y },
-  ];
+  // Observe when diagram enters viewport to start animation
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasStarted.current) {
+          hasStarted.current = true;
+          startAnimation();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const startAnimation = () => {
+    setIsAnimating(true);
+    let memberIdx = 0;
+
+    const addNextMember = () => {
+      if (memberIdx >= MEMBER_COUNT) {
+        setIsAnimating(false);
+        return;
+      }
+      memberIdx++;
+      const targetMembers = memberIdx;
+      const targetEarnings = BASE_EARNINGS + targetMembers * PER_MEMBER;
+
+      setActiveMembers(targetMembers);
+
+      // Animate the earnings number climbing
+      const startVal = BASE_EARNINGS + (targetMembers - 1) * PER_MEMBER;
+      const duration = 600;
+      const startTime = performance.now();
+
+      const tick = (now: number) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+        const value = startVal + (targetEarnings - startVal) * eased;
+        setCurrentEarnings(value);
+
+        if (progress < 1) {
+          animationRef.current = requestAnimationFrame(tick);
+        } else {
+          // Wait before next member joins
+          setTimeout(addNextMember, 800);
+        }
+      };
+
+      animationRef.current = requestAnimationFrame(tick);
+    };
+
+    // Start after a short delay
+    setTimeout(addNextMember, 600);
+  };
+
+  const formatCurrency = (val: number) => {
+    return "$" + val.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  };
 
   const renderNode = (
     n: { x: number; y: number; r: number; label: string; avatarIdx: number; color: string },
     clipId: string,
-    showAmount = true
+    isActive: boolean
   ) => {
     const badgeAngle = -Math.PI / 4;
     const badgeX = n.x + (n.r - 1) * Math.cos(badgeAngle);
     const badgeY = n.y + (n.r - 1) * Math.sin(badgeAngle);
+    const opacity = isActive ? 1 : 0.25;
 
     return (
-      <g key={clipId}>
+      <g key={clipId} style={{ transition: "opacity 0.5s ease", opacity }}>
         <clipPath id={clipId}>
           <circle cx={n.x} cy={n.y} r={n.r - 3} />
         </clipPath>
@@ -72,27 +144,16 @@ const WheelhouseDiagram = () => {
         />
         <circle cx={n.x} cy={n.y} r={n.r} fill="none" stroke={n.color} strokeWidth="2.5" filter="url(#wh-glow)" />
         {/* Badge */}
-        <circle cx={badgeX} cy={badgeY} r={badgeR} fill={navy} stroke={n.color} strokeWidth="1.5" />
+        <circle cx={badgeX} cy={badgeY} r={12} fill={navy} stroke={n.color} strokeWidth="1.5" />
         <text x={badgeX} y={badgeY + 4} textAnchor="middle" fontSize="7" fontWeight="800" fill={n.color} fontFamily="monospace">
           {n.label}
         </text>
-        {/* Amount pill */}
-        {showAmount && (
-          <>
-            <rect x={n.x - 24} y={n.y + n.r + 5} width="48" height="17" rx="8.5"
-              fill={navy} stroke={n.color} strokeWidth="1.2" />
-            <text x={n.x} y={n.y + n.r + 16.5} textAnchor="middle" fontSize="8" fontWeight="800"
-              fill={n.color} fontFamily="monospace">
-              $62.50
-            </text>
-          </>
-        )}
       </g>
     );
   };
 
   return (
-    <div className="relative w-full max-w-[540px] mx-auto">
+    <div ref={sectionRef} className="relative w-full max-w-[540px] mx-auto">
       <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <defs>
           <filter id="wh-glow" x="-30%" y="-30%" width="160%" height="160%">
@@ -103,78 +164,61 @@ const WheelhouseDiagram = () => {
             <feGaussianBlur stdDeviation="7" result="blur" />
             <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
           </filter>
-          <marker id="arrow-aqua" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-            <polygon points="0 0, 8 4, 0 8" fill={aqua} opacity="0.9" />
+          <filter id="wh-earningsGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+          </filter>
+          <marker id="arrow-royal" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <polygon points="0 0, 8 4, 0 8" fill={royal} opacity="0.9" />
+          </marker>
+          <marker id="arrow-lime" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <polygon points="0 0, 8 4, 0 8" fill={lime} opacity="0.9" />
           </marker>
           <clipPath id="wh-clipCenter">
             <circle cx={cx} cy={cy} r={centerR - 3} />
           </clipPath>
         </defs>
 
-        {/* ── Title ── */}
+        {/* Title */}
         <text x={cx} y={30} textAnchor="middle" fontSize="13" fontWeight="700"
-          letterSpacing="0.15em" fill={aqua} fontFamily="monospace">
+          letterSpacing="0.15em" fill={royal} fontFamily="monospace">
           2 × 2 Wheelhouse
         </text>
 
-        {/* ── L-shaped connectors: outer → inner ── */}
-        {elbowPaths.map((ep, i) => {
-          const fromNode = ep.from;
-          const toNode = ep.to;
-
-          // Start from edge of outer node toward the elbow
-          const startAngle = Math.atan2(ep.midY - fromNode.y, ep.midX - fromNode.x);
-          const sx = fromNode.x + (fromNode.r + 4) * Math.cos(startAngle);
-          const sy = fromNode.y + (fromNode.r + 4) * Math.sin(startAngle);
-
-          // End at edge of inner node
-          const endAngle = Math.atan2(ep.midY - toNode.y, ep.midX - toNode.x);
-          const ex = toNode.x + (toNode.r + 12) * Math.cos(endAngle);
-          const ey = toNode.y + (toNode.r + 12) * Math.sin(endAngle);
-
-          return (
-            <path key={`elbow-${i}`}
-              d={`M ${sx} ${sy} L ${ep.midX} ${ep.midY} L ${ex} ${ey}`}
-              fill="none"
-              stroke="hsl(229 77% 65% / 0.4)"
-              strokeWidth="2"
-              strokeLinejoin="round"
-              markerEnd="url(#arrow-aqua)"
-            />
-          );
-        })}
-
-        {/* ── Main wheel circle ── */}
+        {/* Main wheel circle */}
         <circle cx={cx} cy={cy} r={wheelR} fill="none" stroke="hsl(229 77% 55% / 0.15)" strokeWidth="2" />
         <circle cx={cx} cy={cy} r={wheelR} fill="none" stroke="hsl(229 77% 55% / 0.06)" strokeWidth="10" />
         <circle cx={cx} cy={cy} r={wheelR + 8} fill="none" stroke="hsl(229 77% 55% / 0.04)" strokeWidth="4" />
 
-        {/* ── Inner connectors: #01 → YOU, #02 → YOU ── */}
-        {innerNodes.map((n, i) => {
+        {/* Connectors from each node to center */}
+        {allNodes.map((n, i) => {
+          const isActive = i < activeMembers;
           const angle = Math.atan2(cy - n.y, cx - n.x);
           const sx = n.x + (n.r + 4) * Math.cos(angle);
           const sy = n.y + (n.r + 4) * Math.sin(angle);
           const ex = cx - (centerR + 10) * Math.cos(angle);
           const ey = cy - (centerR + 10) * Math.sin(angle);
+          const isInner = i < 2;
+          const markerEnd = isInner ? "url(#arrow-lime)" : "url(#arrow-royal)";
+          const strokeColor = isInner ? "hsl(100 70% 50% / 0.45)" : "hsl(229 77% 65% / 0.45)";
 
           return (
-            <line key={`inner-line-${i}`}
+            <line key={`conn-${i}`}
               x1={sx} y1={sy} x2={ex} y2={ey}
-              stroke="hsl(229 77% 65% / 0.45)" strokeWidth="2"
-              markerEnd="url(#arrow-aqua)"
+              stroke={strokeColor}
+              strokeWidth="2"
+              markerEnd={markerEnd}
+              style={{ transition: "opacity 0.5s ease", opacity: isActive ? 1 : 0.15 }}
             />
           );
         })}
 
-        {/* ── Outer nodes (#03–#06) ── */}
-        {outerNodes.map((n, i) => renderNode(n, `wh-clip-outer-${i}`))}
+        {/* All 6 nodes around the circle */}
+        {allNodes.map((n, i) => renderNode(n, `wh-clip-${i}`, i < activeMembers))}
 
-        {/* ── Inner nodes (#01, #02) ── */}
-        {innerNodes.map((n, i) => renderNode(n, `wh-clip-inner-${i}`))}
-
-        {/* ── Center YOU ── */}
+        {/* Center YOU */}
         <circle cx={cx} cy={cy} r={centerR + 6} fill="none" stroke="hsl(229 77% 55% / 0.12)" strokeWidth="6" />
-        <circle cx={cx} cy={cy} r={centerR} fill={card} stroke={coral} strokeWidth="3" filter="url(#wh-softGlow)" />
+        <circle cx={cx} cy={cy} r={centerR} fill={card} stroke={royal} strokeWidth="3" filter="url(#wh-softGlow)" />
         <image
           href={avatarUrls[0]}
           x={cx - centerR + 3} y={cy - centerR + 3}
@@ -182,32 +226,45 @@ const WheelhouseDiagram = () => {
           clipPath="url(#wh-clipCenter)"
           preserveAspectRatio="xMidYMid slice"
         />
-        <circle cx={cx} cy={cy} r={centerR} fill="none" stroke={coral} strokeWidth="3" filter="url(#wh-glow)" />
+        <circle cx={cx} cy={cy} r={centerR} fill="none" stroke={royal} strokeWidth="3" filter="url(#wh-glow)" />
 
         {/* YOU label */}
         <rect x={cx - 18} y={cy + 8} width="36" height="16" rx="4" fill="hsl(229 77% 55% / 0.92)" />
         <text x={cx} y={cy + 19.5} textAnchor="middle" fontSize="9" fontWeight="800" fill="white" fontFamily="sans-serif">YOU</text>
 
-        {/* $125 pill */}
-        <rect x={cx - 20} y={cy + 27} width="40" height="15" rx="7.5" fill={navy} stroke={coral} strokeWidth="1.2" />
-        <text x={cx} y={cy + 37.5} textAnchor="middle" fontSize="8" fontWeight="800" fill={coral} fontFamily="monospace">$125</text>
+        {/* Earnings pill - large and visible */}
+        <rect x={cx - 38} y={cy + 30} width="76" height="22" rx="11"
+          fill={navy} stroke={activeMembers >= MEMBER_COUNT ? lime : royal} strokeWidth="1.5" />
+        <text x={cx} y={cy + 44.5} textAnchor="middle" fontSize="12" fontWeight="900"
+          fill={activeMembers >= MEMBER_COUNT ? lime : royal} fontFamily="monospace"
+          filter="url(#wh-earningsGlow)">
+          {formatCurrency(Math.round(currentEarnings))}
+        </text>
       </svg>
 
       {/* Legend */}
       <div className="flex items-center justify-center gap-6 mt-1 text-xs">
         <div className="flex items-center gap-1.5">
-          <div className="w-3 h-3 rounded-full border-2" style={{ background: coral, borderColor: coral }} />
+          <div className="w-3 h-3 rounded-full" style={{ background: royal }} />
           <span className="text-muted-foreground">You (Center)</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <div className="w-3 h-3 rounded-full" style={{ background: aqua }} />
+          <div className="w-3 h-3 rounded-full" style={{ background: lime }} />
           <span className="text-muted-foreground">Direct #01 · #02</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <div className="w-3 h-3 rounded-full" style={{ background: aqua }} />
+          <div className="w-3 h-3 rounded-full" style={{ background: royal }} />
           <span className="text-muted-foreground">Team #03–#06</span>
         </div>
       </div>
+
+      {/* Members joined counter */}
+      <p className="text-center text-muted-foreground text-xs mt-3 tracking-wide">
+        {activeMembers} of {MEMBER_COUNT} members joined
+        {activeMembers >= MEMBER_COUNT && (
+          <span className="ml-2 font-bold" style={{ color: lime }}>· Cycle Complete!</span>
+        )}
+      </p>
     </div>
   );
 };
