@@ -52,7 +52,7 @@ const OrbitalRings = () => {
         </defs>
 
         {/* ── Centre star ── */}
-        <circle cx="600" cy="340" r="5" fill="hsl(229 90% 85%)" filter="url(#starGlow)" opacity="0.6" />
+        <circle cx="600" cy="340" r="3" fill="hsl(229 90% 85%)" filter="url(#starGlow)" opacity="0.35" />
 
         {/* ══ ORBIT 1 — large, tilted -18° ══ */}
         <ellipse
