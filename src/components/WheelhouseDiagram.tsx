@@ -60,7 +60,8 @@ const WheelhouseDiagram = () => {
   const coral = "hsl(0 80% 60%)";
   const navy = "hsl(254 60% 10%)";
   const card = "hsl(254 55% 14%)";
-  const gold = "hsl(45 100% 60%)";
+  const gold = "hsl(45 100% 55%)";
+  const brightYellow = "hsl(50 100% 60%)";
 
   const [activeMembers, setActiveMembers] = useState(0);
   const [currentEarnings, setCurrentEarnings] = useState(0);
@@ -254,10 +255,10 @@ const WheelhouseDiagram = () => {
 
     return (
       <g className="animate-fade-in">
-        <rect x={perpX - 22} y={perpY - 7} width="44" height="14" rx="7"
-          fill={gold} opacity="0.9" />
-        <text x={perpX} y={perpY + 3.5} textAnchor="middle" fontSize="7" fontWeight="900"
-          fill={navy} fontFamily="monospace">
+        <rect x={perpX - 34} y={perpY - 12} width="68" height="24" rx="12"
+          fill={gold} opacity="0.95" filter="url(#wh-earningsGlow)" />
+        <text x={perpX} y={perpY + 5} textAnchor="middle" fontSize="11" fontWeight="900"
+          fill={navy} fontFamily="monospace" letterSpacing="0.05em">
           50% → YOU
         </text>
       </g>
@@ -384,12 +385,12 @@ const WheelhouseDiagram = () => {
           return renderNode(pos.x, pos.y, n.label, n.avatarIdx, lime, isNodeActive(i), i, n.angle);
         })}
 
-        {/* Center YOU — coral ring */}
+        {/* Center YOU — coral ring, yellow glow on complete */}
         <circle cx={cx} cy={cy} r={CENTER_R + 6} fill="none"
-          stroke={cycleComplete ? "hsl(100 70% 50% / 0.2)" : "hsl(0 80% 60% / 0.2)"}
+          stroke={cycleComplete ? "hsl(50 100% 60% / 0.35)" : "hsl(0 80% 60% / 0.2)"}
           strokeWidth="6" style={{ transition: "stroke 1s ease" }} />
-        <circle cx={cx} cy={cy} r={CENTER_R} fill={card} stroke={cycleComplete ? lime : coral}
-          strokeWidth="3" filter="url(#wh-softGlow)" style={{ transition: "stroke 0.8s ease" }} />
+        <circle cx={cx} cy={cy} r={CENTER_R} fill={card} stroke={cycleComplete ? brightYellow : coral}
+          strokeWidth="3.5" filter="url(#wh-softGlow)" style={{ transition: "stroke 0.8s ease" }} />
         <image
           href={avatarUrls[0]}
           x={cx - CENTER_R + 3} y={cy - CENTER_R + 3}
@@ -397,8 +398,8 @@ const WheelhouseDiagram = () => {
           clipPath="url(#wh-clipCenter)"
           preserveAspectRatio="xMidYMid slice"
         />
-        <circle cx={cx} cy={cy} r={CENTER_R} fill="none" stroke={cycleComplete ? lime : coral}
-          strokeWidth="3" filter={cycleComplete ? "url(#wh-celebGlow)" : "url(#wh-glow)"}
+        <circle cx={cx} cy={cy} r={CENTER_R} fill="none" stroke={cycleComplete ? brightYellow : coral}
+          strokeWidth="3.5" filter={cycleComplete ? "url(#wh-celebGlow)" : "url(#wh-glow)"}
           style={{ transition: "stroke 0.8s ease" }} />
 
         {/* YOU label */}
@@ -407,10 +408,10 @@ const WheelhouseDiagram = () => {
 
         {/* Earnings pill */}
         <rect x={cx - 52} y={cy + 38} width="104" height="32" rx="16"
-          fill={navy} stroke={cycleComplete ? lime : coral} strokeWidth="2"
+          fill={navy} stroke={cycleComplete ? brightYellow : coral} strokeWidth="2"
           style={{ transition: "stroke 0.8s ease" }} />
         <text x={cx} y={cy + 60} textAnchor="middle" fontSize="22" fontWeight="900"
-          fill={cycleComplete ? lime : "hsl(0 0% 100%)"}  fontFamily="monospace"
+          fill={cycleComplete ? brightYellow : "hsl(0 0% 100%)"}  fontFamily="monospace"
           filter="url(#wh-earningsGlow)"
           style={{ transition: "fill 0.8s ease" }}>
           {formatCurrency(Math.round(currentEarnings))}
@@ -420,10 +421,10 @@ const WheelhouseDiagram = () => {
       {/* Completion text — below the SVG */}
       {cycleComplete && celebrationPhase >= 2 && (
         <div className="text-center animate-fade-in mt-2 mb-4">
-          <p className="text-2xl md:text-3xl font-bold tracking-wide" style={{ color: lime }}>
+          <p className="text-2xl md:text-3xl font-bold tracking-wide" style={{ color: brightYellow }}>
             🎉 Wheelhouse Complete!
           </p>
-          <p className="text-lg md:text-xl font-semibold tracking-widest mt-1" style={{ color: lime, opacity: 0.8 }}>
+          <p className="text-lg md:text-xl font-semibold tracking-widest mt-1" style={{ color: brightYellow, opacity: 0.85 }}>
             Möbius Loop Activated.
           </p>
         </div>
