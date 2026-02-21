@@ -410,16 +410,9 @@ const WheelhouseDiagram = () => {
             ? parentPos.y - NODE_R - 32  // above #01
             : parentPos.y + NODE_R + 22; // below #02
 
-          const labelY = parentIdx === 0
-            ? pillY - 16
-            : pillY + 30;
 
           return (
             <g key={`r2-earn-${parentIdx}`} className="animate-fade-in">
-              <text x={pillX} y={labelY} textAnchor="middle" fontSize="10" fontWeight="700"
-                fill={brightYellow} fontFamily="monospace" opacity="0.9">
-                earns 50%
-              </text>
               <rect x={pillX - 44} y={pillY - 12} width="88" height="24" rx="12"
                 fill={navy} stroke={brightYellow} strokeWidth="1.5" opacity="0.95" />
               <text x={pillX} y={pillY + 5} textAnchor="middle" fontSize="12" fontWeight="800"
