@@ -24,8 +24,8 @@ const WheelhouseDiagram = () => {
 
   // #01 top, #02 bottom inside the wheel
   const innerNodes = [
-    { label: "01", avatarIdx: 1, color: aqua, x: cx, y: cy - 78, r: innerNodeR },
-    { label: "02", avatarIdx: 2, color: aqua, x: cx, y: cy + 78, r: innerNodeR },
+    { label: "01", avatarIdx: 1, color: lime, x: cx, y: cy - 78, r: innerNodeR },
+    { label: "02", avatarIdx: 2, color: lime, x: cx, y: cy + 78, r: innerNodeR },
   ];
 
   // #03 top-left, #04 top-right, #05 bottom-left, #06 bottom-right
