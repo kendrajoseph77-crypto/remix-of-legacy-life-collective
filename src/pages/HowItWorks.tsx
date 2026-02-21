@@ -75,7 +75,7 @@ const HowItWorks = () => {
             A 2×2 peer-to-peer crowdfunding platform where 100% of every royalty goes directly to you — the participants. No middlemen. No exceptions.
           </p>
           <Link
-            to="/join"
+            to="/#join"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:scale-105 bg-primary text-primary-foreground"
           >
             Join Us Now <ArrowRight size={16} />
@@ -261,7 +261,7 @@ const HowItWorks = () => {
           <h2 className="text-foreground font-bold text-2xl md:text-3xl mb-3">Your Fastest Way To Wealth!</h2>
           <p className="text-muted-foreground text-sm mb-8">Join thousands who are already receiving — the system is live and waiting for you.</p>
           <Link
-            to="/join"
+            to="/#join"
             className="inline-flex items-center gap-2 px-10 py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:scale-105 bg-primary text-primary-foreground"
           >
             Join Us & Start Receiving <ArrowRight size={16} />

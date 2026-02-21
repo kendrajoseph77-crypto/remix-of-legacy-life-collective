@@ -54,7 +54,7 @@ const Login = () => {
 
               <p className="text-muted-foreground text-xs text-center">
                 Don't have an account?{" "}
-                <Link to="/join" className="text-primary hover:underline font-medium">Join Us</Link>
+                <Link to="/#join" className="text-primary hover:underline font-medium">Join Us</Link>
               </p>
             </form>
           </div>
