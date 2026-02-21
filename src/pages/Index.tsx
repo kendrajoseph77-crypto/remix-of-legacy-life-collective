@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import OrbitalRings from "@/components/OrbitalRings";
 import WheelhouseDiagram from "@/components/WheelhouseDiagram";
 import { useState } from "react";
-import { ArrowRight } from "lucide-react";
+
 import { Link } from "react-router-dom";
 
 const tiers = [
@@ -49,118 +49,76 @@ const Index = () => {
     <div className="min-h-screen bg-background overflow-x-hidden">
       <Navbar />
 
-      {/* ── Hero ── */}
-      <section className="min-h-[60vh] flex flex-col items-center justify-center text-center px-6 pt-32 pb-12 relative overflow-hidden">
+      {/* ── Hero + Activate ── */}
+      <section id="join" className="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-28 pb-12 relative overflow-hidden">
         <OrbitalRings />
-        <div className="relative z-10 max-w-3xl mx-auto">
-          <p className="text-secondary text-sm tracking-[0.35em] uppercase font-semibold mb-10">
-            25 Years of Cooperative Crowdfunding™
-          </p>
-          <a
-            href="#join"
-            className="flex items-center gap-2 px-8 py-3.5 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:opacity-90 bg-primary text-primary-foreground mx-auto w-fit"
-          >
-            Join Us <ArrowRight size={15} />
-          </a>
-        </div>
-      </section>
-
-      {/* ── Activate Your Membership (directly below hero) ── */}
-      <section id="join" className="py-24 bg-card border-y border-border relative overflow-hidden">
         <div className="absolute inset-0 glow-coral-top pointer-events-none" />
-        <div className="max-w-5xl mx-auto px-6 relative">
-          <div className="grid md:grid-cols-3 gap-6 mb-10">
+        <div className="relative z-10 w-full max-w-6xl mx-auto">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-10 tracking-tight">
+            25 Years of Cooperative Crowdfunding™
+          </h1>
+
+          {/* Tier Cards */}
+          <div className="grid md:grid-cols-3 gap-4 mb-6">
             {tiers.map((tier, i) => (
               <div
                 key={i}
                 onClick={() => setSelected(i)}
-                className={`rounded-xl p-7 cursor-pointer transition-all duration-300 ${tier.colorClass} relative ${
+                className={`rounded-xl p-5 cursor-pointer transition-all duration-300 ${tier.colorClass} relative ${
                   selected === i
                     ? `ring-2 ${tier.ringColor} scale-[1.02]`
                     : "hover:scale-[1.01]"
                 }`}
               >
-                <p className="text-muted-foreground text-xs tracking-widest uppercase mb-2">{tier.name}</p>
-                <p className="text-4xl font-bold text-foreground mb-1">{tier.entry}</p>
-                <p className="text-muted-foreground text-xs mb-6">one-time contribution</p>
-                <div className="border-t border-border/50 pt-5">
-                  <p className="text-muted-foreground text-xs uppercase tracking-wider mb-1">You receive per cycle</p>
-                  <p className={`text-2xl font-bold ${tier.receiveColor}`}>{tier.receive}</p>
+                <p className="text-muted-foreground text-xs tracking-widest uppercase mb-1">{tier.name}</p>
+                <p className="text-3xl font-bold text-foreground mb-0.5">{tier.entry}</p>
+                <p className="text-muted-foreground text-xs mb-4">one-time contribution</p>
+                <div className="border-t border-border/50 pt-3">
+                  <p className="text-muted-foreground text-xs uppercase tracking-wider mb-0.5">You receive per cycle</p>
+                  <p className={`text-xl font-bold ${tier.receiveColor}`}>{tier.receive}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Combined total callout */}
-          <div className="rounded-xl p-6 text-center border border-secondary/20 bg-background/40 mb-10">
-            <p className="text-4xl font-bold text-foreground">$52,500</p>
-            <p className="text-muted-foreground text-sm mt-2">earned every cycle when you are active on all 3 levels simultaneously</p>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center mb-14">
-            {[
-              { value: "100%", label: "Peer-to-Peer", color: "text-secondary" },
-              { value: "50/50", label: "Always", color: "text-primary" },
-              { value: "3", label: "Income Levels", color: "text-secondary" },
-              { value: "$52.5K+", label: "Per Cycle", color: "text-primary" },
-            ].map((s, i) => (
-              <div key={i}>
-                <p className={`text-3xl font-bold mb-1 ${s.color}`}>{s.value}</p>
-                <p className="text-muted-foreground text-xs tracking-widest uppercase">{s.label}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Join Form */}
-          <div className="max-w-lg mx-auto rounded-xl p-8 bg-background border border-border">
-            <h3 className="text-2xl font-bold mb-1 text-secondary text-center">Activate Your Membership</h3>
-            {selected !== null && (
-              <p className="text-muted-foreground text-sm text-center mb-8">
-                {tiers[selected].name} — {tiers[selected].entry} entry
-              </p>
-            )}
-            {selected === null && <div className="mb-8" />}
-
-            <form className="flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="text-xs text-muted-foreground tracking-wide uppercase block mb-1.5">First Name</label>
-                  <input type="text" placeholder="John" className="w-full px-4 py-3 rounded-lg bg-muted/20 border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
-                </div>
-                <div>
-                  <label className="text-xs text-muted-foreground tracking-wide uppercase block mb-1.5">Last Name</label>
-                  <input type="text" placeholder="Smith" className="w-full px-4 py-3 rounded-lg bg-muted/20 border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
+          {/* Compact Wide Join Form */}
+          <div className="w-full rounded-xl p-6 bg-card border border-border">
+            <div className="flex flex-col md:flex-row md:items-end gap-4">
+              <div className="flex-1">
+                <h3 className="text-xl font-bold mb-3 text-secondary text-left">
+                  Activate Your Membership
+                  {selected !== null && (
+                    <span className="text-muted-foreground text-sm font-normal ml-2">
+                      {tiers[selected].name} — {tiers[selected].entry}
+                    </span>
+                  )}
+                </h3>
+                <form className="grid grid-cols-2 md:grid-cols-5 gap-3" onSubmit={(e) => e.preventDefault()}>
+                  <input type="text" placeholder="First Name" className="px-3 py-2.5 rounded-lg bg-muted/20 border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
+                  <input type="text" placeholder="Last Name" className="px-3 py-2.5 rounded-lg bg-muted/20 border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
+                  <input type="email" placeholder="Email" className="px-3 py-2.5 rounded-lg bg-muted/20 border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
+                  <input type="text" placeholder="Username" className="px-3 py-2.5 rounded-lg bg-muted/20 border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
+                  <input type="text" placeholder="Referral Code" className="px-3 py-2.5 rounded-lg bg-muted/20 border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
+                  <button
+                    type="submit"
+                    className="col-span-2 md:col-span-5 py-3 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:opacity-90 bg-primary text-primary-foreground"
+                  >
+                    Confirm & Join
+                  </button>
+                </form>
+                <div className="flex items-center justify-between mt-3">
+                  <p className="text-muted-foreground text-xs">
+                    By joining you agree to our{" "}
+                    <a href="#" className="text-primary hover:underline">Terms</a>{" "}and{" "}
+                    <a href="#" className="text-primary hover:underline">Privacy Policy</a>.
+                  </p>
+                  <p className="text-muted-foreground text-sm">
+                    Existing member?{" "}
+                    <Link to="/login" className="text-primary hover:underline font-medium">Login here</Link>
+                  </p>
                 </div>
               </div>
-              <div>
-                <label className="text-xs text-muted-foreground tracking-wide uppercase block mb-1.5">Email</label>
-                <input type="email" placeholder="you@example.com" className="w-full px-4 py-3 rounded-lg bg-muted/20 border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
-              </div>
-              <div>
-                <label className="text-xs text-muted-foreground tracking-wide uppercase block mb-1.5">Username</label>
-                <input type="text" placeholder="yourname" className="w-full px-4 py-3 rounded-lg bg-muted/20 border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
-              </div>
-              <div>
-                <label className="text-xs text-muted-foreground tracking-wide uppercase block mb-1.5">Referral Code <span className="normal-case">(optional)</span></label>
-                <input type="text" placeholder="Inviter's code" className="w-full px-4 py-3 rounded-lg bg-muted/20 border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
-              </div>
-              <button
-                type="submit"
-                className="mt-2 w-full py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:opacity-90 bg-primary text-primary-foreground"
-              >
-                Confirm & Join
-              </button>
-              <p className="text-muted-foreground text-xs text-center">
-                By joining you agree to our{" "}
-                <a href="#" className="text-primary hover:underline">Terms</a>{" "}and{" "}
-                <a href="#" className="text-primary hover:underline">Privacy Policy</a>.
-              </p>
-              <p className="text-muted-foreground text-sm text-center mt-2">
-                Existing member?{" "}
-                <Link to="/login" className="text-primary hover:underline font-medium">Login here</Link>
-              </p>
-            </form>
+            </div>
           </div>
         </div>
       </section>
