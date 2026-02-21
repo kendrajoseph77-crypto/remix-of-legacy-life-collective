@@ -48,7 +48,10 @@
     --indigo: 220 50% 12%;
     --slate: 215 45% 16%;
     --cool-grey: 210 20% 60%;
-    --off-white: 300 100% 100%;
+    --off-white: 220 20% 95%;
+    --gold: 38 70% 60%;
+    --gold-light: 38 65% 75%;
+    --champagne: 35 40% 80%;
 
     --dark-surface: 215 45% 16%;
     --darker-surface: 220 50% 12%;
@@ -80,9 +83,9 @@
 }
 
 @layer utilities {
-  /* Royal Blue gradient for headlines */
+  /* Gold gradient for premium headlines */
   .gold-gradient {
-    background: linear-gradient(135deg, hsl(229 77% 55%), hsl(229 90% 75%), hsl(229 77% 55%));
+    background: linear-gradient(135deg, hsl(38 70% 60%), hsl(38 65% 75%), hsl(38 70% 60%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -97,7 +100,7 @@
   }
 
   .lime-gradient {
-    background: linear-gradient(135deg, hsl(229 90% 75%), hsl(229 100% 85%));
+    background: linear-gradient(135deg, hsl(38 65% 75%), hsl(35 40% 80%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -139,21 +142,21 @@
     border: 1px solid hsl(215 35% 28% / 0.6);
   }
 
-  /* Tier: Gold → Royal Blue tinted */
+  /* Tier: Gold — warm gold tinted */
   .tier-gold {
-    background: linear-gradient(135deg, hsl(229 77% 55% / 0.18), hsl(229 77% 55% / 0.06));
-    border: 1px solid hsl(229 77% 55% / 0.45);
+    background: linear-gradient(135deg, hsl(215 45% 17%), hsl(215 42% 14%));
+    border: 1px solid hsl(38 70% 60% / 0.25);
   }
 
-  /* Tier: Platinum → Deep Blue tinted */
+  /* Tier: Platinum → cool silver-blue tinted */
   .tier-platinum {
-    background: linear-gradient(135deg, hsl(229 77% 45% / 0.25), hsl(229 77% 45% / 0.10));
-    border: 1px solid hsl(229 77% 45% / 0.5);
+    background: linear-gradient(135deg, hsl(215 45% 18%), hsl(215 42% 15%));
+    border: 1px solid hsl(210 40% 65% / 0.3);
   }
 
-  /* Tier: Diamond → Bright Blue tinted */
+  /* Tier: Diamond → premium warm glow */
   .tier-diamond {
-    background: linear-gradient(135deg, hsl(229 90% 75% / 0.20), hsl(229 90% 75% / 0.07));
-    border: 1px solid hsl(229 90% 75% / 0.50);
+    background: linear-gradient(135deg, hsl(215 45% 19%), hsl(215 42% 16%));
+    border: 1px solid hsl(38 65% 75% / 0.35);
   }
 }

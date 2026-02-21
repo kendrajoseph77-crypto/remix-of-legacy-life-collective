@@ -40,7 +40,7 @@ const Navbar = () => {
                 href={link.path}
                 className="px-6 py-2 rounded-sm text-sm font-semibold tracking-widest uppercase transition-all duration-300 hover:opacity-90"
                 style={{
-                  background: "linear-gradient(135deg, hsl(229 77% 55%), hsl(229 90% 65%))",
+                  background: "linear-gradient(135deg, hsl(38 70% 55%), hsl(38 65% 65%))",
                   color: "hsl(300 100% 100%)",
                 }}
               >

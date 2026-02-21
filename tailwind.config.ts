@@ -65,6 +65,9 @@ export default {
         slate: "hsl(var(--slate))",
         "cool-grey": "hsl(var(--cool-grey))",
         "off-white": "hsl(var(--off-white))",
+        gold: "hsl(var(--gold))",
+        "gold-light": "hsl(var(--gold-light))",
+        champagne: "hsl(var(--champagne))",
       },
       borderRadius: {
         lg: "var(--radius)",
