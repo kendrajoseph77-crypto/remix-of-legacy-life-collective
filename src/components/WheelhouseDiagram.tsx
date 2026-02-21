@@ -250,17 +250,16 @@ const WheelhouseDiagram = () => {
     const midX = (fromX + toX) / 2;
     const midY = (fromY + toY) / 2;
     const angle = Math.atan2(toY - fromY, toX - fromX);
-    // Push label further out perpendicular to the connector so it doesn't overlap the center earnings pill
-    const perpDist = 40;
+    // Push label further out perpendicular to the connector so it doesn't overlap
+    const perpDist = 50;
     const perpX = midX + perpDist * Math.cos(angle + Math.PI / 2);
     const perpY = midY + perpDist * Math.sin(angle + Math.PI / 2);
 
     return (
       <g className="animate-fade-in">
-        <rect x={perpX - 42} y={perpY - 14} width="84" height="28" rx="14"
-          fill={gold} opacity="0.95" filter="url(#wh-earningsGlow)" />
-        <text x={perpX} y={perpY + 6} textAnchor="middle" fontSize="14" fontWeight="900"
-          fill={navy} fontFamily="monospace" letterSpacing="0.05em">
+        <text x={perpX} y={perpY + 6} textAnchor="middle" fontSize="16" fontWeight="900"
+          fill={brightYellow} fontFamily="monospace" letterSpacing="0.05em"
+          filter="url(#wh-earningsGlow)">
           50% → YOU
         </text>
       </g>
