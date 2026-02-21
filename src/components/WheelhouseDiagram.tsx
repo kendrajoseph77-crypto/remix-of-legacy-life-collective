@@ -250,8 +250,10 @@ const WheelhouseDiagram = () => {
     const midX = (fromX + toX) / 2;
     const midY = (fromY + toY) / 2;
     const angle = Math.atan2(toY - fromY, toX - fromX);
-    const perpX = midX + 14 * Math.cos(angle + Math.PI / 2);
-    const perpY = midY + 14 * Math.sin(angle + Math.PI / 2);
+    // Push label further out perpendicular to the connector so it doesn't overlap the center earnings pill
+    const perpDist = 40;
+    const perpX = midX + perpDist * Math.cos(angle + Math.PI / 2);
+    const perpY = midY + perpDist * Math.sin(angle + Math.PI / 2);
 
     return (
       <g className="animate-fade-in">
