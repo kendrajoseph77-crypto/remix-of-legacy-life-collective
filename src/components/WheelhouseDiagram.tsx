@@ -243,24 +243,23 @@ const WheelhouseDiagram = () => {
     );
   };
 
+  // Fixed label positions relative to each node
+  // stepIdx 0=#01(above), 1=#02(below), 2=#03(below), 3=#04(below), 4=#05(above), 5=#06(above)
+  const labelAbove = [true, false, false, false, true, true];
+
   const renderFlowLabel = (
-    fromX: number, fromY: number, toX: number, toY: number, stepIdx: number
+    nodeX: number, nodeY: number, stepIdx: number
   ) => {
     if (showContribution !== stepIdx) return null;
-    const midX = (fromX + toX) / 2;
-    const midY = (fromY + toY) / 2;
-    const angle = Math.atan2(toY - fromY, toX - fromX);
-    // Push label further out perpendicular to the connector so it doesn't overlap
-    const perpDist = 50;
-    const perpX = midX + perpDist * Math.cos(angle + Math.PI / 2);
-    const perpY = midY + perpDist * Math.sin(angle + Math.PI / 2);
+    const above = labelAbove[stepIdx];
+    const labelY = above ? nodeY - NODE_R - 14 : nodeY + NODE_R + 22;
 
     return (
       <g className="animate-fade-in">
-        <text x={perpX} y={perpY + 6} textAnchor="middle" fontSize="16" fontWeight="900"
+        <text x={nodeX} y={labelY} textAnchor="middle" fontSize="16" fontWeight="900"
           fill={brightYellow} fontFamily="monospace" letterSpacing="0.05em"
           filter="url(#wh-earningsGlow)">
-          50% → YOU
+          50%
         </text>
       </g>
     );
@@ -418,13 +417,13 @@ const WheelhouseDiagram = () => {
         {/* Flow labels — rendered last so they appear on top of everything */}
         {ring2Nodes.map((n, i) => {
           const pos = getNodePos(2, n.angle);
-          return <g key={`flow-r2-${i}`}>{renderFlowLabel(pos.x, pos.y, cx, cy, i)}</g>;
+          return <g key={`flow-r2-${i}`}>{renderFlowLabel(pos.x, pos.y, i)}</g>;
         })}
         {ring3Nodes.map((n, i) => {
           const step = activationOrder.find(a => a.ring === 3 && a.idx === i)!;
           const stepIdx = activationOrder.indexOf(step);
           const childPos = getNodePos(3, n.angle);
-          return <g key={`flow-r3-${i}`}>{renderFlowLabel(childPos.x, childPos.y, cx, cy, stepIdx)}</g>;
+          return <g key={`flow-r3-${i}`}>{renderFlowLabel(childPos.x, childPos.y, stepIdx)}</g>;
         })}
       </svg>
 
