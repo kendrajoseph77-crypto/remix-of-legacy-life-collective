@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import OrbitalRings from "@/components/OrbitalRings";
 import WheelhouseDiagram from "@/components/WheelhouseDiagram";
 import { useState } from "react";
+import anniversarySeal from "@/assets/anniversary-seal.jpeg";
 
 import { Link } from "react-router-dom";
 
@@ -125,6 +126,14 @@ const Index = () => {
             </div>
           </div>
         </div>
+      </section>
+      {/* ── Anniversary Seal ── */}
+      <section className="py-16 flex justify-center">
+        <img
+          src={anniversarySeal}
+          alt="David T. Rosen — 25th Anniversary — Creator of the First Online Crowdfunding System — 2001–2026"
+          className="w-48 md:w-64 lg:w-72 drop-shadow-[0_0_40px_hsl(38_70%_60%_/_0.25)]"
+        />
       </section>
 
       {/* ── How It Works ── */}
