@@ -10,47 +10,50 @@ const avatarUrls = [
   "https://randomuser.me/api/portraits/men/36.jpg",
 ];
 
-// Math: 6 members × $17,500 contribution × 50% to YOU = $52,500
+// Math
 const CONTRIBUTION_PER_MEMBER = 17500;
 const YOU_CUT_PER_MEMBER = CONTRIBUTION_PER_MEMBER / 2;
 const MEMBER_COUNT = 6;
 
-// Layout
+// Layout — 3 concentric rings
 const cx = 250, cy = 260;
-const CENTER_R = 54;
-const WHEEL_R = 175; // single ring for all 6 members
+const CENTER_R = 50;
+const RING2_R = 130;  // #01, #02
+const RING3_R = 210;  // #03–#06
 const NODE_R = 30;
+
 const navy = "hsl(220 50% 12%)";
 const card = "hsl(215 45% 16%)";
+const coral = "hsl(30 90% 65%)";
+const lime = "hsl(160 70% 55%)";
+const royal = "hsl(210 80% 70%)";
+const brightYellow = "hsl(45 100% 65%)";
 
-// All 6 members evenly spaced around the wheel, starting from top
-const memberAngles = Array.from({ length: 6 }, (_, i) => -Math.PI / 2 + (i * 2 * Math.PI) / 6);
-
-// Colors per member: #01/#02 teal, #03-#06 sky
-const memberColors = [
-  "hsl(160 70% 55%)", // #01
-  "hsl(160 70% 55%)", // #02
-  "hsl(210 80% 70%)", // #03
-  "hsl(210 80% 70%)", // #04
-  "hsl(210 80% 70%)", // #05
-  "hsl(210 80% 70%)", // #06
+// Ring 2: #01 top, #02 bottom
+const ring2Nodes = [
+  { label: "01", angle: -Math.PI / 2, avatarIdx: 1 },
+  { label: "02", angle: Math.PI / 2, avatarIdx: 2 },
 ];
 
-const coral = "hsl(30 90% 65%)";
-const brightYellow = "hsl(45 100% 65%)";
-const lime = "hsl(160 70% 55%)";
+// Ring 3: spread evenly across full circle — 4 nodes at 90° intervals, offset so they don't overlap ring2
+const ring3Nodes = [
+  { label: "03", angle: -Math.PI / 4, avatarIdx: 3, parentIdx: 0 },      // upper right — child of #01
+  { label: "04", angle: -3 * Math.PI / 4, avatarIdx: 4, parentIdx: 0 },  // upper left — child of #01
+  { label: "05", angle: Math.PI / 4, avatarIdx: 5, parentIdx: 1 },       // lower right — child of #02
+  { label: "06", angle: 3 * Math.PI / 4, avatarIdx: 6, parentIdx: 1 },   // lower left — child of #02
+];
 
-// Activation order: #01, #02, #03, #04, #05, #06
-const activationOrder = [0, 1, 2, 3, 4, 5];
+// Activation order: #01, #02, then #03, #04 (by #01), then #05, #06 (by #02)
+// stepIdx: 0=#01, 1=#02, 2=#03, 3=#04, 4=#05, 5=#06
 
-// Helper: SVG arc path for a segment between two angles on a circle
-const arcPath = (cxp: number, cyp: number, r: number, startAngle: number, endAngle: number) => {
+// Arc helper
+const describeArc = (cxp: number, cyp: number, r: number, startAngle: number, endAngle: number) => {
   const x1 = cxp + r * Math.cos(startAngle);
   const y1 = cyp + r * Math.sin(startAngle);
   const x2 = cxp + r * Math.cos(endAngle);
   const y2 = cyp + r * Math.sin(endAngle);
-  const largeArc = endAngle - startAngle > Math.PI ? 1 : 0;
-  return `M ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2}`;
+  const large = endAngle - startAngle > Math.PI ? 1 : 0;
+  return `M ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2}`;
 };
 
 const WheelhouseDiagram = () => {
@@ -153,86 +156,127 @@ const WheelhouseDiagram = () => {
   const formatCurrency = (val: number) =>
     "$" + val.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
 
-  const getNodePos = (angle: number) => ({
-    x: cx + WHEEL_R * Math.cos(angle),
-    y: cy + WHEEL_R * Math.sin(angle),
+  const getPos = (r: number, angle: number) => ({
+    x: cx + r * Math.cos(angle),
+    y: cy + r * Math.sin(angle),
   });
 
-  // Render wheel arc segments — each segment is the arc between two adjacent members
-  const segmentAngleSpan = (2 * Math.PI) / MEMBER_COUNT;
-  const segmentGap = 0.06; // small gap between segments
-
-  const renderSegments = () => {
-    return activationOrder.map((memberIdx) => {
-      const startAngle = memberAngles[memberIdx] - segmentAngleSpan / 2 + segmentGap / 2;
-      const endAngle = memberAngles[memberIdx] + segmentAngleSpan / 2 - segmentGap / 2;
-      const isActive = memberIdx < activeMembers;
-      const color = memberColors[memberIdx];
-
+  // Ring 2 arc segments: each member owns a half of the ring
+  const renderRing2Arcs = () => {
+    const gap = 0.08;
+    // #01 owns top half, #02 owns bottom half
+    const arcs = [
+      { startAngle: -Math.PI + gap, endAngle: 0 - gap, stepIdx: 0, color: lime },
+      { startAngle: 0 + gap, endAngle: Math.PI - gap, stepIdx: 1, color: lime },
+    ];
+    return arcs.map(({ startAngle, endAngle, stepIdx, color }) => {
+      const active = stepIdx < activeMembers;
       return (
         <path
-          key={`seg-${memberIdx}`}
-          d={arcPath(cx, cy, WHEEL_R, startAngle, endAngle)}
+          key={`r2arc-${stepIdx}`}
+          d={describeArc(cx, cy, RING2_R, startAngle, endAngle)}
           fill="none"
-          stroke={isActive ? color : "hsl(210 30% 25%)"}
-          strokeWidth={isActive ? 6 : 3}
+          stroke={active ? color : "hsl(210 30% 22%)"}
+          strokeWidth={active ? 5 : 2.5}
           strokeLinecap="round"
           style={{
             transition: "stroke 0.6s ease, stroke-width 0.4s ease",
-            filter: isActive ? "drop-shadow(0 0 6px " + color + ")" : "none",
+            filter: active ? `drop-shadow(0 0 6px ${color})` : "none",
           }}
         />
       );
     });
   };
 
-  // Render spokes from each member to center
-  const renderSpokes = () => {
-    return activationOrder.map((memberIdx) => {
-      const pos = getNodePos(memberAngles[memberIdx]);
-      const isActive = memberIdx < activeMembers;
-      const angle = Math.atan2(cy - pos.y, cx - pos.x);
-      const sx = pos.x + (NODE_R + 4) * Math.cos(angle);
-      const sy = pos.y + (NODE_R + 4) * Math.sin(angle);
-      const ex = cx - (CENTER_R + 8) * Math.cos(angle);
-      const ey = cy - (CENTER_R + 8) * Math.sin(angle);
-
+  // Ring 3 arc segments: each member owns a quarter
+  const renderRing3Arcs = () => {
+    const gap = 0.06;
+    // Map each ring3 node to its arc segment (quarter circle centered on its angle)
+    const quarterSpan = Math.PI / 2;
+    return ring3Nodes.map((n, i) => {
+      const stepIdx = i + 2; // steps 2,3,4,5
+      const active = stepIdx < activeMembers;
+      const startAngle = n.angle - quarterSpan / 2 + gap;
+      const endAngle = n.angle + quarterSpan / 2 - gap;
       return (
-        <line
-          key={`spoke-${memberIdx}`}
-          x1={sx} y1={sy} x2={ex} y2={ey}
-          stroke={isActive ? "hsl(160 70% 55% / 0.5)" : "hsl(210 30% 30% / 0.15)"}
-          strokeWidth={showContribution === memberIdx ? 3 : 1.5}
-          strokeDasharray={isActive ? "none" : "4 4"}
-          markerEnd={isActive ? "url(#arrow-coral)" : undefined}
-          style={{ transition: "stroke 0.5s ease, stroke-width 0.3s ease" }}
+        <path
+          key={`r3arc-${i}`}
+          d={describeArc(cx, cy, RING3_R, startAngle, endAngle)}
+          fill="none"
+          stroke={active ? royal : "hsl(210 30% 20%)"}
+          strokeWidth={active ? 5 : 2.5}
+          strokeLinecap="round"
+          style={{
+            transition: "stroke 0.6s ease, stroke-width 0.4s ease",
+            filter: active ? `drop-shadow(0 0 6px ${royal})` : "none",
+          }}
         />
       );
     });
   };
 
-  const renderNode = (memberIdx: number) => {
-    const angle = memberAngles[memberIdx];
-    const { x, y } = getNodePos(angle);
-    const label = String(memberIdx + 1).padStart(2, "0");
-    const clipId = `wh-clip-${label}`;
-    const color = memberColors[memberIdx];
-    const isActive = memberIdx < activeMembers;
-    const opacity = isActive ? 1 : 0.25;
+  // Spokes: ring2 → center
+  const renderRing2Spokes = () =>
+    ring2Nodes.map((n, i) => {
+      const pos = getPos(RING2_R, n.angle);
+      const active = i < activeMembers;
+      const angle = Math.atan2(cy - pos.y, cx - pos.x);
+      const sx = pos.x + (NODE_R + 4) * Math.cos(angle);
+      const sy = pos.y + (NODE_R + 4) * Math.sin(angle);
+      const ex = cx - (CENTER_R + 8) * Math.cos(angle);
+      const ey = cy - (CENTER_R + 8) * Math.sin(angle);
+      return (
+        <line key={`spoke2-${i}`}
+          x1={sx} y1={sy} x2={ex} y2={ey}
+          stroke={active ? "hsl(160 70% 55% / 0.5)" : "hsl(210 30% 30% / 0.12)"}
+          strokeWidth={showContribution === i ? 3 : 1.5}
+          strokeDasharray={active ? "none" : "4 4"}
+          markerEnd={active ? "url(#arrow-coral)" : undefined}
+          style={{ transition: "stroke 0.5s ease, stroke-width 0.3s ease" }}
+        />
+      );
+    });
 
+  // Spokes: ring3 → parent ring2 node
+  const renderRing3Spokes = () =>
+    ring3Nodes.map((n, i) => {
+      const stepIdx = i + 2;
+      const active = stepIdx < activeMembers;
+      const childPos = getPos(RING3_R, n.angle);
+      const parentPos = getPos(RING2_R, ring2Nodes[n.parentIdx].angle);
+      const angle = Math.atan2(parentPos.y - childPos.y, parentPos.x - childPos.x);
+      const sx = childPos.x + (NODE_R + 4) * Math.cos(angle);
+      const sy = childPos.y + (NODE_R + 4) * Math.sin(angle);
+      const ex = parentPos.x - (NODE_R + 8) * Math.cos(angle);
+      const ey = parentPos.y - (NODE_R + 8) * Math.sin(angle);
+      return (
+        <line key={`spoke3-${i}`}
+          x1={sx} y1={sy} x2={ex} y2={ey}
+          stroke={active ? "hsl(210 80% 70% / 0.45)" : "hsl(210 30% 30% / 0.1)"}
+          strokeWidth={showContribution === stepIdx ? 3 : 1.5}
+          strokeDasharray={active ? "none" : "4 4"}
+          markerEnd={active ? "url(#arrow-lime)" : undefined}
+          style={{ transition: "stroke 0.5s ease, stroke-width 0.3s ease" }}
+        />
+      );
+    });
+
+  const renderMemberNode = (
+    x: number, y: number, label: string, avatarIdx: number,
+    color: string, isActive: boolean, stepIdx: number, outAngle: number
+  ) => {
+    const clipId = `wh-clip-${label}`;
+    const opacity = isActive ? 1 : 0.2;
     const badgeAngle = -Math.PI / 4;
     const badgeX = x + (NODE_R - 1) * Math.cos(badgeAngle);
     const badgeY = y + (NODE_R - 1) * Math.sin(badgeAngle);
 
-    // Contribution pill — pushed outward from center
-    const outAngle = angle;
-    const contribX = x + (NODE_R + 24) * Math.cos(outAngle);
-    const contribY = y + (NODE_R + 24) * Math.sin(outAngle);
+    const contribX = x + (NODE_R + 22) * Math.cos(outAngle);
+    const contribY = y + (NODE_R + 22) * Math.sin(outAngle);
 
-    // 50% label position
-    const labelOutward = NODE_R + 50;
-    const labelX = x + labelOutward * Math.cos(outAngle);
-    const labelY = y + labelOutward * Math.sin(outAngle);
+    const labelDist = NODE_R + 48;
+    const labelX = x + labelDist * Math.cos(outAngle);
+    const labelY = y + labelDist * Math.sin(outAngle);
 
     return (
       <g key={clipId}>
@@ -242,7 +286,7 @@ const WheelhouseDiagram = () => {
           </clipPath>
           <circle cx={x} cy={y} r={NODE_R} fill={card} stroke={color} strokeWidth="2.5" />
           <image
-            href={avatarUrls[memberIdx + 1]}
+            href={avatarUrls[avatarIdx]}
             x={x - NODE_R + 3} y={y - NODE_R + 3}
             width={(NODE_R - 3) * 2} height={(NODE_R - 3) * 2}
             clipPath={`url(#${clipId})`}
@@ -255,7 +299,7 @@ const WheelhouseDiagram = () => {
           </text>
         </g>
 
-        {showContribution === memberIdx && (
+        {showContribution === stepIdx && (
           <g className="animate-fade-in">
             <rect x={contribX - 36} y={contribY - 10} width="72" height="20" rx="10"
               fill={navy} stroke={color} strokeWidth="1.5" opacity="0.95" />
@@ -266,7 +310,7 @@ const WheelhouseDiagram = () => {
           </g>
         )}
 
-        {showContribution === memberIdx && (
+        {showContribution === stepIdx && (
           <g className="animate-fade-in">
             <text x={labelX} y={labelY + 5} textAnchor="middle" fontSize="15" fontWeight="900"
               fill={brightYellow} fontFamily="monospace" letterSpacing="0.05em"
@@ -306,6 +350,9 @@ const WheelhouseDiagram = () => {
           <marker id="arrow-coral" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
             <polygon points="0 0, 8 4, 0 8" fill={coral} opacity="0.9" />
           </marker>
+          <marker id="arrow-lime" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <polygon points="0 0, 8 4, 0 8" fill={lime} opacity="0.9" />
+          </marker>
           <clipPath id="wh-clipCenter">
             <circle cx={cx} cy={cy} r={CENTER_R - 3} />
           </clipPath>
@@ -319,21 +366,33 @@ const WheelhouseDiagram = () => {
         {/* Celebration glow */}
         {cycleComplete && (
           <>
-            <circle cx={cx} cy={cy} r={WHEEL_R + 30} fill="url(#celebGrad)"
+            <circle cx={cx} cy={cy} r={RING3_R + 30} fill="url(#celebGrad)"
               style={{ transition: "opacity 1s ease", opacity: celebrationPhase >= 1 ? 1 : 0 }} />
-            <circle cx={cx} cy={cy} r={WHEEL_R + 8} fill="none" stroke={lime} strokeWidth="2"
+            <circle cx={cx} cy={cy} r={RING3_R + 8} fill="none" stroke={lime} strokeWidth="2"
               style={{ transition: "opacity 0.8s ease", opacity: celebrationPhase >= 2 ? 0.4 : 0 }} />
           </>
         )}
 
-        {/* Wheel arc segments */}
-        {renderSegments()}
+        {/* Ring arcs */}
+        {renderRing2Arcs()}
+        {renderRing3Arcs()}
 
         {/* Spokes */}
-        {renderSpokes()}
+        {renderRing2Spokes()}
+        {renderRing3Spokes()}
 
-        {/* Member nodes */}
-        {activationOrder.map((idx) => renderNode(idx))}
+        {/* Ring 3 nodes (#03–#06) */}
+        {ring3Nodes.map((n, i) => {
+          const stepIdx = i + 2;
+          const pos = getPos(RING3_R, n.angle);
+          return renderMemberNode(pos.x, pos.y, n.label, n.avatarIdx, royal, stepIdx < activeMembers, stepIdx, n.angle);
+        })}
+
+        {/* Ring 2 nodes (#01, #02) */}
+        {ring2Nodes.map((n, i) => {
+          const pos = getPos(RING2_R, n.angle);
+          return renderMemberNode(pos.x, pos.y, n.label, n.avatarIdx, lime, i < activeMembers, i, n.angle);
+        })}
 
         {/* Center YOU */}
         <circle cx={cx} cy={cy} r={CENTER_R + 5} fill="none"
