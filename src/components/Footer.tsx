@@ -18,7 +18,7 @@ const Footer = () => {
 
           {/* Legal */}
           <div>
-            <h4 className="text-foreground font-semibold mb-4 tracking-widest uppercase text-xs text-primary">Legal</h4>
+            <h4 className="text-foreground font-semibold mb-4 tracking-widest uppercase text-xs text-gold">Legal</h4>
             <div className="flex flex-col gap-3">
               <a href="#" className="text-muted-foreground hover:text-foreground text-sm transition-colors">Terms & Conditions</a>
               <a href="#" className="text-muted-foreground hover:text-foreground text-sm transition-colors">Privacy Policy</a>
