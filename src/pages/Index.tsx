@@ -138,39 +138,39 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── How It Works ── */}
-      <section id="how-it-works" className="py-24 max-w-6xl mx-auto px-6">
-        <div className="text-center mb-14">
-          <p className="text-gold text-xs tracking-[0.4em] uppercase mb-4">The Process</p>
-          <h2 className="text-4xl md:text-5xl font-bold">3 Steps. Infinite Cycles.</h2>
-        </div>
-
-        {/* Steps */}
-        <div className="grid md:grid-cols-3 gap-6 mb-20">
-          {steps.map((step, i) => (
-            <div key={i} className="rounded-xl p-8 bg-card border border-border">
-              <div className="text-5xl font-bold mb-5 text-gold/20">{step.n}</div>
-              <h3 className="text-lg font-bold mb-2 text-foreground">{step.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Wheelhouse Diagram */}
-        <div className="flex flex-col md:flex-row items-center gap-12">
-          <div className="flex-1">
-            <p className="text-gold text-xs tracking-[0.4em] uppercase font-medium mb-4">The Mobius Loop</p>
-            <h3 className="text-3xl md:text-4xl font-bold mb-5 leading-tight">
+      {/* ── Mobius Loop / Wheelhouse ── */}
+      <section id="how-it-works" className="py-16 max-w-6xl mx-auto px-6">
+        <div className="flex flex-col md:flex-row items-center gap-8">
+          <div className="md:w-[45%]">
+            <p className="text-gold text-xs tracking-[0.4em] uppercase font-medium mb-3">The Mobius Loop</p>
+            <h3 className="text-2xl md:text-3xl font-bold mb-4 leading-tight">
               Your Wheelhouse.<br />
               <span className="text-muted-foreground">Always in Motion.</span>
             </h3>
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="text-muted-foreground text-sm leading-relaxed">
               At the center sits <span className="text-foreground font-semibold">you</span>. Your Wheelhouse fills with 6 participants — 2 you invite directly, and 4 who join through your team. The moment it's full, you receive <span className="text-gold font-semibold">50% of the pool</span> and a brand-new Wheelhouse opens automatically.
             </p>
           </div>
-          <div className="flex-1">
+          <div className="md:w-[55%]">
             <WheelhouseDiagram />
           </div>
+        </div>
+      </section>
+
+      {/* ── The Process ── */}
+      <section className="py-12 max-w-6xl mx-auto px-6">
+        <p className="text-gold text-xs tracking-[0.4em] uppercase mb-3 text-center">The Process</p>
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">3 Steps. Infinite Cycles.</h2>
+        <div className="grid md:grid-cols-3 gap-4">
+          {steps.map((step, i) => (
+            <div key={i} className="rounded-lg p-5 bg-card border border-border">
+              <div className="flex items-baseline gap-3 mb-1">
+                <span className="text-2xl font-bold text-gold/25">{step.n}</span>
+                <h3 className="text-base font-bold text-foreground">{step.title}</h3>
+              </div>
+              <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 
