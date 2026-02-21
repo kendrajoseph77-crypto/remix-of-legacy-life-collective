@@ -12,57 +12,48 @@ const avatarUrls = [
 
 // Math: 6 members × $17,500 contribution × 50% to YOU = $52,500
 const CONTRIBUTION_PER_MEMBER = 17500;
-const YOU_CUT_PER_MEMBER = CONTRIBUTION_PER_MEMBER / 2; // $8,750
+const YOU_CUT_PER_MEMBER = CONTRIBUTION_PER_MEMBER / 2;
 const MEMBER_COUNT = 6;
-const FINAL_EARNINGS = MEMBER_COUNT * YOU_CUT_PER_MEMBER; // $52,500
 
-// Ring radii
-const CENTER_R = 58;
-const RING2_R = 135; // #01, #02
-const RING3_R = 200; // #03–#06
-const NODE_R = 34;
-
-// Positions
+// Layout
 const cx = 250, cy = 260;
+const CENTER_R = 54;
+const WHEEL_R = 175; // single ring for all 6 members
+const NODE_R = 30;
+const navy = "hsl(220 50% 12%)";
+const card = "hsl(215 45% 16%)";
 
-// Ring 2: #01 top, #02 bottom
-const ring2Nodes = [
-  { label: "01", angle: -Math.PI / 2, avatarIdx: 1, activates: [0, 1] }, // activates #03, #04
-  { label: "02", angle: Math.PI / 2, avatarIdx: 2, activates: [2, 3] },  // activates #05, #06
+// All 6 members evenly spaced around the wheel, starting from top
+const memberAngles = Array.from({ length: 6 }, (_, i) => -Math.PI / 2 + (i * 2 * Math.PI) / 6);
+
+// Colors per member: #01/#02 teal, #03-#06 sky
+const memberColors = [
+  "hsl(160 70% 55%)", // #01
+  "hsl(160 70% 55%)", // #02
+  "hsl(210 80% 70%)", // #03
+  "hsl(210 80% 70%)", // #04
+  "hsl(210 80% 70%)", // #05
+  "hsl(210 80% 70%)", // #06
 ];
 
-// Ring 3: #03, #04 upper half, #05, #06 lower half
-const ring3Angles = [
-  -Math.PI / 3,      // #03 upper right
-  -2 * Math.PI / 3,  // #04 upper left
-  Math.PI / 3,       // #05 lower right
-  2 * Math.PI / 3,   // #06 lower left
-];
-const ring3Nodes = ring3Angles.map((angle, i) => ({
-  label: String(i + 3).padStart(2, "0"),
-  angle,
-  avatarIdx: i + 3,
-}));
+const coral = "hsl(30 90% 65%)";
+const brightYellow = "hsl(45 100% 65%)";
+const lime = "hsl(160 70% 55%)";
 
-// Activation order: #01, #02, then #03, #04 (by #01), then #05, #06 (by #02)
-const activationOrder = [
-  { ring: 2, idx: 0 }, // #01
-  { ring: 2, idx: 1 }, // #02
-  { ring: 3, idx: 0, activatedBy: 0 }, // #03 by #01
-  { ring: 3, idx: 1, activatedBy: 0 }, // #04 by #01
-  { ring: 3, idx: 2, activatedBy: 1 }, // #05 by #02
-  { ring: 3, idx: 3, activatedBy: 1 }, // #06 by #02
-];
+// Activation order: #01, #02, #03, #04, #05, #06
+const activationOrder = [0, 1, 2, 3, 4, 5];
+
+// Helper: SVG arc path for a segment between two angles on a circle
+const arcPath = (cxp: number, cyp: number, r: number, startAngle: number, endAngle: number) => {
+  const x1 = cxp + r * Math.cos(startAngle);
+  const y1 = cyp + r * Math.sin(startAngle);
+  const x2 = cxp + r * Math.cos(endAngle);
+  const y2 = cyp + r * Math.sin(endAngle);
+  const largeArc = endAngle - startAngle > Math.PI ? 1 : 0;
+  return `M ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2}`;
+};
 
 const WheelhouseDiagram = () => {
-  const royal = "hsl(210 80% 70%)";
-  const lime = "hsl(160 70% 55%)";
-  const coral = "hsl(30 90% 65%)";
-  const navy = "hsl(220 50% 12%)";
-  const card = "hsl(215 45% 16%)";
-  const gold = "hsl(45 100% 55%)";
-  const brightYellow = "hsl(45 100% 65%)";
-
   const [activeMembers, setActiveMembers] = useState(0);
   const [currentEarnings, setCurrentEarnings] = useState(0);
   const [showContribution, setShowContribution] = useState<number | null>(null);
@@ -96,7 +87,6 @@ const WheelhouseDiagram = () => {
 
   const startAnimation = useCallback(() => {
     resetState();
-
     let memberIdx = 0;
 
     const addNextMember = () => {
@@ -105,10 +95,7 @@ const WheelhouseDiagram = () => {
         safeTimeout(() => setCelebrationPhase(1), 100);
         safeTimeout(() => setCelebrationPhase(2), 600);
         safeTimeout(() => setCelebrationPhase(3), 1200);
-        // Loop after 5 seconds
-        safeTimeout(() => {
-          startAnimation();
-        }, 5000);
+        safeTimeout(() => startAnimation(), 5000);
         return;
       }
 
@@ -119,7 +106,6 @@ const WheelhouseDiagram = () => {
       setActiveMembers(targetMembers);
       setShowContribution(current);
 
-      // Animate earnings climbing
       const startVal = (targetMembers - 1) * YOU_CUT_PER_MEMBER;
       const targetEarnings = targetMembers * YOU_CUT_PER_MEMBER;
       const duration = 700;
@@ -167,25 +153,86 @@ const WheelhouseDiagram = () => {
   const formatCurrency = (val: number) =>
     "$" + val.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
 
-  const getNodePos = (ring: number, angle: number) => ({
-    x: cx + (ring === 2 ? RING2_R : RING3_R) * Math.cos(angle),
-    y: cy + (ring === 2 ? RING2_R : RING3_R) * Math.sin(angle),
+  const getNodePos = (angle: number) => ({
+    x: cx + WHEEL_R * Math.cos(angle),
+    y: cy + WHEEL_R * Math.sin(angle),
   });
 
-  const isNodeActive = (stepIdx: number) => stepIdx < activeMembers;
+  // Render wheel arc segments — each segment is the arc between two adjacent members
+  const segmentAngleSpan = (2 * Math.PI) / MEMBER_COUNT;
+  const segmentGap = 0.06; // small gap between segments
 
-  const renderNode = (
-    x: number, y: number, label: string, avatarIdx: number,
-    color: string, isActive: boolean, stepIdx: number, outAngle: number
-  ) => {
+  const renderSegments = () => {
+    return activationOrder.map((memberIdx) => {
+      const startAngle = memberAngles[memberIdx] - segmentAngleSpan / 2 + segmentGap / 2;
+      const endAngle = memberAngles[memberIdx] + segmentAngleSpan / 2 - segmentGap / 2;
+      const isActive = memberIdx < activeMembers;
+      const color = memberColors[memberIdx];
+
+      return (
+        <path
+          key={`seg-${memberIdx}`}
+          d={arcPath(cx, cy, WHEEL_R, startAngle, endAngle)}
+          fill="none"
+          stroke={isActive ? color : "hsl(210 30% 25%)"}
+          strokeWidth={isActive ? 6 : 3}
+          strokeLinecap="round"
+          style={{
+            transition: "stroke 0.6s ease, stroke-width 0.4s ease",
+            filter: isActive ? "drop-shadow(0 0 6px " + color + ")" : "none",
+          }}
+        />
+      );
+    });
+  };
+
+  // Render spokes from each member to center
+  const renderSpokes = () => {
+    return activationOrder.map((memberIdx) => {
+      const pos = getNodePos(memberAngles[memberIdx]);
+      const isActive = memberIdx < activeMembers;
+      const angle = Math.atan2(cy - pos.y, cx - pos.x);
+      const sx = pos.x + (NODE_R + 4) * Math.cos(angle);
+      const sy = pos.y + (NODE_R + 4) * Math.sin(angle);
+      const ex = cx - (CENTER_R + 8) * Math.cos(angle);
+      const ey = cy - (CENTER_R + 8) * Math.sin(angle);
+
+      return (
+        <line
+          key={`spoke-${memberIdx}`}
+          x1={sx} y1={sy} x2={ex} y2={ey}
+          stroke={isActive ? "hsl(160 70% 55% / 0.5)" : "hsl(210 30% 30% / 0.15)"}
+          strokeWidth={showContribution === memberIdx ? 3 : 1.5}
+          strokeDasharray={isActive ? "none" : "4 4"}
+          markerEnd={isActive ? "url(#arrow-coral)" : undefined}
+          style={{ transition: "stroke 0.5s ease, stroke-width 0.3s ease" }}
+        />
+      );
+    });
+  };
+
+  const renderNode = (memberIdx: number) => {
+    const angle = memberAngles[memberIdx];
+    const { x, y } = getNodePos(angle);
+    const label = String(memberIdx + 1).padStart(2, "0");
     const clipId = `wh-clip-${label}`;
+    const color = memberColors[memberIdx];
+    const isActive = memberIdx < activeMembers;
+    const opacity = isActive ? 1 : 0.25;
+
     const badgeAngle = -Math.PI / 4;
     const badgeX = x + (NODE_R - 1) * Math.cos(badgeAngle);
     const badgeY = y + (NODE_R - 1) * Math.sin(badgeAngle);
-    const opacity = isActive ? 1 : 0.2;
 
-    const contribX = x + (NODE_R + 22) * Math.cos(outAngle);
-    const contribY = y + (NODE_R + 22) * Math.sin(outAngle);
+    // Contribution pill — pushed outward from center
+    const outAngle = angle;
+    const contribX = x + (NODE_R + 24) * Math.cos(outAngle);
+    const contribY = y + (NODE_R + 24) * Math.sin(outAngle);
+
+    // 50% label position
+    const labelOutward = NODE_R + 50;
+    const labelX = x + labelOutward * Math.cos(outAngle);
+    const labelY = y + labelOutward * Math.sin(outAngle);
 
     return (
       <g key={clipId}>
@@ -195,72 +242,39 @@ const WheelhouseDiagram = () => {
           </clipPath>
           <circle cx={x} cy={y} r={NODE_R} fill={card} stroke={color} strokeWidth="2.5" />
           <image
-            href={avatarUrls[avatarIdx]}
+            href={avatarUrls[memberIdx + 1]}
             x={x - NODE_R + 3} y={y - NODE_R + 3}
             width={(NODE_R - 3) * 2} height={(NODE_R - 3) * 2}
             clipPath={`url(#${clipId})`}
             preserveAspectRatio="xMidYMid slice"
           />
           <circle cx={x} cy={y} r={NODE_R} fill="none" stroke={color} strokeWidth="2.5" filter="url(#wh-glow)" />
-          <circle cx={badgeX} cy={badgeY} r={12} fill={navy} stroke={color} strokeWidth="1.5" />
-          <text x={badgeX} y={badgeY + 4} textAnchor="middle" fontSize="7" fontWeight="800" fill={color} fontFamily="monospace">
+          <circle cx={badgeX} cy={badgeY} r={11} fill={navy} stroke={color} strokeWidth="1.5" />
+          <text x={badgeX} y={badgeY + 3.5} textAnchor="middle" fontSize="7" fontWeight="800" fill={color} fontFamily="monospace">
             {label}
           </text>
         </g>
 
-        {showContribution === stepIdx && (
+        {showContribution === memberIdx && (
           <g className="animate-fade-in">
-            <rect x={contribX - 38} y={contribY - 11} width="76" height="22" rx="11"
+            <rect x={contribX - 36} y={contribY - 10} width="72" height="20" rx="10"
               fill={navy} stroke={color} strokeWidth="1.5" opacity="0.95" />
-            <text x={contribX} y={contribY + 5} textAnchor="middle" fontSize="12" fontWeight="800"
+            <text x={contribX} y={contribY + 5} textAnchor="middle" fontSize="11" fontWeight="800"
               fill={color} fontFamily="monospace">
               {formatCurrency(CONTRIBUTION_PER_MEMBER)}
             </text>
           </g>
         )}
-      </g>
-    );
-  };
 
-  const renderConnector = (
-    fromX: number, fromY: number, toX: number, toY: number,
-    color: string, markerId: string, isActive: boolean, isHighlighted: boolean
-  ) => {
-    const angle = Math.atan2(toY - fromY, toX - fromX);
-    const sx = fromX + (NODE_R + 4) * Math.cos(angle);
-    const sy = fromY + (NODE_R + 4) * Math.sin(angle);
-    const ex = toX - (NODE_R + 10) * Math.cos(angle);
-    const ey = toY - (NODE_R + 10) * Math.sin(angle);
-
-    return (
-      <line
-        x1={sx} y1={sy} x2={ex} y2={ey}
-        stroke={color}
-        strokeWidth={isHighlighted ? 3 : 2}
-        markerEnd={`url(#${markerId})`}
-        style={{ transition: "opacity 0.5s ease, stroke-width 0.3s ease", opacity: isActive ? 1 : 0.12 }}
-      />
-    );
-  };
-
-  // Fixed label positions relative to each node
-  // stepIdx 0=#01(above), 1=#02(below), 2=#03(below), 3=#04(below), 4=#05(above), 5=#06(above)
-  const labelAbove = [true, false, false, false, true, true];
-
-  const renderFlowLabel = (
-    nodeX: number, nodeY: number, stepIdx: number
-  ) => {
-    if (showContribution !== stepIdx) return null;
-    const above = labelAbove[stepIdx];
-    const labelY = above ? nodeY - NODE_R - 48 : nodeY + NODE_R + 52;
-
-    return (
-      <g className="animate-fade-in">
-        <text x={nodeX} y={labelY} textAnchor="middle" fontSize="16" fontWeight="900"
-          fill={brightYellow} fontFamily="monospace" letterSpacing="0.05em"
-          filter="url(#wh-earningsGlow)">
-          50%
-        </text>
+        {showContribution === memberIdx && (
+          <g className="animate-fade-in">
+            <text x={labelX} y={labelY + 5} textAnchor="middle" fontSize="15" fontWeight="900"
+              fill={brightYellow} fontFamily="monospace" letterSpacing="0.05em"
+              filter="url(#wh-earningsGlow)">
+              50%
+            </text>
+          </g>
+        )}
       </g>
     );
   };
@@ -271,7 +285,7 @@ const WheelhouseDiagram = () => {
       <h3 className="text-center text-xl md:text-2xl font-bold text-foreground mb-2 tracking-wide">
         {activeMembers} of {MEMBER_COUNT} Members Joined
       </h3>
-      <svg viewBox="0 0 500 560" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+      <svg viewBox="0 0 500 520" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
         <defs>
           <filter id="wh-glow" x="-30%" y="-30%" width="160%" height="160%">
             <feGaussianBlur stdDeviation="3" result="blur" />
@@ -289,12 +303,6 @@ const WheelhouseDiagram = () => {
             <feGaussianBlur stdDeviation="12" result="blur" />
             <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
           </filter>
-          <marker id="arrow-royal" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-            <polygon points="0 0, 8 4, 0 8" fill={royal} opacity="0.9" />
-          </marker>
-          <marker id="arrow-lime" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-            <polygon points="0 0, 8 4, 0 8" fill={lime} opacity="0.9" />
-          </marker>
           <marker id="arrow-coral" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
             <polygon points="0 0, 8 4, 0 8" fill={coral} opacity="0.9" />
           </marker>
@@ -308,86 +316,31 @@ const WheelhouseDiagram = () => {
           </radialGradient>
         </defs>
 
-
         {/* Celebration glow */}
         {cycleComplete && (
           <>
-            <circle cx={cx} cy={cy} r={RING3_R + 30} fill="url(#celebGrad)"
+            <circle cx={cx} cy={cy} r={WHEEL_R + 30} fill="url(#celebGrad)"
               style={{ transition: "opacity 1s ease", opacity: celebrationPhase >= 1 ? 1 : 0 }} />
-            <circle cx={cx} cy={cy} r={RING3_R + 8} fill="none" stroke={lime} strokeWidth="2"
+            <circle cx={cx} cy={cy} r={WHEEL_R + 8} fill="none" stroke={lime} strokeWidth="2"
               style={{ transition: "opacity 0.8s ease", opacity: celebrationPhase >= 2 ? 0.4 : 0 }} />
-            <circle cx={cx} cy={cy} r={RING3_R + 20} fill="none" stroke={lime} strokeWidth="1"
-              style={{ transition: "opacity 1s ease 0.3s", opacity: celebrationPhase >= 3 ? 0.2 : 0 }} />
           </>
         )}
 
-        {/* Ring guides */}
-        <circle cx={cx} cy={cy} r={RING2_R} fill="none"
-          stroke={cycleComplete ? "hsl(160 70% 55% / 0.15)" : "hsl(210 80% 70% / 0.12)"}
-          strokeWidth="1.5" strokeDasharray="4 4" style={{ transition: "stroke 1s ease" }} />
-        <circle cx={cx} cy={cy} r={RING3_R} fill="none"
-          stroke={cycleComplete ? "hsl(160 70% 55% / 0.15)" : "hsl(210 80% 70% / 0.12)"}
-          strokeWidth="1.5" strokeDasharray="4 4" style={{ transition: "stroke 1s ease" }} />
+        {/* Wheel arc segments */}
+        {renderSegments()}
 
-        {/* Connectors: Ring2 nodes → YOU (center) */}
-        {ring2Nodes.map((n, i) => {
-          const pos = getNodePos(2, n.angle);
-          const active = isNodeActive(i);
-          const angleToCenter = Math.atan2(cy - pos.y, cx - pos.x);
-          const sx = pos.x + (NODE_R + 4) * Math.cos(angleToCenter);
-          const sy = pos.y + (NODE_R + 4) * Math.sin(angleToCenter);
-          const ex = cx - (CENTER_R + 10) * Math.cos(angleToCenter);
-          const ey = cy - (CENTER_R + 10) * Math.sin(angleToCenter);
+        {/* Spokes */}
+        {renderSpokes()}
 
-          return (
-            <g key={`conn-r2-${i}`}>
-              <line x1={sx} y1={sy} x2={ex} y2={ey}
-                stroke="hsl(160 70% 55% / 0.5)"
-                strokeWidth={showContribution === i ? 3 : 2}
-                markerEnd="url(#arrow-coral)"
-                style={{ transition: "opacity 0.5s ease, stroke-width 0.3s ease", opacity: active ? 1 : 0.12 }}
-              />
-            </g>
-          );
-        })}
+        {/* Member nodes */}
+        {activationOrder.map((idx) => renderNode(idx))}
 
-        {/* Connectors: Ring3 nodes → their activating Ring2 node */}
-        {ring3Nodes.map((n, i) => {
-          const step = activationOrder.find(a => a.ring === 3 && a.idx === i)!;
-          const stepIdx = activationOrder.indexOf(step);
-          const parentNode = ring2Nodes[step.activatedBy!];
-          const parentPos = getNodePos(2, parentNode.angle);
-          const childPos = getNodePos(3, n.angle);
-          const active = isNodeActive(stepIdx);
-
-          return (
-            <g key={`conn-r3-${i}`}>
-              {renderConnector(childPos.x, childPos.y, parentPos.x, parentPos.y,
-                "hsl(210 80% 70% / 0.45)", "arrow-lime", active, showContribution === stepIdx)}
-            </g>
-          );
-        })}
-
-        {/* Ring 3 nodes (#03–#06) */}
-        {ring3Nodes.map((n, i) => {
-          const step = activationOrder.find(a => a.ring === 3 && a.idx === i)!;
-          const stepIdx = activationOrder.indexOf(step);
-          const pos = getNodePos(3, n.angle);
-          return renderNode(pos.x, pos.y, n.label, n.avatarIdx, royal, isNodeActive(stepIdx), stepIdx, n.angle);
-        })}
-
-        {/* Ring 2 nodes (#01, #02) */}
-        {ring2Nodes.map((n, i) => {
-          const pos = getNodePos(2, n.angle);
-          return renderNode(pos.x, pos.y, n.label, n.avatarIdx, lime, isNodeActive(i), i, n.angle);
-        })}
-
-        {/* Center YOU — coral ring, yellow glow on complete */}
-        <circle cx={cx} cy={cy} r={CENTER_R + 6} fill="none"
+        {/* Center YOU */}
+        <circle cx={cx} cy={cy} r={CENTER_R + 5} fill="none"
           stroke={cycleComplete ? "hsl(45 100% 65% / 0.35)" : "hsl(30 90% 65% / 0.2)"}
-          strokeWidth="6" style={{ transition: "stroke 1s ease" }} />
+          strokeWidth="5" style={{ transition: "stroke 1s ease" }} />
         <circle cx={cx} cy={cy} r={CENTER_R} fill={card} stroke={cycleComplete ? brightYellow : coral}
-          strokeWidth="3.5" filter="url(#wh-softGlow)" style={{ transition: "stroke 0.8s ease" }} />
+          strokeWidth="3" filter="url(#wh-softGlow)" style={{ transition: "stroke 0.8s ease" }} />
         <image
           href={avatarUrls[0]}
           x={cx - CENTER_R + 3} y={cy - CENTER_R + 3}
@@ -396,38 +349,26 @@ const WheelhouseDiagram = () => {
           preserveAspectRatio="xMidYMid slice"
         />
         <circle cx={cx} cy={cy} r={CENTER_R} fill="none" stroke={cycleComplete ? brightYellow : coral}
-          strokeWidth="3.5" filter={cycleComplete ? "url(#wh-celebGlow)" : "url(#wh-glow)"}
+          strokeWidth="3" filter={cycleComplete ? "url(#wh-celebGlow)" : "url(#wh-glow)"}
           style={{ transition: "stroke 0.8s ease" }} />
 
         {/* YOU label */}
-        <rect x={cx - 26} y={cy + 12} width="52" height="24" rx="6" fill="hsl(30 90% 55% / 0.92)" />
-        <text x={cx} y={cy + 29} textAnchor="middle" fontSize="14" fontWeight="800" fill="white" fontFamily="sans-serif">YOU</text>
+        <rect x={cx - 24} y={cy + 10} width="48" height="22" rx="6" fill="hsl(30 90% 55% / 0.92)" />
+        <text x={cx} y={cy + 26} textAnchor="middle" fontSize="13" fontWeight="800" fill="white" fontFamily="sans-serif">YOU</text>
 
         {/* Earnings pill */}
-        <rect x={cx - 62} y={cy + 42} width="124" height="38" rx="19"
+        <rect x={cx - 58} y={cy + 38} width="116" height="34" rx="17"
           fill={navy} stroke={cycleComplete ? brightYellow : coral} strokeWidth="2.5"
           style={{ transition: "stroke 0.8s ease" }} />
-        <text x={cx} y={cy + 67} textAnchor="middle" fontSize="26" fontWeight="900"
-          fill={cycleComplete ? brightYellow : "hsl(0 0% 100%)"}  fontFamily="monospace"
+        <text x={cx} y={cy + 61} textAnchor="middle" fontSize="22" fontWeight="900"
+          fill={cycleComplete ? brightYellow : "hsl(0 0% 100%)"} fontFamily="monospace"
           filter="url(#wh-earningsGlow)"
           style={{ transition: "fill 0.8s ease" }}>
           {formatCurrency(Math.round(currentEarnings))}
         </text>
-
-        {/* Flow labels — rendered last so they appear on top of everything */}
-        {ring2Nodes.map((n, i) => {
-          const pos = getNodePos(2, n.angle);
-          return <g key={`flow-r2-${i}`}>{renderFlowLabel(pos.x, pos.y, i)}</g>;
-        })}
-        {ring3Nodes.map((n, i) => {
-          const step = activationOrder.find(a => a.ring === 3 && a.idx === i)!;
-          const stepIdx = activationOrder.indexOf(step);
-          const childPos = getNodePos(3, n.angle);
-          return <g key={`flow-r3-${i}`}>{renderFlowLabel(childPos.x, childPos.y, stepIdx)}</g>;
-        })}
       </svg>
 
-      {/* Completion text — below the SVG */}
+      {/* Completion text */}
       {cycleComplete && celebrationPhase >= 2 && (
         <div className="text-center animate-fade-in mt-2 mb-4">
           <p className="text-2xl md:text-3xl font-bold tracking-wide" style={{ color: brightYellow }}>
@@ -438,9 +379,6 @@ const WheelhouseDiagram = () => {
           </p>
         </div>
       )}
-
-      {/* Legend */}
-
     </div>
   );
 };
