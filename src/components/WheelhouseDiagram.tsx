@@ -18,26 +18,67 @@ const WheelhouseDiagram = () => {
 
   const cx = 250, cy = 250;
   const centerR = 54;
-  const orbitR = 140;       // radius of the circular arrangement
-  const nodeR = 38;         // all outer nodes same size
+  const innerOrbitR = 100;  // #01 and #02 close to YOU
+  const outerOrbitR = 175;  // #03–#06 on outer wheel
+  const innerNodeR = 42;
+  const outerNodeR = 38;
   const badgeR = 13;
 
-  // Place 6 nodes evenly around a circle (starting from top, going clockwise)
-  const nodes = [
-    { label: "01", avatarIdx: 1, color: lime,  isDirect: true },
-    { label: "02", avatarIdx: 2, color: lime,  isDirect: true },
-    { label: "03", avatarIdx: 3, color: aqua,  isDirect: false },
-    { label: "04", avatarIdx: 4, color: aqua,  isDirect: false },
-    { label: "05", avatarIdx: 5, color: aqua,  isDirect: false },
-    { label: "06", avatarIdx: 6, color: aqua,  isDirect: false },
-  ].map((n, i) => {
-    const angle = (Math.PI * 2 * i) / 6 - Math.PI / 2; // start from top
+  // #01 top, #02 bottom — wrapping around YOU
+  const innerNodes = [
+    { label: "01", avatarIdx: 1, color: lime, x: cx, y: cy - innerOrbitR, r: innerNodeR },
+    { label: "02", avatarIdx: 2, color: lime, x: cx, y: cy + innerOrbitR, r: innerNodeR },
+  ];
+
+  // #03–#06 evenly on outer ring (top-left, top-right, bottom-right, bottom-left)
+  const outerNodeDefs = [
+    { label: "03", avatarIdx: 3, color: aqua },
+    { label: "04", avatarIdx: 4, color: aqua },
+    { label: "05", avatarIdx: 5, color: aqua },
+    { label: "06", avatarIdx: 6, color: aqua },
+  ];
+  const outerNodes = outerNodeDefs.map((n, i) => {
+    const angle = (Math.PI * 2 * i) / 4 - Math.PI / 4; // start top-right
     return {
       ...n,
-      x: cx + orbitR * Math.cos(angle),
-      y: cy + orbitR * Math.sin(angle),
+      x: cx + outerOrbitR * Math.cos(angle),
+      y: cy + outerOrbitR * Math.sin(angle),
+      r: outerNodeR,
     };
   });
+
+  const renderNode = (n: { x: number; y: number; r: number; label: string; avatarIdx: number; color: string }, clipId: string) => {
+    const badgeAngle = -Math.PI / 4;
+    const badgeX = n.x + (n.r - 2) * Math.cos(badgeAngle);
+    const badgeY = n.y + (n.r - 2) * Math.sin(badgeAngle);
+
+    return (
+      <g key={clipId}>
+        <clipPath id={clipId}>
+          <circle cx={n.x} cy={n.y} r={n.r - 3} />
+        </clipPath>
+        <circle cx={n.x} cy={n.y} r={n.r} fill={card} stroke={n.color} strokeWidth="2.5" />
+        <image
+          href={avatarUrls[n.avatarIdx]}
+          x={n.x - n.r + 3} y={n.y - n.r + 3}
+          width={(n.r - 3) * 2} height={(n.r - 3) * 2}
+          clipPath={`url(#${clipId})`}
+          preserveAspectRatio="xMidYMid slice"
+        />
+        <circle cx={n.x} cy={n.y} r={n.r} fill="none" stroke={n.color} strokeWidth="2.5" filter="url(#wh-glow)" />
+        <circle cx={badgeX} cy={badgeY} r={badgeR} fill={navy} stroke={n.color} strokeWidth="1.5" />
+        <text x={badgeX} y={badgeY + 4} textAnchor="middle" fontSize="7.5" fontWeight="800" fill={n.color} fontFamily="monospace">
+          {n.label}
+        </text>
+        <rect x={n.x - 20} y={n.y + n.r + 4} width="40" height="16" rx="8"
+          fill={navy} stroke={n.color} strokeWidth="1.2" />
+        <text x={n.x} y={n.y + n.r + 15} textAnchor="middle" fontSize="8" fontWeight="800"
+          fill={n.color} fontFamily="monospace">
+          50%
+        </text>
+      </g>
+    );
+  };
 
   return (
     <div className="relative w-full max-w-[540px] mx-auto">
@@ -64,71 +105,57 @@ const WheelhouseDiagram = () => {
           <clipPath id="wh-clipCenter">
             <circle cx={cx} cy={cy} r={centerR - 4} />
           </clipPath>
-          {nodes.map((n, i) => (
-            <clipPath key={`clip-${i}`} id={`wh-clip-${i}`}>
-              <circle cx={n.x} cy={n.y} r={nodeR - 3} />
-            </clipPath>
-          ))}
         </defs>
 
-        {/* ── Orbit ring (the "wheel" circle) ── */}
-        <circle cx={cx} cy={cy} r={orbitR} fill="none" stroke="hsl(181 90% 52% / 0.12)" strokeWidth="1.5" />
-        <circle cx={cx} cy={cy} r={orbitR} fill="none" stroke="hsl(181 90% 52% / 0.06)" strokeWidth="8" />
+        {/* ── Outer orbit ring ── */}
+        <circle cx={cx} cy={cy} r={outerOrbitR} fill="none" stroke="hsl(181 90% 52% / 0.12)" strokeWidth="1.5" />
+        <circle cx={cx} cy={cy} r={outerOrbitR} fill="none" stroke="hsl(181 90% 52% / 0.06)" strokeWidth="8" />
 
-        {/* ── Connector lines from each node to center ── */}
-        {nodes.map((n, i) => {
-          const angle = Math.atan2(n.y - cy, n.x - cx);
-          const startX = n.x - (nodeR + 4) * Math.cos(angle);
-          const startY = n.y - (nodeR + 4) * Math.sin(angle);
-          const endX = cx + (centerR + 10) * Math.cos(angle);
-          const endY = cy + (centerR + 10) * Math.sin(angle);
-          const markerId = n.isDirect ? "url(#arrow-lime)" : "url(#arrow-aqua)";
-          const strokeColor = n.isDirect ? "hsl(68 100% 50% / 0.45)" : "hsl(181 90% 52% / 0.35)";
+        {/* ── Inner orbit ring ── */}
+        <circle cx={cx} cy={cy} r={innerOrbitR} fill="none" stroke="hsl(68 100% 50% / 0.10)" strokeWidth="1.5" />
+        <circle cx={cx} cy={cy} r={innerOrbitR} fill="none" stroke="hsl(68 100% 50% / 0.05)" strokeWidth="6" />
+
+        {/* ── Connectors: outer → inner direct nodes ── */}
+        {outerNodes.map((on, i) => {
+          // Route outer nodes to nearest inner node: top two → #01, bottom two → #02
+          const target = i < 2 ? innerNodes[0] : innerNodes[1];
+          const angle = Math.atan2(target.y - on.y, target.x - on.x);
+          const startX = on.x + (on.r + 4) * Math.cos(angle);
+          const startY = on.y + (on.r + 4) * Math.sin(angle);
+          const endX = target.x - (target.r + 10) * Math.cos(angle);
+          const endY = target.y - (target.r + 10) * Math.sin(angle);
 
           return (
-            <line
-              key={`line-${i}`}
-              x1={startX} y1={startY}
-              x2={endX} y2={endY}
-              stroke={strokeColor}
-              strokeWidth="1.8"
-              markerEnd={markerId}
+            <line key={`outer-line-${i}`}
+              x1={startX} y1={startY} x2={endX} y2={endY}
+              stroke="hsl(181 90% 52% / 0.35)" strokeWidth="1.8"
+              markerEnd="url(#arrow-aqua)"
             />
           );
         })}
 
-        {/* ── Outer nodes ── */}
-        {nodes.map((n, i) => {
-          const badgeAngle = -Math.PI / 4;
-          const badgeX = n.x + (nodeR - 2) * Math.cos(badgeAngle);
-          const badgeY = n.y + (nodeR - 2) * Math.sin(badgeAngle);
+        {/* ── Connectors: inner → center ── */}
+        {innerNodes.map((n, i) => {
+          const angle = Math.atan2(cy - n.y, cx - n.x);
+          const startX = n.x + (n.r + 4) * Math.cos(angle);
+          const startY = n.y + (n.r + 4) * Math.sin(angle);
+          const endX = cx - (centerR + 10) * Math.cos(angle);
+          const endY = cy - (centerR + 10) * Math.sin(angle);
 
           return (
-            <g key={`node-${i}`}>
-              <circle cx={n.x} cy={n.y} r={nodeR} fill={card} stroke={n.color} strokeWidth="2.5" />
-              <image
-                href={avatarUrls[n.avatarIdx]}
-                x={n.x - nodeR + 3} y={n.y - nodeR + 3}
-                width={(nodeR - 3) * 2} height={(nodeR - 3) * 2}
-                clipPath={`url(#wh-clip-${i})`}
-                preserveAspectRatio="xMidYMid slice"
-              />
-              <circle cx={n.x} cy={n.y} r={nodeR} fill="none" stroke={n.color} strokeWidth="2.5" filter="url(#wh-glow)" />
-              {/* Badge */}
-              <circle cx={badgeX} cy={badgeY} r={badgeR} fill={navy} stroke={n.color} strokeWidth="1.5" />
-              <text x={badgeX} y={badgeY + 4} textAnchor="middle" fontSize="7.5" fontWeight="800" fill={n.color} fontFamily="monospace">
-                {n.label}
-              </text>
-              {/* 50% pill */}
-              <rect x={n.x - 20} y={n.y + nodeR + 4} width="40" height="16" rx="8"
-                fill={navy} stroke={n.color} strokeWidth="1.2" />
-              <text x={n.x} y={n.y + nodeR + 15} textAnchor="middle" fontSize="8" fontWeight="800"
-                fill={n.color} fontFamily="monospace">
-                50%
-              </text>
-            </g>
+            <line key={`inner-line-${i}`}
+              x1={startX} y1={startY} x2={endX} y2={endY}
+              stroke="hsl(68 100% 50% / 0.45)" strokeWidth="1.8"
+              markerEnd="url(#arrow-lime)"
+            />
           );
         })}
+
+        {/* ── Outer nodes (#03–#06) ── */}
+        {outerNodes.map((n, i) => renderNode(n, `wh-clip-outer-${i}`))}
+
+        {/* ── Inner nodes (#01, #02) ── */}
+        {innerNodes.map((n, i) => renderNode(n, `wh-clip-inner-${i}`))}
 
         {/* ── Center YOU circle ── */}
         <circle cx={cx} cy={cy} r={centerR + 14} fill="none" stroke="hsl(2 88% 62% / 0.08)" strokeWidth="12" />
@@ -143,7 +170,6 @@ const WheelhouseDiagram = () => {
         />
         <circle cx={cx} cy={cy} r={centerR} fill="none" stroke={coral} strokeWidth="3" filter="url(#wh-glow)" />
 
-        {/* YOU label */}
         <rect x={cx - 22} y={cy + centerR - 24} width="44" height="19" rx="4" fill="hsl(2 88% 62% / 0.92)" />
         <text x={cx} y={cy + centerR - 11} textAnchor="middle" fontSize="11" fontWeight="800" fill="white" fontFamily="sans-serif">YOU</text>
       </svg>
