@@ -252,7 +252,7 @@ const WheelhouseDiagram = () => {
   ) => {
     if (showContribution !== stepIdx) return null;
     const above = labelAbove[stepIdx];
-    const labelY = above ? nodeY - NODE_R - 30 : nodeY + NODE_R + 38;
+    const labelY = above ? nodeY - NODE_R - 48 : nodeY + NODE_R + 52;
 
     return (
       <g className="animate-fade-in">
@@ -440,20 +440,6 @@ const WheelhouseDiagram = () => {
       )}
 
       {/* Legend */}
-      <div className="flex items-center justify-center gap-6 mt-1 text-xs">
-        <div className="flex items-center gap-1.5">
-          <div className="w-3 h-3 rounded-full" style={{ background: coral }} />
-          <span className="text-muted-foreground">You (Center)</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <div className="w-3 h-3 rounded-full" style={{ background: lime }} />
-          <span className="text-muted-foreground">Direct #01 · #02</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <div className="w-3 h-3 rounded-full" style={{ background: royal }} />
-          <span className="text-muted-foreground">Team #03–#06</span>
-        </div>
-      </div>
 
     </div>
   );
