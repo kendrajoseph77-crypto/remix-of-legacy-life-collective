@@ -79,20 +79,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── Video ── */}
-      <section id="video" className="py-16 max-w-4xl mx-auto px-6">
-        <div className="rounded-2xl overflow-hidden border border-border bg-card aspect-video flex items-center justify-center relative group cursor-pointer">
-          <div className="absolute inset-0 bg-gradient-to-br from-muted/40 to-background/80" />
-          <div className="relative z-10 flex flex-col items-center gap-4 text-center px-6">
-            <div className="w-16 h-16 rounded-full border border-border bg-card/80 backdrop-blur flex items-center justify-center group-hover:border-primary/50 transition-colors duration-300">
-              <Play size={24} className="text-foreground ml-1" />
-            </div>
-            <p className="text-muted-foreground text-sm tracking-widest uppercase">Introduction Video</p>
-            <p className="text-xs text-muted-foreground/60">Replace this placeholder with your video embed</p>
-          </div>
-        </div>
-      </section>
-
       {/* ── Income Centers (Begin Where You Fit In) ── */}
       <section id="join" className="py-24 bg-card border-y border-border relative overflow-hidden">
         <div className="absolute inset-0 glow-coral-top pointer-events-none" />
@@ -128,9 +114,24 @@ const Index = () => {
           </div>
 
           {/* Combined total callout */}
-          <div className="rounded-xl p-6 text-center border border-secondary/20 bg-background/40 mb-14">
+          <div className="rounded-xl p-6 text-center border border-secondary/20 bg-background/40 mb-10">
             <p className="text-4xl font-bold text-foreground">$52,500</p>
             <p className="text-muted-foreground text-sm mt-2">earned every cycle when you are active on all 3 levels simultaneously</p>
+          </div>
+
+          {/* ── Stats (moved under income levels) ── */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center mb-14">
+            {[
+              { value: "100%", label: "Peer-to-Peer", color: "text-secondary" },
+              { value: "50/50", label: "Always", color: "text-primary" },
+              { value: "3", label: "Income Levels", color: "text-secondary" },
+              { value: "$52.5K+", label: "Per Cycle", color: "text-primary" },
+            ].map((s, i) => (
+              <div key={i}>
+                <p className={`text-3xl font-bold mb-1 ${s.color}`}>{s.value}</p>
+                <p className="text-muted-foreground text-xs tracking-widest uppercase">{s.label}</p>
+              </div>
+            ))}
           </div>
 
           {/* ── Join Form ── */}
@@ -182,22 +183,16 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── Stats ── */}
-      <section className="py-12 border-b border-border bg-background relative overflow-hidden">
-        <div className="absolute inset-0 glow-aqua-top pointer-events-none" />
-        <div className="max-w-4xl mx-auto px-6 relative">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { value: "100%", label: "Peer-to-Peer", color: "text-secondary" },
-              { value: "50/50", label: "Always", color: "text-primary" },
-              { value: "3", label: "Income Levels", color: "text-secondary" },
-              { value: "$52.5K+", label: "Max Per Cycle", color: "text-primary" },
-            ].map((s, i) => (
-              <div key={i}>
-                <p className={`text-3xl font-bold mb-1 ${s.color}`}>{s.value}</p>
-                <p className="text-muted-foreground text-xs tracking-widest uppercase">{s.label}</p>
-              </div>
-            ))}
+      {/* ── Video ── */}
+      <section id="video" className="py-16 max-w-4xl mx-auto px-6">
+        <div className="rounded-2xl overflow-hidden border border-border bg-card aspect-video flex items-center justify-center relative group cursor-pointer">
+          <div className="absolute inset-0 bg-gradient-to-br from-muted/40 to-background/80" />
+          <div className="relative z-10 flex flex-col items-center gap-4 text-center px-6">
+            <div className="w-16 h-16 rounded-full border border-border bg-card/80 backdrop-blur flex items-center justify-center group-hover:border-primary/50 transition-colors duration-300">
+              <Play size={24} className="text-foreground ml-1" />
+            </div>
+            <p className="text-muted-foreground text-sm tracking-widest uppercase">Introduction Video</p>
+            <p className="text-xs text-muted-foreground/60">Replace this placeholder with your video embed</p>
           </div>
         </div>
       </section>
