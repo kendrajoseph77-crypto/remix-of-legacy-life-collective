@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="border-t border-border bg-card">
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-3 gap-12 mb-12">
+        <div className="grid md:grid-cols-2 gap-12 mb-12">
           {/* Brand */}
           <div className="flex flex-col gap-4">
             <Logo heightClass="h-8" />
@@ -15,16 +15,6 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Links */}
-          <div>
-            <h4 className="text-foreground font-semibold mb-4 tracking-widest uppercase text-xs text-primary">Navigate</h4>
-            <div className="flex flex-col gap-3">
-              <Link to="/" className="text-muted-foreground hover:text-foreground text-sm transition-colors">Home</Link>
-              <Link to="/how-it-works" className="text-muted-foreground hover:text-foreground text-sm transition-colors">How It Works</Link>
-              <Link to="/#join" className="text-muted-foreground hover:text-foreground text-sm transition-colors">Join Us</Link>
-              <Link to="/login" className="text-muted-foreground hover:text-foreground text-sm transition-colors">Login</Link>
-            </div>
-          </div>
 
           {/* Legal */}
           <div>
