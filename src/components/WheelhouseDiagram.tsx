@@ -17,8 +17,8 @@ const MEMBER_COUNT = 6;
 const FINAL_EARNINGS = MEMBER_COUNT * YOU_CUT_PER_MEMBER; // $52,500
 
 // Ring radii
-const CENTER_R = 48;
-const RING2_R = 120; // #01, #02
+const CENTER_R = 58;
+const RING2_R = 135; // #01, #02
 const RING3_R = 200; // #03–#06
 const NODE_R = 34;
 
@@ -402,14 +402,14 @@ const WheelhouseDiagram = () => {
           style={{ transition: "stroke 0.8s ease" }} />
 
         {/* YOU label */}
-        <rect x={cx - 18} y={cy + 8} width="36" height="16" rx="4" fill="hsl(0 80% 50% / 0.92)" />
-        <text x={cx} y={cy + 19.5} textAnchor="middle" fontSize="9" fontWeight="800" fill="white" fontFamily="sans-serif">YOU</text>
+        <rect x={cx - 22} y={cy + 12} width="44" height="20" rx="5" fill="hsl(0 80% 50% / 0.92)" />
+        <text x={cx} y={cy + 26} textAnchor="middle" fontSize="12" fontWeight="800" fill="white" fontFamily="sans-serif">YOU</text>
 
         {/* Earnings pill */}
-        <rect x={cx - 48} y={cy + 30} width="96" height="28" rx="14"
-          fill={navy} stroke={cycleComplete ? lime : coral} strokeWidth="1.5"
+        <rect x={cx - 52} y={cy + 38} width="104" height="32" rx="16"
+          fill={navy} stroke={cycleComplete ? lime : coral} strokeWidth="2"
           style={{ transition: "stroke 0.8s ease" }} />
-        <text x={cx} y={cy + 49} textAnchor="middle" fontSize="18" fontWeight="900"
+        <text x={cx} y={cy + 60} textAnchor="middle" fontSize="22" fontWeight="900"
           fill={cycleComplete ? lime : "hsl(0 0% 100%)"}  fontFamily="monospace"
           filter="url(#wh-earningsGlow)"
           style={{ transition: "fill 0.8s ease" }}>
