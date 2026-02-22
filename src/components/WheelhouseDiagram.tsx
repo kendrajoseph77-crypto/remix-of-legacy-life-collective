@@ -221,10 +221,12 @@ const WheelhouseDiagram = () => {
       const pos = getPos(RING2_R, n.angle);
       const active = i < activeMembers;
       const angle = Math.atan2(cy - pos.y, cx - pos.x);
+      const comesFromBelow = pos.y > cy;
+      const centerGap = comesFromBelow ? CENTER_R + 38 : CENTER_R + 8;
       const sx = pos.x + (NODE_R + 4) * Math.cos(angle);
       const sy = pos.y + (NODE_R + 4) * Math.sin(angle);
-      const ex = cx - (CENTER_R + 8) * Math.cos(angle);
-      const ey = cy - (CENTER_R + 8) * Math.sin(angle);
+      const ex = cx - centerGap * Math.cos(angle);
+      const ey = cy - centerGap * Math.sin(angle);
       return (
         <line key={`spoke2-${i}`}
           x1={sx} y1={sy} x2={ex} y2={ey}
@@ -254,10 +256,12 @@ const WheelhouseDiagram = () => {
 
       // Spoke to center YOU
       const angle2 = Math.atan2(cy - childPos.y, cx - childPos.x);
+      const comesFromBelow = childPos.y > cy;
+      const centerGap = comesFromBelow ? CENTER_R + 38 : CENTER_R + 8;
       const sx2 = childPos.x + (NODE_R + 4) * Math.cos(angle2);
       const sy2 = childPos.y + (NODE_R + 4) * Math.sin(angle2);
-      const ex2 = cx - (CENTER_R + 8) * Math.cos(angle2);
-      const ey2 = cy - (CENTER_R + 8) * Math.sin(angle2);
+      const ex2 = cx - centerGap * Math.cos(angle2);
+      const ey2 = cy - centerGap * Math.sin(angle2);
 
       const isContributing = showContribution === stepIdx;
 
