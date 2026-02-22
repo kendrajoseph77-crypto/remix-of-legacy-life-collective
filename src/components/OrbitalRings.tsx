@@ -63,13 +63,13 @@ const OrbitalRings = () => {
           transform="rotate(-18, 600, 400)"
         />
         <g transform="rotate(-18, 600, 400)">
-          <circle r="6" fill="hsl(229 77% 72%)" filter="url(#planetGlow)">
+          <circle r="2" fill="hsl(229 77% 72%)" filter="url(#planetGlow)">
             <animateMotion dur="52s" repeatCount="indefinite" rotate="0"
               path={ellipsePath(500, 180)} />
           </circle>
         </g>
         <g transform="rotate(-18, 600, 400)">
-          <circle r="3.5" fill="hsl(229 70% 60%)" filter="url(#planetGlow)" opacity="0.7">
+          <circle r="1.5" fill="hsl(229 70% 60%)" filter="url(#planetGlow)" opacity="0.7">
             <animateMotion dur="52s" begin="-26s" repeatCount="indefinite" rotate="0"
               path={ellipsePath(500, 180)} />
           </circle>
@@ -85,7 +85,7 @@ const OrbitalRings = () => {
           transform="rotate(14, 600, 400)"
         />
         <g transform="rotate(14, 600, 400)">
-          <circle r="5" fill="hsl(229 90% 75%)" filter="url(#planetGlow)">
+          <circle r="1.5" fill="hsl(229 90% 75%)" filter="url(#planetGlow)">
             <animateMotion dur="34s" repeatCount="indefinite" rotate="0"
               path={ellipsePath(340, 125)} />
           </circle>
@@ -100,7 +100,7 @@ const OrbitalRings = () => {
           transform="rotate(4, 600, 400)"
         />
         <g transform="rotate(4, 600, 400)">
-          <circle r="4" fill="hsl(254 50% 65%)" filter="url(#planetGlow)" opacity="0.65">
+          <circle r="1.5" fill="hsl(254 50% 65%)" filter="url(#planetGlow)" opacity="0.65">
             <animateMotion dur="80s" repeatCount="indefinite" rotate="0"
               path={ellipsePath(570, 90)} />
           </circle>

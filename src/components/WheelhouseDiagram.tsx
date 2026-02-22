@@ -237,27 +237,49 @@ const WheelhouseDiagram = () => {
       );
     });
 
-  // Spokes: ring3 → parent ring2 node
+  // Spokes: ring3 → parent ring2 node AND ring3 → center YOU
   const renderRing3Spokes = () =>
     ring3Nodes.map((n, i) => {
       const stepIdx = i + 2;
       const active = stepIdx < activeMembers;
       const childPos = getPos(RING3_R, n.angle);
       const parentPos = getPos(RING2_R, ring2Nodes[n.parentIdx].angle);
-      const angle = Math.atan2(parentPos.y - childPos.y, parentPos.x - childPos.x);
-      const sx = childPos.x + (NODE_R + 4) * Math.cos(angle);
-      const sy = childPos.y + (NODE_R + 4) * Math.sin(angle);
-      const ex = parentPos.x - (NODE_R + 8) * Math.cos(angle);
-      const ey = parentPos.y - (NODE_R + 8) * Math.sin(angle);
+
+      // Spoke to parent
+      const angle1 = Math.atan2(parentPos.y - childPos.y, parentPos.x - childPos.x);
+      const sx1 = childPos.x + (NODE_R + 4) * Math.cos(angle1);
+      const sy1 = childPos.y + (NODE_R + 4) * Math.sin(angle1);
+      const ex1 = parentPos.x - (NODE_R + 8) * Math.cos(angle1);
+      const ey1 = parentPos.y - (NODE_R + 8) * Math.sin(angle1);
+
+      // Spoke to center YOU
+      const angle2 = Math.atan2(cy - childPos.y, cx - childPos.x);
+      const sx2 = childPos.x + (NODE_R + 4) * Math.cos(angle2);
+      const sy2 = childPos.y + (NODE_R + 4) * Math.sin(angle2);
+      const ex2 = cx - (CENTER_R + 8) * Math.cos(angle2);
+      const ey2 = cy - (CENTER_R + 8) * Math.sin(angle2);
+
+      const isContributing = showContribution === stepIdx;
+
       return (
-        <line key={`spoke3-${i}`}
-          x1={sx} y1={sy} x2={ex} y2={ey}
-          stroke={active ? "hsl(210 80% 70% / 0.45)" : "hsl(210 30% 30% / 0.1)"}
-          strokeWidth={showContribution === stepIdx ? 3 : 1.5}
-          strokeDasharray={active ? "none" : "4 4"}
-          markerEnd={active ? "url(#arrow-lime)" : undefined}
-          style={{ transition: "stroke 0.5s ease, stroke-width 0.3s ease" }}
-        />
+        <g key={`spoke3-${i}`}>
+          <line
+            x1={sx1} y1={sy1} x2={ex1} y2={ey1}
+            stroke={active ? "hsl(210 80% 70% / 0.45)" : "hsl(210 30% 30% / 0.1)"}
+            strokeWidth={isContributing ? 3 : 1.5}
+            strokeDasharray={active ? "none" : "4 4"}
+            markerEnd={active ? "url(#arrow-lime)" : undefined}
+            style={{ transition: "stroke 0.5s ease, stroke-width 0.3s ease" }}
+          />
+          <line
+            x1={sx2} y1={sy2} x2={ex2} y2={ey2}
+            stroke={active ? "hsl(30 90% 65% / 0.5)" : "hsl(210 30% 30% / 0.1)"}
+            strokeWidth={isContributing ? 3 : 1.5}
+            strokeDasharray={active ? "none" : "4 4"}
+            markerEnd={active ? "url(#arrow-coral)" : undefined}
+            style={{ transition: "stroke 0.5s ease, stroke-width 0.3s ease" }}
+          />
+        </g>
       );
     });
 
@@ -455,17 +477,6 @@ const WheelhouseDiagram = () => {
           {formatCurrency(Math.round(currentEarnings))}
         </text>
 
-        {/* "YOU earn" indicator when any member activates */}
-        {showContribution !== null && (
-          <g className="animate-fade-in">
-            <rect x={cx - 50} y={cy - CENTER_R - 38} width="100" height="26" rx="13"
-              fill={navy} stroke={brightYellow} strokeWidth="2" opacity="0.95" />
-            <text x={cx} y={cy - CENTER_R - 20} textAnchor="middle" fontSize="13" fontWeight="900"
-              fill={brightYellow} fontFamily="monospace" filter="url(#wh-earningsGlow)">
-              +{formatCurrency(YOU_CUT_PER_MEMBER)}
-            </text>
-          </g>
-        )}
       </svg>
 
       {/* Completion text */}
