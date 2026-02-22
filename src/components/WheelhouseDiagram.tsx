@@ -454,6 +454,18 @@ const WheelhouseDiagram = () => {
           style={{ transition: "fill 0.8s ease" }}>
           {formatCurrency(Math.round(currentEarnings))}
         </text>
+
+        {/* "YOU earn" indicator when any member activates */}
+        {showContribution !== null && (
+          <g className="animate-fade-in">
+            <rect x={cx - 50} y={cy - CENTER_R - 38} width="100" height="26" rx="13"
+              fill={navy} stroke={brightYellow} strokeWidth="2" opacity="0.95" />
+            <text x={cx} y={cy - CENTER_R - 20} textAnchor="middle" fontSize="13" fontWeight="900"
+              fill={brightYellow} fontFamily="monospace" filter="url(#wh-earningsGlow)">
+              +{formatCurrency(YOU_CUT_PER_MEMBER)}
+            </text>
+          </g>
+        )}
       </svg>
 
       {/* Completion text */}
