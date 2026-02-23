@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { RotateCcw } from "lucide-react";
 
 const avatarUrls = [
   "https://randomuser.me/api/portraits/men/83.jpg",
@@ -589,6 +590,24 @@ const WheelhouseDiagram = () => {
                 <span className="text-3xl" style={{ color: coral }}>∞</span>
                 <span className="text-sm tracking-[0.3em] uppercase font-bold" style={{ color: coral }}>Infinite Earning Potential</span>
               </div>
+              <button
+                onClick={() => {
+                  clearAllTimeouts();
+                  resetCycle();
+                  setCompletedWheelhouses(0);
+                  setAnimationDone(false);
+                  hasStarted.current = false;
+                  // Small delay then restart
+                  setTimeout(() => {
+                    hasStarted.current = true;
+                    startCycle(0);
+                  }, 300);
+                }}
+                className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold text-muted-foreground border border-border hover:border-primary hover:text-primary transition-colors"
+              >
+                <RotateCcw size={16} />
+                Replay
+              </button>
             </div>
           )}
         </div>
