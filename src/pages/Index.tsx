@@ -79,28 +79,25 @@ const Index = () => {
             </h1>
           </div>
 
-          {/* Spacer to push logo to lower third */}
-          <div className="flex-[2]" />
-
-          {/* Logo — positioned in lower third */}
-          <img
-            src={logoImg}
-            alt="5050L logo"
-            className="w-auto"
-            style={{ height: "48px", filter: "drop-shadow(0 0 20px hsl(38 70% 60% / 0.5))" }}
-          />
-
-          {/* Spacer between logo and buttons */}
+          {/* Spacer */}
           <div className="flex-1" />
 
-          {/* Bottom: Buttons — pushed to very bottom */}
-          <div className="flex items-center gap-3">
-            <a href="#join" className="px-5 py-2 rounded-md text-xs font-bold tracking-wide bg-accent text-accent-foreground hover:brightness-110 transition-all duration-300 hover:-translate-y-0.5 shadow-lg shadow-accent/30 inline-block">
-              Join Now
-            </a>
-            <Link to="/login" className="px-5 py-2 rounded-md text-xs font-bold tracking-wide border-2 border-white/80 text-white hover:bg-white/10 transition-all duration-300 inline-block">
-              Log In
-            </Link>
+          {/* Bottom row: logo left, buttons right */}
+          <div className="w-full flex items-end justify-between">
+            <img
+              src={logoImg}
+              alt="5050L logo"
+              className="w-auto"
+              style={{ height: "48px", filter: "drop-shadow(0 0 20px hsl(38 70% 60% / 0.5))" }}
+            />
+            <div className="flex items-center gap-3">
+              <a href="#join" className="px-5 py-2 rounded-md text-xs font-bold tracking-wide bg-accent text-accent-foreground hover:brightness-110 transition-all duration-300 hover:-translate-y-0.5 shadow-lg shadow-accent/30 inline-block">
+                Join Now
+              </a>
+              <Link to="/login" className="px-5 py-2 rounded-md text-xs font-bold tracking-wide border-2 border-white/80 text-white hover:bg-white/10 transition-all duration-300 inline-block">
+                Log In
+              </Link>
+            </div>
           </div>
         </div>
       </section>
