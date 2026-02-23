@@ -15,6 +15,7 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
+    { label: "How it Works", path: "/#how-it-works" },
     { label: "Join Us", path: "/#join" },
     { label: "Login", path: "/login" },
   ];
@@ -22,57 +23,52 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass py-3" : "bg-transparent py-5"
+        scrolled ? "glass shadow-sm py-3" : "bg-transparent py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
-        {/* Logo */}
         <Link to="/" className="flex items-center group">
-          <Logo />
+          <Logo variant={scrolled ? "dark" : "light"} />
         </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) =>
-            link.label === "Join Us" ? (
-              <a
-                key={link.label}
-                href={link.path}
-                className="px-6 py-2 rounded-sm text-sm font-semibold tracking-widest uppercase transition-all duration-300 hover:opacity-90"
-                style={{
-                  background: "linear-gradient(135deg, hsl(38 70% 55%), hsl(38 65% 65%))",
-                  color: "hsl(300 100% 100%)",
-                }}
-              >
-                Join Us
-              </a>
-            ) : link.path.startsWith("/#") ? (
-              <a
-                key={link.label}
-                href={link.path}
-                className="text-sm font-medium tracking-wide transition-colors duration-200 text-muted-foreground hover:text-foreground"
-              >
-                {link.label}
-              </a>
-            ) : (
+            link.label === "Login" ? (
               <Link
                 key={link.label}
                 to={link.path}
                 className={`text-sm font-medium tracking-wide transition-colors duration-200 ${
-                  location.pathname === link.path
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-foreground"
+                  scrolled ? "text-muted-foreground hover:text-foreground" : "text-white/80 hover:text-white"
                 }`}
               >
                 {link.label}
               </Link>
+            ) : link.label === "Join Us" ? (
+              <a
+                key={link.label}
+                href={link.path}
+                className="px-6 py-2.5 rounded-lg text-sm font-semibold tracking-wide btn-coral"
+              >
+                Contact Us
+              </a>
+            ) : (
+              <a
+                key={link.label}
+                href={link.path}
+                className={`text-sm font-medium tracking-wide transition-colors duration-200 ${
+                  scrolled ? "text-muted-foreground hover:text-foreground" : "text-white/80 hover:text-white"
+                }`}
+              >
+                {link.label}
+              </a>
             )
           )}
         </div>
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-foreground"
+          className={`md:hidden ${scrolled ? "text-foreground" : "text-white"}`}
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -83,14 +79,12 @@ const Navbar = () => {
       {menuOpen && (
         <div className="md:hidden glass mt-2 mx-4 rounded-lg p-6 flex flex-col gap-4">
           {navLinks.map((link) =>
-            link.path.startsWith("/#") || link.label === "Join Us" ? (
+            link.path.startsWith("/#") ? (
               <a
                 key={link.label}
                 href={link.path}
                 onClick={() => setMenuOpen(false)}
-                className={`text-sm font-medium tracking-wide transition-colors ${
-                  link.label === "Join Us" ? "text-primary font-bold" : "text-muted-foreground hover:text-foreground"
-                }`}
+                className="text-sm font-medium tracking-wide transition-colors text-foreground/70 hover:text-foreground"
               >
                 {link.label}
               </a>
@@ -99,7 +93,7 @@ const Navbar = () => {
                 key={link.label}
                 to={link.path}
                 onClick={() => setMenuOpen(false)}
-                className="text-sm font-medium tracking-wide transition-colors text-muted-foreground hover:text-foreground"
+                className="text-sm font-medium tracking-wide transition-colors text-foreground/70 hover:text-foreground"
               >
                 {link.label}
               </Link>
