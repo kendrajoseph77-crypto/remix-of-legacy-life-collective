@@ -11,7 +11,7 @@ const Logo = ({ className = "", darkBg = true }: LogoProps) => {
       src={logo}
       alt="5050L logo"
       className={`w-auto ${className}`}
-      style={{ height: darkBg ? "360px" : "120px" }}
+      style={{ height: darkBg ? "180px" : "60px" }}
     />
   );
 };
