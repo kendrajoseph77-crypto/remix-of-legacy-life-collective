@@ -65,7 +65,7 @@ const Index = () => {
         {/* No dark overlay */}
 
         {/* Content container — fills viewport, spaced between top/bottom */}
-        <div className="relative z-10 w-full flex flex-col items-center flex-1 pt-14 pb-8">
+        <div className="relative z-10 w-full flex flex-col items-center flex-1 pt-14 pb-4 px-6">
           {/* Top: Seal + Title */}
           <div className="flex flex-col items-center gap-2">
             <img
