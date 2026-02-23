@@ -130,29 +130,28 @@ const WheelhouseDiagram = () => {
     const addNextMember = () => {
       if (memberIdx >= MEMBER_COUNT) {
         setCycleComplete(true);
-        safeTimeout(() => setCelebrationPhase(1), 100);
-        safeTimeout(() => setCelebrationPhase(2), 600);
-
+        safeTimeout(() => setCelebrationPhase(1), 50);
+        safeTimeout(() => setCelebrationPhase(2), 300);
         if (cycleNum < MAX_WHEELHOUSES - 1) {
           // Shrink and spawn next
-          safeTimeout(() => setShrinking(true), 2000);
+          safeTimeout(() => setShrinking(true), 1000);
           safeTimeout(() => {
             setCompletedWheelhouses(cycleNum + 1);
             resetCycle();
-            safeTimeout(() => startCycle(cycleNum + 1), 800);
-          }, 2800);
+            safeTimeout(() => startCycle(cycleNum + 1), 400);
+          }, 1500);
         } else {
           // All 6 done — show final state then restart
           safeTimeout(() => {
             setCompletedWheelhouses(MAX_WHEELHOUSES);
             setShrinking(true);
-          }, 2000);
+          }, 1000);
           safeTimeout(() => {
             // Full reset after showing all 6
             setCompletedWheelhouses(0);
             resetCycle();
-            safeTimeout(() => startCycle(0), 1500);
-          }, 7000);
+            safeTimeout(() => startCycle(0), 1000);
+          }, 4000);
         }
         return;
       }
@@ -166,7 +165,7 @@ const WheelhouseDiagram = () => {
 
       const startVal = (targetMembers - 1) * YOU_CUT_PER_MEMBER;
       const targetEarnings = targetMembers * YOU_CUT_PER_MEMBER;
-      const duration = 1200;
+      const duration = 600;
       const startTime = performance.now();
 
       const tick = (now: number) => {
@@ -180,15 +179,15 @@ const WheelhouseDiagram = () => {
         } else {
           safeTimeout(() => {
             setShowContribution(null);
-            safeTimeout(addNextMember, 700);
-          }, 800);
+            safeTimeout(addNextMember, 300);
+          }, 400);
         }
       };
 
       animationRef.current = requestAnimationFrame(tick);
     };
 
-    safeTimeout(addNextMember, 1200);
+    safeTimeout(addNextMember, 500);
   }, [resetCycle, safeTimeout]);
 
   useEffect(() => {
