@@ -3,7 +3,8 @@ import Footer from "@/components/Footer";
 import WheelhouseDiagram from "@/components/WheelhouseDiagram";
 import { useState } from "react";
 import anniversarySeal from "@/assets/anniversary-seal.jpeg";
-import heroVideo from "@/assets/hero-video.mp4";
+import heroVideo from "@/assets/hero-video-new.mp4";
+import logoGold from "@/assets/logo-gold-5050l.png";
 import { Link } from "react-router-dom";
 
 const tiers = [
