@@ -133,25 +133,26 @@ const WheelhouseDiagram = () => {
         safeTimeout(() => setCelebrationPhase(1), 50);
         safeTimeout(() => setCelebrationPhase(2), 300);
         if (cycleNum < MAX_WHEELHOUSES - 1) {
-          // Shrink and spawn next
-          safeTimeout(() => setShrinking(true), 1000);
+          // Pause on completion text, then shrink and spawn next
+          safeTimeout(() => setShrinking(true), 2500);
           safeTimeout(() => {
             setCompletedWheelhouses(cycleNum + 1);
             resetCycle();
             safeTimeout(() => startCycle(cycleNum + 1), 400);
-          }, 1500);
+          }, 3200);
         } else {
-          // All 6 done — show final state then restart
+          // All 6 done — show final state with infinite message
           safeTimeout(() => {
             setCompletedWheelhouses(MAX_WHEELHOUSES);
             setShrinking(true);
-          }, 1000);
+            setCelebrationPhase(3); // triggers infinite message
+          }, 2500);
           safeTimeout(() => {
             // Full reset after showing all 6
             setCompletedWheelhouses(0);
             resetCycle();
-            safeTimeout(() => startCycle(0), 1000);
-          }, 4000);
+            safeTimeout(() => startCycle(0), 1500);
+          }, 9000);
         }
         return;
       }
@@ -547,6 +548,22 @@ const WheelhouseDiagram = () => {
               Total Earned: <span style={{ color: coral }} className="text-lg font-mono">{formatCurrency(CYCLE_EARNINGS * completedWheelhouses)}</span>
             </p>
           </div>
+
+          {/* Infinite potential message after all 6 */}
+          {completedWheelhouses >= MAX_WHEELHOUSES && celebrationPhase >= 3 && (
+            <div className="text-center mt-6 animate-fade-in">
+              <p className="text-2xl md:text-3xl font-extrabold tracking-tight text-foreground mb-2">
+                And It Never Stops.
+              </p>
+              <p className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed">
+                Unlimited re-entries. Unlimited follows. Unlimited income.
+                Every completed wheelhouse automatically opens a new one — there is <span className="font-bold text-foreground">no limit</span> to how many times you can cycle.
+              </p>
+              <div className="flex items-center justify-center gap-2 mt-4">
+                <span className="text-xs tracking-[0.3em] uppercase font-semibold" style={{ color: coral }}>∞ Infinite Earning Potential</span>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
