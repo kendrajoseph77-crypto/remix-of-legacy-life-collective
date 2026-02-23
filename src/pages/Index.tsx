@@ -81,7 +81,7 @@ const Index = () => {
           </div>
 
           {/* Center: Logo */}
-          <div className="flex-1 flex items-center justify-center">
+          <div className="flex-1 flex items-end justify-center pb-8">
             <img
               src={logoImg}
               alt="5050L logo"
