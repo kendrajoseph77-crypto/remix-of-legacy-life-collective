@@ -82,7 +82,7 @@ const MiniWheelhouse = ({ index, total }: { index: number; total: number }) => {
           <circle key={`m3-${i}`} cx={mcx + mr2 * Math.cos(n.angle)} cy={mcy + mr2 * Math.sin(n.angle)} r={mnr} fill={royal} opacity="0.7" />
         ))}
       </svg>
-      <p className="text-xs font-bold text-foreground mt-1">Cycle {index + 1}</p>
+      <p className="text-xs font-bold text-foreground mt-1">Wheel {index + 1}</p>
       <p className="text-xs font-mono font-bold" style={{ color: coral }}>
         {formatCurrency(CYCLE_EARNINGS * (index + 1))}
       </p>
@@ -124,31 +124,44 @@ const WheelhouseDiagram = () => {
     setShrinking(false);
   }, []);
 
+  // Speed multiplier: cycle 0 = 1x, progressively faster
+  const getSpeedMultiplier = (cycleNum: number) => {
+    if (cycleNum === 0) return 1;
+    if (cycleNum === 1) return 0.7;
+    if (cycleNum === 2) return 0.5;
+    if (cycleNum === 3) return 0.35;
+    if (cycleNum === 4) return 0.25;
+    return 0.15; // cycles 5+ are blazing fast
+  };
+
+  const [animationDone, setAnimationDone] = useState(false);
+
   const startCycle = useCallback((cycleNum: number) => {
     resetCycle();
     let memberIdx = 0;
+    const speed = getSpeedMultiplier(cycleNum);
 
     const addNextMember = () => {
       if (memberIdx >= MEMBER_COUNT) {
         setCycleComplete(true);
-        safeTimeout(() => setCelebrationPhase(1), 50);
-        safeTimeout(() => setCelebrationPhase(2), 300);
+        safeTimeout(() => setCelebrationPhase(1), 50 * speed);
+        safeTimeout(() => setCelebrationPhase(2), 300 * speed);
         if (cycleNum < TOTAL_CYCLES - 1) {
-          // Pause on completion text, then shrink and spawn next
-          safeTimeout(() => setShrinking(true), 2500);
+          const pauseTime = cycleNum === 0 ? 2500 : Math.max(800 * speed, 200);
+          safeTimeout(() => setShrinking(true), pauseTime);
           safeTimeout(() => {
             setCompletedWheelhouses(cycleNum + 1);
             resetCycle();
-            safeTimeout(() => startCycle(cycleNum + 1), 400);
-          }, 3200);
+            safeTimeout(() => startCycle(cycleNum + 1), 300 * speed);
+          }, pauseTime + 700 * speed);
         } else {
-          // Final cycle done — show permanent infinite state
+          // Final cycle — collapse animation area and show infinite state
           safeTimeout(() => {
             setCompletedWheelhouses(cycleNum + 1);
             setShrinking(true);
             setCelebrationPhase(3);
+            safeTimeout(() => setAnimationDone(true), 800);
           }, 2500);
-          // No restart — animation ends here permanently
         }
         return;
       }
@@ -162,7 +175,7 @@ const WheelhouseDiagram = () => {
 
       const startVal = (targetMembers - 1) * YOU_CUT_PER_MEMBER;
       const targetEarnings = targetMembers * YOU_CUT_PER_MEMBER;
-      const duration = 600;
+      const duration = 600 * speed;
       const startTime = performance.now();
 
       const tick = (now: number) => {
@@ -176,15 +189,15 @@ const WheelhouseDiagram = () => {
         } else {
           safeTimeout(() => {
             setShowContribution(null);
-            safeTimeout(addNextMember, 300);
-          }, 400);
+            safeTimeout(addNextMember, 300 * speed);
+          }, 400 * speed);
         }
       };
 
       animationRef.current = requestAnimationFrame(tick);
     };
 
-    safeTimeout(addNextMember, 500);
+    safeTimeout(addNextMember, 500 * speed);
   }, [resetCycle, safeTimeout]);
 
   useEffect(() => {
@@ -414,12 +427,15 @@ const WheelhouseDiagram = () => {
 
   return (
     <div ref={sectionRef} className="relative w-full max-w-[660px] mx-auto">
-      {/* Main active wheelhouse */}
+      {/* Main active wheelhouse — hidden entirely once animation is done */}
+      {!animationDone && (
       <div
         className="transition-all duration-700 ease-in-out origin-top-left"
         style={{
           transform: shrinking ? "scale(0)" : "scale(1)",
           opacity: shrinking ? 0 : 1,
+          height: animationDone ? 0 : undefined,
+          overflow: animationDone ? 'hidden' : undefined,
         }}
       >
         <svg viewBox="0 0 600 580" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
@@ -527,6 +543,7 @@ const WheelhouseDiagram = () => {
           </div>
         )}
       </div>
+      )}
 
       {/* Completed mini wheelhouses grid */}
       {completedWheelhouses > 0 && (
@@ -549,7 +566,7 @@ const WheelhouseDiagram = () => {
           </div>
           <div className="text-center mt-3">
             <p className="text-sm font-bold text-foreground">
-              Total Earned: <span style={{ color: coral }} className="text-lg font-mono">{formatCurrency(CYCLE_EARNINGS * completedWheelhouses)}</span>
+              Monthly Income: <span style={{ color: coral }} className="text-lg font-mono">{formatCurrency(CYCLE_EARNINGS * completedWheelhouses)}</span>
             </p>
           </div>
 
