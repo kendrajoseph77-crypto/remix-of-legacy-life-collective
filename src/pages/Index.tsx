@@ -166,23 +166,23 @@ const Index = () => {
       </section>
 
       {/* ── Section 2: Wheelhouse + Process Combined ── */}
-      <section className="py-16 max-w-6xl mx-auto px-6">
-        <p className="text-primary text-xs tracking-[0.4em] uppercase font-semibold mb-2 text-center">The Mobius Loop</p>
-        <h2 className="text-xl md:text-3xl font-bold text-center mb-8 text-foreground">
+      <section className="py-8 max-w-6xl mx-auto px-6">
+        <p className="text-primary text-xs tracking-[0.4em] uppercase font-semibold mb-1 text-center">The Mobius Loop</p>
+        <h2 className="text-xl md:text-2xl font-bold text-center mb-4 text-foreground">
           Your Wheelhouse. <span className="text-muted-foreground">Always in Motion.</span>
         </h2>
 
         <WheelhouseDiagram />
 
         {/* 3 Steps — horizontal boxes below */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
           {steps.map((step, i) => (
-            <div key={i} className="rounded-xl p-5 bg-card border border-border text-center">
-              <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center mx-auto mb-3">
-                <span className="text-sm font-bold text-secondary">{step.n}</span>
+            <div key={i} className="rounded-lg p-3 bg-card border border-border text-center">
+              <div className="w-7 h-7 rounded-md bg-secondary/10 flex items-center justify-center mx-auto mb-1.5">
+                <span className="text-xs font-bold text-secondary">{step.n}</span>
               </div>
-              <p className="text-sm font-semibold text-foreground mb-1">{step.title}</p>
-              <p className="text-xs text-muted-foreground">{step.desc}</p>
+              <p className="text-xs font-semibold text-foreground mb-0.5">{step.title}</p>
+              <p className="text-[11px] text-muted-foreground leading-tight">{step.desc}</p>
             </div>
           ))}
         </div>
