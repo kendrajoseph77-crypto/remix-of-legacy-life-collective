@@ -13,13 +13,13 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-[hsl(220,30%,12%)] shadow-lg py-3" : "bg-transparent py-5"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white ${
+        scrolled ? "shadow-lg py-3" : "py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
         <Link to="/" className="flex items-center group">
-          <Logo variant="light" />
+          <Logo />
         </Link>
       </div>
     </nav>
