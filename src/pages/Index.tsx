@@ -94,63 +94,73 @@ const Index = () => {
             </h2>
           </div>
 
-          {/* Tier Cards */}
-          <div className="grid md:grid-cols-3 gap-6 mb-10">
-            {tiers.map((tier, i) => (
-              <div
-                key={i}
-                onClick={() => setSelected(i)}
-                className={`rounded-xl p-6 cursor-pointer transition-all duration-300 bg-card border ${
-                  selected === i
-                    ? "border-primary scale-[1.02] shadow-lg shadow-primary/10"
-                    : "border-border hover:border-muted-foreground/30 hover:scale-[1.01]"
-                }`}
-              >
-                <p className="text-muted-foreground text-xs tracking-widest uppercase mb-1">{tier.name}</p>
-                <p className="text-3xl font-bold text-foreground mb-0.5">{tier.entry}</p>
-                <p className="text-muted-foreground/60 text-xs mb-5">one-time contribution</p>
-                <div className="border-t border-border pt-4">
-                  <p className="text-muted-foreground text-xs uppercase tracking-wider mb-0.5">You receive per cycle</p>
-                  <p className="text-2xl font-bold" style={{ color: tier.accentColor }}>{tier.receive}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          {/* Form + Tiers side by side */}
+          <div className="flex flex-col md:flex-row gap-8 max-w-5xl mx-auto">
+            {/* Left: Join Form */}
+            <div className="flex-1 rounded-xl p-8 bg-card border border-border">
+              <h3 className="text-xl font-bold mb-1 text-foreground">Register</h3>
+              <p className="text-muted-foreground text-sm mb-6">Fill out the form below to activate your membership.</p>
+              <form className="grid grid-cols-1 sm:grid-cols-2 gap-4" onSubmit={(e) => e.preventDefault()}>
+                <input type="text" placeholder="Referral Code" className="px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
+                <input type="text" placeholder="First Name" className="px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
+                <input type="text" placeholder="Last Name" className="px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
+                <input type="email" placeholder="Email" className="px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
+                <input type="email" placeholder="Confirm Email" className="px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
+                <input type="text" placeholder="Username" className="px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
+                <input type="password" placeholder="Password" className="px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
+                <input type="password" placeholder="Confirm Password" className="sm:col-span-2 px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
 
-          {/* Join Form */}
-          <div className="w-full max-w-3xl mx-auto rounded-xl p-8 bg-card border border-border">
-            <h3 className="text-xl font-bold mb-1 text-foreground">
-              Ready to Join?
-              {selected !== null && (
-                <span className="text-muted-foreground text-sm font-normal ml-2">
-                  {tiers[selected].name} — {tiers[selected].entry}
-                </span>
-              )}
-            </h3>
-            <p className="text-muted-foreground text-sm mb-6">Fill out the form below to activate your membership.</p>
-            <form className="grid grid-cols-1 sm:grid-cols-2 gap-4" onSubmit={(e) => e.preventDefault()}>
-              <input type="text" placeholder="First Name" className="px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
-              <input type="text" placeholder="Last Name" className="px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
-              <input type="email" placeholder="Email" className="px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
-              <input type="text" placeholder="Username" className="px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
-              <input type="text" placeholder="Referral Code" className="sm:col-span-2 px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
-              <button
-                type="submit"
-                className="sm:col-span-2 py-3.5 rounded-lg font-bold tracking-wide text-sm btn-coral"
-              >
-                Confirm & Join
-              </button>
-            </form>
-            <div className="flex items-center justify-between mt-4 flex-wrap gap-2">
-              <p className="text-muted-foreground text-xs">
-                By joining you agree to our{" "}
-                <a href="#" className="text-primary hover:underline">Terms</a> and{" "}
-                <a href="#" className="text-primary hover:underline">Privacy Policy</a>.
-              </p>
-              <p className="text-muted-foreground text-sm">
-                Existing member?{" "}
-                <Link to="/login" className="text-primary hover:underline font-medium">Login here</Link>
-              </p>
+                {/* Startup Fee Checkbox */}
+                <div className="sm:col-span-2 mt-2">
+                  <p className="text-sm font-semibold text-foreground mb-2">Licensing Fee:</p>
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" defaultChecked className="w-4 h-4 rounded border-border text-primary focus:ring-primary accent-primary" />
+                    <span className="text-sm text-foreground">$29.99 Every 6 Months</span>
+                  </label>
+                </div>
+
+                <button
+                  type="submit"
+                  className="sm:col-span-2 py-3.5 rounded-lg font-bold tracking-wide text-sm btn-coral mt-2"
+                >
+                  Join
+                </button>
+              </form>
+              <div className="flex items-center justify-between mt-4 flex-wrap gap-2">
+                <p className="text-muted-foreground text-xs">
+                  By joining you agree to our{" "}
+                  <a href="#" className="text-primary hover:underline">Terms</a> and{" "}
+                  <a href="#" className="text-primary hover:underline">Privacy Policy</a>.
+                </p>
+                <p className="text-muted-foreground text-sm">
+                  Already have an account?{" "}
+                  <Link to="/login" className="text-primary hover:underline font-medium">Log in</Link>
+                </p>
+              </div>
+            </div>
+
+            {/* Right: Tier Levels (vertical) */}
+            <div className="md:w-72 flex flex-col gap-4">
+              <p className="text-sm font-semibold text-foreground mb-1">Royalty Levels:</p>
+              {tiers.map((tier, i) => (
+                <div
+                  key={i}
+                  onClick={() => setSelected(i)}
+                  className={`rounded-xl p-5 cursor-pointer transition-all duration-300 bg-card border ${
+                    selected === i
+                      ? "border-primary shadow-lg shadow-primary/10"
+                      : "border-border hover:border-muted-foreground/30"
+                  }`}
+                >
+                  <p className="text-muted-foreground text-xs tracking-widest uppercase mb-1">{tier.name}</p>
+                  <p className="text-2xl font-bold text-foreground mb-0.5">{tier.entry}</p>
+                  <p className="text-muted-foreground/60 text-xs mb-3">one-time contribution</p>
+                  <div className="border-t border-border pt-3">
+                    <p className="text-muted-foreground text-xs uppercase tracking-wider mb-0.5">You receive</p>
+                    <p className="text-xl font-bold" style={{ color: tier.accentColor }}>{tier.receive}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
