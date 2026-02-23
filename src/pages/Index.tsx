@@ -36,7 +36,7 @@ const tiers = [
 const steps = [
   { n: "01", title: "Activate", desc: "Contribute once at your chosen level." },
   { n: "02", title: "Invite 2", desc: "Two people join — your Wheelhouse fills." },
-  { n: "03", title: "Receive & Repeat", desc: "Collect 50%. A new cycle begins automatically." },
+  { n: "03", title: "Receive & Repeat", desc: "You earn 50% and your team earns 50%. Your team moves with you when a new wheelhouse opens." },
 ];
 
 const Index = () => {
