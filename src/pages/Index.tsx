@@ -172,23 +172,19 @@ const Index = () => {
           Your Wheelhouse. <span className="text-muted-foreground">Always in Motion.</span>
         </h2>
 
-        <div className="flex flex-col md:flex-row items-center gap-8">
-          <div className="md:w-[55%]">
-            <WheelhouseDiagram />
-          </div>
-          <div className="md:w-[45%] flex flex-col gap-4">
-            {steps.map((step, i) => (
-              <div key={i} className="flex gap-3 items-center">
-                <div className="w-8 h-8 rounded-md bg-secondary/10 flex items-center justify-center shrink-0">
-                  <span className="text-xs font-bold text-secondary">{step.n}</span>
-                </div>
-                <p className="text-sm text-foreground">
-                  <span className="font-semibold">{step.title}</span>
-                  <span className="text-muted-foreground"> — {step.desc}</span>
-                </p>
+        <WheelhouseDiagram />
+
+        {/* 3 Steps — horizontal boxes below */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-10">
+          {steps.map((step, i) => (
+            <div key={i} className="rounded-xl p-5 bg-card border border-border text-center">
+              <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center mx-auto mb-3">
+                <span className="text-sm font-bold text-secondary">{step.n}</span>
               </div>
-            ))}
-          </div>
+              <p className="text-sm font-semibold text-foreground mb-1">{step.title}</p>
+              <p className="text-xs text-muted-foreground">{step.desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 
