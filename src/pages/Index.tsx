@@ -79,8 +79,8 @@ const Index = () => {
           <img
             src={anniversarySeal}
             alt="25th Anniversary"
-            className="w-20 h-20 md:w-24 md:h-24 rounded-full object-contain mb-8"
-            style={{ filter: "drop-shadow(0 0 12px hsl(38 70% 60% / 0.5))" }}
+            className="rounded-full object-contain mb-8"
+            style={{ height: "80px", filter: "drop-shadow(0 0 12px hsl(38 70% 60% / 0.5))" }}
           />
 
           <div className="flex items-center gap-4">
