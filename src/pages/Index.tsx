@@ -4,7 +4,6 @@ import WheelhouseDiagram from "@/components/WheelhouseDiagram";
 import { useState } from "react";
 import anniversarySeal from "@/assets/anniversary-seal.jpeg";
 import { Link } from "react-router-dom";
-import { Check } from "lucide-react";
 
 const tiers = [
   {
@@ -73,69 +72,15 @@ const Index = () => {
             The elite peer-to-peer crowdfunding platform built for legacy wealth. Transparent. Automated. Unstoppable.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="#join" className="px-8 py-3.5 rounded-lg text-sm font-bold tracking-wide btn-coral">
               Get Started
             </a>
-            <a href="#how-it-works" className="px-8 py-3.5 rounded-lg text-sm font-bold tracking-wide btn-outline-white">
-              How It Works
-            </a>
-          </div>
-
-          <div className="flex items-center justify-center gap-6 flex-wrap">
-            {["Transparent", "Automated", "Legacy Wealth"].map((item) => (
-              <span key={item} className="flex items-center gap-2 text-white/80 text-sm">
-                <Check size={16} className="text-green-400" />
-                {item}
-              </span>
-            ))}
           </div>
         </div>
       </section>
 
-      {/* ── Light Section: 3 Steps ── */}
-      <section className="section-light py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <p className="text-primary text-xs tracking-[0.4em] uppercase font-semibold mb-3 text-center">The Process</p>
-          <h2 className="text-2xl md:text-4xl font-bold text-center mb-4 text-foreground">3 Steps. Infinite Cycles.</h2>
-          <p className="text-muted-foreground text-center mb-12 max-w-lg mx-auto">
-            A simple, proven system designed for cooperative wealth building.
-          </p>
-          <div className="grid md:grid-cols-3 gap-6">
-            {steps.map((step, i) => (
-              <div key={i} className="rounded-xl p-6 bg-card border border-border hover:shadow-lg transition-shadow">
-                <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center mb-4">
-                  <span className="text-lg font-bold text-secondary">{step.n}</span>
-                </div>
-                <h3 className="text-lg font-bold text-foreground mb-2">{step.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
-                <div className="w-12 h-0.5 bg-primary/30 mt-5" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Wheelhouse Diagram ── */}
-      <section id="how-it-works" className="py-20 max-w-6xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center gap-12">
-          <div className="md:w-[45%]">
-            <p className="text-primary text-xs tracking-[0.4em] uppercase font-semibold mb-3">The Mobius Loop</p>
-            <h3 className="text-2xl md:text-4xl font-bold mb-4 leading-tight text-foreground">
-              Your Wheelhouse.<br />
-              <span className="text-muted-foreground">Always in Motion.</span>
-            </h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              At the center sits <span className="text-foreground font-semibold">you</span>. Your Wheelhouse fills with 6 participants — 2 you invite directly, and 4 who join through your team. The moment it's full, you receive <span className="text-primary font-semibold">50% of the pool</span> and a brand-new Wheelhouse opens automatically.
-            </p>
-          </div>
-          <div className="md:w-[55%]">
-            <WheelhouseDiagram />
-          </div>
-        </div>
-      </section>
-
-      {/* ── Tier Cards + Join Form ── */}
+      {/* ── Section 1: Activate Your Membership ── */}
       <section id="join" className="section-dark py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <p className="text-primary text-xs tracking-[0.4em] uppercase font-semibold mb-3 text-center">Choose Your Level</p>
@@ -201,6 +146,48 @@ const Index = () => {
                 <Link to="/login" className="text-primary hover:underline font-medium">Login here</Link>
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Section 2: Wheelhouse Diagram ── */}
+      <section id="how-it-works" className="py-20 max-w-6xl mx-auto px-6">
+        <div className="flex flex-col md:flex-row items-center gap-12">
+          <div className="md:w-[45%]">
+            <p className="text-primary text-xs tracking-[0.4em] uppercase font-semibold mb-3">The Mobius Loop</p>
+            <h3 className="text-2xl md:text-4xl font-bold mb-4 leading-tight text-foreground">
+              Your Wheelhouse.<br />
+              <span className="text-muted-foreground">Always in Motion.</span>
+            </h3>
+            <p className="text-muted-foreground text-sm leading-relaxed">
+              At the center sits <span className="text-foreground font-semibold">you</span>. Your Wheelhouse fills with 6 participants — 2 you invite directly, and 4 who join through your team. The moment it's full, you receive <span className="text-primary font-semibold">50% of the pool</span> and a brand-new Wheelhouse opens automatically.
+            </p>
+          </div>
+          <div className="md:w-[55%]">
+            <WheelhouseDiagram />
+          </div>
+        </div>
+      </section>
+
+      {/* ── Section 3: The Process ── */}
+      <section className="section-light py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <p className="text-primary text-xs tracking-[0.4em] uppercase font-semibold mb-3 text-center">The Process</p>
+          <h2 className="text-2xl md:text-4xl font-bold text-center mb-4 text-foreground">3 Steps. Infinite Cycles.</h2>
+          <p className="text-muted-foreground text-center mb-12 max-w-lg mx-auto">
+            A simple, proven system designed for cooperative wealth building.
+          </p>
+          <div className="grid md:grid-cols-3 gap-6">
+            {steps.map((step, i) => (
+              <div key={i} className="rounded-xl p-6 bg-card border border-border hover:shadow-lg transition-shadow">
+                <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center mb-4">
+                  <span className="text-lg font-bold text-secondary">{step.n}</span>
+                </div>
+                <h3 className="text-lg font-bold text-foreground mb-2">{step.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
+                <div className="w-12 h-0.5 bg-primary/30 mt-5" />
+              </div>
+            ))}
           </div>
         </div>
       </section>

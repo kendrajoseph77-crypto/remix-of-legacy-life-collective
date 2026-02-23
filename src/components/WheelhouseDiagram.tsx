@@ -487,7 +487,7 @@ const WheelhouseDiagram = () => {
       {cycleComplete && celebrationPhase >= 2 && (
         <div className="text-center animate-fade-in mt-2 mb-4">
           <p className="text-2xl md:text-3xl font-bold tracking-wide" style={{ color: brightYellow }}>
-            🎉 Wheelhouse Complete!
+            Wheelhouse Complete!
           </p>
           <p className="text-lg md:text-xl font-semibold tracking-widest mt-1" style={{ color: brightYellow, opacity: 0.85 }}>
             Mobius Loop Activated.
