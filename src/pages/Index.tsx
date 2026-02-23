@@ -1,7 +1,7 @@
 import logoImg from "@/assets/logo-5050-3.png";
 import WheelhouseDiagram from "@/components/WheelhouseDiagram";
 import { useState } from "react";
-import anniversarySeal from "@/assets/anniversary-seal.jpeg";
+import anniversarySeal from "@/assets/anniversary-seal-hq.png";
 import heroVideo from "@/assets/hero-video-new.mp4";
 import { Link } from "react-router-dom";
 
