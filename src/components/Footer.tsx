@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid md:grid-cols-2 gap-12 mb-12">
           <div className="flex flex-col gap-4">
-            <Logo />
+            <Logo darkBg={false} />
             <p className="text-muted-foreground text-sm leading-relaxed">
               The elite peer-to-peer crowdfunding platform built for legacy wealth.
               Transparent. Automated. Unstoppable.
