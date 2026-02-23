@@ -1,3 +1,4 @@
+import logoImg from "@/assets/logo-new.png";
 import Logo from "@/components/Logo";
 import WheelhouseDiagram from "@/components/WheelhouseDiagram";
 import { useState } from "react";
@@ -60,9 +61,9 @@ const Index = () => {
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/20" />
 
-        {/* Logo — outside z-10 so blend mode works against video */}
-        <div className="relative z-[5] flex justify-center mb-6" style={{ isolation: "auto" }}>
-          <Logo darkBg className="h-auto" />
+        {/* Logo — top left */}
+        <div className="absolute top-6 left-6 z-[5]" style={{ isolation: "auto" }}>
+          <img src={logoImg} alt="5050L logo" className="w-auto" style={{ height: "100px" }} />
         </div>
 
         <div className="relative z-10 w-full max-w-4xl mx-auto">
