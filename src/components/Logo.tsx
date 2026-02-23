@@ -1,4 +1,4 @@
-import globePeople from "@/assets/logo-globe-people.png";
+import logoGold from "@/assets/logo-gold-5050l.png";
 
 interface LogoProps {
   className?: string;
@@ -9,26 +9,16 @@ const Logo = ({ className = "", variant = "dark" }: LogoProps) => {
   const isLight = variant === "light";
 
   return (
-    <div className={`flex items-center gap-1.5 ${className}`}>
+    <div className={`flex items-center ${className}`}>
       <img
-        src={globePeople}
-        alt="Coop5050L globe"
-        className="h-9 sm:h-11 w-auto"
+        src={logoGold}
+        alt="5050L logo"
+        className="h-10 sm:h-12 w-auto"
         style={{
-          filter: isLight
-            ? "brightness(0) invert(1)"
-            : "none",
+          mixBlendMode: isLight ? "screen" : "multiply",
+          filter: isLight ? "brightness(1.3)" : "none",
         }}
       />
-      <span
-        className="text-2xl sm:text-3xl font-bold tracking-tight"
-        style={{
-          color: isLight ? "white" : "hsl(220 30% 15%)",
-          fontFamily: "'Playfair Display', 'Plus Jakarta Sans', serif",
-        }}
-      >
-        5050L
-      </span>
     </div>
   );
 };

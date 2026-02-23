@@ -63,10 +63,22 @@ const Index = () => {
         <div className="absolute inset-0 bg-black/50" />
 
         <div className="relative z-10 w-full max-w-4xl mx-auto">
+          <div
+            className="w-28 md:w-36 mx-auto mb-6 aspect-square rounded-full overflow-hidden shadow-2xl"
+            style={{ border: "3px solid hsl(0 0% 100% / 0.25)" }}
+          >
+            <img
+              src={anniversarySeal}
+              alt="David T. Rosen — 25th Anniversary"
+              className="w-full h-full object-cover scale-[1.12]"
+            />
+          </div>
+
           <img
             src={logoGold}
             alt="5050L logo"
             className="w-36 md:w-48 mx-auto mb-8"
+            style={{ mixBlendMode: "screen" }}
           />
 
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-10 tracking-tight leading-tight">
