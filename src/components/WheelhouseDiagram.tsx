@@ -485,12 +485,12 @@ const WheelhouseDiagram = () => {
 
       {/* Completion text */}
       {cycleComplete && celebrationPhase >= 2 && (
-        <div className="text-center animate-fade-in mt-2 mb-4">
-          <p className="text-2xl md:text-3xl font-bold tracking-wide" style={{ color: brightYellow }}>
-            Wheelhouse Complete!
+        <div className="text-center animate-fade-in mt-3 mb-4">
+          <p className="text-xl md:text-2xl font-extrabold tracking-tight" style={{ color: brightYellow, textShadow: `0 0 20px hsl(12 80% 58% / 0.4)` }}>
+            Wheelhouse Complete
           </p>
-          <p className="text-lg md:text-xl font-semibold tracking-widest mt-1" style={{ color: brightYellow, opacity: 0.85 }}>
-            Mobius Loop Activated.
+          <p className="text-xs tracking-[0.35em] uppercase font-semibold mt-1.5" style={{ color: brightYellow, opacity: 0.7 }}>
+            Mobius Loop Activated
           </p>
         </div>
       )}

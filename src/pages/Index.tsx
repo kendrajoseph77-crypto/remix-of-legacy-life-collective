@@ -154,26 +154,26 @@ const Index = () => {
       </section>
 
       {/* ── Section 2: Wheelhouse + Process Combined ── */}
-      <section className="py-20 max-w-6xl mx-auto px-6">
-        <p className="text-primary text-xs tracking-[0.4em] uppercase font-semibold mb-3 text-center">The Mobius Loop</p>
-        <h2 className="text-2xl md:text-4xl font-bold text-center mb-12 text-foreground">
+      <section className="py-16 max-w-6xl mx-auto px-6">
+        <p className="text-primary text-xs tracking-[0.4em] uppercase font-semibold mb-2 text-center">The Mobius Loop</p>
+        <h2 className="text-xl md:text-3xl font-bold text-center mb-8 text-foreground">
           Your Wheelhouse. <span className="text-muted-foreground">Always in Motion.</span>
         </h2>
 
-        <div className="flex flex-col md:flex-row items-center gap-12">
+        <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="md:w-[55%]">
             <WheelhouseDiagram />
           </div>
-          <div className="md:w-[45%] flex flex-col gap-5">
+          <div className="md:w-[45%] flex flex-col gap-4">
             {steps.map((step, i) => (
-              <div key={i} className="flex gap-4 items-start">
-                <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center shrink-0">
-                  <span className="text-sm font-bold text-secondary">{step.n}</span>
+              <div key={i} className="flex gap-3 items-center">
+                <div className="w-8 h-8 rounded-md bg-secondary/10 flex items-center justify-center shrink-0">
+                  <span className="text-xs font-bold text-secondary">{step.n}</span>
                 </div>
-                <div>
-                  <h3 className="text-base font-bold text-foreground mb-0.5">{step.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
-                </div>
+                <p className="text-sm text-foreground">
+                  <span className="font-semibold">{step.title}</span>
+                  <span className="text-muted-foreground"> — {step.desc}</span>
+                </p>
               </div>
             ))}
           </div>
