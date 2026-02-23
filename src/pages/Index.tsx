@@ -53,7 +53,9 @@ const Index = () => {
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          controls={false}
+          className="absolute inset-0 w-full h-full object-cover [&::-webkit-media-controls]:hidden [&::-webkit-media-controls-play-button]:hidden [&::-webkit-media-controls-start-playback-button]:hidden"
+          style={{ pointerEvents: "none" }}
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
