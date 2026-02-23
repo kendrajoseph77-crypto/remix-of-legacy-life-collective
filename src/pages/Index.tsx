@@ -62,8 +62,7 @@ const Index = () => {
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
-        {/* Dark overlay — sits above video, blocks any play button */}
-        <div className="absolute inset-0 bg-black/10 z-[1]" />
+        {/* No dark overlay */}
 
         {/* Content container — fills viewport, spaced between top/bottom */}
         <div className="relative z-10 w-full flex flex-col items-center flex-1 pt-14 pb-8">
