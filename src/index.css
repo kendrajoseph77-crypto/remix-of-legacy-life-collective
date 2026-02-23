@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
@@ -83,10 +83,11 @@
   .hero-gradient {
     background: linear-gradient(
       135deg,
-      hsl(220 65% 25%) 0%,
-      hsl(225 70% 30%) 30%,
-      hsl(230 75% 35%) 60%,
-      hsl(240 60% 28%) 100%
+      hsl(260 55% 48%) 0%,
+      hsl(245 60% 50%) 25%,
+      hsl(230 65% 52%) 50%,
+      hsl(220 70% 48%) 75%,
+      hsl(250 45% 55%) 100%
     );
   }
 
