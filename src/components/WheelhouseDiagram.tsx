@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { RotateCcw } from "lucide-react";
+import { RotateCcw, ChevronRight, Play } from "lucide-react";
 
 const avatarUrls = [
   "https://randomuser.me/api/portraits/men/83.jpg",
@@ -103,6 +103,9 @@ const WheelhouseDiagram = () => {
   const hasStarted = useRef(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const [animationDone, setAnimationDone] = useState(false);
+  const [autoPlay, setAutoPlay] = useState(false);
+  const [currentWheel, setCurrentWheel] = useState(0);
 
   const clearAllTimeouts = useCallback(() => {
     timeoutsRef.current.forEach(clearTimeout);
@@ -125,22 +128,22 @@ const WheelhouseDiagram = () => {
     setShrinking(false);
   }, []);
 
-  // Speed multiplier: cycle 0 = 1x (slowest), progressively faster but never frantic
+  // Speed multiplier for auto-play
   const getSpeedMultiplier = (cycleNum: number) => {
-    if (cycleNum === 0) return 1.8;   // first wheel: slow & deliberate
+    if (cycleNum === 0) return 1.8;
     if (cycleNum === 1) return 1.4;
     if (cycleNum === 2) return 1.1;
     if (cycleNum === 3) return 0.9;
     if (cycleNum === 4) return 0.75;
     if (cycleNum === 5) return 0.6;
     if (cycleNum <= 8) return 0.5;
-    return 0.4; // later wheels: brisk but readable
+    return 0.4;
   };
 
-  const [animationDone, setAnimationDone] = useState(false);
-
+  // ── Auto-play logic ──
   const startCycle = useCallback((cycleNum: number) => {
     resetCycle();
+    setCurrentWheel(cycleNum);
     let memberIdx = 0;
     const speed = getSpeedMultiplier(cycleNum);
 
@@ -158,7 +161,6 @@ const WheelhouseDiagram = () => {
             safeTimeout(() => startCycle(cycleNum + 1), 300 * speed);
           }, pauseTime + 700 * speed);
         } else {
-          // Final cycle — collapse animation area and show infinite state
           safeTimeout(() => {
             setCompletedWheelhouses(cycleNum + 1);
             setShrinking(true);
@@ -172,7 +174,6 @@ const WheelhouseDiagram = () => {
       const current = memberIdx;
       memberIdx++;
       const targetMembers = memberIdx;
-
       setActiveMembers(targetMembers);
       setShowContribution(current);
 
@@ -186,7 +187,6 @@ const WheelhouseDiagram = () => {
         const progress = Math.min(elapsed / duration, 1);
         const eased = 1 - Math.pow(1 - progress, 3);
         setCurrentEarnings(startVal + (targetEarnings - startVal) * eased);
-
         if (progress < 1) {
           animationRef.current = requestAnimationFrame(tick);
         } else {
@@ -196,29 +196,76 @@ const WheelhouseDiagram = () => {
           }, 400 * speed);
         }
       };
-
       animationRef.current = requestAnimationFrame(tick);
     };
 
     safeTimeout(addNextMember, 500 * speed);
   }, [resetCycle, safeTimeout]);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasStarted.current) {
-          hasStarted.current = true;
-          startCycle(0);
-        }
-      },
-      { threshold: 0.3 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => {
-      observer.disconnect();
-      clearAllTimeouts();
-    };
-  }, [startCycle, clearAllTimeouts]);
+  // ── Manual click-through ──
+  const handleNext = useCallback(() => {
+    if (animationDone) return;
+
+    // If wheel is complete and shrinking, advance to next wheel
+    if (cycleComplete) {
+      if (currentWheel < TOTAL_CYCLES - 1) {
+        setShrinking(true);
+        safeTimeout(() => {
+          setCompletedWheelhouses(currentWheel + 1);
+          resetCycle();
+          setCurrentWheel(prev => prev + 1);
+        }, 400);
+      } else {
+        // Final wheel done
+        setCompletedWheelhouses(currentWheel + 1);
+        setShrinking(true);
+        setCelebrationPhase(3);
+        safeTimeout(() => setAnimationDone(true), 800);
+      }
+      return;
+    }
+
+    // Add next member
+    const nextMember = activeMembers + 1;
+    if (nextMember <= MEMBER_COUNT) {
+      setActiveMembers(nextMember);
+      setShowContribution(activeMembers);
+      const targetEarnings = nextMember * YOU_CUT_PER_MEMBER;
+      setCurrentEarnings(targetEarnings);
+
+      safeTimeout(() => setShowContribution(null), 600);
+
+      if (nextMember === MEMBER_COUNT) {
+        safeTimeout(() => {
+          setCycleComplete(true);
+          setCelebrationPhase(1);
+          safeTimeout(() => setCelebrationPhase(2), 200);
+        }, 400);
+      }
+    }
+  }, [animationDone, cycleComplete, currentWheel, activeMembers, safeTimeout, resetCycle]);
+
+  // Start auto-play
+  const startAutoPlay = useCallback(() => {
+    clearAllTimeouts();
+    resetCycle();
+    setCompletedWheelhouses(0);
+    setAnimationDone(false);
+    setCurrentWheel(0);
+    setAutoPlay(true);
+    hasStarted.current = true;
+    safeTimeout(() => startCycle(0), 300);
+  }, [clearAllTimeouts, resetCycle, safeTimeout, startCycle]);
+
+  const fullReset = useCallback(() => {
+    clearAllTimeouts();
+    resetCycle();
+    setCompletedWheelhouses(0);
+    setAnimationDone(false);
+    setCurrentWheel(0);
+    setAutoPlay(false);
+    hasStarted.current = true;
+  }, [clearAllTimeouts, resetCycle]);
 
   const getPos = (r: number, angle: number) => ({
     x: cx + r * Math.cos(angle),
@@ -549,6 +596,41 @@ const WheelhouseDiagram = () => {
           </div>
         )}
       </div>
+      )}
+
+      {/* Control buttons */}
+      {!animationDone && (
+        <div className="flex items-center justify-center gap-3 mt-3">
+          {!autoPlay && (
+            <>
+              <button
+                onClick={handleNext}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold btn-coral"
+              >
+                {cycleComplete ? "Next Wheel" : `Add Member ${Math.min(activeMembers + 1, MEMBER_COUNT)}`}
+                <ChevronRight size={14} />
+              </button>
+              <button
+                onClick={startAutoPlay}
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium text-muted-foreground border border-border hover:border-primary hover:text-primary transition-colors"
+              >
+                <Play size={12} />
+                Auto
+              </button>
+            </>
+          )}
+          {autoPlay && (
+            <button
+              onClick={() => { clearAllTimeouts(); setAutoPlay(false); }}
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium text-muted-foreground border border-border hover:border-primary hover:text-primary transition-colors"
+            >
+              Pause
+            </button>
+          )}
+          <span className="text-[10px] text-muted-foreground">
+            Wheel {currentWheel + 1} · {activeMembers}/{MEMBER_COUNT}
+          </span>
+        </div>
       )}
       </div>
 
