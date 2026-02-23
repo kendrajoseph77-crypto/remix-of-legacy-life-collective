@@ -22,12 +22,12 @@ const RING2_R = 140;  // #01, #02
 const RING3_R = 220;  // #03–#06
 const NODE_R = 30;
 
-const navy = "hsl(220 50% 12%)";
-const card = "hsl(215 45% 16%)";
-const coral = "hsl(30 90% 65%)";
-const lime = "hsl(160 70% 55%)";
-const royal = "hsl(210 80% 70%)";
-const brightYellow = "hsl(45 100% 65%)";
+const navy = "hsl(220 30% 15%)";
+const card = "hsl(0 0% 100%)";
+const coral = "hsl(12 80% 58%)";
+const lime = "hsl(260 60% 50%)";
+const royal = "hsl(180 80% 45%)";
+const brightYellow = "hsl(12 80% 58%)";
 
 // Ring 2: #01 top, #02 bottom
 const ring2Nodes = [

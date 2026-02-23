@@ -2,68 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    /* Dark teal-navy background inspired by Circle.so */
-    --background: 220 50% 12%;
-    --foreground: 300 100% 100%;
+    /* Light mint-white background like the Figma reference */
+    --background: 160 30% 97%;
+    --foreground: 220 30% 15%;
 
-    --card: 215 45% 16%;
-    --card-foreground: 300 100% 100%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 30% 15%;
 
-    --popover: 215 45% 16%;
-    --popover-foreground: 300 100% 100%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 30% 15%;
 
-    /* Primary: Royal Blue */
-    --primary: 229 77% 55%;
-    --primary-foreground: 300 100% 100%;
+    /* Primary: Coral/Red CTA color */
+    --primary: 12 80% 58%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Secondary: Royal Blue lighter */
-    --secondary: 229 77% 65%;
-    --secondary-foreground: 254 60% 10%;
+    /* Secondary: Deep purple */
+    --secondary: 260 60% 50%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 215 40% 20%;
-    --muted-foreground: 210 20% 60%;
+    --muted: 210 20% 93%;
+    --muted-foreground: 220 15% 50%;
 
-    /* Accent: Royal Blue bright */
-    --accent: 229 77% 55%;
-    --accent-foreground: 300 100% 100%;
+    /* Accent: Teal/cyan like the logo */
+    --accent: 180 80% 50%;
+    --accent-foreground: 220 30% 15%;
 
     --destructive: 0 72% 51%;
-    --destructive-foreground: 300 100% 100%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 215 35% 24%;
-    --input: 215 40% 20%;
-    --ring: 229 77% 55%;
+    --border: 210 20% 88%;
+    --input: 210 20% 93%;
+    --ring: 12 80% 58%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     /* Custom tokens */
-    --coral: 229 77% 55%;
-    --aqua: 229 77% 65%;
-    --lime: 229 90% 75%;
-    --ether-blue: 229 77% 45%;
-    --indigo: 220 50% 12%;
-    --slate: 215 45% 16%;
-    --cool-grey: 210 20% 60%;
-    --off-white: 220 20% 95%;
+    --coral: 12 80% 58%;
+    --purple-start: 270 65% 55%;
+    --purple-end: 230 70% 55%;
+    --teal: 180 80% 50%;
+    --dark-section: 220 30% 15%;
+    --light-section: 220 20% 96%;
     --gold: 38 70% 60%;
     --gold-light: 38 65% 75%;
     --champagne: 35 40% 80%;
 
-    --dark-surface: 215 45% 16%;
-    --darker-surface: 220 50% 12%;
-
-    --sidebar-background: 220 50% 12%;
-    --sidebar-foreground: 300 100% 100%;
-    --sidebar-primary: 229 77% 55%;
-    --sidebar-primary-foreground: 300 100% 100%;
-    --sidebar-accent: 215 40% 20%;
-    --sidebar-accent-foreground: 300 100% 100%;
-    --sidebar-border: 215 35% 24%;
-    --sidebar-ring: 229 77% 55%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 30% 15%;
+    --sidebar-primary: 12 80% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 20% 93%;
+    --sidebar-accent-foreground: 220 30% 15%;
+    --sidebar-border: 210 20% 88%;
+    --sidebar-ring: 12 80% 58%;
   }
 }
 
@@ -74,89 +69,85 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
   }
 
   h1, h2, h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
   }
 }
 
 @layer utilities {
-  /* Gold gradient for premium headlines */
-  .gold-gradient {
-    background: linear-gradient(135deg, hsl(38 70% 60%), hsl(38 65% 75%), hsl(38 70% 60%));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  /* Hero gradient: purple → blue → pink like the reference */
+  .hero-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(270 65% 55%) 0%,
+      hsl(250 65% 55%) 30%,
+      hsl(230 70% 55%) 60%,
+      hsl(280 50% 60%) 100%
+    );
   }
 
-  /* Light blue gradient for accents */
-  .cyan-gradient {
-    background: linear-gradient(135deg, hsl(229 77% 65%), hsl(229 90% 75%));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  /* CTA coral button */
+  .btn-coral {
+    background: hsl(var(--coral));
+    color: white;
+    transition: all 0.3s ease;
+  }
+  .btn-coral:hover {
+    background: hsl(12 80% 52%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px hsl(12 80% 58% / 0.35);
   }
 
-  .lime-gradient {
-    background: linear-gradient(135deg, hsl(38 65% 75%), hsl(35 40% 80%));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  /* Outline button */
+  .btn-outline-white {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    transition: all 0.3s ease;
   }
-
-  .coral-border {
-    border-color: hsl(var(--coral));
-  }
-
-  .hero-glow {
-    background: radial-gradient(ellipse 80% 60% at 50% 0%, hsl(229 77% 55% / 0.12), transparent);
-  }
-
-  .card-glow {
-    box-shadow: 0 0 40px hsl(229 77% 55% / 0.10), 0 1px 0 hsl(229 77% 55% / 0.18) inset;
-  }
-
-  .aqua-glow {
-    box-shadow: 0 0 40px hsl(229 77% 65% / 0.15), 0 1px 0 hsl(229 77% 65% / 0.22) inset;
-  }
-
-  /* Ambient section glows */
-  .glow-aqua-top {
-    background: radial-gradient(ellipse 70% 40% at 50% 0%, hsl(229 77% 65% / 0.08) 0%, transparent 100%);
-  }
-  .glow-coral-top {
-    background: radial-gradient(ellipse 70% 40% at 50% 0%, hsl(229 77% 55% / 0.08) 0%, transparent 100%);
-  }
-  .glow-lime-right {
-    background: radial-gradient(ellipse 50% 60% at 100% 50%, hsl(229 90% 75% / 0.06) 0%, transparent 100%);
-  }
-  .glow-aqua-left {
-    background: radial-gradient(ellipse 50% 60% at 0% 50%, hsl(229 77% 65% / 0.06) 0%, transparent 100%);
+  .btn-outline-white:hover {
+    background: hsl(0 0% 100% / 0.1);
   }
 
   .glass {
-    background: hsl(215 45% 16% / 0.9);
+    background: hsl(0 0% 100% / 0.95);
     backdrop-filter: blur(12px);
-    border: 1px solid hsl(215 35% 28% / 0.6);
+    border: 1px solid hsl(210 20% 88%);
   }
 
-  /* Tier: Gold — warm gold tinted */
+  .glass-dark {
+    background: hsl(220 30% 15% / 0.95);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(220 20% 25%);
+  }
+
+  /* Tier cards */
   .tier-gold {
-    background: linear-gradient(135deg, hsl(215 45% 17%), hsl(215 42% 14%));
-    border: 1px solid hsl(38 70% 60% / 0.25);
+    background: hsl(0 0% 100%);
+    border: 1px solid hsl(210 20% 88%);
+    box-shadow: 0 2px 8px hsl(220 30% 15% / 0.06);
   }
-
-  /* Tier: Platinum → cool silver-blue tinted */
   .tier-platinum {
-    background: linear-gradient(135deg, hsl(215 45% 18%), hsl(215 42% 15%));
-    border: 1px solid hsl(210 40% 65% / 0.3);
+    background: hsl(0 0% 100%);
+    border: 1px solid hsl(210 20% 88%);
+    box-shadow: 0 2px 8px hsl(220 30% 15% / 0.06);
+  }
+  .tier-diamond {
+    background: hsl(0 0% 100%);
+    border: 1px solid hsl(210 20% 88%);
+    box-shadow: 0 2px 8px hsl(220 30% 15% / 0.06);
   }
 
-  /* Tier: Diamond → premium warm glow */
-  .tier-diamond {
-    background: linear-gradient(135deg, hsl(215 45% 19%), hsl(215 42% 16%));
-    border: 1px solid hsl(38 65% 75% / 0.35);
+  .section-light {
+    background: hsl(var(--light-section));
+  }
+
+  .section-dark {
+    background: hsl(var(--dark-section));
+    color: white;
   }
 }

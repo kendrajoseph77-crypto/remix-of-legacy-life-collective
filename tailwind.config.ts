@@ -58,13 +58,7 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
         coral: "hsl(var(--coral))",
-        aqua: "hsl(var(--aqua))",
-        lime: "hsl(var(--lime))",
-        "ether-blue": "hsl(var(--ether-blue))",
-        indigo: "hsl(var(--indigo))",
-        slate: "hsl(var(--slate))",
-        "cool-grey": "hsl(var(--cool-grey))",
-        "off-white": "hsl(var(--off-white))",
+        teal: "hsl(var(--teal))",
         gold: "hsl(var(--gold))",
         "gold-light": "hsl(var(--gold-light))",
         champagne: "hsl(var(--champagne))",
@@ -76,20 +70,12 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       animation: {
