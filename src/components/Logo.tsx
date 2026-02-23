@@ -10,7 +10,7 @@ const Logo = ({ className = "" }: LogoProps) => {
       <img
         src={coopLogo}
         alt="5050L logo"
-        className="h-20 sm:h-24 w-auto"
+        className="h-10 sm:h-12 w-auto"
       />
     </div>
   );
