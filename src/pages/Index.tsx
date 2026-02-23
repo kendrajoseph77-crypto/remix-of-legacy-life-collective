@@ -54,8 +54,11 @@ const Index = () => {
           loop
           playsInline
           controls={false}
-          className="absolute inset-0 w-full h-full object-cover [&::-webkit-media-controls]:hidden [&::-webkit-media-controls-play-button]:hidden [&::-webkit-media-controls-start-playback-button]:hidden"
+          disablePictureInPicture
+          disableRemotePlayback
+          className="absolute inset-0 w-full h-full object-cover"
           style={{ pointerEvents: "none" }}
+          ref={(el) => { if (el) el.play().catch(() => {}); }}
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
