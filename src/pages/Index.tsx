@@ -1,10 +1,9 @@
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Logo from "@/components/Logo";
 import WheelhouseDiagram from "@/components/WheelhouseDiagram";
 import { useState } from "react";
 import anniversarySeal from "@/assets/anniversary-seal.jpeg";
 import heroVideo from "@/assets/hero-video-new.mp4";
-import logoGold from "@/assets/logo-gold-5050l.png";
 import { Link } from "react-router-dom";
 
 const tiers = [
@@ -45,10 +44,10 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
-      <Navbar />
+      {/* No navbar — logo is on the video */}
 
       {/* ── Hero with Video Background ── */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-28 pb-16 overflow-hidden">
+      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-8 pb-16 overflow-hidden">
         {/* Video Background */}
         <video
           autoPlay
@@ -63,15 +62,8 @@ const Index = () => {
         <div className="absolute inset-0 bg-black/50" />
 
         <div className="relative z-10 w-full max-w-4xl mx-auto">
-          <div
-            className="w-28 md:w-36 mx-auto mb-6 aspect-square rounded-full overflow-hidden shadow-2xl"
-            style={{ border: "3px solid hsl(0 0% 100% / 0.25)" }}
-          >
-            <img
-              src={anniversarySeal}
-              alt="David T. Rosen — 25th Anniversary"
-              className="w-full h-full object-cover scale-[1.12]"
-            />
+          <div className="flex justify-center mb-6">
+            <Logo darkBg className="h-auto" />
           </div>
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-10 tracking-tight leading-tight">
             25 Years of Cooperative<br />Crowdfunding™
