@@ -61,10 +61,12 @@ const Index = () => {
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/50" />
 
+        {/* Logo — outside z-10 so blend mode works against video */}
+        <div className="relative z-[5] flex justify-center mb-6" style={{ isolation: "auto" }}>
+          <Logo darkBg className="h-auto" />
+        </div>
+
         <div className="relative z-10 w-full max-w-4xl mx-auto">
-          <div className="flex justify-center mb-6">
-            <Logo darkBg className="h-auto" />
-          </div>
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-10 tracking-tight leading-tight">
             25 Years of Cooperative<br />Crowdfunding™
           </h1>
