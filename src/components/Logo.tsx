@@ -5,19 +5,14 @@ interface LogoProps {
   variant?: "light" | "dark";
 }
 
-const Logo = ({ className = "", variant = "dark" }: LogoProps) => {
-  const isLight = variant === "light";
-
+const Logo = ({ className = "" }: LogoProps) => {
   return (
     <div className={`flex items-center ${className}`}>
       <img
         src={logoGold}
         alt="5050L logo"
-        className="h-10 sm:h-12 w-auto"
-        style={{
-          mixBlendMode: isLight ? "screen" : "multiply",
-          filter: isLight ? "brightness(1.3)" : "none",
-        }}
+        className="h-20 sm:h-24 w-auto"
+        style={{ mixBlendMode: "screen" }}
       />
     </div>
   );

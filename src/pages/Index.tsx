@@ -73,14 +73,6 @@ const Index = () => {
               className="w-full h-full object-cover scale-[1.12]"
             />
           </div>
-
-          <img
-            src={logoGold}
-            alt="5050L logo"
-            className="w-36 md:w-48 mx-auto mb-8"
-            style={{ mixBlendMode: "screen" }}
-          />
-
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-10 tracking-tight leading-tight">
             25 Years of Cooperative<br />Crowdfunding™
           </h1>
