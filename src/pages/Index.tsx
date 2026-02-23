@@ -59,7 +59,7 @@ const Index = () => {
           <source src={heroVideo} type="video/mp4" />
         </video>
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/20" />
 
         {/* Logo — outside z-10 so blend mode works against video */}
         <div className="relative z-[5] flex justify-center mb-6" style={{ isolation: "auto" }}>
