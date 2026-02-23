@@ -1,4 +1,3 @@
-import Footer from "@/components/Footer";
 import Logo from "@/components/Logo";
 import WheelhouseDiagram from "@/components/WheelhouseDiagram";
 import { useState } from "react";
@@ -193,7 +192,7 @@ const Index = () => {
         </div>
       </section>
 
-      <Footer />
+      
     </div>
   );
 };
