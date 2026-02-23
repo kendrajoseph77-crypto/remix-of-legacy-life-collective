@@ -60,28 +60,30 @@ const Index = () => {
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/10" />
 
-        {/* Stacked Hero Layout */}
-        <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center">
-          {/* Logo — above heading */}
-          <img
-            src={logoImg}
-            alt="5050L logo"
-            className="w-auto mb-6"
-            style={{ height: "80px", filter: "drop-shadow(0 0 16px hsl(38 70% 60% / 0.4))" }}
-          />
+        {/* Hero Layout */}
+        <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center">
+          <div className="flex items-center justify-center gap-6 md:gap-10 mb-10">
+            {/* Logo — left */}
+            <img
+              src={logoImg}
+              alt="5050L logo"
+              className="w-auto shrink-0"
+              style={{ height: "100px", filter: "drop-shadow(0 0 16px hsl(38 70% 60% / 0.4))" }}
+            />
 
-          {/* Heading */}
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight text-center mb-6">
-            Cooperative<br />Crowdfunding™
-          </h1>
+            {/* Heading — center */}
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight text-center whitespace-nowrap">
+              Cooperative Crowdfunding™
+            </h1>
 
-          {/* Anniversary Seal — below heading */}
-          <img
-            src={anniversarySeal}
-            alt="25th Anniversary"
-            className="object-contain mb-8"
-            style={{ height: "110px", filter: "drop-shadow(0 0 12px hsl(38 70% 60% / 0.5))" }}
-          />
+            {/* Anniversary Seal — right */}
+            <img
+              src={anniversarySeal}
+              alt="25th Anniversary"
+              className="shrink-0 object-contain"
+              style={{ height: "100px", filter: "drop-shadow(0 0 12px hsl(38 70% 60% / 0.5))" }}
+            />
+          </div>
 
           <div className="flex items-center gap-4">
             <a href="#join" className="px-8 py-3.5 rounded-lg text-sm font-bold tracking-wide bg-accent text-accent-foreground hover:brightness-110 transition-all duration-300 hover:-translate-y-0.5 shadow-lg shadow-accent/30 inline-block">
