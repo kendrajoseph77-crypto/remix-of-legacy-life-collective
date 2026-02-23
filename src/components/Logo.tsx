@@ -10,9 +10,11 @@ const Logo = ({ className = "", darkBg = true }: LogoProps) => {
     <img
       src={coopLogo}
       alt="5050L logo"
-      className={`h-20 sm:h-24 w-auto ${className}`}
+      className={`w-auto ${className}`}
       style={{
-        filter: darkBg ? "drop-shadow(0 0 8px rgba(0,0,0,0.3))" : "none",
+        height: "180px",
+        mixBlendMode: darkBg ? "screen" : "multiply",
+        filter: darkBg ? "brightness(1.2)" : "none",
       }}
     />
   );
