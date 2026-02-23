@@ -1,5 +1,4 @@
-import logoImg from "@/assets/logo-new.png";
-import Logo from "@/components/Logo";
+import logoImg from "@/assets/logo-5050-3.png";
 import WheelhouseDiagram from "@/components/WheelhouseDiagram";
 import { useState } from "react";
 import anniversarySeal from "@/assets/anniversary-seal.jpeg";
@@ -59,16 +58,17 @@ const Index = () => {
           <source src={heroVideo} type="video/mp4" />
         </video>
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-black/10" />
 
         {/* Logo — top left */}
         <div className="absolute top-6 left-6 z-[5]" style={{ isolation: "auto" }}>
-          <img src={logoImg} alt="5050L logo" className="w-auto" style={{ height: "100px" }} />
+          <img src={logoImg} alt="5050L logo" className="w-auto" style={{ height: "75px" }} />
         </div>
 
         <div className="relative z-10 w-full max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-10 tracking-tight leading-tight">
-            25 Years of Cooperative<br />Crowdfunding™
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-10 tracking-tight leading-tight flex items-center justify-center gap-4">
+            <span>Cooperative<br />Crowdfunding™</span>
+            <img src={anniversarySeal} alt="25th Anniversary" className="w-16 h-16 md:w-20 md:h-20 rounded-full object-contain" style={{ filter: "drop-shadow(0 0 12px hsl(38 70% 60% / 0.5))" }} />
           </h1>
 
           <a href="#join" className="px-8 py-3.5 rounded-lg text-sm font-bold tracking-wide btn-coral inline-block">
