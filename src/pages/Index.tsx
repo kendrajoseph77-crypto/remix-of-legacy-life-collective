@@ -47,7 +47,7 @@ const Index = () => {
 
       {/* ── Hero with Video Background ── */}
       <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-8 pb-16 overflow-hidden">
-        {/* Video Background */}
+        {/* Video Background — hidden video element, rendered via object-fit */}
         <video
           autoPlay
           muted
@@ -57,13 +57,13 @@ const Index = () => {
           disablePictureInPicture
           disableRemotePlayback
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ pointerEvents: "none" }}
-          ref={(el) => { if (el) el.play().catch(() => {}); }}
+          style={{ pointerEvents: "none", WebkitAppearance: "none" }}
+          ref={(el) => { if (el) { el.removeAttribute("controls"); el.play().catch(() => {}); } }}
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/10" />
+        {/* Dark overlay — sits above video, blocks any play button */}
+        <div className="absolute inset-0 bg-black/10 z-[1]" />
 
         {/* Content container — fills viewport, spaced between top/bottom */}
         <div className="relative z-10 w-full flex flex-col items-center flex-1 pt-14 pb-8">
@@ -80,18 +80,22 @@ const Index = () => {
             </h1>
           </div>
 
-          {/* Center: Logo */}
-          <div className="flex-1 flex items-end justify-center pb-8">
-            <img
-              src={logoImg}
-              alt="5050L logo"
-              className="w-auto"
-              style={{ height: "48px", filter: "drop-shadow(0 0 20px hsl(38 70% 60% / 0.5))" }}
-            />
-          </div>
+          {/* Spacer to push logo to lower third */}
+          <div className="flex-[2]" />
+
+          {/* Logo — positioned in lower third */}
+          <img
+            src={logoImg}
+            alt="5050L logo"
+            className="w-auto"
+            style={{ height: "48px", filter: "drop-shadow(0 0 20px hsl(38 70% 60% / 0.5))" }}
+          />
+
+          {/* Spacer between logo and buttons */}
+          <div className="flex-1" />
 
           {/* Bottom: Buttons — pushed to very bottom */}
-          <div className="flex items-center gap-3 mt-auto">
+          <div className="flex items-center gap-3">
             <a href="#join" className="px-5 py-2 rounded-md text-xs font-bold tracking-wide bg-accent text-accent-foreground hover:brightness-110 transition-all duration-300 hover:-translate-y-0.5 shadow-lg shadow-accent/30 inline-block">
               Join Now
             </a>
