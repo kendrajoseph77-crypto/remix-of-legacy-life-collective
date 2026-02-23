@@ -589,22 +589,22 @@ const WheelhouseDiagram = () => {
 
       </div>
 
-        {/* Right: Completed mini wheelhouses */}
+        {/* Right: Completed mini wheelhouses — 3 per row, aligned with tier cards */}
         {completedWheelhouses > 0 && (
-          <div className="md:w-64 shrink-0">
+          <div className="md:w-72 shrink-0">
             <p className="text-center text-xs tracking-[0.3em] uppercase font-semibold text-muted-foreground mb-3">
               Completed Wheelhouses
             </p>
-            <div className="flex flex-wrap justify-center gap-3">
+            <div className="grid grid-cols-3 gap-2 justify-items-center">
               {Array.from({ length: Math.min(completedWheelhouses, VISIBLE_WHEELHOUSES) }).map((_, i) => (
                 <MiniWheelhouse key={i} index={i} total={completedWheelhouses} />
               ))}
               {completedWheelhouses > VISIBLE_WHEELHOUSES && (
                 <div className="flex flex-col items-center justify-center animate-fade-in">
-                  <div className="w-20 h-20 rounded-full border-2 border-dashed flex items-center justify-center" style={{ borderColor: coral }}>
-                    <span className="text-2xl font-bold" style={{ color: coral }}>+{completedWheelhouses - VISIBLE_WHEELHOUSES}</span>
+                  <div className="w-16 h-16 rounded-full border-2 border-dashed flex items-center justify-center" style={{ borderColor: coral }}>
+                    <span className="text-xl font-bold" style={{ color: coral }}>+{completedWheelhouses - VISIBLE_WHEELHOUSES}</span>
                   </div>
-                  <p className="text-xs font-bold text-muted-foreground mt-1">& counting...</p>
+                  <p className="text-[10px] font-bold text-muted-foreground mt-1">& counting...</p>
                 </div>
               )}
             </div>
