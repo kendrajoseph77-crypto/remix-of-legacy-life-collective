@@ -1,4 +1,4 @@
-import coopLogo from "@/assets/logo-5050l-transparent.png";
+import coopLogo from "@/assets/logo-gold-new.png";
 
 interface LogoProps {
   className?: string;
@@ -12,7 +12,7 @@ const Logo = ({ className = "", darkBg = true }: LogoProps) => {
       alt="5050L logo"
       className={`w-auto ${className}`}
       style={{
-        height: "180px",
+        height: "360px",
         mixBlendMode: darkBg ? "screen" : "multiply",
         filter: darkBg ? "brightness(1.2)" : "none",
       }}
