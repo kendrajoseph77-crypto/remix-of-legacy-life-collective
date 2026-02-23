@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import WheelhouseDiagram from "@/components/WheelhouseDiagram";
 import { useState } from "react";
 import anniversarySeal from "@/assets/anniversary-seal.jpeg";
+import heroVideo from "@/assets/hero-video.mp4";
 import { Link } from "react-router-dom";
 
 const tiers = [
@@ -45,13 +46,20 @@ const Index = () => {
     <div className="min-h-screen bg-background overflow-x-hidden">
       <Navbar />
 
-      {/* ── Hero ── */}
-      <section className="hero-gradient min-h-screen flex flex-col items-center justify-center text-center px-6 pt-28 pb-16 relative overflow-hidden">
-        {/* Subtle overlay shapes */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-white/5 blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-white/5 blur-3xl" />
-        </div>
+      {/* ── Hero with Video Background ── */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-28 pb-16 overflow-hidden">
+        {/* Video Background */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/50" />
 
         <div className="relative z-10 w-full max-w-4xl mx-auto">
           <div
@@ -65,18 +73,13 @@ const Index = () => {
             />
           </div>
 
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 tracking-tight leading-tight">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-10 tracking-tight leading-tight">
             25 Years of Cooperative<br />Crowdfunding™
           </h1>
-          <p className="text-white/75 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            The elite peer-to-peer crowdfunding platform built for legacy wealth. Transparent. Automated. Unstoppable.
-          </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="#join" className="px-8 py-3.5 rounded-lg text-sm font-bold tracking-wide btn-coral">
-              Get Started
-            </a>
-          </div>
+          <a href="#join" className="px-8 py-3.5 rounded-lg text-sm font-bold tracking-wide btn-coral inline-block">
+            Get Started
+          </a>
         </div>
       </section>
 
@@ -151,7 +154,7 @@ const Index = () => {
       </section>
 
       {/* ── Section 2: Wheelhouse Diagram ── */}
-      <section id="how-it-works" className="py-20 max-w-6xl mx-auto px-6">
+      <section className="py-20 max-w-6xl mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-[45%]">
             <p className="text-primary text-xs tracking-[0.4em] uppercase font-semibold mb-3">The Mobius Loop</p>

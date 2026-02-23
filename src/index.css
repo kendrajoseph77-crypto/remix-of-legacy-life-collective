@@ -148,7 +148,11 @@
   }
 
   .section-dark {
-    background: hsl(var(--dark-section));
+    background: linear-gradient(
+      180deg,
+      hsl(220 40% 12%) 0%,
+      hsl(225 45% 18%) 100%
+    );
     color: white;
   }
 }
