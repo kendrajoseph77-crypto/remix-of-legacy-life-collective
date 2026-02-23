@@ -60,27 +60,27 @@ const Index = () => {
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/10" />
 
-        {/* Hero Layout */}
-        <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center">
-          <div className="flex items-center justify-center gap-4 md:gap-6 mb-8">
-            <img
-              src={logoImg}
-              alt="5050L logo"
-              className="w-auto shrink-0"
-              style={{ height: "60px", filter: "drop-shadow(0 0 12px hsl(38 70% 60% / 0.4))" }}
-            />
+        {/* Header bar with seal + text */}
+        <div className="absolute top-0 left-0 w-full z-20 flex items-center justify-center gap-3 py-4 px-6">
+          <img
+            src={anniversarySeal}
+            alt="25th Anniversary"
+            className="shrink-0 object-contain"
+            style={{ height: "40px", filter: "drop-shadow(0 0 10px hsl(38 70% 60% / 0.5))" }}
+          />
+          <h1 className="text-sm md:text-xl lg:text-2xl font-extrabold text-white tracking-tight leading-tight text-center whitespace-nowrap">
+            Cooperative Crowdfunding™
+          </h1>
+        </div>
 
-            <h1 className="text-xl md:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight text-center whitespace-nowrap">
-              Cooperative Crowdfunding™
-            </h1>
-
-            <img
-              src={anniversarySeal}
-              alt="25th Anniversary"
-              className="shrink-0 object-contain"
-              style={{ height: "60px", filter: "drop-shadow(0 0 10px hsl(38 70% 60% / 0.5))" }}
-            />
-          </div>
+        {/* Centered Logo */}
+        <div className="relative z-10 w-full flex flex-col items-center justify-center">
+          <img
+            src={logoImg}
+            alt="5050L logo"
+            className="w-auto mb-8"
+            style={{ height: "140px", filter: "drop-shadow(0 0 20px hsl(38 70% 60% / 0.5))" }}
+          />
 
           <div className="flex items-center gap-4">
             <a href="#join" className="px-8 py-3.5 rounded-lg text-sm font-bold tracking-wide bg-accent text-accent-foreground hover:brightness-110 transition-all duration-300 hover:-translate-y-0.5 shadow-lg shadow-accent/30 inline-block">
