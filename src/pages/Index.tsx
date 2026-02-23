@@ -71,9 +71,14 @@ const Index = () => {
             <img src={anniversarySeal} alt="25th Anniversary" className="w-16 h-16 md:w-20 md:h-20 rounded-full object-contain" style={{ filter: "drop-shadow(0 0 12px hsl(38 70% 60% / 0.5))" }} />
           </h1>
 
-          <a href="#join" className="px-8 py-3.5 rounded-lg text-sm font-bold tracking-wide btn-coral inline-block">
-            Get Started
-          </a>
+          <div className="flex items-center gap-4">
+            <a href="#join" className="px-8 py-3.5 rounded-lg text-sm font-bold tracking-wide bg-accent text-accent-foreground hover:brightness-110 transition-all duration-300 hover:-translate-y-0.5 shadow-lg shadow-accent/30 inline-block">
+              Join Now
+            </a>
+            <Link to="/login" className="px-8 py-3.5 rounded-lg text-sm font-bold tracking-wide border-2 border-white/80 text-white hover:bg-white/10 transition-all duration-300 inline-block">
+              Log In
+            </Link>
+          </div>
         </div>
       </section>
 
