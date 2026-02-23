@@ -10,16 +10,17 @@ const avatarUrls = [
   "https://randomuser.me/api/portraits/men/36.jpg",
 ];
 
-// Math
 const CONTRIBUTION_PER_MEMBER = 17500;
 const YOU_CUT_PER_MEMBER = CONTRIBUTION_PER_MEMBER / 2;
 const MEMBER_COUNT = 6;
+const MAX_WHEELHOUSES = 6;
+const CYCLE_EARNINGS = YOU_CUT_PER_MEMBER * MEMBER_COUNT; // $52,500
 
-// Layout — 3 concentric rings
-const cx = 300, cy = 310;
+// Layout for the main SVG wheelhouse
+const cx = 300, cy = 280;
 const CENTER_R = 50;
-const RING2_R = 140;  // #01, #02
-const RING3_R = 220;  // #03–#06
+const RING2_R = 140;
+const RING3_R = 220;
 const NODE_R = 30;
 
 const navy = "hsl(220 30% 15%)";
@@ -29,24 +30,18 @@ const lime = "hsl(260 60% 50%)";
 const royal = "hsl(180 80% 45%)";
 const brightYellow = "hsl(12 80% 58%)";
 
-// Ring 2: #01 top, #02 bottom
 const ring2Nodes = [
   { label: "01", angle: -Math.PI / 2, avatarIdx: 1 },
   { label: "02", angle: Math.PI / 2, avatarIdx: 2 },
 ];
 
-// Ring 3: spread evenly across full circle — 4 nodes at 90° intervals, offset so they don't overlap ring2
 const ring3Nodes = [
-  { label: "03", angle: -Math.PI / 4, avatarIdx: 3, parentIdx: 0 },      // upper right — child of #01
-  { label: "04", angle: -3 * Math.PI / 4, avatarIdx: 4, parentIdx: 0 },  // upper left — child of #01
-  { label: "05", angle: Math.PI / 4, avatarIdx: 5, parentIdx: 1 },       // lower right — child of #02
-  { label: "06", angle: 3 * Math.PI / 4, avatarIdx: 6, parentIdx: 1 },   // lower left — child of #02
+  { label: "03", angle: -Math.PI / 4, avatarIdx: 3, parentIdx: 0 },
+  { label: "04", angle: -3 * Math.PI / 4, avatarIdx: 4, parentIdx: 0 },
+  { label: "05", angle: Math.PI / 4, avatarIdx: 5, parentIdx: 1 },
+  { label: "06", angle: 3 * Math.PI / 4, avatarIdx: 6, parentIdx: 1 },
 ];
 
-// Activation order: #01, #02, then #03, #04 (by #01), then #05, #06 (by #02)
-// stepIdx: 0=#01, 1=#02, 2=#03, 3=#04, 4=#05, 5=#06
-
-// Arc helper
 const describeArc = (cxp: number, cyp: number, r: number, startAngle: number, endAngle: number) => {
   const x1 = cxp + r * Math.cos(startAngle);
   const y1 = cyp + r * Math.sin(startAngle);
@@ -56,12 +51,52 @@ const describeArc = (cxp: number, cyp: number, r: number, startAngle: number, en
   return `M ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2}`;
 };
 
+const formatCurrency = (val: number) =>
+  "$" + val.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+
+// Mini wheelhouse thumbnail component
+const MiniWheelhouse = ({ index, total }: { index: number; total: number }) => {
+  const s = 80; // svg size
+  const mcx = s / 2, mcy = s / 2;
+  const mr1 = 18, mr2 = 30, mnr = 6;
+
+  return (
+    <div
+      className="flex flex-col items-center animate-scale-in"
+      style={{ animationDelay: `${index * 100}ms` }}
+    >
+      <svg width={s} height={s} viewBox={`0 0 ${s} ${s}`}>
+        {/* Rings */}
+        <circle cx={mcx} cy={mcy} r={mr1} fill="none" stroke={lime} strokeWidth="1.5" opacity="0.5" />
+        <circle cx={mcx} cy={mcy} r={mr2} fill="none" stroke={royal} strokeWidth="1.5" opacity="0.5" />
+        {/* Center */}
+        <circle cx={mcx} cy={mcy} r={mnr + 2} fill={coral} opacity="0.9" />
+        <text x={mcx} y={mcy + 2.5} textAnchor="middle" fontSize="5" fontWeight="800" fill="white" fontFamily="sans-serif">YOU</text>
+        {/* Ring 2 dots */}
+        {ring2Nodes.map((n, i) => (
+          <circle key={`m2-${i}`} cx={mcx + mr1 * Math.cos(n.angle)} cy={mcy + mr1 * Math.sin(n.angle)} r={mnr} fill={lime} opacity="0.7" />
+        ))}
+        {/* Ring 3 dots */}
+        {ring3Nodes.map((n, i) => (
+          <circle key={`m3-${i}`} cx={mcx + mr2 * Math.cos(n.angle)} cy={mcy + mr2 * Math.sin(n.angle)} r={mnr} fill={royal} opacity="0.7" />
+        ))}
+      </svg>
+      <p className="text-xs font-bold text-foreground mt-1">Cycle {index + 1}</p>
+      <p className="text-xs font-mono font-bold" style={{ color: coral }}>
+        {formatCurrency(CYCLE_EARNINGS * (index + 1))}
+      </p>
+    </div>
+  );
+};
+
 const WheelhouseDiagram = () => {
   const [activeMembers, setActiveMembers] = useState(0);
   const [currentEarnings, setCurrentEarnings] = useState(0);
   const [showContribution, setShowContribution] = useState<number | null>(null);
   const [cycleComplete, setCycleComplete] = useState(false);
   const [celebrationPhase, setCelebrationPhase] = useState(0);
+  const [completedWheelhouses, setCompletedWheelhouses] = useState(0);
+  const [shrinking, setShrinking] = useState(false);
   const animationRef = useRef<number | null>(null);
   const hasStarted = useRef(false);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -79,17 +114,17 @@ const WheelhouseDiagram = () => {
     return id;
   }, []);
 
-  const resetState = useCallback(() => {
-    clearAllTimeouts();
+  const resetCycle = useCallback(() => {
     setActiveMembers(0);
     setCurrentEarnings(0);
     setShowContribution(null);
     setCycleComplete(false);
     setCelebrationPhase(0);
-  }, [clearAllTimeouts]);
+    setShrinking(false);
+  }, []);
 
-  const startAnimation = useCallback(() => {
-    resetState();
+  const startCycle = useCallback((cycleNum: number) => {
+    resetCycle();
     let memberIdx = 0;
 
     const addNextMember = () => {
@@ -97,8 +132,28 @@ const WheelhouseDiagram = () => {
         setCycleComplete(true);
         safeTimeout(() => setCelebrationPhase(1), 100);
         safeTimeout(() => setCelebrationPhase(2), 600);
-        safeTimeout(() => setCelebrationPhase(3), 1200);
-        safeTimeout(() => startAnimation(), 7000);
+
+        if (cycleNum < MAX_WHEELHOUSES - 1) {
+          // Shrink and spawn next
+          safeTimeout(() => setShrinking(true), 2000);
+          safeTimeout(() => {
+            setCompletedWheelhouses(cycleNum + 1);
+            resetCycle();
+            safeTimeout(() => startCycle(cycleNum + 1), 800);
+          }, 2800);
+        } else {
+          // All 6 done — show final state then restart
+          safeTimeout(() => {
+            setCompletedWheelhouses(MAX_WHEELHOUSES);
+            setShrinking(true);
+          }, 2000);
+          safeTimeout(() => {
+            // Full reset after showing all 6
+            setCompletedWheelhouses(0);
+            resetCycle();
+            safeTimeout(() => startCycle(0), 1500);
+          }, 7000);
+        }
         return;
       }
 
@@ -134,14 +189,14 @@ const WheelhouseDiagram = () => {
     };
 
     safeTimeout(addNextMember, 1200);
-  }, [resetState, safeTimeout]);
+  }, [resetCycle, safeTimeout]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasStarted.current) {
           hasStarted.current = true;
-          startAnimation();
+          startCycle(0);
         }
       },
       { threshold: 0.3 }
@@ -151,20 +206,15 @@ const WheelhouseDiagram = () => {
       observer.disconnect();
       clearAllTimeouts();
     };
-  }, [startAnimation, clearAllTimeouts]);
-
-  const formatCurrency = (val: number) =>
-    "$" + val.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  }, [startCycle, clearAllTimeouts]);
 
   const getPos = (r: number, angle: number) => ({
     x: cx + r * Math.cos(angle),
     y: cy + r * Math.sin(angle),
   });
 
-  // Ring 2 arc segments: each member owns a half of the ring
   const renderRing2Arcs = () => {
     const gap = 0.08;
-    // #01 owns top half, #02 owns bottom half
     const arcs = [
       { startAngle: -Math.PI + gap, endAngle: 0 - gap, stepIdx: 0, color: lime },
       { startAngle: 0 + gap, endAngle: Math.PI - gap, stepIdx: 1, color: lime },
@@ -188,13 +238,11 @@ const WheelhouseDiagram = () => {
     });
   };
 
-  // Ring 3 arc segments: each member owns a quarter
   const renderRing3Arcs = () => {
     const gap = 0.06;
-    // Map each ring3 node to its arc segment (quarter circle centered on its angle)
     const quarterSpan = Math.PI / 2;
     return ring3Nodes.map((n, i) => {
-      const stepIdx = i + 2; // steps 2,3,4,5
+      const stepIdx = i + 2;
       const active = stepIdx < activeMembers;
       const startAngle = n.angle - quarterSpan / 2 + gap;
       const endAngle = n.angle + quarterSpan / 2 - gap;
@@ -215,7 +263,6 @@ const WheelhouseDiagram = () => {
     });
   };
 
-  // Spokes: ring2 → center
   const renderRing2Spokes = () =>
     ring2Nodes.map((n, i) => {
       const pos = getPos(RING2_R, n.angle);
@@ -239,7 +286,6 @@ const WheelhouseDiagram = () => {
       );
     });
 
-  // Spokes: ring3 → parent ring2 node AND ring3 → center YOU
   const renderRing3Spokes = () =>
     ring3Nodes.map((n, i) => {
       const stepIdx = i + 2;
@@ -247,14 +293,12 @@ const WheelhouseDiagram = () => {
       const childPos = getPos(RING3_R, n.angle);
       const parentPos = getPos(RING2_R, ring2Nodes[n.parentIdx].angle);
 
-      // Spoke to parent
       const angle1 = Math.atan2(parentPos.y - childPos.y, parentPos.x - childPos.x);
       const sx1 = childPos.x + (NODE_R + 4) * Math.cos(angle1);
       const sy1 = childPos.y + (NODE_R + 4) * Math.sin(angle1);
       const ex1 = parentPos.x - (NODE_R + 8) * Math.cos(angle1);
       const ey1 = parentPos.y - (NODE_R + 8) * Math.sin(angle1);
 
-      // Spoke to center YOU
       const angle2 = Math.atan2(cy - childPos.y, cx - childPos.x);
       const comesFromBelow = childPos.y > cy;
       const centerGap = comesFromBelow ? CENTER_R + 38 : CENTER_R + 8;
@@ -296,10 +340,8 @@ const WheelhouseDiagram = () => {
     const badgeAngle = -Math.PI / 4;
     const badgeX = x + (NODE_R - 1) * Math.cos(badgeAngle);
     const badgeY = y + (NODE_R - 1) * Math.sin(badgeAngle);
-
     const contribX = x + (NODE_R + 22) * Math.cos(outAngle);
     const contribY = y + (NODE_R + 22) * Math.sin(outAngle);
-
     const labelDist = NODE_R + 48;
     const labelX = x + labelDist * Math.cos(outAngle);
     const labelY = y + labelDist * Math.sin(outAngle);
@@ -349,149 +391,163 @@ const WheelhouseDiagram = () => {
     );
   };
 
+  const renderEarningsPills = () =>
+    ring2Nodes.map((n, parentIdx) => {
+      const childrenActive = ring3Nodes.filter(
+        (r3, i) => r3.parentIdx === parentIdx && (i + 2) < activeMembers
+      ).length;
+      if (childrenActive === 0) return null;
+      const parentPos = getPos(RING2_R, n.angle);
+      const totalEarned = childrenActive * YOU_CUT_PER_MEMBER;
+      const pillX = parentPos.x;
+      const pillY = parentIdx === 0
+        ? parentPos.y - NODE_R - 32
+        : parentPos.y + NODE_R + 22;
+
+      return (
+        <g key={`r2-earn-${parentIdx}`} className="animate-fade-in">
+          <rect x={pillX - 44} y={pillY - 12} width="88" height="24" rx="12"
+            fill={navy} stroke={brightYellow} strokeWidth="1.5" opacity="0.95" />
+          <text x={pillX} y={pillY + 5} textAnchor="middle" fontSize="12" fontWeight="800"
+            fill={brightYellow} fontFamily="monospace">
+            +{formatCurrency(totalEarned)}
+          </text>
+        </g>
+      );
+    });
+
   return (
     <div ref={sectionRef} className="relative w-full max-w-[660px] mx-auto">
-      <p className="text-center text-sm font-semibold tracking-widest uppercase text-primary mb-1">2 × 2 Wheelhouse</p>
-      <h3 className="text-center text-xl md:text-2xl font-bold text-foreground mb-2 tracking-wide">
-        {activeMembers} of {MEMBER_COUNT} Members Joined
-      </h3>
-      <svg viewBox="0 0 600 640" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-        <defs>
-          <filter id="wh-glow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="3" result="blur" />
-            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-          </filter>
-          <filter id="wh-softGlow" x="-40%" y="-40%" width="180%" height="180%">
-            <feGaussianBlur stdDeviation="7" result="blur" />
-            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-          </filter>
-          <filter id="wh-earningsGlow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="5" result="blur" />
-            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-          </filter>
-          <filter id="wh-celebGlow" x="-60%" y="-60%" width="220%" height="220%">
-            <feGaussianBlur stdDeviation="12" result="blur" />
-            <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-          </filter>
-          <marker id="arrow-coral" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-            <polygon points="0 0, 8 4, 0 8" fill={coral} opacity="0.9" />
-          </marker>
-          <marker id="arrow-lime" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-            <polygon points="0 0, 8 4, 0 8" fill={lime} opacity="0.9" />
-          </marker>
-          <clipPath id="wh-clipCenter">
-            <circle cx={cx} cy={cy} r={CENTER_R - 3} />
-          </clipPath>
-          <radialGradient id="celebGrad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor={lime} stopOpacity="0.12" />
-            <stop offset="70%" stopColor={lime} stopOpacity="0.04" />
-            <stop offset="100%" stopColor={lime} stopOpacity="0" />
-          </radialGradient>
-        </defs>
+      {/* Main active wheelhouse */}
+      <div
+        className="transition-all duration-700 ease-in-out origin-top-left"
+        style={{
+          transform: shrinking ? "scale(0)" : "scale(1)",
+          opacity: shrinking ? 0 : 1,
+        }}
+      >
+        <svg viewBox="0 0 600 580" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+          <defs>
+            <filter id="wh-glow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+            </filter>
+            <filter id="wh-softGlow" x="-40%" y="-40%" width="180%" height="180%">
+              <feGaussianBlur stdDeviation="7" result="blur" />
+              <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+            </filter>
+            <filter id="wh-earningsGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="5" result="blur" />
+              <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+            </filter>
+            <filter id="wh-celebGlow" x="-60%" y="-60%" width="220%" height="220%">
+              <feGaussianBlur stdDeviation="12" result="blur" />
+              <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+            </filter>
+            <marker id="arrow-coral" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+              <polygon points="0 0, 8 4, 0 8" fill={coral} opacity="0.9" />
+            </marker>
+            <marker id="arrow-lime" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+              <polygon points="0 0, 8 4, 0 8" fill={lime} opacity="0.9" />
+            </marker>
+            <clipPath id="wh-clipCenter">
+              <circle cx={cx} cy={cy} r={CENTER_R - 3} />
+            </clipPath>
+            <radialGradient id="celebGrad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor={lime} stopOpacity="0.12" />
+              <stop offset="70%" stopColor={lime} stopOpacity="0.04" />
+              <stop offset="100%" stopColor={lime} stopOpacity="0" />
+            </radialGradient>
+          </defs>
 
-        {/* Celebration glow */}
-        {cycleComplete && (
-          <>
-            <circle cx={cx} cy={cy} r={RING3_R + 30} fill="url(#celebGrad)"
-              style={{ transition: "opacity 1s ease", opacity: celebrationPhase >= 1 ? 1 : 0 }} />
-            <circle cx={cx} cy={cy} r={RING3_R + 8} fill="none" stroke={lime} strokeWidth="2"
-              style={{ transition: "opacity 0.8s ease", opacity: celebrationPhase >= 2 ? 0.4 : 0 }} />
-          </>
+          {/* Celebration glow */}
+          {cycleComplete && (
+            <>
+              <circle cx={cx} cy={cy} r={RING3_R + 30} fill="url(#celebGrad)"
+                style={{ transition: "opacity 1s ease", opacity: celebrationPhase >= 1 ? 1 : 0 }} />
+              <circle cx={cx} cy={cy} r={RING3_R + 8} fill="none" stroke={lime} strokeWidth="2"
+                style={{ transition: "opacity 0.8s ease", opacity: celebrationPhase >= 2 ? 0.4 : 0 }} />
+            </>
+          )}
+
+          {renderRing2Arcs()}
+          {renderRing3Arcs()}
+          {renderRing2Spokes()}
+          {renderRing3Spokes()}
+
+          {ring3Nodes.map((n, i) => {
+            const stepIdx = i + 2;
+            const pos = getPos(RING3_R, n.angle);
+            return renderMemberNode(pos.x, pos.y, n.label, n.avatarIdx, royal, stepIdx < activeMembers, stepIdx, n.angle);
+          })}
+
+          {ring2Nodes.map((n, i) => {
+            const pos = getPos(RING2_R, n.angle);
+            return renderMemberNode(pos.x, pos.y, n.label, n.avatarIdx, lime, i < activeMembers, i, n.angle);
+          })}
+
+          {renderEarningsPills()}
+
+          {/* Center YOU */}
+          <circle cx={cx} cy={cy} r={CENTER_R + 5} fill="none"
+            stroke={cycleComplete ? "hsl(45 100% 65% / 0.35)" : "hsl(30 90% 65% / 0.2)"}
+            strokeWidth="5" style={{ transition: "stroke 1s ease" }} />
+          <circle cx={cx} cy={cy} r={CENTER_R} fill={card} stroke={cycleComplete ? brightYellow : coral}
+            strokeWidth="3" filter="url(#wh-softGlow)" style={{ transition: "stroke 0.8s ease" }} />
+          <image
+            href={avatarUrls[0]}
+            x={cx - CENTER_R + 3} y={cy - CENTER_R + 3}
+            width={(CENTER_R - 3) * 2} height={(CENTER_R - 3) * 2}
+            clipPath="url(#wh-clipCenter)"
+            preserveAspectRatio="xMidYMid slice"
+          />
+          <circle cx={cx} cy={cy} r={CENTER_R} fill="none" stroke={cycleComplete ? brightYellow : coral}
+            strokeWidth="3" filter={cycleComplete ? "url(#wh-celebGlow)" : "url(#wh-glow)"}
+            style={{ transition: "stroke 0.8s ease" }} />
+
+          <rect x={cx - 24} y={cy + 10} width="48" height="22" rx="6" fill="hsl(30 90% 55% / 0.92)" />
+          <text x={cx} y={cy + 26} textAnchor="middle" fontSize="13" fontWeight="800" fill="white" fontFamily="sans-serif">YOU</text>
+
+          <rect x={cx - 58} y={cy + 38} width="116" height="34" rx="17"
+            fill={navy} stroke={cycleComplete ? brightYellow : coral} strokeWidth="2.5"
+            style={{ transition: "stroke 0.8s ease" }} />
+          <text x={cx} y={cy + 61} textAnchor="middle" fontSize="22" fontWeight="900"
+            fill={cycleComplete ? brightYellow : "hsl(0 0% 100%)"} fontFamily="monospace"
+            filter="url(#wh-earningsGlow)"
+            style={{ transition: "fill 0.8s ease" }}>
+            {formatCurrency(Math.round(currentEarnings))}
+          </text>
+        </svg>
+
+        {/* Completion text — right below the SVG */}
+        {cycleComplete && celebrationPhase >= 2 && (
+          <div className="text-center animate-fade-in -mt-2 mb-2">
+            <p className="text-lg md:text-xl font-extrabold tracking-tight" style={{ color: brightYellow, textShadow: `0 0 20px hsl(12 80% 58% / 0.4)` }}>
+              Wheelhouse Complete
+            </p>
+            <p className="text-xs tracking-[0.35em] uppercase font-semibold mt-1" style={{ color: brightYellow, opacity: 0.7 }}>
+              Mobius Loop Activated — Your Team Follows You
+            </p>
+          </div>
         )}
+      </div>
 
-        {/* Ring arcs */}
-        {renderRing2Arcs()}
-        {renderRing3Arcs()}
-
-        {/* Spokes */}
-        {renderRing2Spokes()}
-        {renderRing3Spokes()}
-
-        {/* Ring 3 nodes (#03–#06) */}
-        {ring3Nodes.map((n, i) => {
-          const stepIdx = i + 2;
-          const pos = getPos(RING3_R, n.angle);
-          return renderMemberNode(pos.x, pos.y, n.label, n.avatarIdx, royal, stepIdx < activeMembers, stepIdx, n.angle);
-        })}
-
-        {/* Ring 2 nodes (#01, #02) */}
-        {ring2Nodes.map((n, i) => {
-          const pos = getPos(RING2_R, n.angle);
-          return renderMemberNode(pos.x, pos.y, n.label, n.avatarIdx, lime, i < activeMembers, i, n.angle);
-        })}
-
-        {/* Persistent earnings for #01 (above) and #02 (below) */}
-        {ring2Nodes.map((n, parentIdx) => {
-          const childrenActive = ring3Nodes.filter(
-            (r3, i) => r3.parentIdx === parentIdx && (i + 2) < activeMembers
-          ).length;
-          if (childrenActive === 0) return null;
-
-          const parentPos = getPos(RING2_R, n.angle);
-          const totalEarned = childrenActive * YOU_CUT_PER_MEMBER;
-
-          // #01 is at top (parentIdx 0) → show above; #02 is at bottom (parentIdx 1) → show below
-          const pillX = parentPos.x;
-          const pillY = parentIdx === 0
-            ? parentPos.y - NODE_R - 32  // above #01
-            : parentPos.y + NODE_R + 22; // below #02
-
-
-          return (
-            <g key={`r2-earn-${parentIdx}`} className="animate-fade-in">
-              <rect x={pillX - 44} y={pillY - 12} width="88" height="24" rx="12"
-                fill={navy} stroke={brightYellow} strokeWidth="1.5" opacity="0.95" />
-              <text x={pillX} y={pillY + 5} textAnchor="middle" fontSize="12" fontWeight="800"
-                fill={brightYellow} fontFamily="monospace">
-                +{formatCurrency(totalEarned)}
-              </text>
-            </g>
-          );
-        })}
-
-        {/* Center YOU */}
-        <circle cx={cx} cy={cy} r={CENTER_R + 5} fill="none"
-          stroke={cycleComplete ? "hsl(45 100% 65% / 0.35)" : "hsl(30 90% 65% / 0.2)"}
-          strokeWidth="5" style={{ transition: "stroke 1s ease" }} />
-        <circle cx={cx} cy={cy} r={CENTER_R} fill={card} stroke={cycleComplete ? brightYellow : coral}
-          strokeWidth="3" filter="url(#wh-softGlow)" style={{ transition: "stroke 0.8s ease" }} />
-        <image
-          href={avatarUrls[0]}
-          x={cx - CENTER_R + 3} y={cy - CENTER_R + 3}
-          width={(CENTER_R - 3) * 2} height={(CENTER_R - 3) * 2}
-          clipPath="url(#wh-clipCenter)"
-          preserveAspectRatio="xMidYMid slice"
-        />
-        <circle cx={cx} cy={cy} r={CENTER_R} fill="none" stroke={cycleComplete ? brightYellow : coral}
-          strokeWidth="3" filter={cycleComplete ? "url(#wh-celebGlow)" : "url(#wh-glow)"}
-          style={{ transition: "stroke 0.8s ease" }} />
-
-        {/* YOU label */}
-        <rect x={cx - 24} y={cy + 10} width="48" height="22" rx="6" fill="hsl(30 90% 55% / 0.92)" />
-        <text x={cx} y={cy + 26} textAnchor="middle" fontSize="13" fontWeight="800" fill="white" fontFamily="sans-serif">YOU</text>
-
-        {/* Earnings pill */}
-        <rect x={cx - 58} y={cy + 38} width="116" height="34" rx="17"
-          fill={navy} stroke={cycleComplete ? brightYellow : coral} strokeWidth="2.5"
-          style={{ transition: "stroke 0.8s ease" }} />
-        <text x={cx} y={cy + 61} textAnchor="middle" fontSize="22" fontWeight="900"
-          fill={cycleComplete ? brightYellow : "hsl(0 0% 100%)"} fontFamily="monospace"
-          filter="url(#wh-earningsGlow)"
-          style={{ transition: "fill 0.8s ease" }}>
-          {formatCurrency(Math.round(currentEarnings))}
-        </text>
-
-      </svg>
-
-      {/* Completion text */}
-      {cycleComplete && celebrationPhase >= 2 && (
-        <div className="text-center animate-fade-in mt-3 mb-4">
-          <p className="text-xl md:text-2xl font-extrabold tracking-tight" style={{ color: brightYellow, textShadow: `0 0 20px hsl(12 80% 58% / 0.4)` }}>
-            Wheelhouse Complete
+      {/* Completed mini wheelhouses grid */}
+      {completedWheelhouses > 0 && (
+        <div className="mt-4">
+          <p className="text-center text-xs tracking-[0.3em] uppercase font-semibold text-muted-foreground mb-3">
+            Completed Wheelhouses — More Money, Not More Work
           </p>
-          <p className="text-xs tracking-[0.35em] uppercase font-semibold mt-1.5" style={{ color: brightYellow, opacity: 0.7 }}>
-            Mobius Loop Activated
-          </p>
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 justify-items-center">
+            {Array.from({ length: completedWheelhouses }).map((_, i) => (
+              <MiniWheelhouse key={i} index={i} total={completedWheelhouses} />
+            ))}
+          </div>
+          <div className="text-center mt-3">
+            <p className="text-sm font-bold text-foreground">
+              Total Earned: <span style={{ color: coral }} className="text-lg font-mono">{formatCurrency(CYCLE_EARNINGS * completedWheelhouses)}</span>
+            </p>
+          </div>
         </div>
       )}
     </div>
