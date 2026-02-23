@@ -124,14 +124,16 @@ const WheelhouseDiagram = () => {
     setShrinking(false);
   }, []);
 
-  // Speed multiplier: cycle 0 = 1x, progressively faster
+  // Speed multiplier: cycle 0 = 1x (slowest), progressively faster but never frantic
   const getSpeedMultiplier = (cycleNum: number) => {
-    if (cycleNum === 0) return 1;
-    if (cycleNum === 1) return 0.7;
-    if (cycleNum === 2) return 0.5;
-    if (cycleNum === 3) return 0.35;
-    if (cycleNum === 4) return 0.25;
-    return 0.15; // cycles 5+ are blazing fast
+    if (cycleNum === 0) return 1.8;   // first wheel: slow & deliberate
+    if (cycleNum === 1) return 1.4;
+    if (cycleNum === 2) return 1.1;
+    if (cycleNum === 3) return 0.9;
+    if (cycleNum === 4) return 0.75;
+    if (cycleNum === 5) return 0.6;
+    if (cycleNum <= 8) return 0.5;
+    return 0.4; // later wheels: brisk but readable
   };
 
   const [animationDone, setAnimationDone] = useState(false);
