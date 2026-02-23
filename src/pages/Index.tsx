@@ -34,9 +34,9 @@ const tiers = [
 ];
 
 const steps = [
-  { n: "01", title: "Register & Activate", desc: "Make your one-time contribution at your chosen level and activate your Wheelhouse position." },
-  { n: "02", title: "Invite 2 Members", desc: "Help 2 people become Active Donors. Your Wheelhouse begins to fill immediately." },
-  { n: "03", title: "Receive & Repeat", desc: "When your Wheelhouse fills, you receive 50% and a new Wheelhouse opens — automatically." },
+  { n: "01", title: "Activate", desc: "Contribute once at your chosen level." },
+  { n: "02", title: "Invite 2", desc: "Two people join — your Wheelhouse fills." },
+  { n: "03", title: "Receive & Repeat", desc: "Collect 50%. A new cycle begins automatically." },
 ];
 
 const Index = () => {
@@ -153,42 +153,27 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── Section 2: Wheelhouse Diagram ── */}
+      {/* ── Section 2: Wheelhouse + Process Combined ── */}
       <section className="py-20 max-w-6xl mx-auto px-6">
+        <p className="text-primary text-xs tracking-[0.4em] uppercase font-semibold mb-3 text-center">The Mobius Loop</p>
+        <h2 className="text-2xl md:text-4xl font-bold text-center mb-12 text-foreground">
+          Your Wheelhouse. <span className="text-muted-foreground">Always in Motion.</span>
+        </h2>
+
         <div className="flex flex-col md:flex-row items-center gap-12">
-          <div className="md:w-[45%]">
-            <p className="text-primary text-xs tracking-[0.4em] uppercase font-semibold mb-3">The Mobius Loop</p>
-            <h3 className="text-2xl md:text-4xl font-bold mb-4 leading-tight text-foreground">
-              Your Wheelhouse.<br />
-              <span className="text-muted-foreground">Always in Motion.</span>
-            </h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              At the center sits <span className="text-foreground font-semibold">you</span>. Your Wheelhouse fills with 6 participants — 2 you invite directly, and 4 who join through your team. The moment it's full, you receive <span className="text-primary font-semibold">50% of the pool</span> and a brand-new Wheelhouse opens automatically.
-            </p>
-          </div>
           <div className="md:w-[55%]">
             <WheelhouseDiagram />
           </div>
-        </div>
-      </section>
-
-      {/* ── Section 3: The Process ── */}
-      <section className="section-light py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <p className="text-primary text-xs tracking-[0.4em] uppercase font-semibold mb-3 text-center">The Process</p>
-          <h2 className="text-2xl md:text-4xl font-bold text-center mb-4 text-foreground">3 Steps. Infinite Cycles.</h2>
-          <p className="text-muted-foreground text-center mb-12 max-w-lg mx-auto">
-            A simple, proven system designed for cooperative wealth building.
-          </p>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="md:w-[45%] flex flex-col gap-5">
             {steps.map((step, i) => (
-              <div key={i} className="rounded-xl p-6 bg-card border border-border hover:shadow-lg transition-shadow">
-                <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center mb-4">
-                  <span className="text-lg font-bold text-secondary">{step.n}</span>
+              <div key={i} className="flex gap-4 items-start">
+                <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center shrink-0">
+                  <span className="text-sm font-bold text-secondary">{step.n}</span>
                 </div>
-                <h3 className="text-lg font-bold text-foreground mb-2">{step.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
-                <div className="w-12 h-0.5 bg-primary/30 mt-5" />
+                <div>
+                  <h3 className="text-base font-bold text-foreground mb-0.5">{step.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
+                </div>
               </div>
             ))}
           </div>

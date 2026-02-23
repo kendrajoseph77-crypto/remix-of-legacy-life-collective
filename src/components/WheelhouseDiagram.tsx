@@ -98,7 +98,7 @@ const WheelhouseDiagram = () => {
         safeTimeout(() => setCelebrationPhase(1), 100);
         safeTimeout(() => setCelebrationPhase(2), 600);
         safeTimeout(() => setCelebrationPhase(3), 1200);
-        safeTimeout(() => startAnimation(), 5000);
+        safeTimeout(() => startAnimation(), 7000);
         return;
       }
 
@@ -111,7 +111,7 @@ const WheelhouseDiagram = () => {
 
       const startVal = (targetMembers - 1) * YOU_CUT_PER_MEMBER;
       const targetEarnings = targetMembers * YOU_CUT_PER_MEMBER;
-      const duration = 700;
+      const duration = 1200;
       const startTime = performance.now();
 
       const tick = (now: number) => {
@@ -125,15 +125,15 @@ const WheelhouseDiagram = () => {
         } else {
           safeTimeout(() => {
             setShowContribution(null);
-            safeTimeout(addNextMember, 400);
-          }, 500);
+            safeTimeout(addNextMember, 700);
+          }, 800);
         }
       };
 
       animationRef.current = requestAnimationFrame(tick);
     };
 
-    safeTimeout(addNextMember, 800);
+    safeTimeout(addNextMember, 1200);
   }, [resetState, safeTimeout]);
 
   useEffect(() => {
