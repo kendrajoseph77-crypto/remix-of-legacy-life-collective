@@ -79,7 +79,7 @@ const Index = () => {
             src={logoImg}
             alt="5050L logo"
             className="w-auto mb-8"
-            style={{ height: "35px", filter: "drop-shadow(0 0 20px hsl(38 70% 60% / 0.5))" }}
+            style={{ height: "53px", filter: "drop-shadow(0 0 20px hsl(38 70% 60% / 0.5))" }}
           />
 
           <div className="flex items-center gap-4">
