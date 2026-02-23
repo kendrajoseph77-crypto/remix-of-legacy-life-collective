@@ -19,7 +19,7 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-24">
         <Link to="/" className="flex items-center group">
-          <Logo />
+          <Logo darkBg />
         </Link>
       </div>
     </nav>
