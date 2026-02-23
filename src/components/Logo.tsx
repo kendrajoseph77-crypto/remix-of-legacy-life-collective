@@ -1,4 +1,4 @@
-import coopLogo from "@/assets/coop5050L-nobg.png";
+import coopLogo from "@/assets/logo-5050l-transparent.png";
 
 interface LogoProps {
   className?: string;
@@ -7,20 +7,13 @@ interface LogoProps {
 
 const Logo = ({ className = "", darkBg = true }: LogoProps) => {
   return (
-    <div
-      className={`flex items-center ${className}`}
+    <img
+      src={coopLogo}
+      alt="5050L logo"
+      className={`h-20 sm:h-24 w-auto ${className}`}
       style={{
-        backgroundImage: `url(${coopLogo})`,
-        backgroundSize: "contain",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        width: "120px",
-        height: "96px",
-        mixBlendMode: darkBg ? "screen" : "multiply",
-        filter: darkBg ? "brightness(1.1)" : "none",
+        filter: darkBg ? "drop-shadow(0 0 8px rgba(0,0,0,0.3))" : "none",
       }}
-      role="img"
-      aria-label="5050L logo"
     />
   );
 };
