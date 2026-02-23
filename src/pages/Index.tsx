@@ -62,26 +62,23 @@ const Index = () => {
 
         {/* Hero Layout */}
         <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center">
-          <div className="flex items-center justify-center gap-6 md:gap-10 mb-10">
-            {/* Logo — left */}
+          <div className="flex items-center justify-center gap-4 md:gap-6 mb-8">
             <img
               src={logoImg}
               alt="5050L logo"
               className="w-auto shrink-0"
-              style={{ height: "100px", filter: "drop-shadow(0 0 16px hsl(38 70% 60% / 0.4))" }}
+              style={{ height: "60px", filter: "drop-shadow(0 0 12px hsl(38 70% 60% / 0.4))" }}
             />
 
-            {/* Heading — center */}
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight text-center whitespace-nowrap">
+            <h1 className="text-xl md:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight text-center whitespace-nowrap">
               Cooperative Crowdfunding™
             </h1>
 
-            {/* Anniversary Seal — right */}
             <img
               src={anniversarySeal}
               alt="25th Anniversary"
               className="shrink-0 object-contain"
-              style={{ height: "100px", filter: "drop-shadow(0 0 12px hsl(38 70% 60% / 0.5))" }}
+              style={{ height: "60px", filter: "drop-shadow(0 0 10px hsl(38 70% 60% / 0.5))" }}
             />
           </div>
 
