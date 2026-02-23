@@ -141,7 +141,7 @@ const Index = () => {
 
             {/* Right: Tier Levels (vertical) */}
             <div className="md:w-72 flex flex-col gap-4">
-              <p className="text-sm font-semibold text-foreground mb-1">Royalty Levels:</p>
+              
               {tiers.map((tier, i) => (
                 <div
                   key={i}
