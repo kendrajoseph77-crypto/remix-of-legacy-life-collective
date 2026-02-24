@@ -75,7 +75,7 @@ const Index = () => {
               src={anniversarySeal}
               alt="25th Anniversary"
               className="shrink-0 object-contain"
-              style={{ height: "96px", filter: "drop-shadow(0 0 12px hsl(38 70% 60% / 0.5))" }}
+              style={{ height: "120px", filter: "drop-shadow(0 0 12px hsl(38 70% 60% / 0.5))" }}
             />
             <h1 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight text-center">
               Cooperative Crowdfunding™
