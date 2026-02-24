@@ -9,19 +9,25 @@ const businesses = [
   {
     name: "5050 Builder",
     tagline: "Clean entry. Foundation. Confidence.",
-    color: "hsl(224 78% 48%)",
+    gradient: "linear-gradient(135deg, hsl(224 85% 58%), hsl(224 78% 48%), hsl(224 90% 38%))",
+    shadow: "hsl(224 78% 48% / 0.4)",
+    highlight: "hsl(224 80% 68% / 0.5)",
     levels: "$25 · $50 · $100",
   },
   {
     name: "5050 Summit",
     tagline: "Elevated. Progress. Momentum.",
-    color: "hsl(160 84% 30%)",
+    gradient: "linear-gradient(135deg, hsl(160 80% 42%), hsl(160 84% 30%), hsl(160 90% 22%))",
+    shadow: "hsl(160 84% 30% / 0.4)",
+    highlight: "hsl(160 75% 50% / 0.5)",
     levels: "$250 · $500 · $1,000",
   },
   {
     name: "5050 Elite",
     tagline: "Top tier. Authority. Legacy.",
-    color: "hsl(38 37% 52%)",
+    gradient: "linear-gradient(135deg, hsl(42 80% 58%), hsl(38 75% 48%), hsl(34 85% 40%))",
+    shadow: "hsl(40 72% 50% / 0.4)",
+    highlight: "hsl(45 80% 70% / 0.5)",
     levels: "$2,500 · $5,000 · $10,000",
   },
 ];
@@ -110,10 +116,10 @@ const Index = () => {
                 key={i}
                 className="rounded-lg bg-card border border-border p-10 flex flex-col items-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group"
               >
-                {/* Color accent bar */}
+                {/* Chrome accent bar */}
                 <div
                   className="w-12 h-1 rounded-full mb-8"
-                  style={{ backgroundColor: biz.color }}
+                  style={{ background: biz.gradient, boxShadow: `0 0 8px ${biz.shadow}` }}
                 />
                 <h3 className="text-2xl font-semibold text-foreground mb-2">{biz.name}</h3>
                 
@@ -121,8 +127,11 @@ const Index = () => {
                 <div className="mt-auto w-full">
                   <Link
                     to={biz.name.includes("Elite") ? "/dashboard" : `/join?business=${biz.name.split(" ")[1].toLowerCase()}`}
-                    className="block w-full py-4 rounded-md font-bold tracking-widest text-xs text-white text-center transition-all duration-300 hover:opacity-90"
-                    style={{ backgroundColor: biz.color }}
+                    className="block w-full py-4 rounded-md font-bold tracking-widest text-xs text-white text-center transition-all duration-300 hover:brightness-110"
+                    style={{
+                      background: biz.gradient,
+                      boxShadow: `0 4px 16px ${biz.shadow}, inset 0 1px 0 ${biz.highlight}`,
+                    }}
                   >
                     ENTER {biz.name.split(" ")[1].toUpperCase()}
                   </Link>
