@@ -108,33 +108,30 @@ const RegisterLayout = ({ theme }: { theme: RegisterTheme }) => {
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/30" />
 
-      {/* Floating callout badges — right side */}
-      <div className="hidden lg:flex absolute right-12 top-1/2 -translate-y-1/2 z-10 flex-col gap-6 items-end">
+      {/* 50/50 callouts — bottom corners, not covering faces */}
+      <div className="hidden lg:block absolute bottom-8 right-8 z-10">
         <div
-          className="px-6 py-4 rounded-xl text-white font-bold text-lg tracking-wide"
+          className="px-5 py-3 rounded-full font-bold text-sm tracking-widest uppercase"
           style={{
-            background: "rgba(0,0,0,0.55)",
-            backdropFilter: "blur(10px)",
-            WebkitBackdropFilter: "blur(10px)",
-            border: "1px solid rgba(255,255,255,0.15)",
-            boxShadow: `0 4px 24px ${theme.primary}30`,
+            background: theme.gradient,
+            color: theme.textOnGradient,
+            boxShadow: `0 4px 20px ${theme.primary}50, inset 0 1px 0 rgba(255,255,255,0.3)`,
           }}
         >
-          <span style={{ color: theme.primary }}>You</span> Receive{" "}
-          <span className="text-2xl" style={{ color: theme.primary }}>50%</span>
+          You Receive 50%
         </div>
+      </div>
+      <div className="hidden lg:block absolute bottom-8 right-56 z-10">
         <div
-          className="px-6 py-4 rounded-xl text-white font-bold text-lg tracking-wide"
+          className="px-5 py-3 rounded-full font-bold text-sm tracking-widest uppercase text-white"
           style={{
-            background: "rgba(0,0,0,0.55)",
-            backdropFilter: "blur(10px)",
-            WebkitBackdropFilter: "blur(10px)",
-            border: "1px solid rgba(255,255,255,0.15)",
-            boxShadow: `0 4px 24px ${theme.primary}30`,
+            background: "rgba(0,0,0,0.6)",
+            backdropFilter: "blur(8px)",
+            border: `1px solid ${theme.primary}60`,
+            boxShadow: `0 4px 20px ${theme.primary}20`,
           }}
         >
-          Your Team Receives{" "}
-          <span className="text-2xl" style={{ color: theme.primary }}>50%</span>
+          Your Team Receives 50%
         </div>
       </div>
 
