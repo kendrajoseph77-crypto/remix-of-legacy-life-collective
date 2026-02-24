@@ -224,19 +224,19 @@ const SlideMobiusLoop = () => (
         When a teammate completes their cooperative, they follow you into your next one — automatically filling positions again.
         You never lose your team. Each completed cycle opens a new one. More money, not more work.
       </p>
-      <div className="flex flex-col md:flex-row items-center justify-center gap-5 max-w-2xl mx-auto">
+      <div className="grid grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-3 max-w-2xl mx-auto">
         {[
           { label: "Cycle 1", desc: "Your first cooperative fills and completes" },
           { label: "Cycle 2", desc: "A new cooperative auto-opens, your team follows" },
           { label: "Cycle ∞", desc: "The process repeats — unlimited income potential" },
         ].map((c, i) => (
-          <div key={i} className="flex-1 w-full">
-            <div className="rounded-xl p-5 bg-card border border-border text-center h-full">
+          <>
+            <div key={i} className="rounded-xl p-5 bg-card border border-border text-center h-full flex flex-col justify-center">
               <div className="text-3xl font-bold text-muted-foreground/30 mb-2">{c.label}</div>
               <p className="text-muted-foreground text-xs leading-relaxed">{c.desc}</p>
             </div>
-            {i < 2 && <div className="hidden md:block text-center text-muted-foreground/40 text-xl mt-2">→</div>}
-          </div>
+            {i < 2 && <span className="text-muted-foreground/40 text-xl">→</span>}
+          </>
         ))}
       </div>
       <div className="flex items-center gap-3 p-4 rounded-lg bg-muted/30 border border-border mt-8 max-w-md mx-auto">
