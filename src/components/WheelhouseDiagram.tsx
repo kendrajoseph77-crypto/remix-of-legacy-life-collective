@@ -490,7 +490,7 @@ const WheelhouseDiagram = () => {
     <div ref={sectionRef} className="relative w-full">
       <div className="flex flex-col md:flex-row gap-6 items-start justify-center max-w-5xl mx-auto">
         {/* Left: Main wheelhouse animation */}
-        <div className="flex-1 max-w-[500px]">
+        <div className="flex-1 max-w-[500px] relative">
       {/* Main active wheelhouse — hidden entirely once animation is done */}
       {!animationDone && (
       <div
@@ -598,15 +598,17 @@ const WheelhouseDiagram = () => {
       </div>
       )}
 
-      {/* Completion text — shown in place of the wheelhouse */}
+      {/* Completion text — overlaid in center of wheelhouse area */}
       {cycleComplete && celebrationPhase >= 2 && !animationDone && (
-        <div className="text-center animate-fade-in py-12">
-          <p className="text-lg md:text-xl font-extrabold tracking-tight" style={{ color: brightYellow, textShadow: `0 0 20px hsl(38 55% 62% / 0.4)` }}>
-            Wheelhouse Complete
-          </p>
-          <p className="text-xs tracking-[0.35em] uppercase font-semibold mt-1" style={{ color: brightYellow, opacity: 0.7 }}>
-            Mobius Loop Activated — Your Team Follows You
-          </p>
+        <div className="absolute inset-0 flex items-center justify-center z-20 animate-fade-in pointer-events-none">
+          <div className="text-center">
+            <p className="text-lg md:text-xl font-extrabold tracking-tight" style={{ color: brightYellow, textShadow: `0 0 20px hsl(38 55% 62% / 0.4)` }}>
+              Wheelhouse Complete
+            </p>
+            <p className="text-xs tracking-[0.35em] uppercase font-semibold mt-1" style={{ color: brightYellow, opacity: 0.7 }}>
+              Mobius Loop Activated — Your Team Follows You
+            </p>
+          </div>
         </div>
       )}
 
