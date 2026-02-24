@@ -7,6 +7,7 @@ const theme = {
   textOnGradient: "hsl(38 30% 10%)",
   dashboardPath: "/dashboard",
   royaltyLevels: [2500, 5000, 10000],
+  licensingFee: "$250",
 };
 
 const RegisterMogul = () => <RegisterLayout theme={theme} />;
