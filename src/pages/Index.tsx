@@ -99,7 +99,6 @@ const Index = () => {
       <section id="join" className="bg-background py-32 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col items-center mb-16">
-            <p className="text-muted-foreground text-[11px] tracking-[0.5em] uppercase font-medium mb-4 text-center">Choose Your Path</p>
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-center text-foreground leading-tight">
               Three Businesses. One Ecosystem.
             </h2>
@@ -117,7 +116,7 @@ const Index = () => {
                   style={{ backgroundColor: biz.color }}
                 />
                 <h3 className="text-2xl font-semibold text-foreground mb-2">{biz.name}</h3>
-                <p className="text-muted-foreground text-sm mb-6 italic">{biz.tagline}</p>
+                
                 <p className="text-muted-foreground/60 text-xs tracking-wide mb-8">{biz.levels}</p>
                 <div className="mt-auto w-full">
                   <Link
@@ -141,7 +140,6 @@ const Index = () => {
 
       {/* ── Section 2: Wheelhouse + Process Combined ── */}
       <section className="py-32 max-w-5xl mx-auto px-6">
-        <p className="text-muted-foreground text-[11px] tracking-[0.5em] uppercase font-medium mb-4 text-center">The Mobius Loop</p>
         <h2 className="text-2xl md:text-4xl lg:text-5xl font-semibold text-center mb-12 text-foreground leading-tight">
           Your Wheelhouse. <span className="text-muted-foreground">Always in Motion.</span>
         </h2>
@@ -155,7 +153,7 @@ const Index = () => {
                 <span className="text-xs font-semibold text-foreground">{step.n}</span>
               </div>
               <p className="text-sm font-semibold text-foreground mb-1">{step.title}</p>
-              <p className="text-xs text-muted-foreground leading-relaxed">{step.desc}</p>
+              
             </div>
           ))}
         </div>
