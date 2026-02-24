@@ -71,12 +71,6 @@ const Index = () => {
 
           {/* Center: Seal + Title + Join */}
           <div className="flex flex-col items-center gap-3">
-            <img
-              src={anniversarySeal}
-              alt="25th Anniversary"
-              className="shrink-0 object-contain"
-              style={{ height: "120px", filter: "drop-shadow(0 0 12px hsl(38 70% 60% / 0.5))" }}
-            />
             <h1 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight text-center">
               Cooperative Crowdfunding™
             </h1>
@@ -99,6 +93,16 @@ const Index = () => {
               alt="5050L logo"
               className="w-auto"
               style={{ height: "72px", filter: "drop-shadow(0 0 20px hsl(38 70% 60% / 0.5))" }}
+            />
+          </div>
+
+          {/* Top right: anniversary seal */}
+          <div className="absolute top-4 right-6 z-20">
+            <img
+              src={anniversarySeal}
+              alt="25th Anniversary"
+              className="shrink-0 object-contain"
+              style={{ height: "120px", filter: "drop-shadow(0 0 12px hsl(38 70% 60% / 0.5))" }}
             />
           </div>
         </div>
