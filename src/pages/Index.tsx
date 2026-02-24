@@ -12,7 +12,7 @@ const tiers = [
     receive: "$7,500",
     desc: "Your gateway into the ecosystem.",
     colorClass: "tier-gold",
-    accentColor: "hsl(12 80% 58%)",
+    accentColor: "hsl(38 55% 62%)",
   },
   {
     name: "Level 2",

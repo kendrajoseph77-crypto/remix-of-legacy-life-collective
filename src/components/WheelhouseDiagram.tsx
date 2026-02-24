@@ -27,10 +27,10 @@ const NODE_R = 30;
 
 const navy = "hsl(220 30% 15%)";
 const card = "hsl(0 0% 100%)";
-const coral = "hsl(12 80% 58%)";
+const coral = "hsl(38 55% 62%)";
 const lime = "hsl(260 60% 50%)";
 const royal = "hsl(180 80% 45%)";
-const brightYellow = "hsl(12 80% 58%)";
+const brightYellow = "hsl(38 55% 62%)";
 
 const ring2Nodes = [
   { label: "01", angle: -Math.PI / 2, avatarIdx: 1 },
@@ -537,7 +537,7 @@ const WheelhouseDiagram = () => {
         {/* Completion text — right below the SVG */}
         {cycleComplete && celebrationPhase >= 2 && (
           <div className="text-center animate-fade-in -mt-2 mb-2">
-            <p className="text-lg md:text-xl font-extrabold tracking-tight" style={{ color: brightYellow, textShadow: `0 0 20px hsl(12 80% 58% / 0.4)` }}>
+            <p className="text-lg md:text-xl font-extrabold tracking-tight" style={{ color: brightYellow, textShadow: `0 0 20px hsl(38 55% 62% / 0.4)` }}>
               Wheelhouse Complete
             </p>
             <p className="text-xs tracking-[0.35em] uppercase font-semibold mt-1" style={{ color: brightYellow, opacity: 0.7 }}>
