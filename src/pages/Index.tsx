@@ -67,7 +67,7 @@ const Index = () => {
         {/* Content container — fills viewport, spaced between top/bottom */}
         <div className="relative z-10 w-full flex flex-col items-center flex-1 pt-4 pb-2 px-6">
           {/* Spacer - push content lower */}
-          <div style={{ flex: 1.6 }} />
+          <div style={{ flex: 2.2 }} />
 
           {/* Center: Title + Seal side by side + Join */}
           <div className="flex flex-col items-center gap-1.5">
@@ -82,7 +82,7 @@ const Index = () => {
                 style={{ height: "108px", filter: "drop-shadow(0 0 12px hsl(38 70% 60% / 0.5))" }}
               />
             </div>
-            <a href="#join" className="mt-2 px-8 py-3 rounded-md text-sm font-bold tracking-wide btn-gold inline-block">
+            <a href="#join" className="mt-1 px-8 py-3 rounded-md text-sm font-bold tracking-wide btn-gold inline-block">
               Join Now
             </a>
             <p className="text-white/70 text-xs">
