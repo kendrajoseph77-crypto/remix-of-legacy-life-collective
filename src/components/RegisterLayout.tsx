@@ -138,7 +138,7 @@ const RegisterLayout = ({ theme }: { theme: RegisterTheme }) => {
             boxShadow: `0 4px 16px ${theme.primary}40`,
           }}
         >
-          Join Us →
+          {theme.name === "Mogul" ? "Back Home" : "Upgrade ↑"}
         </Link>
       </div>
 
