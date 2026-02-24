@@ -120,7 +120,7 @@ const Index = () => {
                 <p className="text-muted-foreground/60 text-xs tracking-wide mb-8">{biz.levels}</p>
                 <div className="mt-auto w-full">
                   <Link
-                    to={`/join?business=${biz.name.split(" ")[1].toLowerCase()}`}
+                    to={biz.name.includes("Sovereign") ? "/dashboard" : `/join?business=${biz.name.split(" ")[1].toLowerCase()}`}
                     className="block w-full py-4 rounded-md font-bold tracking-widest text-xs text-white text-center transition-all duration-300 hover:opacity-90"
                     style={{ backgroundColor: biz.color }}
                   >
