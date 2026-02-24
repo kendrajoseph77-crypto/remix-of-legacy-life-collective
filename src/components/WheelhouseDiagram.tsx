@@ -378,12 +378,33 @@ const WheelhouseDiagram = () => {
 
         {showContribution === stepIdx && (
           <g className="animate-fade-in">
-            <rect x={contribX - 36} y={contribY - 10} width="72" height="20" rx="10"
+            <rect x={contribX - 48} y={contribY - 12} width="96" height="24" rx="12"
               fill={navy} stroke={color} strokeWidth="1.5" opacity="0.95" />
-            <text x={contribX} y={contribY + 5} textAnchor="middle" fontSize="11" fontWeight="800"
+            <text x={contribX} y={contribY + 5} textAnchor="middle" fontSize="10" fontWeight="800"
               fill={color} fontFamily="monospace">
               {formatCurrency(CONTRIBUTION_PER_MEMBER)}
             </text>
+          </g>
+        )}
+
+        {/* Persistent 50% label on spoke to center — visible once member is active */}
+        {isActive && (
+          <g className="animate-fade-in">
+            {/* "50% to YOU" pill on the spoke midpoint toward center */}
+            {(() => {
+              const midX = (x + cx) / 2;
+              const midY = (y + cy) / 2;
+              return (
+                <>
+                  <rect x={midX - 30} y={midY - 9} width="60" height="18" rx="9"
+                    fill={brightYellow} opacity="0.95" />
+                  <text x={midX} y={midY + 4} textAnchor="middle" fontSize="9" fontWeight="900"
+                    fill={navy} fontFamily="sans-serif" letterSpacing="0.05em">
+                    50% YOU
+                  </text>
+                </>
+              );
+            })()}
           </g>
         )}
 
@@ -392,7 +413,7 @@ const WheelhouseDiagram = () => {
             <text x={labelX} y={labelY + 5} textAnchor="middle" fontSize="15" fontWeight="900"
               fill={brightYellow} fontFamily="monospace" letterSpacing="0.05em"
               filter="url(#wh-earningsGlow)">
-              50%
+              {formatCurrency(YOU_CUT_PER_MEMBER)}
             </text>
           </g>
         )}
