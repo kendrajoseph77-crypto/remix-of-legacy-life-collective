@@ -65,7 +65,7 @@ const Index = () => {
         {/* No dark overlay */}
 
         {/* Content container — fills viewport, spaced between top/bottom */}
-        <div className="relative z-10 w-full flex flex-col items-center flex-1 pt-14 pb-2 px-6">
+        <div className="relative z-10 w-full flex flex-col items-center flex-1 pt-4 pb-2 px-6">
           {/* Spacer */}
           <div className="flex-1" />
 
@@ -92,8 +92,8 @@ const Index = () => {
           {/* Spacer */}
           <div className="flex-1" />
 
-          {/* Bottom left: logo */}
-          <div className="w-full flex items-end">
+          {/* Top right: logo */}
+          <div className="absolute top-4 right-6 z-20">
             <img
               src={logoImg}
               alt="5050L logo"
