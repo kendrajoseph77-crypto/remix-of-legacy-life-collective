@@ -328,11 +328,11 @@ const WheelhouseDiagram = () => {
       return (
         <line key={`spoke2-${i}`}
           x1={sx} y1={sy} x2={ex} y2={ey}
-          stroke={active ? "hsl(160 70% 55% / 0.5)" : "hsl(210 30% 30% / 0.12)"}
+          stroke={active ? `${lime}` : "hsl(210 30% 30% / 0.12)"}
           strokeWidth={showContribution === i ? 3 : 1.5}
           strokeDasharray={active ? "none" : "4 4"}
-          markerEnd={active ? "url(#arrow-coral)" : undefined}
-          style={{ transition: "stroke 0.5s ease, stroke-width 0.3s ease" }}
+          markerEnd={active ? "url(#arrow-lime)" : undefined}
+          style={{ transition: "stroke 0.5s ease, stroke-width 0.3s ease", opacity: active ? 0.7 : 1 }}
         />
       );
     });
@@ -367,27 +367,27 @@ const WheelhouseDiagram = () => {
         <g key={`spoke3-${i}`}>
           <line
             x1={sx1} y1={sy1} x2={ex1} y2={ey1}
-            stroke={active ? "hsl(210 80% 70% / 0.45)" : "hsl(210 30% 30% / 0.1)"}
+            stroke={active ? royal : "hsl(210 30% 30% / 0.1)"}
             strokeWidth={isContributing ? 3 : 1.5}
             strokeDasharray={active ? "none" : "4 4"}
-            markerEnd={active ? "url(#arrow-lime)" : undefined}
-            style={{ transition: "stroke 0.5s ease, stroke-width 0.3s ease" }}
+            markerEnd={active ? "url(#arrow-royal)" : undefined}
+            style={{ transition: "stroke 0.5s ease, stroke-width 0.3s ease", opacity: active ? 0.7 : 1 }}
           />
           {/* 50% label on spoke to inviter (ring2 parent) */}
           {active && (
             <text x={midX1} y={midY1 + 4} textAnchor="middle" fontSize="10" fontWeight="700"
-              fill={lime} fontFamily="sans-serif" letterSpacing="0.03em"
+              fill={royal} fontFamily="sans-serif" letterSpacing="0.03em"
               filter="url(#wh-earningsGlow)" className="animate-fade-in">
               50%
             </text>
           )}
           <line
             x1={sx2} y1={sy2} x2={ex2} y2={ey2}
-            stroke={active ? "hsl(30 90% 65% / 0.5)" : "hsl(210 30% 30% / 0.1)"}
+            stroke={active ? royal : "hsl(210 30% 30% / 0.1)"}
             strokeWidth={isContributing ? 3 : 1.5}
             strokeDasharray={active ? "none" : "4 4"}
-            markerEnd={active ? "url(#arrow-coral)" : undefined}
-            style={{ transition: "stroke 0.5s ease, stroke-width 0.3s ease" }}
+            markerEnd={active ? "url(#arrow-royal)" : undefined}
+            style={{ transition: "stroke 0.5s ease, stroke-width 0.3s ease", opacity: active ? 0.7 : 1 }}
           />
         </g>
       );
@@ -525,6 +525,9 @@ const WheelhouseDiagram = () => {
             </marker>
             <marker id="arrow-lime" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
               <polygon points="0 0, 8 4, 0 8" fill={lime} opacity="0.9" />
+            </marker>
+            <marker id="arrow-royal" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+              <polygon points="0 0, 8 4, 0 8" fill={royal} opacity="0.9" />
             </marker>
             <clipPath id="wh-clipCenter">
               <circle cx={cx} cy={cy} r={CENTER_R - 3} />
