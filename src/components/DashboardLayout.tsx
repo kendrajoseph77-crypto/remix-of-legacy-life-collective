@@ -83,9 +83,9 @@ const DashboardLayout = ({ theme }: { theme: ThemeConfig }) => {
           sidebarOpen ? "w-56" : "w-0 overflow-hidden"
         } transition-all duration-300 bg-foreground text-primary-foreground flex flex-col`}
       >
-        <div className="p-4 flex items-center justify-center border-b border-white/10">
+        <Link to="/" className="p-4 flex items-center justify-center border-b border-white/10">
           <Logo darkBg className="!h-12" />
-        </div>
+        </Link>
         <nav className="flex-1 py-4 space-y-0.5 px-2">
           {sidebarLinks.map((item) => (
             <button
