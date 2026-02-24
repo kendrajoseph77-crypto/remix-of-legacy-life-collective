@@ -47,9 +47,10 @@
     --teal: 0 0% 30%;
     --dark-section: 0 0% 6%;
     --light-section: 0 0% 98%;
-    --gold: 38 55% 62%;
-    --gold-light: 38 50% 75%;
-    --champagne: 35 30% 85%;
+    --gold: 40 72% 50%;
+    --gold-light: 42 65% 65%;
+    --gold-dark: 36 80% 38%;
+    --champagne: 38 40% 78%;
 
     /* Brand level feature colors */
     --brand-builder: 224 78% 48%;
@@ -111,17 +112,34 @@
     box-shadow: 0 4px 20px hsl(0 0% 0% / 0.15);
   }
 
-  /* Gold button with logo-matching glow */
+  /* Gold button with rich chrome gradient */
   .btn-gold {
-    background: hsl(38 55% 62%);
-    color: hsl(38 30% 15%);
+    background: linear-gradient(135deg, hsl(42 80% 58%), hsl(38 75% 48%), hsl(34 85% 40%));
+    color: hsl(38 30% 10%);
     transition: all 0.3s ease;
-    box-shadow: 0 0 20px hsl(38 55% 62% / 0.4), 0 0 40px hsl(38 55% 62% / 0.2);
+    box-shadow: 0 0 20px hsl(40 72% 50% / 0.4), 0 0 40px hsl(40 72% 50% / 0.2), inset 0 1px 0 hsl(45 80% 70% / 0.5);
+    text-shadow: 0 1px 0 hsl(45 60% 70% / 0.4);
   }
   .btn-gold:hover {
-    background: hsl(38 55% 58%);
+    background: linear-gradient(135deg, hsl(44 85% 62%), hsl(40 78% 52%), hsl(36 88% 42%));
     transform: translateY(-1px);
-    box-shadow: 0 0 24px hsl(38 55% 62% / 0.55), 0 0 48px hsl(38 55% 62% / 0.3);
+    box-shadow: 0 0 28px hsl(40 72% 50% / 0.6), 0 0 56px hsl(40 72% 50% / 0.3), inset 0 1px 0 hsl(45 80% 70% / 0.6);
+  }
+
+  /* Gold chrome gradient for text and accents */
+  .gold-gradient {
+    background: linear-gradient(135deg, hsl(42 80% 62%), hsl(38 72% 50%), hsl(34 85% 42%), hsl(42 75% 58%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gold-chrome-bg {
+    background: linear-gradient(135deg, hsl(42 80% 58%), hsl(38 75% 48%), hsl(34 85% 40%));
+  }
+
+  .gold-chrome-border {
+    border-image: linear-gradient(135deg, hsl(42 80% 62%), hsl(38 72% 48%), hsl(34 85% 40%)) 1;
   }
 
   /* Outline button */

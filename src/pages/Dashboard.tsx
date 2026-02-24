@@ -28,8 +28,12 @@ import {
 import { Progress } from "@/components/ui/progress";
 import Logo from "@/components/Logo";
 
-const GOLD = "hsl(38 55% 62%)";
-const GOLD_BG = "hsl(38 55% 62% / 0.12)";
+const GOLD = "hsl(40 72% 50%)";
+const GOLD_LIGHT = "hsl(42 80% 62%)";
+const GOLD_DARK = "hsl(34 85% 40%)";
+const GOLD_BG = "hsl(40 72% 50% / 0.12)";
+const GOLD_GRADIENT = "linear-gradient(135deg, hsl(42 80% 58%), hsl(38 75% 48%), hsl(34 85% 40%))";
+const GOLD_GRADIENT_LIGHT = "linear-gradient(135deg, hsl(42 80% 62%), hsl(40 72% 50%));";
 
 const sidebarLinks = [
   { label: "Dashboard", icon: LayoutGrid, active: true },
@@ -86,7 +90,7 @@ const Dashboard = () => {
                   ? "text-foreground font-medium"
                   : "text-primary-foreground/60 hover:text-primary-foreground/90"
               }`}
-              style={item.active ? { background: GOLD, color: "hsl(0 0% 8%)" } : {}}
+              style={item.active ? { background: GOLD_GRADIENT, color: "hsl(38 30% 10%)", boxShadow: `inset 0 1px 0 ${GOLD_LIGHT}40` } : {}}
             >
               <item.icon size={16} />
               {item.label}
@@ -120,7 +124,7 @@ const Dashboard = () => {
             <div>
               <span
                 className="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded mb-2"
-                style={{ background: GOLD, color: "hsl(0 0% 8%)" }}
+                style={{ background: GOLD_GRADIENT, color: "hsl(38 30% 10%)" }}
               >
                 Free Member
               </span>
@@ -135,7 +139,7 @@ const Dashboard = () => {
             <div className="hidden md:flex items-center gap-3">
               <button
                 className="px-4 py-2 rounded-lg text-sm font-medium"
-                style={{ background: GOLD, color: "hsl(0 0% 8%)" }}
+                style={{ background: GOLD_GRADIENT, color: "hsl(38 30% 10%)", boxShadow: `inset 0 1px 0 ${GOLD_LIGHT}40` }}
               >
                 Send Contributions
               </button>
@@ -234,7 +238,7 @@ const Dashboard = () => {
               <div className="flex gap-3 mt-5">
                 <button
                   className="px-4 py-2 rounded-lg text-xs font-medium"
-                  style={{ background: GOLD, color: "hsl(0 0% 8%)" }}
+                  style={{ background: GOLD_GRADIENT, color: "hsl(38 30% 10%)", boxShadow: `inset 0 1px 0 ${GOLD_LIGHT}40` }}
                 >
                   View Full Team →
                 </button>
