@@ -21,7 +21,7 @@ const tiers = [
     name: "Mogul",
     levels: "$2,500 · $5,000 · $10,000",
     receive: "$7,500 · $15,000 · $30,000",
-    borderColor: "hsl(42 80% 58%)",
+    borderColor: "hsl(40 55% 55%)",
   },
 ];
 
@@ -60,11 +60,11 @@ const HowItWorks = () => {
       {/* Hero */}
       <section className="pt-28 pb-12 relative overflow-hidden">
         {/* Layered ambient glows */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,hsl(42_80%_58%/0.13)_0%,transparent_70%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_50%_0%,hsl(42_80%_58%/0.08)_0%,transparent_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_30%_30%_at_50%_10%,hsl(42_80%_58%/0.06)_0%,transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,hsl(36_65%_42%/0.13)_0%,transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_50%_0%,hsl(36_65%_42%/0.08)_0%,transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_30%_30%_at_50%_10%,hsl(36_65%_42%/0.06)_0%,transparent_50%)]" />
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <p className="text-sm tracking-[0.3em] uppercase font-medium mb-3" style={{ color: "hsl(42 80% 58%)" }}>Cooperative Crowdfunding</p>
+          <p className="text-sm tracking-[0.3em] uppercase font-medium mb-3" style={{ color: "hsl(40 55% 55%)" }}>Cooperative Crowdfunding</p>
           <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
             How Coop5050 Works
           </h1>

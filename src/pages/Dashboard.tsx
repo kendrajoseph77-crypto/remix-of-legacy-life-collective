@@ -3,13 +3,13 @@ import DashboardLayout from "@/components/DashboardLayout";
 
 const theme = {
   name: "Mogul",
-  primary: "hsl(40 72% 50%)",
-  primaryLight: "hsl(42 80% 62%)",
-  primaryDark: "hsl(34 85% 40%)",
-  primaryBg: "hsl(40 72% 50% / 0.12)",
-  gradient: "linear-gradient(135deg, hsl(42 80% 58%), hsl(38 75% 48%), hsl(34 85% 40%))",
-  gradientLight: "linear-gradient(135deg, hsl(42 80% 62%), hsl(40 72% 50%))",
-  textOnGradient: "hsl(38 30% 10%)",
+  primary: "hsl(36 65% 42%)",
+  primaryLight: "hsl(40 55% 55%)",
+  primaryDark: "hsl(30 75% 30%)",
+  primaryBg: "hsl(36 65% 42% / 0.12)",
+  gradient: "linear-gradient(135deg, hsl(40 55% 55%), hsl(36 65% 42%), hsl(30 75% 30%))",
+  gradientLight: "linear-gradient(135deg, hsl(40 55% 55%), hsl(36 65% 42%))",
+  textOnGradient: "hsl(35 30% 95%)",
   levels: [
     { label: "Level 2,500", amount: "$0.00 / $2,500.00", icon: Star },
     { label: "Level 5,000", amount: "$0.00 / $5,000.00", icon: Gem },
