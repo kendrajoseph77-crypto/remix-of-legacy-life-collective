@@ -25,9 +25,9 @@ const businesses = [
   {
     name: "5050 Mogul",
     tagline: "Foresight. Authority. Legacy.",
-    gradient: "linear-gradient(135deg, hsl(40 55% 55%), hsl(36 65% 42%), hsl(30 75% 30%))",
-    shadow: "hsl(36 65% 42% / 0.4)",
-    highlight: "hsl(42 50% 65% / 0.5)",
+    gradient: "linear-gradient(135deg, hsl(41 50% 65%), hsl(39 55% 52%), hsl(35 55% 40%))",
+    shadow: "hsl(39 55% 52% / 0.4)",
+    highlight: "hsl(42 45% 75% / 0.5)",
     levels: "$2,500 · $5,000 · $10,000",
   },
 ];

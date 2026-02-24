@@ -47,10 +47,10 @@
     --teal: 0 0% 30%;
     --dark-section: 0 0% 6%;
     --light-section: 0 0% 98%;
-    --gold: 36 65% 42%;
-    --gold-light: 40 55% 55%;
-    --gold-dark: 30 75% 30%;
-    --champagne: 35 40% 72%;
+    --gold: 39 55% 52%;
+    --gold-light: 41 50% 65%;
+    --gold-dark: 35 55% 40%;
+    --champagne: 37 45% 75%;
 
     /* Brand level feature colors */
     --brand-builder: 224 78% 48%;
@@ -114,32 +114,32 @@
 
   /* Gold button with rich chrome gradient */
   .btn-gold {
-    background: linear-gradient(135deg, hsl(40 55% 55%), hsl(36 65% 42%), hsl(30 75% 30%));
-    color: hsl(35 30% 95%);
+    background: linear-gradient(135deg, hsl(41 50% 65%), hsl(39 55% 52%), hsl(35 55% 40%));
+    color: hsl(35 30% 10%);
     transition: all 0.3s ease;
-    box-shadow: 0 0 20px hsl(36 65% 42% / 0.4), 0 0 40px hsl(36 65% 42% / 0.2), inset 0 1px 0 hsl(42 50% 65% / 0.5);
-    text-shadow: 0 1px 2px hsl(30 60% 20% / 0.4);
+    box-shadow: 0 0 20px hsl(39 55% 52% / 0.35), 0 0 40px hsl(39 55% 52% / 0.15), inset 0 1px 0 hsl(42 45% 75% / 0.5);
+    text-shadow: 0 1px 0 hsl(42 40% 72% / 0.4);
   }
   .btn-gold:hover {
-    background: linear-gradient(135deg, hsl(42 58% 58%), hsl(38 68% 45%), hsl(32 78% 33%));
+    background: linear-gradient(135deg, hsl(42 52% 68%), hsl(40 58% 55%), hsl(36 58% 43%));
     transform: translateY(-1px);
-    box-shadow: 0 0 28px hsl(36 65% 42% / 0.6), 0 0 56px hsl(36 65% 42% / 0.3), inset 0 1px 0 hsl(42 50% 65% / 0.6);
+    box-shadow: 0 0 28px hsl(39 55% 52% / 0.5), 0 0 56px hsl(39 55% 52% / 0.25), inset 0 1px 0 hsl(42 45% 75% / 0.6);
   }
 
   /* Gold chrome gradient for text and accents */
   .gold-gradient {
-    background: linear-gradient(135deg, hsl(40 55% 55%), hsl(36 65% 42%), hsl(30 75% 30%), hsl(40 50% 50%));
+    background: linear-gradient(135deg, hsl(41 50% 65%), hsl(39 55% 52%), hsl(35 55% 40%), hsl(41 48% 60%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .gold-chrome-bg {
-    background: linear-gradient(135deg, hsl(40 55% 55%), hsl(36 65% 42%), hsl(30 75% 30%));
+    background: linear-gradient(135deg, hsl(41 50% 65%), hsl(39 55% 52%), hsl(35 55% 40%));
   }
 
   .gold-chrome-border {
-    border-image: linear-gradient(135deg, hsl(40 55% 55%), hsl(36 65% 42%), hsl(30 75% 30%)) 1;
+    border-image: linear-gradient(135deg, hsl(41 50% 65%), hsl(39 55% 52%), hsl(35 55% 40%)) 1;
   }
 
   /* Outline button */
