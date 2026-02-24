@@ -7,6 +7,7 @@ const theme = {
   textOnGradient: "hsl(224 30% 98%)",
   dashboardPath: "/dashboard/micro",
   royaltyLevels: [25, 50, 100],
+  licensingFee: "$29.99 Every 6 Months",
 };
 
 const RegisterMicro = () => <RegisterLayout theme={theme} />;

@@ -7,6 +7,7 @@ const theme = {
   textOnGradient: "hsl(160 30% 98%)",
   dashboardPath: "/dashboard/macro",
   royaltyLevels: [250, 500, 1000],
+  licensingFee: "$49.99 Every 6 Months",
 };
 
 const RegisterMacro = () => <RegisterLayout theme={theme} />;
