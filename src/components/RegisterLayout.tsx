@@ -108,17 +108,17 @@ const RegisterLayout = ({ theme }: { theme: RegisterTheme }) => {
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/30" />
 
-      {/* 50/50 text — subtle watermark style, bottom right */}
-      <div className="hidden lg:flex absolute bottom-10 right-10 z-10 flex-col items-end gap-1 select-none pointer-events-none">
+      {/* 50/50 text — bottom right */}
+      <div className="hidden lg:flex absolute bottom-12 right-12 z-10 flex-col items-end gap-2 select-none pointer-events-none">
         <span
-          className="text-white/40 font-light tracking-[0.25em] text-xs uppercase"
-          style={{ textShadow: "0 1px 4px rgba(0,0,0,0.3)" }}
+          className="text-white/70 font-semibold tracking-[0.2em] text-sm uppercase"
+          style={{ textShadow: "0 2px 8px rgba(0,0,0,0.5)" }}
         >
           You Receive 50%
         </span>
         <span
-          className="text-white/25 font-light tracking-[0.25em] text-[10px] uppercase"
-          style={{ textShadow: "0 1px 4px rgba(0,0,0,0.3)" }}
+          className="text-white/50 font-medium tracking-[0.2em] text-xs uppercase"
+          style={{ textShadow: "0 2px 8px rgba(0,0,0,0.5)" }}
         >
           Your Team Receives 50%
         </span>
