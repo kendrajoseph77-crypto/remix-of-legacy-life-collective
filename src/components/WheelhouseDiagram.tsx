@@ -599,7 +599,7 @@ const WheelhouseDiagram = () => {
       )}
 
       {/* Completion text — overlaid in center of wheelhouse area */}
-      {cycleComplete && celebrationPhase >= 2 && !animationDone && (
+      {shrinking && !animationDone && (
         <div className="absolute inset-0 flex items-center justify-center z-20 animate-fade-in pointer-events-none">
           <div className="text-center">
             <p className="text-lg md:text-xl font-extrabold tracking-tight" style={{ color: brightYellow, textShadow: `0 0 20px hsl(38 55% 62% / 0.4)` }}>
