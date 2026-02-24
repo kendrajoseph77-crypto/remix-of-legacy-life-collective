@@ -17,7 +17,7 @@ const Navbar = () => {
         scrolled ? "bg-black/60 backdrop-blur-md shadow-lg py-2" : "bg-transparent py-4"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-48">
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
         <Link to="/" className="flex items-center group">
           <Logo darkBg />
         </Link>

@@ -636,18 +636,18 @@ const WheelhouseDiagram = () => {
       )}
 
       {animationDone && (
-        <div className="text-center animate-fade-in py-8">
-          <p className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground mb-3">
+        <div className="text-center animate-fade-in py-12 px-4">
+          <p className="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground mb-6">
             And It Never Stops.
           </p>
-          <p className="text-base text-muted-foreground max-w-lg mx-auto leading-relaxed mb-4">
+          <p className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed mb-6">
             Unlimited re-entries. Unlimited follows. <span className="font-bold text-foreground">Unlimited income.</span><br />
             Every completed wheelhouse automatically opens a new one. There is no cap. No ceiling. No limit.
           </p>
-          <p className="text-lg font-bold text-foreground mb-5">
+          <p className="text-lg md:text-xl font-bold text-foreground mb-8">
             Wealth beyond your wildest dreams — and it's all automated.
           </p>
-          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full border-2" style={{ borderColor: coral }}>
+          <div className="inline-flex items-center gap-3 px-8 py-4 rounded-full border-2" style={{ borderColor: coral }}>
             <span className="text-3xl" style={{ color: coral }}>∞</span>
             <span className="text-sm tracking-[0.3em] uppercase font-bold" style={{ color: coral }}>Infinite Earning Potential</span>
           </div>
@@ -665,7 +665,7 @@ const WheelhouseDiagram = () => {
                 startCycle(0);
               }, 300);
             }}
-            className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold text-muted-foreground border border-border hover:border-primary hover:text-primary transition-colors"
+            className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold text-muted-foreground border border-border hover:border-primary hover:text-primary transition-colors"
           >
             <RotateCcw size={16} />
             Replay
