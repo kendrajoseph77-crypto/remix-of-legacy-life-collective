@@ -71,7 +71,7 @@ const Index = () => {
 
           {/* Center: Title + Seal side by side + Join */}
           <div className="flex flex-col items-center gap-3">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <h1 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight text-center">
                 Cooperative Crowdfunding™
               </h1>
