@@ -69,24 +69,22 @@ const Index = () => {
           {/* Spacer */}
           <div className="flex-1" />
 
-          {/* Center: Seal + Title + Join */}
+          {/* Center: Title + Seal side by side + Join */}
           <div className="flex flex-col items-center gap-3">
-            <h1 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight text-center">
-              Cooperative Crowdfunding™
-            </h1>
-            <img
-              src={anniversarySeal}
-              alt="25th Anniversary"
-              className="shrink-0 object-contain"
-              style={{ height: "108px", filter: "drop-shadow(0 0 12px hsl(38 70% 60% / 0.5))" }}
-            />
+            <div className="flex items-center gap-4">
+              <h1 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight text-center">
+                Cooperative Crowdfunding™
+              </h1>
+              <img
+                src={anniversarySeal}
+                alt="25th Anniversary"
+                className="shrink-0 object-contain"
+                style={{ height: "108px", filter: "drop-shadow(0 0 12px hsl(38 70% 60% / 0.5))" }}
+              />
+            </div>
             <a href="#join" className="mt-2 px-8 py-3 rounded-md text-sm font-bold tracking-wide btn-gold inline-block">
               Join Now
             </a>
-            <p className="text-white/70 text-xs">
-              Already a member?{" "}
-              <Link to="/login" className="text-white underline hover:text-white/90 font-medium">Log in here</Link>
-            </p>
           </div>
 
           {/* Spacer */}
@@ -100,6 +98,13 @@ const Index = () => {
               className="w-auto"
               style={{ height: "72px", filter: "drop-shadow(0 0 20px hsl(38 70% 60% / 0.5))" }}
             />
+          </div>
+
+          {/* Top right: login */}
+          <div className="absolute top-4 right-6 z-20">
+            <Link to="/login" className="text-white/80 hover:text-white text-sm font-medium underline transition-colors">
+              Log in
+            </Link>
           </div>
         </div>
       </section>
