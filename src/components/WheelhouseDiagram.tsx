@@ -482,29 +482,6 @@ const WheelhouseDiagram = () => {
           </g>
         )}
 
-        {/* Persistent 50% label beside spoke to center — visible once member is active */}
-        {isActive && (
-          <g className="animate-fade-in">
-            {(() => {
-              const midX = (x + cx) / 2;
-              const midY = (y + cy) / 2;
-              const spokeAngle = Math.atan2(cy - y, cx - x);
-              const perpAngle = spokeAngle + Math.PI / 2;
-              const offsetDist = 12;
-              const lx = midX + offsetDist * Math.cos(perpAngle);
-              const ly = midY + offsetDist * Math.sin(perpAngle);
-              const rotDeg = (spokeAngle * 180) / Math.PI + (Math.abs(spokeAngle) > Math.PI / 2 ? 180 : 0);
-              return (
-                <text x={lx} y={ly} textAnchor="middle" fontSize="11" fontWeight="700"
-                  fill={brightYellow} fontFamily="sans-serif" letterSpacing="0.03em"
-                  filter="url(#wh-earningsGlow)"
-                  transform={`rotate(${rotDeg}, ${lx}, ${ly})`}>
-                  50%
-                </text>
-              );
-            })()}
-          </g>
-        )}
 
       </g>
     );
