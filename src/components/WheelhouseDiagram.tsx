@@ -403,7 +403,7 @@ const WheelhouseDiagram = () => {
           <g className="animate-fade-in">
             {(() => {
               const midX = (x + cx) / 2;
-              const midY = (y + cy) / 2;
+              const midY = (y + cy) / 2 + 6;
               return (
                 <text x={midX} y={midY + 4} textAnchor="middle" fontSize="10" fontWeight="700"
                   fill={brightYellow} fontFamily="sans-serif" letterSpacing="0.03em"
