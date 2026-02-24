@@ -698,6 +698,9 @@ const WheelhouseDiagram = () => {
               <p className="text-sm font-bold text-foreground">
                 Monthly Income: <span style={{ color: coral }} className="text-lg font-mono">{formatCurrency(CYCLE_EARNINGS * completedWheelhouses)}</span>
               </p>
+              <p className="text-[9px] text-muted-foreground/60 mt-2 leading-snug max-w-[220px] mx-auto">
+                *For illustration purposes only. Figures shown reflect potential income based on Sovereign-level contributions ($10,000).
+              </p>
             </div>
           </div>
         )}
