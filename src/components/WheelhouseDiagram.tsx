@@ -378,11 +378,15 @@ const WheelhouseDiagram = () => {
             markerEnd={active ? "url(#arrow-royal)" : undefined}
             style={{ transition: "stroke 0.5s ease, stroke-width 0.3s ease", opacity: active ? 0.7 : 1 }}
           />
-          {/* 50% label beside spoke to inviter (ring2 parent) */}
+          {/* 50% label beside spoke, rotated along line direction */}
           {active && (
-            <text x={label1X} y={label1Y + 4} textAnchor="middle" fontSize="10" fontWeight="700"
+            <text
+              x={label1X} y={label1Y}
+              textAnchor="middle" fontSize="9" fontWeight="700"
               fill={royal} fontFamily="sans-serif" letterSpacing="0.03em"
-              filter="url(#wh-earningsGlow)" className="animate-fade-in">
+              filter="url(#wh-earningsGlow)" className="animate-fade-in"
+              transform={`rotate(${(angle1 * 180) / Math.PI + (Math.abs(angle1) > Math.PI / 2 ? 180 : 0)}, ${label1X}, ${label1Y})`}
+            >
               50%
             </text>
           )}
@@ -453,13 +457,15 @@ const WheelhouseDiagram = () => {
               const midY = (y + cy) / 2;
               const spokeAngle = Math.atan2(cy - y, cx - x);
               const perpAngle = spokeAngle + Math.PI / 2;
-              const offsetDist = 14;
+              const offsetDist = 12;
               const lx = midX + offsetDist * Math.cos(perpAngle);
               const ly = midY + offsetDist * Math.sin(perpAngle);
+              const rotDeg = (spokeAngle * 180) / Math.PI + (Math.abs(spokeAngle) > Math.PI / 2 ? 180 : 0);
               return (
-                <text x={lx} y={ly + 4} textAnchor="middle" fontSize="10" fontWeight="700"
+                <text x={lx} y={ly} textAnchor="middle" fontSize="9" fontWeight="700"
                   fill={brightYellow} fontFamily="sans-serif" letterSpacing="0.03em"
-                  filter="url(#wh-earningsGlow)">
+                  filter="url(#wh-earningsGlow)"
+                  transform={`rotate(${rotDeg}, ${lx}, ${ly})`}>
                   50%
                 </text>
               );
