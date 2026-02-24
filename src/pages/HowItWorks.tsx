@@ -63,7 +63,7 @@ const HowItWorks = () => {
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <p className="text-aqua text-sm tracking-[0.3em] uppercase font-medium mb-3">Cooperative Crowdfunding</p>
           <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
-            How Coop5050Life Works
+            How Coop5050 Works
           </h1>
           <p className="text-muted-foreground text-base leading-relaxed max-w-2xl mx-auto mb-8">
             A 2×2 peer-to-peer crowdfunding platform where 100% of every contribution goes directly to you — the participants. No middlemen. No exceptions.
@@ -86,7 +86,7 @@ const HowItWorks = () => {
               You Always Receive 50%
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Coop5050Life™ is transparent, fully automated, and cannot be manipulated.
+              Coop5050™ is transparent, fully automated, and cannot be manipulated.
               There is no middleman. You immediately receive all your money.
             </p>
             <p className="text-muted-foreground leading-relaxed">
