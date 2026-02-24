@@ -9,16 +9,19 @@ const tiers = [
     name: "Builder",
     levels: "$25 · $50 · $100",
     receive: "$75 · $150 · $300",
+    borderColor: "hsl(224 85% 58%)",
   },
   {
     name: "Architect",
     levels: "$250 · $500 · $1,000",
     receive: "$750 · $1,500 · $3,000",
+    borderColor: "hsl(160 80% 42%)",
   },
   {
     name: "Visionary",
     levels: "$2,500 · $5,000 · $10,000",
     receive: "$7,500 · $15,000 · $30,000",
+    borderColor: "hsl(42 80% 58%)",
   },
 ];
 
@@ -128,7 +131,7 @@ const HowItWorks = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
             {tiers.map((tier, i) => (
-              <div key={i} className="rounded-xl p-6 bg-background border border-border text-center relative transition-all duration-300 hover:border-muted-foreground/40">
+              <div key={i} className="rounded-xl p-6 bg-background text-center relative transition-all duration-300" style={{ border: `2px solid ${tier.borderColor}` }}>
                 <p className="text-muted-foreground text-xs tracking-widest uppercase mb-2">{tier.name}</p>
                 <p className="text-lg font-bold mb-1 text-foreground">{tier.levels}</p>
                 <p className="text-muted-foreground text-sm mb-4">Entry Levels</p>
