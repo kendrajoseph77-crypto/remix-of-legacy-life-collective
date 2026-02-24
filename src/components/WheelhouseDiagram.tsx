@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { RotateCcw } from "lucide-react";
+import { RotateCcw, Pause, Play, SkipForward } from "lucide-react";
 
 const avatarUrls = [
   "https://randomuser.me/api/portraits/men/83.jpg",
@@ -104,6 +104,9 @@ const WheelhouseDiagram = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const [animationDone, setAnimationDone] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const isPausedRef = useRef(false);
+  const currentCycleRef = useRef(0);
 
   const clearAllTimeouts = useCallback(() => {
     timeoutsRef.current.forEach(clearTimeout);
@@ -126,6 +129,42 @@ const WheelhouseDiagram = () => {
     setShrinking(false);
   }, []);
 
+  const togglePause = useCallback(() => {
+    setIsPaused(prev => {
+      const next = !prev;
+      isPausedRef.current = next;
+      if (!next) {
+        // Resume: restart from current cycle
+        clearAllTimeouts();
+        startCycleRef.current(currentCycleRef.current);
+      } else {
+        // Pause: stop all timers
+        clearAllTimeouts();
+      }
+      return next;
+    });
+  }, [clearAllTimeouts]);
+
+  const skipToNextWheel = useCallback(() => {
+    clearAllTimeouts();
+    isPausedRef.current = false;
+    setIsPaused(false);
+    const nextCycle = currentCycleRef.current + 1;
+    if (nextCycle < TOTAL_CYCLES) {
+      setCompletedWheelhouses(nextCycle);
+      resetCycle();
+      currentCycleRef.current = nextCycle;
+      setTimeout(() => startCycleRef.current(nextCycle), 200);
+    } else {
+      setCompletedWheelhouses(TOTAL_CYCLES);
+      setShrinking(true);
+      setCelebrationPhase(3);
+      setTimeout(() => setAnimationDone(true), 800);
+    }
+  }, [clearAllTimeouts, resetCycle]);
+
+  const startCycleRef = useRef<(n: number) => void>(() => {});
+
   // Speed multiplier for auto-play
   const getSpeedMultiplier = (cycleNum: number) => {
     if (cycleNum === 0) return 1.8;
@@ -140,8 +179,8 @@ const WheelhouseDiagram = () => {
 
   // ── Auto-play logic ──
   const startCycle = useCallback((cycleNum: number) => {
+    currentCycleRef.current = cycleNum;
     resetCycle();
-    
     let memberIdx = 0;
     const speed = getSpeedMultiplier(cycleNum);
 
@@ -199,6 +238,9 @@ const WheelhouseDiagram = () => {
 
     safeTimeout(addNextMember, 500 * speed);
   }, [resetCycle, safeTimeout]);
+
+  // Keep ref in sync
+  useEffect(() => { startCycleRef.current = startCycle; }, [startCycle]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -567,7 +609,26 @@ const WheelhouseDiagram = () => {
       </div>
       )}
 
-      {/* Infinite potential — replaces the wheelhouse when done */}
+      {/* Playback controls */}
+      {!animationDone && (
+        <div className="flex items-center justify-center gap-3 mt-2 mb-1">
+          <button
+            onClick={togglePause}
+            className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors"
+            aria-label={isPaused ? "Play" : "Pause"}
+          >
+            {isPaused ? <Play size={14} /> : <Pause size={14} />}
+          </button>
+          <button
+            onClick={skipToNextWheel}
+            className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors"
+            aria-label="Skip to next wheel"
+          >
+            <SkipForward size={14} />
+          </button>
+        </div>
+      )}
+
       {animationDone && (
         <div className="text-center animate-fade-in py-8">
           <p className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground mb-3">
