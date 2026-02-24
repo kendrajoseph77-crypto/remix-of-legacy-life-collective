@@ -408,15 +408,6 @@ const WheelhouseDiagram = () => {
           </g>
         )}
 
-        {showContribution === stepIdx && (
-          <g className="animate-fade-in">
-            <text x={labelX} y={labelY + 5} textAnchor="middle" fontSize="15" fontWeight="900"
-              fill={brightYellow} fontFamily="monospace" letterSpacing="0.05em"
-              filter="url(#wh-earningsGlow)">
-              {formatCurrency(YOU_CUT_PER_MEMBER)}
-            </text>
-          </g>
-        )}
       </g>
     );
   };
