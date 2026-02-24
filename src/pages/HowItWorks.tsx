@@ -188,32 +188,30 @@ const HowItWorks = () => {
       {/* Wheelhouse */}
       <section className="py-14 bg-card border-y border-border">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-10 items-center">
-            <div>
-              <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3">The Technology</p>
-              <h2 className="text-3xl md:text-4xl font-bold mb-5">
-                The Mobius Loop Wheelhouse
-              </h2>
-              <p className="text-muted-foreground leading-relaxed mb-4 text-sm">
-                YOU are in the center. Your Inviter is in position #1, your Direct is in
-                position #2, and the four people your team invites fill positions #3–#6.
-                The 2×2 Wheelhouse holds 6 Active Contributors.
+          <div className="max-w-2xl mb-10">
+            <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3">The Technology</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-5">
+              The Mobius Loop Wheelhouse
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-4 text-sm">
+              YOU are in the center. Your Inviter is in position #1, your Direct is in
+              position #2, and the four people your team invites fill positions #3–#6.
+              The 2×2 Wheelhouse holds 6 Active Contributors.
+            </p>
+            <p className="text-muted-foreground leading-relaxed mb-5 text-sm">
+              <span className="text-foreground font-semibold">You Never Lose Your Team!</span> Each time your Wheelhouse fills,
+              another automatically re-opens — you receive another 6 contributions
+              without additional effort or qualifications.
+            </p>
+            <div className="flex items-center gap-3 p-4 rounded-lg bg-muted/30 border border-border">
+              <div className="w-2 h-2 rounded-full bg-secondary animate-pulse flex-shrink-0" />
+              <p className="text-sm text-muted-foreground">
+                <span className="text-foreground font-medium">You Follow Your Inviter.</span>{" "}
+                Your Team Always Follows You.
               </p>
-              <p className="text-muted-foreground leading-relaxed mb-5 text-sm">
-                <span className="text-foreground font-semibold">You Never Lose Your Team!</span> Each time your Wheelhouse fills,
-                another automatically re-opens — you receive another 6 contributions
-                without additional effort or qualifications.
-              </p>
-              <div className="flex items-center gap-3 p-4 rounded-lg bg-muted/30 border border-border">
-                <div className="w-2 h-2 rounded-full bg-secondary animate-pulse flex-shrink-0" />
-                <p className="text-sm text-muted-foreground">
-                  <span className="text-foreground font-medium">You Follow Your Inviter.</span>{" "}
-                  Your Team Always Follows You.
-                </p>
-              </div>
             </div>
-            <WheelhouseDiagram />
           </div>
+          <WheelhouseDiagram />
         </div>
       </section>
 
