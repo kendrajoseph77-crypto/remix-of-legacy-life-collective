@@ -19,11 +19,11 @@ const TOTAL_CYCLES = 12; // animate up to 12 then stop
 const CYCLE_EARNINGS = YOU_CUT_PER_MEMBER * MEMBER_COUNT; // $52,500
 
 // Layout for the main SVG wheelhouse
-const cx = 300, cy = 280;
+const cx = 300, cy = 300;
 const CENTER_R = 50;
-const RING2_R = 140;
-const RING3_R = 220;
-const NODE_R = 30;
+const RING2_R = 150;
+const RING3_R = 240;
+const NODE_R = 28;
 
 const navy = "hsl(220 30% 15%)";
 const card = "hsl(0 0% 100%)";
@@ -390,19 +390,15 @@ const WheelhouseDiagram = () => {
         {/* Persistent 50% label on spoke to center — visible once member is active */}
         {isActive && (
           <g className="animate-fade-in">
-            {/* "50% to YOU" pill on the spoke midpoint toward center */}
             {(() => {
               const midX = (x + cx) / 2;
               const midY = (y + cy) / 2;
               return (
-                <>
-                  <rect x={midX - 30} y={midY - 9} width="60" height="18" rx="9"
-                    fill={brightYellow} opacity="0.95" />
-                  <text x={midX} y={midY + 4} textAnchor="middle" fontSize="9" fontWeight="900"
-                    fill={navy} fontFamily="sans-serif" letterSpacing="0.05em">
-                    50% YOU
-                  </text>
-                </>
+                <text x={midX} y={midY + 4} textAnchor="middle" fontSize="10" fontWeight="700"
+                  fill={brightYellow} fontFamily="sans-serif" letterSpacing="0.03em"
+                  filter="url(#wh-earningsGlow)">
+                  50%
+                </text>
               );
             })()}
           </g>
@@ -453,7 +449,7 @@ const WheelhouseDiagram = () => {
           overflow: animationDone ? 'hidden' : undefined,
         }}
       >
-        <svg viewBox="0 0 600 580" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+        <svg viewBox="0 0 600 620" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
           <defs>
             <filter id="wh-glow" x="-30%" y="-30%" width="160%" height="160%">
               <feGaussianBlur stdDeviation="3" result="blur" />
