@@ -20,7 +20,7 @@ const tiers = [
     receive: "$15,000",
     desc: "Elevated access for the serious wealth builder.",
     colorClass: "tier-platinum",
-    accentColor: "hsl(0 0% 25%)",
+    accentColor: "hsl(38 55% 55%)",
   },
   {
     name: "Level 3",
@@ -28,7 +28,7 @@ const tiers = [
     receive: "$30,000",
     desc: "Maximum returns. Legacy-class wealth.",
     colorClass: "tier-diamond",
-    accentColor: "hsl(0 0% 8%)",
+    accentColor: "hsl(38 55% 55%)",
   },
 ];
 
