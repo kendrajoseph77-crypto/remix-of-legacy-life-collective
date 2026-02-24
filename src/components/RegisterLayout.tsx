@@ -108,31 +108,20 @@ const RegisterLayout = ({ theme }: { theme: RegisterTheme }) => {
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/30" />
 
-      {/* 50/50 callouts — bottom corners, not covering faces */}
-      <div className="hidden lg:block absolute bottom-8 right-8 z-10">
-        <div
-          className="px-5 py-3 rounded-full font-bold text-sm tracking-widest uppercase"
-          style={{
-            background: theme.gradient,
-            color: theme.textOnGradient,
-            boxShadow: `0 4px 20px ${theme.primary}50, inset 0 1px 0 rgba(255,255,255,0.3)`,
-          }}
+      {/* 50/50 text — subtle watermark style, bottom right */}
+      <div className="hidden lg:flex absolute bottom-10 right-10 z-10 flex-col items-end gap-1 select-none pointer-events-none">
+        <span
+          className="text-white/40 font-light tracking-[0.25em] text-xs uppercase"
+          style={{ textShadow: "0 1px 4px rgba(0,0,0,0.3)" }}
         >
           You Receive 50%
-        </div>
-      </div>
-      <div className="hidden lg:block absolute bottom-8 right-56 z-10">
-        <div
-          className="px-5 py-3 rounded-full font-bold text-sm tracking-widest uppercase text-white"
-          style={{
-            background: "rgba(0,0,0,0.6)",
-            backdropFilter: "blur(8px)",
-            border: `1px solid ${theme.primary}60`,
-            boxShadow: `0 4px 20px ${theme.primary}20`,
-          }}
+        </span>
+        <span
+          className="text-white/25 font-light tracking-[0.25em] text-[10px] uppercase"
+          style={{ textShadow: "0 1px 4px rgba(0,0,0,0.3)" }}
         >
           Your Team Receives 50%
-        </div>
+        </span>
       </div>
 
       {/* Nav bar */}
