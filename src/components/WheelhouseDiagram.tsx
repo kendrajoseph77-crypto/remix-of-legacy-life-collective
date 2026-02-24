@@ -320,23 +320,39 @@ const WheelhouseDiagram = () => {
       const active = i < activeMembers;
       const angle = Math.atan2(cy - pos.y, cx - pos.x);
       const comesFromBelow = pos.y > cy;
-      const centerGap = comesFromBelow ? CENTER_R + 58 : CENTER_R + 18;
+      const centerGap = comesFromBelow ? CENTER_R + 42 : CENTER_R + 18;
       const sx = pos.x + (NODE_R + 4) * Math.cos(angle);
       const sy = pos.y + (NODE_R + 4) * Math.sin(angle);
       const ex = cx - centerGap * Math.cos(angle);
       const ey = cy - centerGap * Math.sin(angle);
+      // 50% label for ring2 spokes
+      const midX = (sx + ex) / 2;
+      const midY = (sy + ey) / 2;
+      const perpAngle = angle + Math.PI / 2;
+      const lOffX = midX + 12 * Math.cos(perpAngle);
+      const lOffY = midY + 12 * Math.sin(perpAngle);
+      const rotDeg = (angle * 180) / Math.PI + (Math.abs(angle) > Math.PI / 2 ? 180 : 0);
       return (
-        <line key={`spoke2-${i}`}
-          x1={sx} y1={sy} x2={ex} y2={ey}
-          stroke={active ? `${lime}` : "hsl(210 30% 30% / 0.12)"}
-          strokeWidth={showContribution === i ? 3 : 1.5}
-          strokeDasharray={active ? "none" : "4 4"}
-          markerEnd={active ? "url(#arrow-lime)" : undefined}
-          style={{ transition: "stroke 0.5s ease, stroke-width 0.3s ease", opacity: active ? 0.7 : 1 }}
-        />
+        <g key={`spoke2-${i}`}>
+          <line
+            x1={sx} y1={sy} x2={ex} y2={ey}
+            stroke={active ? `${lime}` : "hsl(210 30% 30% / 0.12)"}
+            strokeWidth={showContribution === i ? 3 : 1.5}
+            strokeDasharray={active ? "none" : "4 4"}
+            markerEnd={active ? "url(#arrow-lime)" : undefined}
+            style={{ transition: "stroke 0.5s ease, stroke-width 0.3s ease", opacity: active ? 0.7 : 1 }}
+          />
+          {active && (
+            <text x={lOffX} y={lOffY} textAnchor="middle" fontSize="11" fontWeight="700"
+              fill={lime} fontFamily="sans-serif" letterSpacing="0.03em"
+              filter="url(#wh-earningsGlow)" className="animate-fade-in"
+              transform={`rotate(${rotDeg}, ${lOffX}, ${lOffY})`}>
+              50%
+            </text>
+          )}
+        </g>
       );
     });
-
   const renderRing3Spokes = () =>
     ring3Nodes.map((n, i) => {
       const stepIdx = i + 2;
@@ -364,7 +380,7 @@ const WheelhouseDiagram = () => {
       const midY1 = (sy1 + ey1) / 2;
       // Offset 50% label perpendicular to spoke line
       const perpAngle1 = angle1 + Math.PI / 2;
-      const labelOffsetDist1 = 14;
+      const labelOffsetDist1 = 12;
       const label1X = midX1 + labelOffsetDist1 * Math.cos(perpAngle1);
       const label1Y = midY1 + labelOffsetDist1 * Math.sin(perpAngle1);
 
@@ -382,7 +398,7 @@ const WheelhouseDiagram = () => {
           {active && (
             <text
               x={label1X} y={label1Y}
-              textAnchor="middle" fontSize="9" fontWeight="700"
+              textAnchor="middle" fontSize="11" fontWeight="700"
               fill={royal} fontFamily="sans-serif" letterSpacing="0.03em"
               filter="url(#wh-earningsGlow)" className="animate-fade-in"
               transform={`rotate(${(angle1 * 180) / Math.PI + (Math.abs(angle1) > Math.PI / 2 ? 180 : 0)}, ${label1X}, ${label1Y})`}
@@ -398,6 +414,23 @@ const WheelhouseDiagram = () => {
             markerEnd={active ? "url(#arrow-royal)" : undefined}
             style={{ transition: "stroke 0.5s ease, stroke-width 0.3s ease", opacity: active ? 0.7 : 1 }}
           />
+          {/* 50% label beside spoke to center, rotated along line */}
+          {active && (() => {
+            const mid2X = (sx2 + ex2) / 2;
+            const mid2Y = (sy2 + ey2) / 2;
+            const perp2 = angle2 + Math.PI / 2;
+            const l2x = mid2X + 12 * Math.cos(perp2);
+            const l2y = mid2Y + 12 * Math.sin(perp2);
+            const rot2 = (angle2 * 180) / Math.PI + (Math.abs(angle2) > Math.PI / 2 ? 180 : 0);
+            return (
+              <text x={l2x} y={l2y} textAnchor="middle" fontSize="11" fontWeight="700"
+                fill={royal} fontFamily="sans-serif" letterSpacing="0.03em"
+                filter="url(#wh-earningsGlow)" className="animate-fade-in"
+                transform={`rotate(${rot2}, ${l2x}, ${l2y})`}>
+                50%
+              </text>
+            );
+          })()}
         </g>
       );
     });
@@ -462,7 +495,7 @@ const WheelhouseDiagram = () => {
               const ly = midY + offsetDist * Math.sin(perpAngle);
               const rotDeg = (spokeAngle * 180) / Math.PI + (Math.abs(spokeAngle) > Math.PI / 2 ? 180 : 0);
               return (
-                <text x={lx} y={ly} textAnchor="middle" fontSize="9" fontWeight="700"
+                <text x={lx} y={ly} textAnchor="middle" fontSize="11" fontWeight="700"
                   fill={brightYellow} fontFamily="sans-serif" letterSpacing="0.03em"
                   filter="url(#wh-earningsGlow)"
                   transform={`rotate(${rotDeg}, ${lx}, ${ly})`}>
