@@ -92,8 +92,8 @@ const Index = () => {
           {/* Spacer */}
           <div className="flex-1" />
 
-          {/* Top right: logo */}
-          <div className="absolute top-4 right-6 z-20">
+          {/* Top left: logo */}
+          <div className="absolute top-4 left-6 z-20">
             <img
               src={logoImg}
               alt="5050L logo"
