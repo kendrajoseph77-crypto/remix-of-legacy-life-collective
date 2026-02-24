@@ -122,7 +122,7 @@ const Dashboard = () => {
                 className="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded mb-2"
                 style={{ background: GOLD, color: "hsl(0 0% 8%)" }}
               >
-                Member
+                Free Member
               </span>
               <h2 className="text-xl font-semibold text-white mt-1">
                 {getGreeting()}, {userName}!
