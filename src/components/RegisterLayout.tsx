@@ -108,6 +108,36 @@ const RegisterLayout = ({ theme }: { theme: RegisterTheme }) => {
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/30" />
 
+      {/* Floating callout badges — right side */}
+      <div className="hidden lg:flex absolute right-12 top-1/2 -translate-y-1/2 z-10 flex-col gap-6 items-end">
+        <div
+          className="px-6 py-4 rounded-xl text-white font-bold text-lg tracking-wide"
+          style={{
+            background: "rgba(0,0,0,0.55)",
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
+            border: "1px solid rgba(255,255,255,0.15)",
+            boxShadow: `0 4px 24px ${theme.primary}30`,
+          }}
+        >
+          <span style={{ color: theme.primary }}>You</span> Receive{" "}
+          <span className="text-2xl" style={{ color: theme.primary }}>50%</span>
+        </div>
+        <div
+          className="px-6 py-4 rounded-xl text-white font-bold text-lg tracking-wide"
+          style={{
+            background: "rgba(0,0,0,0.55)",
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
+            border: "1px solid rgba(255,255,255,0.15)",
+            boxShadow: `0 4px 24px ${theme.primary}30`,
+          }}
+        >
+          Your Team Receives{" "}
+          <span className="text-2xl" style={{ color: theme.primary }}>50%</span>
+        </div>
+      </div>
+
       {/* Nav bar */}
       <div className="absolute top-0 right-0 z-20 flex items-center gap-4 p-6">
         <Link to="/login" className="text-white/90 text-sm font-medium hover:text-white transition-colors">
