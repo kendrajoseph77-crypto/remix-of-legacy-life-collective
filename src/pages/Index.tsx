@@ -100,7 +100,7 @@ const Index = () => {
         <div className="max-w-5xl mx-auto">
           <div className="flex flex-col items-center mb-16">
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-center text-foreground leading-tight">
-              Three Businesses. One Ecosystem.
+              Three Systems. One Movement.
             </h2>
           </div>
 
