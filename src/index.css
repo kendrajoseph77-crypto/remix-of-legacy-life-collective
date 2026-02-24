@@ -2,63 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    /* Light mint-white background like the Figma reference */
-    --background: 160 30% 97%;
-    --foreground: 220 30% 15%;
+    /* Editorial: Pure white background */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 8%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 30% 15%;
+    --card-foreground: 0 0% 8%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 30% 15%;
+    --popover-foreground: 0 0% 8%;
 
-    /* Primary: Clean light/white */
-    --primary: 220 15% 40%;
+    /* Primary: Near-black for editorial feel */
+    --primary: 0 0% 15%;
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary: Deep purple */
-    --secondary: 260 60% 50%;
+    /* Secondary: Warm grey */
+    --secondary: 0 0% 45%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 20% 93%;
-    --muted-foreground: 220 15% 50%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    /* Accent: Teal/cyan like the logo */
-    --accent: 180 80% 50%;
-    --accent-foreground: 220 30% 15%;
+    /* Accent: Subtle warm tone */
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 8%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 20% 88%;
-    --input: 210 20% 93%;
-    --ring: 220 15% 40%;
+    --border: 0 0% 90%;
+    --input: 0 0% 96%;
+    --ring: 0 0% 15%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
     /* Custom tokens */
-    --coral: 220 15% 40%;
-    --purple-start: 270 65% 55%;
-    --purple-end: 230 70% 55%;
-    --teal: 180 80% 50%;
-    --dark-section: 220 30% 15%;
-    --light-section: 220 20% 96%;
-    --gold: 38 70% 60%;
-    --gold-light: 38 65% 75%;
-    --champagne: 35 40% 80%;
+    --coral: 0 0% 15%;
+    --purple-start: 0 0% 25%;
+    --purple-end: 0 0% 35%;
+    --teal: 0 0% 30%;
+    --dark-section: 0 0% 6%;
+    --light-section: 0 0% 98%;
+    --gold: 38 55% 62%;
+    --gold-light: 38 50% 75%;
+    --champagne: 35 30% 85%;
 
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 220 30% 15%;
-    --sidebar-primary: 220 15% 40%;
+    --sidebar-foreground: 0 0% 8%;
+    --sidebar-primary: 0 0% 15%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 20% 93%;
-    --sidebar-accent-foreground: 220 30% 15%;
-    --sidebar-border: 210 20% 88%;
-    --sidebar-ring: 220 15% 40%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 8%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 0 0% 15%;
   }
 }
 
@@ -70,37 +70,40 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    letter-spacing: -0.01em;
   }
 
   h1, h2, h3 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 700;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
   }
 }
 
 @layer utilities {
-  /* Hero gradient: purple → blue → pink like the reference */
+  /* Hero gradient: editorial dark */
   .hero-gradient {
     background: linear-gradient(
-      135deg,
-      hsl(260 55% 48%) 0%,
-      hsl(245 60% 50%) 25%,
-      hsl(230 65% 52%) 50%,
-      hsl(220 70% 48%) 75%,
-      hsl(250 45% 55%) 100%
+      180deg,
+      hsl(0 0% 6%) 0%,
+      hsl(0 0% 12%) 50%,
+      hsl(0 0% 8%) 100%
     );
   }
 
-  /* CTA button — neutral slate */
+  /* CTA button — editorial black */
   .btn-coral {
-    background: hsl(220 15% 40%);
+    background: hsl(0 0% 8%);
     color: white;
     transition: all 0.3s ease;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
   }
   .btn-coral:hover {
-    background: hsl(220 15% 35%);
+    background: hsl(0 0% 15%);
     transform: translateY(-1px);
-    box-shadow: 0 4px 16px hsl(220 15% 40% / 0.35);
+    box-shadow: 0 4px 20px hsl(0 0% 0% / 0.15);
   }
 
   /* Gold button with logo-matching glow */
@@ -139,33 +142,21 @@
     border: 1px solid hsl(220 20% 25%);
   }
 
-  /* Tier cards */
-  .tier-gold {
-    background: hsl(0 0% 100%);
-    border: 1px solid hsl(210 20% 88%);
-    box-shadow: 0 2px 8px hsl(220 30% 15% / 0.06);
-  }
-  .tier-platinum {
-    background: hsl(0 0% 100%);
-    border: 1px solid hsl(210 20% 88%);
-    box-shadow: 0 2px 8px hsl(220 30% 15% / 0.06);
-  }
+  /* Tier cards — editorial clean */
+  .tier-gold,
+  .tier-platinum,
   .tier-diamond {
     background: hsl(0 0% 100%);
-    border: 1px solid hsl(210 20% 88%);
-    box-shadow: 0 2px 8px hsl(220 30% 15% / 0.06);
+    border: 1px solid hsl(0 0% 90%);
+    box-shadow: none;
   }
 
   .section-light {
-    background: hsl(var(--light-section));
+    background: hsl(0 0% 98%);
   }
 
   .section-dark {
-    background: linear-gradient(
-      180deg,
-      hsl(220 20% 12%) 0%,
-      hsl(220 15% 8%) 100%
-    );
+    background: hsl(0 0% 6%);
     color: white;
   }
 }

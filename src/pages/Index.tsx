@@ -12,7 +12,7 @@ const tiers = [
     receive: "$7,500",
     desc: "Your gateway into the ecosystem.",
     colorClass: "tier-gold",
-    accentColor: "hsl(38 55% 62%)",
+    accentColor: "hsl(38 55% 55%)",
   },
   {
     name: "Level 2",
@@ -20,7 +20,7 @@ const tiers = [
     receive: "$15,000",
     desc: "Elevated access for the serious wealth builder.",
     colorClass: "tier-platinum",
-    accentColor: "hsl(260 60% 50%)",
+    accentColor: "hsl(0 0% 25%)",
   },
   {
     name: "Level 3",
@@ -28,7 +28,7 @@ const tiers = [
     receive: "$30,000",
     desc: "Maximum returns. Legacy-class wealth.",
     colorClass: "tier-diamond",
-    accentColor: "hsl(180 80% 45%)",
+    accentColor: "hsl(0 0% 8%)",
   },
 ];
 
@@ -114,86 +114,86 @@ const Index = () => {
       </section>
 
       {/* ── Section 1: Activate Your Membership ── */}
-      <section id="join" className="bg-background py-20 px-6">
-        <div className="max-w-6xl mx-auto">
+      <section id="join" className="bg-background py-32 px-6">
+        <div className="max-w-5xl mx-auto">
           {/* Anniversary Seal + Heading */}
-          <div className="flex flex-col items-center mb-12">
+          <div className="flex flex-col items-center mb-20">
             <img
               src={anniversarySeal}
               alt="25th Anniversary Seal"
-              className="w-28 h-28 md:w-36 md:h-36 object-contain mb-5 rounded-full"
+              className="w-24 h-24 md:w-32 md:h-32 object-contain mb-8 rounded-full"
               style={{ filter: "drop-shadow(0 0 20px hsl(38 70% 60% / 0.4))" }}
             />
-            <p className="text-primary text-xs tracking-[0.4em] uppercase font-semibold mb-3 text-center">Choose Your Level</p>
-            <h2 className="text-2xl md:text-4xl font-bold text-center text-foreground">
+            <p className="text-muted-foreground text-[11px] tracking-[0.5em] uppercase font-medium mb-4 text-center">Choose Your Level</p>
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-center text-foreground leading-tight">
               Activate Your Membership
             </h2>
           </div>
 
           {/* Form + Tiers side by side */}
-          <div className="flex flex-col md:flex-row gap-8 max-w-5xl mx-auto">
+          <div className="flex flex-col md:flex-row gap-12 max-w-5xl mx-auto">
             {/* Left: Join Form */}
-            <div className="flex-1 rounded-xl p-8 bg-card border border-border">
-              <h3 className="text-xl font-bold mb-1 text-foreground">Register</h3>
-              <p className="text-muted-foreground text-sm mb-6">Fill out the form below to activate your membership.</p>
-              <form className="grid grid-cols-1 sm:grid-cols-2 gap-4" onSubmit={(e) => e.preventDefault()}>
-                <input type="text" placeholder="Referral Code" className="px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
-                <input type="text" placeholder="First Name" className="px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
-                <input type="text" placeholder="Last Name" className="px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
-                <input type="email" placeholder="Email" className="px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
-                <input type="email" placeholder="Confirm Email" className="px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
-                <input type="text" placeholder="Username" className="px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
-                <input type="password" placeholder="Password" className="px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
-                <input type="password" placeholder="Confirm Password" className="sm:col-span-2 px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:border-primary text-sm transition-colors" />
+            <div className="flex-1 rounded-lg p-10 bg-card border border-border">
+              <h3 className="text-2xl font-semibold mb-2 text-foreground">Register</h3>
+              <p className="text-muted-foreground text-sm mb-8">Fill out the form below to activate your membership.</p>
+              <form className="grid grid-cols-1 sm:grid-cols-2 gap-5" onSubmit={(e) => e.preventDefault()}>
+                <input type="text" placeholder="Referral Code" className="px-4 py-3.5 rounded-md bg-muted border border-border text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground text-sm transition-colors" />
+                <input type="text" placeholder="First Name" className="px-4 py-3.5 rounded-md bg-muted border border-border text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground text-sm transition-colors" />
+                <input type="text" placeholder="Last Name" className="px-4 py-3.5 rounded-md bg-muted border border-border text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground text-sm transition-colors" />
+                <input type="email" placeholder="Email" className="px-4 py-3.5 rounded-md bg-muted border border-border text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground text-sm transition-colors" />
+                <input type="email" placeholder="Confirm Email" className="px-4 py-3.5 rounded-md bg-muted border border-border text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground text-sm transition-colors" />
+                <input type="text" placeholder="Username" className="px-4 py-3.5 rounded-md bg-muted border border-border text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground text-sm transition-colors" />
+                <input type="password" placeholder="Password" className="px-4 py-3.5 rounded-md bg-muted border border-border text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground text-sm transition-colors" />
+                <input type="password" placeholder="Confirm Password" className="sm:col-span-2 px-4 py-3.5 rounded-md bg-muted border border-border text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground text-sm transition-colors" />
 
                 {/* Startup Fee Checkbox */}
-                <div className="sm:col-span-2 mt-2">
-                  <p className="text-sm font-semibold text-foreground mb-2">Licensing Fee:</p>
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" defaultChecked className="w-4 h-4 rounded border-border text-primary focus:ring-primary accent-primary" />
+                <div className="sm:col-span-2 mt-3">
+                  <p className="text-sm font-medium text-foreground mb-2">Licensing Fee:</p>
+                  <label className="flex items-center gap-3 cursor-pointer">
+                    <input type="checkbox" defaultChecked className="w-4 h-4 rounded border-border text-foreground focus:ring-foreground accent-foreground" />
                     <span className="text-sm text-foreground">$29.99 Every 6 Months</span>
                   </label>
                 </div>
 
                 <button
                   type="submit"
-                  className="sm:col-span-2 py-3.5 rounded-lg font-bold tracking-wide text-sm btn-coral mt-2"
+                  className="sm:col-span-2 py-4 rounded-md font-bold tracking-widest text-xs btn-coral mt-3"
                 >
                   Join
                 </button>
               </form>
-              <div className="flex items-center justify-between mt-4 flex-wrap gap-2">
+              <div className="flex items-center justify-between mt-6 flex-wrap gap-3">
                 <p className="text-muted-foreground text-xs">
                   By joining you agree to our{" "}
-                  <a href="#" className="text-primary hover:underline">Terms</a> and{" "}
-                  <a href="#" className="text-primary hover:underline">Privacy Policy</a>.
+                  <a href="#" className="text-foreground hover:underline">Terms</a> and{" "}
+                  <a href="#" className="text-foreground hover:underline">Privacy Policy</a>.
                 </p>
                 <p className="text-muted-foreground text-sm">
                   Already have an account?{" "}
-                  <Link to="/login" className="text-primary hover:underline font-medium">Log in</Link>
+                  <Link to="/login" className="text-foreground hover:underline font-medium">Log in</Link>
                 </p>
               </div>
             </div>
 
             {/* Right: Tier Levels (vertical) */}
-            <div className="md:w-72 flex flex-col gap-4">
+            <div className="md:w-72 flex flex-col gap-5">
               
               {tiers.map((tier, i) => (
                 <div
                   key={i}
                   onClick={() => setSelected(i)}
-                  className={`rounded-xl p-5 cursor-pointer transition-all duration-300 bg-card border ${
+                  className={`rounded-lg p-6 cursor-pointer transition-all duration-300 bg-card border ${
                     selected === i
-                      ? "border-primary shadow-lg shadow-primary/10"
+                      ? "border-foreground shadow-lg shadow-foreground/5"
                       : "border-border hover:border-muted-foreground/30"
                   }`}
                 >
-                  <p className="text-muted-foreground text-xs tracking-widest uppercase mb-1">{tier.name}</p>
-                  <p className="text-2xl font-bold text-foreground mb-0.5">{tier.entry}</p>
-                  <p className="text-muted-foreground/60 text-xs mb-3">one-time contribution</p>
-                  <div className="border-t border-border pt-3">
-                    <p className="text-muted-foreground text-xs uppercase tracking-wider mb-0.5">You receive</p>
-                    <p className="text-xl font-bold" style={{ color: tier.accentColor }}>{tier.receive}</p>
+                  <p className="text-muted-foreground text-[10px] tracking-[0.3em] uppercase mb-2">{tier.name}</p>
+                  <p className="text-3xl font-semibold text-foreground mb-1">{tier.entry}</p>
+                  <p className="text-muted-foreground/50 text-xs mb-4">one-time contribution</p>
+                  <div className="border-t border-border pt-4">
+                    <p className="text-muted-foreground text-[10px] uppercase tracking-[0.2em] mb-1">You receive</p>
+                    <p className="text-2xl font-semibold" style={{ color: tier.accentColor }}>{tier.receive}</p>
                   </div>
                 </div>
               ))}
@@ -203,23 +203,23 @@ const Index = () => {
       </section>
 
       {/* ── Section 2: Wheelhouse + Process Combined ── */}
-      <section className="py-8 max-w-6xl mx-auto px-6">
-        <p className="text-primary text-xs tracking-[0.4em] uppercase font-semibold mb-1 text-center">The Mobius Loop</p>
-        <h2 className="text-xl md:text-2xl font-bold text-center mb-4 text-foreground">
+      <section className="py-32 max-w-5xl mx-auto px-6">
+        <p className="text-muted-foreground text-[11px] tracking-[0.5em] uppercase font-medium mb-4 text-center">The Mobius Loop</p>
+        <h2 className="text-2xl md:text-4xl lg:text-5xl font-semibold text-center mb-12 text-foreground leading-tight">
           Your Wheelhouse. <span className="text-muted-foreground">Always in Motion.</span>
         </h2>
 
         <WheelhouseDiagram />
 
         {/* 3 Steps — horizontal boxes below */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
           {steps.map((step, i) => (
-            <div key={i} className="rounded-lg p-3 bg-card border border-border text-center">
-              <div className="w-7 h-7 rounded-md bg-secondary/10 flex items-center justify-center mx-auto mb-1.5">
-                <span className="text-xs font-bold text-secondary">{step.n}</span>
+            <div key={i} className="rounded-lg p-6 bg-card border border-border text-center">
+              <div className="w-8 h-8 rounded-full bg-foreground/5 flex items-center justify-center mx-auto mb-3">
+                <span className="text-xs font-semibold text-foreground">{step.n}</span>
               </div>
-              <p className="text-xs font-semibold text-foreground mb-0.5">{step.title}</p>
-              <p className="text-[11px] text-muted-foreground leading-tight">{step.desc}</p>
+              <p className="text-sm font-semibold text-foreground mb-1">{step.title}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{step.desc}</p>
             </div>
           ))}
         </div>
