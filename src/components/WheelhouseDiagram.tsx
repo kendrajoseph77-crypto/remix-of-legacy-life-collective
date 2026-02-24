@@ -278,7 +278,7 @@ const WheelhouseDiagram = () => {
       const active = i < activeMembers;
       const angle = Math.atan2(cy - pos.y, cx - pos.x);
       const comesFromBelow = pos.y > cy;
-      const centerGap = comesFromBelow ? CENTER_R + 48 : CENTER_R + 28;
+      const centerGap = comesFromBelow ? CENTER_R + 48 : CENTER_R + 8;
       const sx = pos.x + (NODE_R + 4) * Math.cos(angle);
       const sy = pos.y + (NODE_R + 4) * Math.sin(angle);
       const ex = cx - centerGap * Math.cos(angle);
