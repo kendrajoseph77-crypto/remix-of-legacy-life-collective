@@ -224,7 +224,7 @@ const RegisterLayout = ({ theme }: { theme: RegisterTheme }) => {
                     ))}
                   </div>
                   <p className="text-xs text-muted-foreground mt-2 italic">
-                    Please note it is your absolute choice to donate at the level or levels you so desire in ascending order.
+                    Please note it is your absolute choice to contribute at the level or levels you so desire in ascending order.
                   </p>
                 </div>
               </div>
