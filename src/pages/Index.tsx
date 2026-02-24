@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const businesses = [
   {
-    name: "5050 Builder",
+    name: "5050 Micro",
     tagline: "Clean entry. Foundation. Confidence.",
     gradient: "linear-gradient(135deg, hsl(224 85% 58%), hsl(224 78% 48%), hsl(224 90% 38%))",
     shadow: "hsl(224 78% 48% / 0.4)",
@@ -15,7 +15,7 @@ const businesses = [
     levels: "$25 · $50 · $100",
   },
   {
-    name: "5050 Architect",
+    name: "5050 Macro",
     tagline: "Design. Structure. Momentum.",
     gradient: "linear-gradient(135deg, hsl(160 80% 42%), hsl(160 84% 30%), hsl(160 90% 22%))",
     shadow: "hsl(160 84% 30% / 0.4)",
@@ -23,7 +23,7 @@ const businesses = [
     levels: "$250 · $500 · $1,000",
   },
   {
-    name: "5050 Visionary",
+    name: "5050 Mogul",
     tagline: "Foresight. Authority. Legacy.",
     gradient: "linear-gradient(135deg, hsl(42 80% 58%), hsl(38 75% 48%), hsl(34 85% 40%))",
     shadow: "hsl(40 72% 50% / 0.4)",
@@ -121,7 +121,7 @@ const Index = () => {
                 <p className="text-muted-foreground/60 text-xs tracking-wide mb-8">{biz.levels}</p>
                 <div className="mt-auto w-full">
                   <Link
-                    to={biz.name.includes("Visionary") ? "/dashboard" : `/dashboard/${biz.name.split(" ")[1].toLowerCase()}`}
+                    to={biz.name.includes("Mogul") ? "/dashboard" : `/dashboard/${biz.name.split(" ")[1].toLowerCase()}`}
                     className="block w-full py-4 rounded-md font-bold tracking-widest text-xs text-white text-center transition-all duration-300 hover:brightness-110"
                     style={{
                       background: biz.gradient,

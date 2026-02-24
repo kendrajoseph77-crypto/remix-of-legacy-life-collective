@@ -8,8 +8,8 @@ import HowItWorks from "./pages/HowItWorks";
 import Join from "./pages/Join";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-import BuilderDashboard from "./pages/BuilderDashboard";
-import ArchitectDashboard from "./pages/ArchitectDashboard";
+import MicroDashboard from "./pages/BuilderDashboard";
+import MacroDashboard from "./pages/ArchitectDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,8 +26,8 @@ const App = () => (
           <Route path="/join" element={<Join />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/dashboard/builder" element={<BuilderDashboard />} />
-          <Route path="/dashboard/architect" element={<ArchitectDashboard />} />
+          <Route path="/dashboard/micro" element={<MicroDashboard />} />
+          <Route path="/dashboard/macro" element={<MacroDashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

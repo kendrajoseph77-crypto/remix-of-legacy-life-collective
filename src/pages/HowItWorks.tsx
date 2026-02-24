@@ -6,19 +6,19 @@ import { CheckCircle, ArrowRight } from "lucide-react";
 
 const tiers = [
   {
-    name: "Builder",
+    name: "Micro",
     levels: "$25 · $50 · $100",
     receive: "$75 · $150 · $300",
     borderColor: "hsl(224 85% 58%)",
   },
   {
-    name: "Architect",
+    name: "Macro",
     levels: "$250 · $500 · $1,000",
     receive: "$750 · $1,500 · $3,000",
     borderColor: "hsl(160 80% 42%)",
   },
   {
-    name: "Visionary",
+    name: "Mogul",
     levels: "$2,500 · $5,000 · $10,000",
     receive: "$7,500 · $15,000 · $30,000",
     borderColor: "hsl(42 80% 58%)",
