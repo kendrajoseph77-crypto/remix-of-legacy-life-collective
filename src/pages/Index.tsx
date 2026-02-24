@@ -148,7 +148,7 @@ const Index = () => {
           to="/how-it-works"
           className="text-muted-foreground hover:text-foreground text-sm font-medium underline transition-colors"
         >
-          Learn how the Wheelhouse works →
+          Learn how the 5050 system works →
         </Link>
       </section>
     </div>
