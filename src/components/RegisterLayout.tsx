@@ -150,7 +150,7 @@ const RegisterLayout = ({ theme }: { theme: RegisterTheme }) => {
               Create Your Account
             </h1>
             <p className="text-center text-muted-foreground text-sm mt-1 mb-6">
-              Join the world's first peer-to-peer crowdfunding system and start receiving royalties.
+              Join the world's first peer-to-peer crowdfunding system and start receiving contributions.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-5">
