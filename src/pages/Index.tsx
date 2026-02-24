@@ -128,7 +128,7 @@ const Index = () => {
                       boxShadow: `0 4px 16px ${biz.shadow}, inset 0 1px 0 ${biz.highlight}`,
                     }}
                   >
-                    ENTER {biz.name.split(" ")[1].toUpperCase()}
+                    ACTIVATE {biz.name.split(" ")[1].toUpperCase()}
                   </Link>
                 </div>
               </div>
