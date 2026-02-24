@@ -80,7 +80,7 @@ const Index = () => {
             <h1 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight text-center">
               Cooperative Crowdfunding™
             </h1>
-            <a href="#join" className="mt-2 px-8 py-3 rounded-md text-sm font-bold tracking-wide bg-accent text-accent-foreground hover:brightness-110 transition-all duration-300 hover:-translate-y-0.5 shadow-lg shadow-accent/30 inline-block">
+            <a href="#join" className="mt-2 px-8 py-3 rounded-md text-sm font-bold tracking-wide btn-gold inline-block">
               Join Now
             </a>
             <p className="text-white/70 text-xs">
