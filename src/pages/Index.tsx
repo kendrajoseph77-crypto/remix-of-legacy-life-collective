@@ -1,5 +1,5 @@
 import logoImg from "@/assets/logo-hero-new.png";
-import WheelhouseDiagram from "@/components/WheelhouseDiagram";
+
 
 import anniversarySeal from "@/assets/anniversary-seal-hq.png";
 import heroVideo from "@/assets/hero-video-new.mp4";
@@ -32,11 +32,6 @@ const businesses = [
   },
 ];
 
-const steps = [
-  { n: "01", title: "Activate", desc: "Contribute once at your chosen level." },
-  { n: "02", title: "Invite 2", desc: "Two people join — your Wheelhouse fills." },
-  { n: "03", title: "Receive & Repeat", desc: "You earn 50% and your team earns 50%. Your team moves with you when a new wheelhouse opens." },
-];
 
 const Index = () => {
   return (
@@ -147,25 +142,14 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── Section 2: Wheelhouse + Process Combined ── */}
-      <section className="py-32 max-w-5xl mx-auto px-6">
-        <h2 className="text-2xl md:text-4xl lg:text-5xl font-semibold text-center mb-12 text-foreground leading-tight">
-          Your Wheelhouse. <span className="text-muted-foreground">Always in Motion.</span>
-        </h2>
-
-        <WheelhouseDiagram />
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-          {steps.map((step, i) => (
-            <div key={i} className="rounded-lg p-6 bg-card border border-border text-center">
-              <div className="w-8 h-8 rounded-full bg-foreground/5 flex items-center justify-center mx-auto mb-3">
-                <span className="text-xs font-semibold text-foreground">{step.n}</span>
-              </div>
-              <p className="text-sm font-semibold text-foreground mb-1">{step.title}</p>
-              
-            </div>
-          ))}
-        </div>
+      {/* ── Learn More ── */}
+      <section className="py-16 text-center px-6">
+        <Link
+          to="/how-it-works"
+          className="text-muted-foreground hover:text-foreground text-sm font-medium underline transition-colors"
+        >
+          Learn how the Wheelhouse works →
+        </Link>
       </section>
     </div>
   );
