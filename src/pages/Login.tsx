@@ -46,8 +46,8 @@ const Login = () => {
 
               <button
                 type="submit"
-                className="w-full py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:brightness-110"
-                style={{ background: "linear-gradient(135deg, hsl(41 50% 65%), hsl(39 55% 52%), hsl(35 55% 40%))", color: "hsl(35 30% 10%)", boxShadow: "0 4px 16px hsl(39 55% 52% / 0.3), inset 0 1px 0 hsl(42 45% 75% / 0.5)" }}
+                className="w-full py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-150 hover:brightness-110 active:translate-y-0.5"
+                style={{ background: "linear-gradient(180deg, hsl(41 50% 68%) 0%, hsl(39 55% 52%) 50%, hsl(35 55% 40%) 100%)", color: "hsl(35 30% 10%)", boxShadow: "0 4px 0 hsl(35 55% 30%), 0 6px 12px hsl(35 55% 30% / 0.4), inset 0 1px 0 hsl(42 45% 78% / 0.6)", borderTop: "1px solid hsl(42 50% 72% / 0.5)" }}
               >
                 Sign In
               </button>
