@@ -24,7 +24,7 @@ const Footer = () => {
         </div>
         <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-muted-foreground text-xs">
-            © 2025 coop5050Life™. All rights reserved.
+            © 2025 Coop5050™. All rights reserved.
           </p>
           <p className="text-muted-foreground text-xs italic">
             "Money when you want it. Life the way you deserve it."

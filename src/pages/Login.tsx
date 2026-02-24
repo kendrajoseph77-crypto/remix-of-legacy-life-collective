@@ -13,7 +13,7 @@ const Login = () => {
             <h1 className="text-3xl font-bold mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>
               Welcome Back
             </h1>
-            <p className="text-muted-foreground text-sm">Sign in to your coop5050Life™ dashboard</p>
+            <p className="text-muted-foreground text-sm">Sign in to your Coop5050™ dashboard</p>
           </div>
 
           <div className="rounded-xl p-8 bg-card border border-border card-glow">
