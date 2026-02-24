@@ -167,14 +167,14 @@ const WheelhouseDiagram = () => {
 
   // Speed multiplier for auto-play
   const getSpeedMultiplier = (cycleNum: number) => {
-    if (cycleNum === 0) return 1.8;
-    if (cycleNum === 1) return 1.4;
-    if (cycleNum === 2) return 1.1;
-    if (cycleNum === 3) return 0.9;
-    if (cycleNum === 4) return 0.75;
-    if (cycleNum === 5) return 0.6;
-    if (cycleNum <= 8) return 0.5;
-    return 0.4;
+    if (cycleNum === 0) return 3.0;
+    if (cycleNum === 1) return 2.5;
+    if (cycleNum === 2) return 2.0;
+    if (cycleNum === 3) return 1.6;
+    if (cycleNum === 4) return 1.3;
+    if (cycleNum === 5) return 1.1;
+    if (cycleNum <= 8) return 0.9;
+    return 0.7;
   };
 
   // ── Auto-play logic ──
