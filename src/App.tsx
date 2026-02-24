@@ -15,6 +15,7 @@ import Dashboard from "./pages/Dashboard";
 import MicroDashboard from "./pages/BuilderDashboard";
 import MacroDashboard from "./pages/ArchitectDashboard";
 import NotFound from "./pages/NotFound";
+import HowItWorksDemo from "./pages/HowItWorksDemo";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
+          <Route path="/how-it-works-demo" element={<HowItWorksDemo />} />
           <Route path="/join" element={<Join />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register/micro" element={<RegisterMicro />} />
