@@ -7,6 +7,9 @@ import Index from "./pages/Index";
 import HowItWorks from "./pages/HowItWorks";
 import Join from "./pages/Join";
 import Login from "./pages/Login";
+import RegisterMicro from "./pages/RegisterMicro";
+import RegisterMacro from "./pages/RegisterMacro";
+import RegisterMogul from "./pages/RegisterMogul";
 import Dashboard from "./pages/Dashboard";
 import MicroDashboard from "./pages/BuilderDashboard";
 import MacroDashboard from "./pages/ArchitectDashboard";
@@ -25,6 +28,9 @@ const App = () => (
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/join" element={<Join />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register/micro" element={<RegisterMicro />} />
+          <Route path="/register/macro" element={<RegisterMacro />} />
+          <Route path="/register/mogul" element={<RegisterMogul />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/micro" element={<MicroDashboard />} />
           <Route path="/dashboard/macro" element={<MacroDashboard />} />
