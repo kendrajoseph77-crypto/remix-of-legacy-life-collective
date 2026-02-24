@@ -135,21 +135,36 @@ const Index = () => {
             ))}
           </div>
 
-          <p className="text-center text-muted-foreground text-sm mt-10">
-            Already have an account?{" "}
-            <Link to="/login" className="text-foreground hover:underline font-medium">Log in</Link>
-          </p>
+          {/* Login + How It Works — compact cluster */}
+          <div className="flex flex-col items-center gap-3 mt-12">
+            <p className="text-muted-foreground text-sm">
+              Already have an account?{" "}
+              <Link to="/login" className="text-foreground hover:underline font-medium">Log in</Link>
+            </p>
+            <Link
+              to="/how-it-works"
+              className="group inline-flex items-center gap-3 px-8 py-4 rounded-xl border border-border bg-card hover:bg-muted/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+            >
+              <div className="w-10 h-10 rounded-full flex items-center justify-center gold-chrome-bg shrink-0">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="hsl(35 30% 10%)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polygon points="10 8 16 12 10 16 10 8" fill="hsl(35 30% 10%)" stroke="none"/>
+                </svg>
+              </div>
+              <div className="text-left">
+                <span className="block text-sm font-bold text-foreground group-hover:text-foreground/90">
+                  Learn How the System Works
+                </span>
+                <span className="block text-xs text-muted-foreground">
+                  See the 50/50 Wheelhouse in action
+                </span>
+              </div>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-muted-foreground group-hover:translate-x-1 transition-transform ml-2">
+                <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+              </svg>
+            </Link>
+          </div>
         </div>
-      </section>
-
-      {/* ── Learn More ── */}
-      <section className="py-16 text-center px-6">
-        <Link
-          to="/how-it-works"
-          className="text-muted-foreground hover:text-foreground text-sm font-medium underline transition-colors"
-        >
-          Learn how the 5050 system works →
-        </Link>
       </section>
     </div>
   );
