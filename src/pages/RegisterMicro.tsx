@@ -1,4 +1,5 @@
 import RegisterLayout from "@/components/RegisterLayout";
+import bgImage from "@/assets/register-bg-micro.jpg";
 
 const theme = {
   name: "Micro",
@@ -8,6 +9,7 @@ const theme = {
   dashboardPath: "/dashboard/micro",
   royaltyLevels: [25, 50, 100],
   licensingFee: "$29.99 Every 6 Months",
+  bgImage,
 };
 
 const RegisterMicro = () => <RegisterLayout theme={theme} />;
