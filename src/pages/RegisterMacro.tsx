@@ -1,4 +1,5 @@
 import RegisterLayout from "@/components/RegisterLayout";
+import bgImage from "@/assets/register-bg-macro.jpg";
 
 const theme = {
   name: "Macro",
@@ -8,6 +9,7 @@ const theme = {
   dashboardPath: "/dashboard/macro",
   royaltyLevels: [250, 500, 1000],
   licensingFee: "$49.99 Every 6 Months",
+  bgImage,
 };
 
 const RegisterMacro = () => <RegisterLayout theme={theme} />;

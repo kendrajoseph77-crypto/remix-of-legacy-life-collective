@@ -1,4 +1,5 @@
 import RegisterLayout from "@/components/RegisterLayout";
+import bgImage from "@/assets/register-bg-mogul.jpg";
 
 const theme = {
   name: "Mogul",
@@ -8,6 +9,7 @@ const theme = {
   dashboardPath: "/dashboard",
   royaltyLevels: [2500, 5000, 10000],
   licensingFee: "$250",
+  bgImage,
 };
 
 const RegisterMogul = () => <RegisterLayout theme={theme} />;

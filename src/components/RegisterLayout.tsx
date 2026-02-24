@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import Logo from "@/components/Logo";
-import registerBg from "@/assets/register-bg.jpg";
+
 
 interface RegisterTheme {
   name: string;
@@ -16,6 +16,7 @@ interface RegisterTheme {
   dashboardPath: string;
   royaltyLevels: number[];
   licensingFee: string;
+  bgImage: string;
 }
 
 const RegisterLayout = ({ theme }: { theme: RegisterTheme }) => {
@@ -99,7 +100,7 @@ const RegisterLayout = ({ theme }: { theme: RegisterTheme }) => {
     <div
       className="min-h-screen flex items-stretch relative"
       style={{
-        backgroundImage: `url(${registerBg})`,
+        backgroundImage: `url(${theme.bgImage})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
