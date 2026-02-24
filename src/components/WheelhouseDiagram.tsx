@@ -28,8 +28,8 @@ const NODE_R = 28;
 const navy = "hsl(220 30% 15%)";
 const card = "hsl(0 0% 100%)";
 const coral = "hsl(38 55% 62%)";
-const lime = "hsl(260 60% 50%)";
-const royal = "hsl(180 80% 45%)";
+  const lime = "hsl(320 100% 60%)";
+  const royal = "hsl(270 50% 45%)";
 const brightYellow = "hsl(38 55% 62%)";
 
 const ring2Nodes = [
