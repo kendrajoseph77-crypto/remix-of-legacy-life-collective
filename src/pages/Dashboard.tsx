@@ -33,7 +33,7 @@ const GOLD_BG = "hsl(38 55% 62% / 0.12)";
 
 const sidebarLinks = [
   { label: "Dashboard", icon: LayoutGrid, active: true },
-  { label: "Royalties", icon: Coins },
+  { label: "Contributions", icon: Coins },
   { label: "Income Centers", icon: LayoutGrid },
   { label: "Wallet", icon: Wallet },
   { label: "Tokens", icon: Gem },
@@ -45,8 +45,8 @@ const sidebarLinks = [
 ];
 
 const quickActions = [
-  { label: "Send Royalties", desc: "Send pending royalties", icon: Send },
-  { label: "Receive Royalties", desc: "Mark royalties received", icon: Inbox },
+  { label: "Send Contributions", desc: "Send pending contributions", icon: Send },
+  { label: "Receive Contributions", desc: "Mark contributions received", icon: Inbox },
   { label: "My Team", desc: "View team members", icon: UsersRound },
   { label: "Income Centers", desc: "0 open centers", icon: LayoutGrid },
   { label: "Marketing Tools", desc: "Share & grow your team", icon: Megaphone },
@@ -128,7 +128,7 @@ const Dashboard = () => {
                 {getGreeting()}, {userName}!
               </h2>
               <p className="text-white/50 text-sm mt-1">
-                Here's your activity overview. Keep growing your team and earning royalties.
+                Here's your activity overview. Keep growing your team and earning contributions.
               </p>
               <p className="text-white/30 text-xs mt-2">🔑 Key: 6399365</p>
             </div>
@@ -137,7 +137,7 @@ const Dashboard = () => {
                 className="px-4 py-2 rounded-lg text-sm font-medium"
                 style={{ background: GOLD, color: "hsl(0 0% 8%)" }}
               >
-                Send Royalties
+                Send Contributions
               </button>
               <button className="px-4 py-2 rounded-lg text-sm font-medium border border-white/20 text-white hover:bg-white/5">
                 + Add Team Member
