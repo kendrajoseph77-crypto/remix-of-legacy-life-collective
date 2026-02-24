@@ -382,7 +382,7 @@ const WheelhouseDiagram = () => {
           />
           <circle cx={x} cy={y} r={NODE_R} fill="none" stroke={color} strokeWidth="2.5" filter="url(#wh-glow)" />
           <circle cx={badgeX} cy={badgeY} r={11} fill={navy} stroke={color} strokeWidth="1.5" />
-          <text x={badgeX} y={badgeY + 3.5} textAnchor="middle" fontSize="7" fontWeight="800" fill={color} fontFamily="monospace">
+          <text x={badgeX} y={badgeY + 3.5} textAnchor="middle" fontSize="7" fontWeight="800" fill="white" fontFamily="monospace">
             {label}
           </text>
         </g>
@@ -392,7 +392,7 @@ const WheelhouseDiagram = () => {
             <rect x={contribX - 48} y={contribY - 12} width="96" height="24" rx="12"
               fill={navy} stroke={color} strokeWidth="1.5" opacity="0.95" />
             <text x={contribX} y={contribY + 5} textAnchor="middle" fontSize="10" fontWeight="800"
-              fill={color} fontFamily="monospace">
+              fill="white" fontFamily="monospace">
               {formatCurrency(CONTRIBUTION_PER_MEMBER)}
             </text>
           </g>
