@@ -537,16 +537,15 @@ const WheelhouseDiagram = () => {
       {!animationDone && (
       <div className="flex flex-col md:flex-row gap-6 items-start justify-center max-w-5xl mx-auto">
         {/* Left: Main wheelhouse animation */}
-        <div className="flex-1 max-w-[500px] relative">
+        <div className="flex-1 max-w-[500px] relative" style={{ minHeight: 500 }}>
       {/* Main active wheelhouse — hidden entirely once animation is done */}
       {!animationDone && (
       <div
-        className="transition-all duration-700 ease-in-out origin-top-left"
+        className="absolute inset-0 transition-all duration-700 ease-in-out"
         style={{
           transform: shrinking ? "scale(0)" : "scale(1)",
           opacity: shrinking ? 0 : 1,
-          height: animationDone ? 0 : undefined,
-          overflow: animationDone ? 'hidden' : undefined,
+          transformOrigin: "center center",
         }}
       >
         <svg viewBox="0 0 600 620" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
@@ -662,19 +661,19 @@ const WheelhouseDiagram = () => {
         </div>
       )}
 
-      {/* Playback controls */}
+      {/* Playback controls — fixed position below the wheelhouse */}
       {!animationDone && (
-        <div className="flex items-center justify-center gap-3 mt-2 mb-1">
+        <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center gap-3 pb-2">
           <button
             onClick={togglePause}
-            className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors"
+            className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors bg-background"
             aria-label={isPaused ? "Play" : "Pause"}
           >
             {isPaused ? <Play size={14} /> : <Pause size={14} />}
           </button>
           <button
             onClick={skipToNextWheel}
-            className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors"
+            className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors bg-background"
             aria-label="Skip to next wheel"
           >
             <SkipForward size={14} />
