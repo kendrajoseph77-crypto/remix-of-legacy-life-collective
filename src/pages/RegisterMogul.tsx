@@ -3,9 +3,9 @@ import bgImage from "@/assets/register-bg-mogul.jpg";
 
 const theme = {
   name: "Mogul",
-  primary: "hsl(36, 65%, 42%)",
-  gradient: "linear-gradient(135deg, hsl(40 55% 55%), hsl(36 65% 42%), hsl(30 75% 30%))",
-  textOnGradient: "hsl(35 30% 95%)",
+  primary: "hsl(39, 55%, 52%)",
+  gradient: "linear-gradient(135deg, hsl(41 50% 65%), hsl(39 55% 52%), hsl(35 55% 40%))",
+  textOnGradient: "hsl(35 30% 10%)",
   dashboardPath: "/dashboard",
   royaltyLevels: [2500, 5000, 10000],
   licensingFee: "$250",
