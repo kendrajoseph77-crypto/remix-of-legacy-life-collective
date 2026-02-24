@@ -51,6 +51,11 @@
     --gold-light: 38 50% 75%;
     --champagne: 35 30% 85%;
 
+    /* Brand level feature colors */
+    --brand-builder: 224 78% 48%;
+    --brand-summit: 160 84% 30%;
+    --brand-sovereign: 38 37% 52%;
+
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 0 0% 8%;
     --sidebar-primary: 0 0% 15%;
