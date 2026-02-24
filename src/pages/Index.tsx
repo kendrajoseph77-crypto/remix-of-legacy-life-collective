@@ -85,6 +85,10 @@ const Index = () => {
             <a href="#join" className="mt-2 px-8 py-3 rounded-md text-sm font-bold tracking-wide btn-gold inline-block">
               Join Now
             </a>
+            <p className="text-white/70 text-xs">
+              Already a member?{" "}
+              <Link to="/login" className="text-white underline hover:text-white/90 font-medium">Log in here</Link>
+            </p>
           </div>
 
           {/* Spacer */}
