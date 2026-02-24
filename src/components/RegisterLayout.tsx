@@ -274,11 +274,12 @@ const RegisterLayout = ({ theme }: { theme: RegisterTheme }) => {
               <div className="text-center space-y-3 pt-2">
                 <Button
                   type="submit"
-                  className="px-12 py-3 text-sm font-bold tracking-wide rounded-lg"
+                  className="px-12 py-3 text-sm font-bold tracking-wide rounded-lg transition-all duration-150 active:translate-y-0.5"
                   style={{
-                    background: theme.gradient,
+                    background: `linear-gradient(180deg, ${theme.primary}, ${theme.primary})`,
                     color: theme.textOnGradient,
-                    boxShadow: `0 4px 16px ${theme.primary}40`,
+                    boxShadow: `0 4px 0 ${theme.primary}90, 0 6px 12px ${theme.primary}40`,
+                    borderTop: `1px solid ${theme.textOnGradient}20`,
                   }}
                 >
                   Join
