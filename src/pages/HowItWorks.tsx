@@ -1,30 +1,24 @@
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+
 import WheelhouseDiagram from "@/components/WheelhouseDiagram";
 import { Link } from "react-router-dom";
 import { CheckCircle, ArrowRight } from "lucide-react";
 
 const tiers = [
   {
-    entry: "$2,500",
-    receive: "$7,500",
-    name: "Gold",
-    colorClass: "tier-gold",
-    textClass: "text-primary",
+    name: "Builder",
+    levels: "$25 · $50 · $100",
+    receive: "$75 · $150 · $300",
   },
   {
-    entry: "$5,000",
-    receive: "$15,000",
-    name: "Platinum",
-    colorClass: "tier-platinum",
-    textClass: "text-secondary",
+    name: "Architect",
+    levels: "$250 · $500 · $1,000",
+    receive: "$750 · $1,500 · $3,000",
   },
   {
-    entry: "$10,000",
-    receive: "$30,000",
-    name: "Diamond",
-    colorClass: "tier-diamond",
-    textClass: "text-accent",
+    name: "Visionary",
+    levels: "$2,500 · $5,000 · $10,000",
+    receive: "$7,500 · $15,000 · $30,000",
   },
 ];
 
@@ -67,7 +61,7 @@ const HowItWorks = () => {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_50%_0%,hsl(181_90%_52%/0.08)_0%,transparent_60%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_30%_30%_at_50%_10%,hsl(181_90%_52%/0.06)_0%,transparent_50%)]" />
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <p className="text-aqua text-sm tracking-[0.3em] uppercase font-medium mb-3">The System</p>
+          <p className="text-aqua text-sm tracking-[0.3em] uppercase font-medium mb-3">Cooperative Crowdfunding</p>
           <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
             How Coop5050Life Works
           </h1>
@@ -135,33 +129,22 @@ const HowItWorks = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
             {tiers.map((tier, i) => (
               <div key={i} className="rounded-xl p-6 bg-background border border-border text-center relative transition-all duration-300 hover:border-muted-foreground/40">
-                {i === 2 && (
-                  <div className="absolute top-3 right-3 px-2 py-1 rounded text-xs font-bold tracking-widest uppercase bg-muted text-muted-foreground">
-                    Elite
-                  </div>
-                )}
-                <p className="text-muted-foreground text-xs tracking-widest uppercase mb-2">{tier.name} Level</p>
-                <p className="text-4xl font-bold mb-1 text-foreground">{tier.entry}</p>
-                <p className="text-muted-foreground text-sm mb-4">Entry Contribution</p>
+                <p className="text-muted-foreground text-xs tracking-widest uppercase mb-2">{tier.name}</p>
+                <p className="text-lg font-bold mb-1 text-foreground">{tier.levels}</p>
+                <p className="text-muted-foreground text-sm mb-4">Entry Levels</p>
                 <div className="border-t border-border pt-4 mb-4">
                   <p className="text-muted-foreground text-xs uppercase tracking-wider mb-1">You Receive</p>
-                  <p className="text-2xl font-bold text-foreground">{tier.receive}</p>
+                  <p className="text-lg font-bold text-foreground">{tier.receive}</p>
                   <p className="text-muted-foreground text-xs mt-1">per cycle</p>
                 </div>
                 <Link
                   to="/join"
                   className="block text-center py-3 rounded-sm text-xs font-bold tracking-widest uppercase transition-all duration-300 border border-border text-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary"
                 >
-                  Select {tier.name}
+                  Enter {tier.name}
                 </Link>
               </div>
             ))}
-          </div>
-
-          <div className="rounded-xl p-6 bg-muted/30 border border-border text-center mb-8">
-            <p className="text-muted-foreground text-sm mb-1">On all 3 Income Centers — cycling just once:</p>
-            <p className="text-4xl font-bold text-foreground mb-1">$52,500</p>
-            <p className="text-muted-foreground text-sm">Imagine cycling 2, 3, or more times — it's possible and easily doable!</p>
           </div>
 
           <div className="text-center">
@@ -258,7 +241,7 @@ const HowItWorks = () => {
       <section className="py-14 bg-card border-t border-border">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <p className="text-muted-foreground text-sm mb-2">Use over 150 FIAT currencies and 100+ cryptocurrencies</p>
-          <h2 className="text-foreground font-bold text-2xl md:text-3xl mb-3">Your Fastest Way To Wealth!</h2>
+          <h2 className="text-foreground font-bold text-2xl md:text-3xl mb-3">Money for Everything!</h2>
           <p className="text-muted-foreground text-sm mb-8">Join thousands who are already receiving — the system is live and waiting for you.</p>
           <Link
             to="/#join"
@@ -269,7 +252,6 @@ const HowItWorks = () => {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 };
