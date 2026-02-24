@@ -1,4 +1,4 @@
-import logoImg from "@/assets/logo-hero-transparent.png";
+import logoImg from "@/assets/logo-hero-new.png";
 import WheelhouseDiagram from "@/components/WheelhouseDiagram";
 import { useState } from "react";
 import anniversarySeal from "@/assets/anniversary-seal-hq.png";
@@ -100,7 +100,7 @@ const Index = () => {
               src={logoImg}
               alt="5050L logo"
               className="w-auto"
-              style={{ height: "72px", filter: "drop-shadow(0 0 20px hsl(38 70% 60% / 0.5)) sepia(0.4) saturate(1.5) hue-rotate(-10deg)" }}
+              style={{ height: "72px", filter: "drop-shadow(0 0 16px hsl(38 70% 60% / 0.4))" }}
             />
           </div>
 
