@@ -318,6 +318,9 @@ const WheelhouseDiagram = () => {
 
       const isContributing = showContribution === stepIdx;
 
+      const midX1 = (sx1 + ex1) / 2;
+      const midY1 = (sy1 + ey1) / 2;
+
       return (
         <g key={`spoke3-${i}`}>
           <line
@@ -328,6 +331,14 @@ const WheelhouseDiagram = () => {
             markerEnd={active ? "url(#arrow-lime)" : undefined}
             style={{ transition: "stroke 0.5s ease, stroke-width 0.3s ease" }}
           />
+          {/* 50% label on spoke to inviter (ring2 parent) */}
+          {active && (
+            <text x={midX1} y={midY1 + 4} textAnchor="middle" fontSize="10" fontWeight="700"
+              fill={lime} fontFamily="sans-serif" letterSpacing="0.03em"
+              filter="url(#wh-earningsGlow)" className="animate-fade-in">
+              50%
+            </text>
+          )}
           <line
             x1={sx2} y1={sy2} x2={ex2} y2={ey2}
             stroke={active ? "hsl(30 90% 65% / 0.5)" : "hsl(210 30% 30% / 0.1)"}
