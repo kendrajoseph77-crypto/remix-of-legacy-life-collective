@@ -2,7 +2,7 @@ import { Star, Gem, Crown } from "lucide-react";
 import DashboardLayout from "@/components/DashboardLayout";
 
 const theme = {
-  name: "Architect",
+  name: "Macro",
   primary: "hsl(160 80% 42%)",
   primaryLight: "hsl(160 75% 50%)",
   primaryDark: "hsl(160 90% 22%)",
