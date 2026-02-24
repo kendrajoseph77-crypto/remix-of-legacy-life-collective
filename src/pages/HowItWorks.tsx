@@ -26,12 +26,12 @@ const steps = [
   {
     number: "01",
     title: "Register & Activate",
-    desc: "Register and become an Active Donor by making a contribution at your chosen level.",
+    desc: "Register and become an Active Contributor by making a contribution at your chosen level.",
   },
   {
     number: "02",
     title: "Invite 2 Members",
-    desc: "You help 2 or more people become Active Donors and join the wheelhouse.",
+    desc: "You help 2 or more people become Active Contributors and join the wheelhouse.",
   },
   {
     number: "03",
@@ -66,7 +66,7 @@ const HowItWorks = () => {
             How Coop5050Life Works
           </h1>
           <p className="text-muted-foreground text-base leading-relaxed max-w-2xl mx-auto mb-8">
-            A 2×2 peer-to-peer crowdfunding platform where 100% of every royalty goes directly to you — the participants. No middlemen. No exceptions.
+            A 2×2 peer-to-peer crowdfunding platform where 100% of every contribution goes directly to you — the participants. No middlemen. No exceptions.
           </p>
           <Link
             to="/#join"
@@ -197,7 +197,7 @@ const HowItWorks = () => {
               <p className="text-muted-foreground leading-relaxed mb-4 text-sm">
                 YOU are in the center. Your Inviter is in position #1, your Direct is in
                 position #2, and the four people your team invites fill positions #3–#6.
-                The 2×2 Wheelhouse holds 6 Active Donors.
+                The 2×2 Wheelhouse holds 6 Active Contributors.
               </p>
               <p className="text-muted-foreground leading-relaxed mb-5 text-sm">
                 <span className="text-foreground font-semibold">You Never Lose Your Team!</span> Each time your Wheelhouse fills,
