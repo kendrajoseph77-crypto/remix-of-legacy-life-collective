@@ -284,8 +284,8 @@ const SlideClosing = () => (
 const slides = [
   { id: "hero", label: "Intro", Component: SlideHero },
   { id: "5050", label: "50/50 Payout", Component: SlideFiftyFifty },
-  { id: "300", label: "300% Return", Component: Slide300Percent },
   { id: "levels", label: "3 Levels", Component: SlideIncomeLevels },
+  { id: "300", label: "300% Return", Component: Slide300Percent },
   { id: "ways", label: "6 Ways to Earn", Component: SlideWaysToEarn },
   { id: "matrix", label: "Matrix Fill", Component: SlideMatrixFill },
   { id: "wheelhouse", label: "Wheelhouse", Component: SlideWheelhouse },
