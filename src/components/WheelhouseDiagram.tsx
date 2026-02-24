@@ -488,6 +488,46 @@ const WheelhouseDiagram = () => {
 
   return (
     <div ref={sectionRef} className="relative w-full">
+      {/* Completion state — full width, no sidebar constraint */}
+      {animationDone && (
+        <div className="text-center animate-fade-in py-12 px-4 max-w-3xl mx-auto">
+          <p className="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground mb-6">
+            And It Never Stops.
+          </p>
+          <p className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed mb-6">
+            Unlimited re-entries. Unlimited follows. <span className="font-bold text-foreground">Unlimited income.</span><br />
+            Every completed wheelhouse automatically opens a new one. There is no cap. No ceiling. No limit.
+          </p>
+          <p className="text-lg md:text-xl font-bold text-foreground mb-8">
+            Wealth beyond your wildest dreams — and it's all automated.
+          </p>
+          <div className="inline-flex items-center gap-3 px-8 py-4 rounded-full border-2" style={{ borderColor: coral }}>
+            <span className="text-3xl" style={{ color: coral }}>∞</span>
+            <span className="text-sm tracking-[0.3em] uppercase font-bold" style={{ color: coral }}>Infinite Earning Potential</span>
+          </div>
+          <br />
+          <button
+            onClick={() => {
+              clearAllTimeouts();
+              resetCycle();
+              setCompletedWheelhouses(0);
+              setAnimationDone(false);
+              setCelebrationPhase(0);
+              hasStarted.current = false;
+              setTimeout(() => {
+                hasStarted.current = true;
+                startCycle(0);
+              }, 300);
+            }}
+            className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold text-muted-foreground border border-border hover:border-primary hover:text-primary transition-colors"
+          >
+            <RotateCcw size={16} />
+            Replay
+          </button>
+        </div>
+      )}
+
+      {!animationDone && (
       <div className="flex flex-col md:flex-row gap-6 items-start justify-center max-w-5xl mx-auto">
         {/* Left: Main wheelhouse animation */}
         <div className="flex-1 max-w-[500px] relative">
@@ -635,47 +675,9 @@ const WheelhouseDiagram = () => {
         </div>
       )}
 
-      {animationDone && (
-        <div className="text-center animate-fade-in py-12 px-4">
-          <p className="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground mb-6">
-            And It Never Stops.
-          </p>
-          <p className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed mb-6">
-            Unlimited re-entries. Unlimited follows. <span className="font-bold text-foreground">Unlimited income.</span><br />
-            Every completed wheelhouse automatically opens a new one. There is no cap. No ceiling. No limit.
-          </p>
-          <p className="text-lg md:text-xl font-bold text-foreground mb-8">
-            Wealth beyond your wildest dreams — and it's all automated.
-          </p>
-          <div className="inline-flex items-center gap-3 px-8 py-4 rounded-full border-2" style={{ borderColor: coral }}>
-            <span className="text-3xl" style={{ color: coral }}>∞</span>
-            <span className="text-sm tracking-[0.3em] uppercase font-bold" style={{ color: coral }}>Infinite Earning Potential</span>
-          </div>
-          <br />
-          <button
-            onClick={() => {
-              clearAllTimeouts();
-              resetCycle();
-              setCompletedWheelhouses(0);
-              setAnimationDone(false);
-              setCelebrationPhase(0);
-              hasStarted.current = false;
-              setTimeout(() => {
-                hasStarted.current = true;
-                startCycle(0);
-              }, 300);
-            }}
-            className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold text-muted-foreground border border-border hover:border-primary hover:text-primary transition-colors"
-          >
-            <RotateCcw size={16} />
-            Replay
-          </button>
-        </div>
-      )}
-
       </div>
 
-        {/* Right: Completed mini wheelhouses — 3 per row, aligned with tier cards */}
+        {/* Right: Completed mini wheelhouses */}
         {completedWheelhouses > 0 && (
           <div className="md:w-72 shrink-0">
             <p className="text-center text-xs tracking-[0.3em] uppercase font-semibold text-muted-foreground mb-3">
@@ -705,6 +707,7 @@ const WheelhouseDiagram = () => {
           </div>
         )}
       </div>
+      )}
     </div>
   );
 };
