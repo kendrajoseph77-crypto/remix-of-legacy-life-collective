@@ -103,6 +103,18 @@
     box-shadow: 0 4px 16px hsl(12 80% 58% / 0.35);
   }
 
+  /* Gold button */
+  .btn-gold {
+    background: hsl(var(--gold));
+    color: white;
+    transition: all 0.3s ease;
+  }
+  .btn-gold:hover {
+    background: hsl(38 70% 55%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px hsl(var(--gold) / 0.35);
+  }
+
   /* Outline button */
   .btn-outline-white {
     background: transparent;
