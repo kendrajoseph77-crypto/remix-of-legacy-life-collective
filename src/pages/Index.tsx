@@ -1,4 +1,4 @@
-import logoImg from "@/assets/logo-hero.png";
+import logoImg from "@/assets/logo-hero-transparent.png";
 import WheelhouseDiagram from "@/components/WheelhouseDiagram";
 import { useState } from "react";
 import anniversarySeal from "@/assets/anniversary-seal-hq.png";
