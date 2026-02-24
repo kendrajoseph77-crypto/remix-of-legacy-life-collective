@@ -362,6 +362,11 @@ const WheelhouseDiagram = () => {
 
       const midX1 = (sx1 + ex1) / 2;
       const midY1 = (sy1 + ey1) / 2;
+      // Offset 50% label perpendicular to spoke line
+      const perpAngle1 = angle1 + Math.PI / 2;
+      const labelOffsetDist1 = 14;
+      const label1X = midX1 + labelOffsetDist1 * Math.cos(perpAngle1);
+      const label1Y = midY1 + labelOffsetDist1 * Math.sin(perpAngle1);
 
       return (
         <g key={`spoke3-${i}`}>
@@ -373,9 +378,9 @@ const WheelhouseDiagram = () => {
             markerEnd={active ? "url(#arrow-royal)" : undefined}
             style={{ transition: "stroke 0.5s ease, stroke-width 0.3s ease", opacity: active ? 0.7 : 1 }}
           />
-          {/* 50% label on spoke to inviter (ring2 parent) */}
+          {/* 50% label beside spoke to inviter (ring2 parent) */}
           {active && (
-            <text x={midX1} y={midY1 + 4} textAnchor="middle" fontSize="10" fontWeight="700"
+            <text x={label1X} y={label1Y + 4} textAnchor="middle" fontSize="10" fontWeight="700"
               fill={royal} fontFamily="sans-serif" letterSpacing="0.03em"
               filter="url(#wh-earningsGlow)" className="animate-fade-in">
               50%
@@ -440,14 +445,19 @@ const WheelhouseDiagram = () => {
           </g>
         )}
 
-        {/* Persistent 50% label on spoke to center — visible once member is active */}
+        {/* Persistent 50% label beside spoke to center — visible once member is active */}
         {isActive && (
           <g className="animate-fade-in">
             {(() => {
               const midX = (x + cx) / 2;
-              const midY = (y + cy) / 2 + 6;
+              const midY = (y + cy) / 2;
+              const spokeAngle = Math.atan2(cy - y, cx - x);
+              const perpAngle = spokeAngle + Math.PI / 2;
+              const offsetDist = 14;
+              const lx = midX + offsetDist * Math.cos(perpAngle);
+              const ly = midY + offsetDist * Math.sin(perpAngle);
               return (
-                <text x={midX} y={midY + 4} textAnchor="middle" fontSize="10" fontWeight="700"
+                <text x={lx} y={ly + 4} textAnchor="middle" fontSize="10" fontWeight="700"
                   fill={brightYellow} fontFamily="sans-serif" letterSpacing="0.03em"
                   filter="url(#wh-earningsGlow)">
                   50%
