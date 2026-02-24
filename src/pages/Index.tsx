@@ -79,7 +79,7 @@ const Index = () => {
                 src={anniversarySeal}
                 alt="25th Anniversary"
                 className="shrink-0 object-contain"
-                style={{ height: "108px", filter: "drop-shadow(0 0 12px hsl(38 70% 60% / 0.5)) saturate(1.3) hue-rotate(-5deg) brightness(1.1)" }}
+                style={{ height: "108px", filter: "drop-shadow(0 0 12px hsl(38 70% 60% / 0.5))" }}
               />
             </div>
             <a href="#join" className="mt-1 px-8 py-3 rounded-md text-sm font-bold tracking-wide btn-gold inline-block">
@@ -122,7 +122,7 @@ const Index = () => {
               src={anniversarySeal}
               alt="25th Anniversary Seal"
               className="w-28 h-28 md:w-36 md:h-36 object-contain mb-5 rounded-full"
-              style={{ filter: "drop-shadow(0 0 20px hsl(38 70% 60% / 0.4)) saturate(1.3) hue-rotate(-5deg) brightness(1.1)" }}
+              style={{ filter: "drop-shadow(0 0 20px hsl(38 70% 60% / 0.4))" }}
             />
             <p className="text-primary text-xs tracking-[0.4em] uppercase font-semibold mb-3 text-center">Choose Your Level</p>
             <h2 className="text-2xl md:text-4xl font-bold text-center text-foreground">
