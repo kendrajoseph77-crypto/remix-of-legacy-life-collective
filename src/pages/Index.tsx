@@ -116,14 +116,8 @@ const Index = () => {
       {/* ── Section 1: Activate Your Membership ── */}
       <section id="join" className="bg-background py-32 px-6">
         <div className="max-w-5xl mx-auto">
-          {/* Anniversary Seal + Heading */}
+          {/* Heading */}
           <div className="flex flex-col items-center mb-20">
-            <img
-              src={anniversarySeal}
-              alt="25th Anniversary Seal"
-              className="w-24 h-24 md:w-32 md:h-32 object-contain mb-8 rounded-full"
-              style={{ filter: "drop-shadow(0 0 20px hsl(38 70% 60% / 0.4))" }}
-            />
             <p className="text-muted-foreground text-[11px] tracking-[0.5em] uppercase font-medium mb-4 text-center">Choose Your Level</p>
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-center text-foreground leading-tight">
               Activate Your Membership
