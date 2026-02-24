@@ -12,7 +12,7 @@ const avatarUrls = [
 ];
 
 const CONTRIBUTION_PER_MEMBER = 17500;
-const YOU_CUT_PER_MEMBER = CONTRIBUTION_PER_MEMBER / 2;
+const YOU_CUT_PER_MEMBER = CONTRIBUTION_PER_MEMBER / 2; // $8,750
 const MEMBER_COUNT = 6;
 const VISIBLE_WHEELHOUSES = 6; // show 6 mini thumbnails
 const TOTAL_CYCLES = 12; // animate up to 12 then stop
@@ -699,7 +699,7 @@ const WheelhouseDiagram = () => {
                 Monthly Income: <span style={{ color: coral }} className="text-lg font-mono">{formatCurrency(CYCLE_EARNINGS * completedWheelhouses)}</span>
               </p>
               <p className="text-[9px] text-muted-foreground/60 mt-2 leading-snug max-w-[220px] mx-auto">
-                *For illustration purposes only. Figures shown reflect potential income based on Sovereign-level contributions ($10,000).
+                *For illustration purposes only. Figures shown reflect potential income based on full Sovereign-level contributions ($17,500).
               </p>
             </div>
           </div>
