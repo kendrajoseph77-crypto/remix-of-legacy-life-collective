@@ -100,7 +100,7 @@ const Index = () => {
               src={logoImg}
               alt="5050L logo"
               className="w-auto"
-              style={{ height: "72px", filter: "drop-shadow(0 0 20px hsl(38 70% 60% / 0.5))" }}
+              style={{ height: "72px", filter: "drop-shadow(0 0 20px hsl(38 70% 60% / 0.5)) sepia(0.4) saturate(1.5) hue-rotate(-10deg)" }}
             />
           </div>
 
