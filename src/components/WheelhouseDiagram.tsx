@@ -540,12 +540,11 @@ const WheelhouseDiagram = () => {
       {/* Main active wheelhouse — hidden entirely once animation is done */}
       {!animationDone && (
       <div
-        className="transition-all duration-700 ease-in-out"
+        className="transition-all duration-700 ease-in-out relative"
         style={{
           transform: shrinking ? "scale(0)" : "scale(1)",
           opacity: shrinking ? 0 : 1,
           transformOrigin: "center center",
-          height: shrinking ? 0 : 'auto',
         }}
       >
         <svg viewBox="0 0 600 620" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
@@ -653,9 +652,9 @@ const WheelhouseDiagram = () => {
       </div>
       )}
 
-      {/* Completion text — overlaid in center of wheelhouse area */}
+      {/* Completion text — shown in center when wheel shrinks */}
       {shrinking && !animationDone && (
-        <div className="absolute inset-0 flex items-center justify-center z-20 animate-fade-in pointer-events-none">
+        <div className="flex items-center justify-center z-20 animate-fade-in pointer-events-none py-32">
           <div className="text-center">
             <p className="text-lg md:text-xl font-extrabold tracking-tight" style={{ color: brightYellow, textShadow: `0 0 20px hsl(38 55% 62% / 0.4)` }}>
               Wheelhouse Complete
