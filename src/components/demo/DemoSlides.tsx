@@ -213,16 +213,16 @@ export const SlideMatrixFill = () => (
 
 /* ─── 7. WHEELHOUSE ─── */
 export const SlideWheelhouse = ({ onFirstCycleComplete }: { onFirstCycleComplete?: () => void }) => (
-  <div className="flex flex-col items-center justify-start h-full px-6 pt-0 overflow-hidden -mt-4">
+  <div className="flex flex-col items-center justify-start h-full px-6 pt-0 overflow-hidden -mt-10">
     <div className="max-w-6xl w-full">
-      <div className="text-center mb-1">
+      <div className="text-center mb-0">
         <SlideLabel>The Technology</SlideLabel>
         <SlideHeading>The Mobius Loop Wheelhouse</SlideHeading>
         <p className="text-white/50 text-sm max-w-2xl mx-auto">
           When one cooperative completes, another automatically opens. Your team always follows you.
         </p>
       </div>
-      <div className="flex justify-center -mt-2">
+      <div className="flex justify-center -mt-4">
         <div className="w-full max-w-3xl">
           <WheelhouseDiagram onFirstCycleComplete={onFirstCycleComplete} />
         </div>
