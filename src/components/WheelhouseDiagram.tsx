@@ -281,8 +281,9 @@ const WheelhouseDiagram = () => {
           strokeWidth={active ? 5 : 2.5}
           strokeLinecap="round"
           style={{
-            transition: "stroke 0.6s ease, stroke-width 0.4s ease",
+            transition: "stroke 0.6s ease, stroke-width 0.4s ease, opacity 0.5s ease",
             filter: active ? `drop-shadow(0 0 6px ${color})` : "none",
+            opacity: active ? 1 : 0,
           }}
         />
       );
@@ -292,7 +293,6 @@ const WheelhouseDiagram = () => {
   const renderRing3Arcs = () => {
     const gap = 0.06;
     const quarterSpan = Math.PI / 2;
-    const ring2Filled = activeMembers >= 2;
     return ring3Nodes.map((n, i) => {
       const stepIdx = i + 2;
       const active = stepIdx < activeMembers;
@@ -309,7 +309,7 @@ const WheelhouseDiagram = () => {
           style={{
             transition: "stroke 0.6s ease, stroke-width 0.4s ease, opacity 0.5s ease",
             filter: active ? `drop-shadow(0 0 6px ${royal})` : "none",
-            opacity: ring2Filled || active ? 1 : 0,
+            opacity: active ? 1 : 0,
           }}
         />
       );
