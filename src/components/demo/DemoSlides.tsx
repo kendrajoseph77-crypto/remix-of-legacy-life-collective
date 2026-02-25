@@ -48,26 +48,11 @@ export const SlideFiftyFifty = () => (
       <SlideLabel>The 50/50 Promise</SlideLabel>
       <SlideHeading>100% Instant Payout</SlideHeading>
       <SlideBody className="mb-12">
-        Every contribution is split instantly — 50% goes directly to{" "}
+        Every contribution results in an <span className="text-white font-semibold">instant payout</span> — 50% goes directly to{" "}
         <span className="text-white font-semibold">you</span> and 50% goes to a{" "}
         <span className="text-white font-semibold">teammate</span>.
         No middleman. No fees. No waiting.
       </SlideBody>
-      <div className="flex items-stretch max-w-3xl mx-auto rounded-2xl overflow-hidden" style={{ border: `1px solid hsl(0 0% 100% / 0.1)` }}>
-        <div className="flex-1 p-10 text-center" style={{ background: "hsl(0 0% 100% / 0.04)" }}>
-          <p className="text-7xl md:text-8xl font-black mb-3" style={{ color: gold }}>50%</p>
-          <p className="text-white/50 text-base">Instant payout to <span className="text-white font-bold">YOU</span></p>
-        </div>
-        <div className="w-px" style={{ background: "hsl(0 0% 100% / 0.1)" }} />
-        <div className="flex-1 p-10 text-center" style={{ background: "hsl(0 0% 100% / 0.04)" }}>
-          <p className="text-7xl md:text-8xl font-black mb-3 text-white/80">50%</p>
-          <p className="text-white/50 text-base">Instant payout to your <span className="text-white font-bold">Teammate</span></p>
-        </div>
-      </div>
-      <div className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full" style={{ background: "hsl(0 0% 100% / 0.05)", border: "1px solid hsl(0 0% 100% / 0.08)" }}>
-        <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: gold }} />
-        <p className="text-white/50 text-sm tracking-widest uppercase">100% of every contribution — zero platform fees</p>
-      </div>
     </div>
   </SlideLayout>
 );
