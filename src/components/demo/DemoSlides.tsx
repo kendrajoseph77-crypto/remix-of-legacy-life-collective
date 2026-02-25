@@ -44,7 +44,7 @@ export const SlideFiftyFifty = () => (
         Every contribution results in an <span className="text-white font-semibold">instant payout</span> — 50% goes directly to{" "}
         <span className="text-white font-semibold">you</span> and 50% goes to a{" "}
         <span className="text-white font-semibold">teammate</span>.
-        No middleman. No fees. No waiting.
+        No middleman. No waiting.
       </SlideBody>
     </div>
   </SlideLayout>
