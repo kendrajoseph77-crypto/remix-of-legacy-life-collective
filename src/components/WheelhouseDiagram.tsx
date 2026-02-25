@@ -505,7 +505,7 @@ const WheelhouseDiagram = () => {
             Every completed wheelhouse automatically opens a new one. There is no cap. No ceiling. No limit.
           </p>
           <p className="text-lg md:text-xl font-bold text-foreground mb-8">
-            Wealth beyond your wildest dreams — and it's all automated.
+            Money for Everything! — and it's all automated.
           </p>
           <div className="inline-flex items-center gap-3 px-8 py-4 rounded-full border-2" style={{ borderColor: coral }}>
             <span className="text-3xl" style={{ color: coral }}>∞</span>
