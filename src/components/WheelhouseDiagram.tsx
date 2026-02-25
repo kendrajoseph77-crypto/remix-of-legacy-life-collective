@@ -534,7 +534,7 @@ const WheelhouseDiagram = () => {
       )}
 
       {!animationDone && (
-      <div className="flex flex-col md:flex-row gap-6 items-start justify-center max-w-5xl mx-auto">
+      <div className="flex flex-col md:flex-row gap-6 items-start justify-center max-w-6xl mx-auto">
         {/* Left: Main wheelhouse animation */}
         <div className={`flex-1 relative transition-all duration-700 ${completedWheelhouses >= 1 ? 'max-w-[720px]' : 'max-w-[620px]'}`} style={{ minHeight: completedWheelhouses >= 1 ? 720 : 620 }}>
       {/* Main active wheelhouse — hidden entirely once animation is done */}
@@ -547,7 +547,7 @@ const WheelhouseDiagram = () => {
           transformOrigin: "center center",
         }}
       >
-        <svg viewBox="0 0 600 620" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+        <svg viewBox="0 0 600 520" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
           <defs>
             <filter id="wh-glow" x="-30%" y="-30%" width="160%" height="160%">
               <feGaussianBlur stdDeviation="3" result="blur" />
