@@ -17,10 +17,10 @@ const WHEELHOUSE_INDEX = 5; // index of wheelhouse slide
 
 const slides = [
   { id: "hero", label: "Intro", Component: SlideHero },
-  { id: "5050", label: "50/50 Payout", Component: SlideFiftyFifty },
   { id: "ways", label: "6 Ways to Earn", Component: SlideWaysToEarn },
   { id: "matrix", label: "Matrix Fill", Component: SlideMatrixFill },
   { id: "300", label: "300% Return", Component: Slide300Percent },
+  { id: "5050", label: "50/50 Payout", Component: SlideFiftyFifty },
   { id: "wheelhouse", label: "Wheelhouse", Component: SlideWheelhouse },
   { id: "mobius", label: "Mobius Loop", Component: SlideMobiusLoop },
   { id: "levels", label: "3 Levels", Component: SlideIncomeLevels },
