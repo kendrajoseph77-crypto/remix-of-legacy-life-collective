@@ -177,14 +177,14 @@ const DashboardLayout = ({ theme }: { theme: ThemeConfig }) => {
                     className="rounded-xl border border-border p-4"
                     style={{ borderTop: `3px solid ${theme.primary}` }}
                   >
-                    <div className="flex items-center gap-3 mb-2">
+                    <div className="flex items-center gap-3">
                       <div
-                        className="w-9 h-9 rounded-lg flex items-center justify-center"
+                        className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
                         style={{ background: theme.primaryBg }}
                       >
                         <level.icon size={16} style={{ color: theme.primary }} />
                       </div>
-                      <div>
+                      <div className="flex-1 min-w-0">
                         <p className="text-lg font-bold" style={{ color: theme.primary }}>
                           {level.label.replace("Level ", "$").replace(",", ",")}
                         </p>
@@ -198,27 +198,27 @@ const DashboardLayout = ({ theme }: { theme: ThemeConfig }) => {
                           {isActive ? "● Active" : "● Inactive"}
                         </span>
                       </div>
-                    </div>
-                    <div className="flex items-center justify-between mt-3 text-xs text-muted-foreground">
-                      <span className="flex items-center gap-1">↻ Auto-Renew</span>
-                      <div
-                        className="w-9 h-5 rounded-full relative cursor-pointer"
-                        style={{ background: theme.gradient }}
-                      >
-                        <div className="absolute right-0.5 top-0.5 w-4 h-4 rounded-full bg-white shadow" />
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        <span className="text-[10px] text-muted-foreground">Auto-Renew</span>
+                        <div
+                          className="w-8 h-[18px] rounded-full relative cursor-pointer"
+                          style={{ background: theme.gradient }}
+                        >
+                          <div className="absolute right-0.5 top-[3px] w-3 h-3 rounded-full bg-white shadow" />
+                        </div>
                       </div>
                     </div>
                   </div>
                 );
               })}
             </div>
-            <div className="mt-4 flex items-center justify-between rounded-xl border border-border p-4">
+            <div className="mt-3 flex items-center justify-between rounded-xl border border-border px-4 py-3">
               <div className="flex items-center gap-3">
                 <div
                   className="w-9 h-9 rounded-lg flex items-center justify-center"
-                  style={{ background: "hsl(160 80% 42% / 0.12)" }}
+                  style={{ background: theme.primaryBg }}
                 >
-                  <Lightbulb size={16} className="text-emerald-500" />
+                  <Lightbulb size={16} style={{ color: theme.primary }} />
                 </div>
                 <div>
                   <p className="text-sm font-medium text-foreground">Auto-Upgrade</p>
@@ -226,10 +226,10 @@ const DashboardLayout = ({ theme }: { theme: ThemeConfig }) => {
                 </div>
               </div>
               <div
-                className="w-9 h-5 rounded-full relative cursor-pointer"
+                className="w-8 h-[18px] rounded-full relative cursor-pointer"
                 style={{ background: theme.gradient }}
               >
-                <div className="absolute right-0.5 top-0.5 w-4 h-4 rounded-full bg-white shadow" />
+                <div className="absolute right-0.5 top-[3px] w-3 h-3 rounded-full bg-white shadow" />
               </div>
             </div>
           </div>
