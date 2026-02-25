@@ -136,9 +136,6 @@ const DashboardLayout = ({ theme }: { theme: ThemeConfig }) => {
               <h2 className="text-xl font-semibold text-white mt-1">
                 {getGreeting()}, {userName}!
               </h2>
-              <p className="text-white/50 text-sm mt-1">
-                Here's your activity overview. Keep growing your team and earning contributions.
-              </p>
               <p className="text-white/30 text-xs mt-2">🔑 Key: 6399365</p>
             </div>
             <div className="hidden md:flex items-center gap-3">
