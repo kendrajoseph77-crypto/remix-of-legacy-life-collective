@@ -186,7 +186,7 @@ const DashboardLayout = ({ theme }: { theme: ThemeConfig }) => {
                         <level.icon size={16} style={{ color: theme.primary }} />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-lg font-bold" style={{ color: theme.primary }}>
+                        <p className={`text-lg font-bold ${isActive ? "text-foreground" : "text-muted-foreground"}`}>
                           {level.label.replace("Level ", "$").replace(",", ",")}
                         </p>
                         <span
