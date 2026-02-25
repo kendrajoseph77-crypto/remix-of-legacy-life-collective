@@ -57,9 +57,10 @@ export const SlideIncomeLevels = () => (
       <SlideLabel>Get In Where You Fit In</SlideLabel>
       <SlideHeading>3 Cooperative Levels</SlideHeading>
       <SlideBody className="mb-12">
-        <span className="text-white font-semibold">100% instant payout</span> — each level requires only a{" "}
-        <span className="text-white font-semibold">one-time</span> out-of-pocket contribution.
-        Earn <span className="text-white font-semibold">300% per cycle</span>. Your goal: be active on all 3 levels simultaneously.
+        <span className="text-white font-semibold">100% instant payout</span> — being on all levels is a{" "}
+        <span className="text-white font-semibold">one-time</span> out-of-pocket contribution of{" "}
+        <span className="text-white font-semibold">$17,500</span>.
+        Earn <span className="text-white font-semibold">300% per cycle</span> on each level.
       </SlideBody>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[
