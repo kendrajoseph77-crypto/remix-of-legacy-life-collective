@@ -1,5 +1,7 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import logoGold from "@/assets/logo-5050-gold.png";
 import {
   SlideHero,
   SlideFiftyFifty,
@@ -67,6 +69,10 @@ const HowItWorksDemo = () => {
 
       {/* Slide area */}
       <div className="flex-1 relative flex items-stretch min-h-0">
+        {/* Logo — top left */}
+        <Link to="/" className="absolute top-4 left-4 z-30 hover:opacity-80 transition-opacity">
+          <img src={logoGold} alt="Coop5050 Home" className="h-10" style={{ filter: "drop-shadow(0 0 6px hsl(41 50% 65% / 0.4))" }} />
+        </Link>
         {/* Prev button */}
         <button
           onClick={goPrev}
