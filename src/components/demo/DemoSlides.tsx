@@ -84,9 +84,9 @@ export const SlideIncomeLevels = () => (
       </SlideBody>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[
-          { name: "Micro", amount: "$2,500", receive: "$7,500", perPos: "$1,250", color: cobalt, glow: "hsl(224 85% 58% / 0.15)" },
-          { name: "Macro", amount: "$5,000", receive: "$15,000", perPos: "$2,500", color: emerald, glow: "hsl(160 80% 42% / 0.15)" },
-          { name: "Mogul", amount: "$10,000", receive: "$30,000", perPos: "$5,000", color: goldBorder, glow: "hsl(41 50% 65% / 0.15)" },
+          { name: "Level 1", amount: "$2,500", receive: "$7,500", perPos: "$1,250", color: cobalt, glow: "hsl(224 85% 58% / 0.15)" },
+          { name: "Level 2", amount: "$5,000", receive: "$15,000", perPos: "$2,500", color: emerald, glow: "hsl(160 80% 42% / 0.15)" },
+          { name: "Level 3", amount: "$10,000", receive: "$30,000", perPos: "$5,000", color: goldBorder, glow: "hsl(41 50% 65% / 0.15)" },
         ].map((tier, i) => (
           <div
             key={i}
@@ -126,7 +126,7 @@ export const Slide300Percent = () => (
       </SlideBody>
       <div className="max-w-lg mx-auto rounded-2xl overflow-hidden" style={{ border: "1px solid hsl(0 0% 100% / 0.1)" }}>
         <div className="p-6" style={{ background: "hsl(0 0% 100% / 0.04)" }}>
-          <p className="text-xs tracking-widest uppercase text-white/40 mb-2">Example: Micro Level</p>
+          <p className="text-xs tracking-widest uppercase text-white/40 mb-2">Example: $2,500 Level</p>
           <p className="text-white font-bold text-xl">You contribute <span style={{ color: gold }}>$2,500</span> one time</p>
         </div>
         <div className="grid grid-cols-3 gap-px" style={{ background: "hsl(0 0% 100% / 0.06)" }}>
@@ -197,7 +197,7 @@ export const SlideMatrixFill = () => (
       </SlideBody>
       <div className="inline-block rounded-2xl overflow-hidden" style={{ border: "1px solid hsl(0 0% 100% / 0.1)" }}>
         <div className="p-5" style={{ background: "hsl(41 50% 65% / 0.08)", borderBottom: "1px solid hsl(0 0% 100% / 0.08)" }}>
-          <p className="text-sm tracking-widest uppercase font-bold" style={{ color: gold }}>YOU — Micro Level</p>
+          <p className="text-sm tracking-widest uppercase font-bold" style={{ color: gold }}>YOU — $2,500 Level</p>
         </div>
         <div className="p-6" style={{ background: "hsl(0 0% 100% / 0.03)" }}>
           <div className="grid grid-cols-2 gap-4 mb-4">
