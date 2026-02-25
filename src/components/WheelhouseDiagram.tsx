@@ -836,7 +836,7 @@ const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: ()
 
         {/* Right: Completed mini wheelhouses */}
         {completedWheelhouses > 0 && (
-          <div className="md:w-72 shrink-0">
+          <div className="md:w-72 shrink-0 mt-16">
             <p className="text-center text-xs tracking-[0.3em] uppercase font-semibold text-white/50 mb-3">
               Completed Wheelhouses
             </p>
