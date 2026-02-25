@@ -271,19 +271,18 @@ const WheelhouseDiagram = () => {
       { startAngle: 0 + gap, endAngle: Math.PI - gap, stepIdx: 1, color: lime },
     ];
     return arcs.map(({ startAngle, endAngle, stepIdx, color }) => {
-      const active = stepIdx < activeMembers;
       return (
         <path
           key={`r2arc-${stepIdx}`}
           d={describeArc(cx, cy, RING2_R, startAngle, endAngle)}
           fill="none"
-          stroke={active ? color : "hsl(210 30% 22%)"}
-          strokeWidth={active ? 5 : 2.5}
+          stroke={color}
+          strokeWidth={5}
           strokeLinecap="round"
           style={{
-            transition: "stroke 0.6s ease, stroke-width 0.4s ease, opacity 0.5s ease",
-            filter: active ? `drop-shadow(0 0 6px ${color})` : "none",
-            opacity: active ? 1 : 0,
+            transition: "opacity 0.5s ease",
+            filter: `drop-shadow(0 0 6px ${color})`,
+            opacity: cycleComplete ? 1 : 0,
           }}
         />
       );
@@ -294,8 +293,6 @@ const WheelhouseDiagram = () => {
     const gap = 0.06;
     const quarterSpan = Math.PI / 2;
     return ring3Nodes.map((n, i) => {
-      const stepIdx = i + 2;
-      const active = stepIdx < activeMembers;
       const startAngle = n.angle - quarterSpan / 2 + gap;
       const endAngle = n.angle + quarterSpan / 2 - gap;
       return (
@@ -303,13 +300,13 @@ const WheelhouseDiagram = () => {
           key={`r3arc-${i}`}
           d={describeArc(cx, cy, RING3_R, startAngle, endAngle)}
           fill="none"
-          stroke={active ? royal : "hsl(210 30% 20%)"}
-          strokeWidth={active ? 5 : 2.5}
+          stroke={royal}
+          strokeWidth={5}
           strokeLinecap="round"
           style={{
-            transition: "stroke 0.6s ease, stroke-width 0.4s ease, opacity 0.5s ease",
-            filter: active ? `drop-shadow(0 0 6px ${royal})` : "none",
-            opacity: active ? 1 : 0,
+            transition: "opacity 0.5s ease",
+            filter: `drop-shadow(0 0 6px ${royal})`,
+            opacity: cycleComplete ? 1 : 0,
           }}
         />
       );
