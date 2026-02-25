@@ -761,7 +761,7 @@ const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: ()
 
       {/* Completion text — shown in center when wheel shrinks */}
       {shrinking && !animationDone && (
-        <div className="flex items-center justify-center z-20 animate-fade-in pointer-events-none py-32">
+        <div className="absolute inset-0 flex items-center justify-center z-20 animate-fade-in pointer-events-none">
           <div className="text-center">
             <p className="text-lg md:text-xl font-extrabold tracking-tight" style={{ color: brightYellow, textShadow: `0 0 20px hsl(38 55% 62% / 0.4)` }}>
               Wheelhouse Complete
