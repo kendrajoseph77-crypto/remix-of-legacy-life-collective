@@ -198,16 +198,16 @@ const SlideMatrixFill = () => (
 );
 
 const SlideWheelhouse = () => (
-  <div className="flex flex-col items-center justify-center h-full px-12 overflow-hidden">
-    <div className="max-w-5xl w-full">
-      <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3 text-center">The Technology</p>
-      <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center">The Mobius Loop Wheelhouse</h2>
-      <p className="text-muted-foreground leading-relaxed text-sm text-center max-w-2xl mx-auto mb-6">
+  <div className="flex flex-col items-center justify-start h-full px-6 pt-2 overflow-hidden">
+    <div className="max-w-6xl w-full">
+      <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-2 text-center">The Technology</p>
+      <h2 className="text-4xl md:text-5xl font-bold mb-2 text-center">The Mobius Loop Wheelhouse</h2>
+      <p className="text-muted-foreground leading-relaxed text-sm text-center max-w-2xl mx-auto mb-3">
         When one cooperative completes, another automatically opens. Your team always follows you into the next wheel.
         Unlimited reentries. Unlimited follows. Unlimited income.
       </p>
       <div className="flex justify-center">
-        <div className="w-full max-w-lg">
+        <div className="w-full max-w-3xl">
           <WheelhouseDiagram />
         </div>
       </div>
