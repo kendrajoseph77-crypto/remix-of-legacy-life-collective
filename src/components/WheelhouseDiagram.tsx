@@ -31,8 +31,10 @@ const coral = "hsl(38 55% 62%)";
   const lime = "hsl(40 35% 72%)";
   const royal = "hsl(220 20% 28%)";
 const brightYellow = "hsl(38 55% 62%)";
-const directInviteBg = "hsl(224 60% 92%)";   // light blue bg for your personals
-const teamInviteBg = "hsl(160 40% 90%)";      // light green bg for team fills
+const directInviteBg = "hsl(224 60% 92%)";
+const teamInviteBg = "hsl(160 40% 90%)";
+const cobaltGlow = "hsl(224 85% 58%)";
+const emeraldGlow = "hsl(160 80% 42%)";
 
 const ring2Nodes = [
   { label: "01", angle: -Math.PI / 2, avatarIdx: 1 },
@@ -521,6 +523,8 @@ const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: ()
     const labelX = x + labelDist * Math.cos(outAngle);
     const labelY = y + labelDist * Math.sin(outAngle);
     const bgFill = ringType === "direct" ? directInviteBg : teamInviteBg;
+    const glowColor = ringType === "direct" ? cobaltGlow : emeraldGlow;
+    const glowFilterId = ringType === "direct" ? "wh-cobaltGlow" : "wh-emeraldGlow";
 
     return (
       <g key={clipId}>
@@ -528,7 +532,9 @@ const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: ()
           <clipPath id={clipId}>
             <circle cx={x} cy={y} r={NODE_R - 3} />
           </clipPath>
-          <circle cx={x} cy={y} r={NODE_R} fill={bgFill} stroke={color} strokeWidth="2.5" />
+          {/* Thick outer glow ring */}
+          <circle cx={x} cy={y} r={NODE_R + 6} fill="none" stroke={glowColor} strokeWidth="5" opacity="0.5" filter={`url(#${glowFilterId})`} />
+          <circle cx={x} cy={y} r={NODE_R} fill={bgFill} stroke={glowColor} strokeWidth="3.5" />
           <image
             href={avatarUrls[avatarIdx]}
             x={x - NODE_R + 3} y={y - NODE_R + 3}
@@ -536,7 +542,7 @@ const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: ()
             clipPath={`url(#${clipId})`}
             preserveAspectRatio="xMidYMid slice"
           />
-          <circle cx={x} cy={y} r={NODE_R} fill="none" stroke={color} strokeWidth="2.5" filter="url(#wh-glow)" />
+          <circle cx={x} cy={y} r={NODE_R} fill="none" stroke={glowColor} strokeWidth="3.5" filter={`url(#${glowFilterId})`} />
           <circle cx={badgeX} cy={badgeY} r={11} fill={navy} stroke={color} strokeWidth="1.5" />
           <text x={badgeX} y={badgeY + 3.5} textAnchor="middle" fontSize="7" fontWeight="800" fill="white" fontFamily="monospace">
             {label}
@@ -657,6 +663,14 @@ const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: ()
               <feGaussianBlur stdDeviation="12" result="blur" />
               <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
             </filter>
+            <filter id="wh-cobaltGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="6" result="blur" />
+              <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+            </filter>
+            <filter id="wh-emeraldGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="6" result="blur" />
+              <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+            </filter>
             <marker id="arrow-coral" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
               <polygon points="0 0, 8 4, 0 8" fill={coral} opacity="0.9" />
             </marker>
@@ -760,7 +774,7 @@ const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: ()
 
       {/* Playback controls — fixed position below the wheelhouse */}
       {!animationDone && (
-        <div className="flex items-center justify-center gap-3 py-2 -mt-24">
+        <div className="flex items-center justify-center gap-3 py-2 -mt-48">
           {/* First cycle: show forward/back buttons */}
           {!firstCycleDone && (
             <>
