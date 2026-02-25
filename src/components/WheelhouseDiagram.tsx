@@ -537,7 +537,7 @@ const WheelhouseDiagram = () => {
       {!animationDone && (
       <div className="flex flex-col md:flex-row gap-6 items-start justify-center max-w-5xl mx-auto">
         {/* Left: Main wheelhouse animation */}
-        <div className="flex-1 max-w-[500px] relative" style={{ minHeight: 500 }}>
+        <div className={`flex-1 relative transition-all duration-700 ${completedWheelhouses >= 1 ? 'max-w-[620px]' : 'max-w-[500px]'}`} style={{ minHeight: completedWheelhouses >= 1 ? 620 : 500 }}>
       {/* Main active wheelhouse — hidden entirely once animation is done */}
       {!animationDone && (
       <div
