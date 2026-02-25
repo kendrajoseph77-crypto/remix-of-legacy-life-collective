@@ -190,13 +190,14 @@ const DashboardLayout = ({ theme }: { theme: ThemeConfig }) => {
                           {level.label.replace("Level ", "$").replace(",", ",")}
                         </p>
                         <span
-                          className={`text-[10px] font-semibold px-1.5 py-0.5 rounded ${
+                          className="text-[10px] font-semibold px-2 py-0.5 rounded-full"
+                          style={
                             isActive
-                              ? "bg-emerald-500/15 text-emerald-500"
-                              : "bg-red-500/15 text-red-400"
-                          }`}
+                              ? { background: "hsl(152 60% 42% / 0.12)", color: "hsl(152 55% 38%)" }
+                              : { background: "hsl(0 45% 50% / 0.10)", color: "hsl(0 50% 48%)" }
+                          }
                         >
-                          {isActive ? "● Active" : "● Inactive"}
+                          {isActive ? "✓ Active" : "○ Inactive"}
                         </span>
                       </div>
                     </div>
