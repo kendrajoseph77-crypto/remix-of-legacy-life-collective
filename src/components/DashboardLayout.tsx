@@ -68,7 +68,12 @@ const DashboardLayout = ({ theme }: { theme: ThemeConfig }) => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const userName = "Kendra";
 
-  const getGreeting = () => "Hello";
+  const getGreeting = () => {
+    const h = new Date().getHours();
+    if (h < 12) return "Good Morning";
+    if (h < 17) return "Good Afternoon";
+    return "Good Evening";
+  };
 
   return (
     <div className="flex min-h-screen bg-muted/40 font-sans">
