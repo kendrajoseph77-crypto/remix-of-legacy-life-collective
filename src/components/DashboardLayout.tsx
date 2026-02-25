@@ -54,8 +54,8 @@ const sidebarLinks = [
 ];
 
 const quickActions = [
-  { label: "Send Contributions", desc: "Send pending contributions", icon: Send },
-  { label: "Receive Contributions", desc: "Mark contributions received", icon: Inbox },
+  { label: "Send Contributions", desc: "Send pending contributions", icon: ArrowUpRight },
+  { label: "Receive Contributions", desc: "Mark contributions received", icon: ArrowDownLeft },
   { label: "My Team", desc: "View team members", icon: UsersRound },
   { label: "Income Centers", desc: "0 open centers", icon: LayoutGrid },
   { label: "Marketing Tools", desc: "Share & grow your team", icon: Megaphone },
