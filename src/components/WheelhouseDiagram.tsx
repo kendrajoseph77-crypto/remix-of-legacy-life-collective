@@ -83,7 +83,7 @@ const MiniWheelhouse = ({ index, total }: { index: number; total: number }) => {
           <circle key={`m3-${i}`} cx={mcx + mr2 * Math.cos(n.angle)} cy={mcy + mr2 * Math.sin(n.angle)} r={mnr} fill={royal} opacity="0.7" />
         ))}
       </svg>
-      <p className="text-xs font-bold text-foreground mt-1">Wheel {index + 1}</p>
+      <p className="text-xs font-bold text-white mt-1">Wheel {index + 1}</p>
       <p className="text-xs font-mono font-bold" style={{ color: coral }}>
         {formatCurrency(CYCLE_EARNINGS * (index + 1))}
       </p>
@@ -497,14 +497,14 @@ const WheelhouseDiagram = () => {
       {/* Completion state — full width, no sidebar constraint */}
       {animationDone && (
         <div className="text-center animate-fade-in py-12 px-4 max-w-3xl mx-auto">
-          <p className="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground mb-6">
+          <p className="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-6">
             And It Never Stops.
           </p>
-          <p className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto leading-relaxed mb-6">
-            Unlimited re-entries. Unlimited follows. <span className="font-bold text-foreground">Unlimited income.</span><br />
+          <p className="text-base md:text-lg text-white/60 max-w-xl mx-auto leading-relaxed mb-6">
+            Unlimited re-entries. Unlimited follows. <span className="font-bold text-white">Unlimited income.</span><br />
             Every completed wheelhouse automatically opens a new one. There is no cap. No ceiling. No limit.
           </p>
-          <p className="text-lg md:text-xl font-bold text-foreground mb-8">
+          <p className="text-lg md:text-xl font-bold text-white mb-8">
             Money for Everything! — and it's all automated.
           </p>
           <div className="inline-flex items-center gap-3 px-8 py-4 rounded-full border-2" style={{ borderColor: coral }}>
@@ -525,7 +525,7 @@ const WheelhouseDiagram = () => {
                 startCycle(0);
               }, 300);
             }}
-            className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold text-muted-foreground border border-border hover:border-primary hover:text-primary transition-colors"
+            className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold text-white/60 border border-white/20 hover:border-white/40 hover:text-white transition-colors"
           >
             <RotateCcw size={16} />
             Replay
@@ -669,16 +669,16 @@ const WheelhouseDiagram = () => {
       {/* Playback controls — fixed position below the wheelhouse */}
       {!animationDone && (
         <div className="flex items-center justify-center gap-3 py-2">
-          <button
+           <button
             onClick={togglePause}
-            className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors bg-background"
+            className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-white/20 text-white/50 hover:text-white hover:border-white/40 transition-colors"
             aria-label={isPaused ? "Play" : "Pause"}
           >
             {isPaused ? <Play size={14} /> : <Pause size={14} />}
           </button>
           <button
             onClick={skipToNextWheel}
-            className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors bg-background"
+            className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-white/20 text-white/50 hover:text-white hover:border-white/40 transition-colors"
             aria-label="Skip to next wheel"
           >
             <SkipForward size={14} />
@@ -691,7 +691,7 @@ const WheelhouseDiagram = () => {
         {/* Right: Completed mini wheelhouses */}
         {completedWheelhouses > 0 && (
           <div className="md:w-72 shrink-0">
-            <p className="text-center text-xs tracking-[0.3em] uppercase font-semibold text-muted-foreground mb-3">
+            <p className="text-center text-xs tracking-[0.3em] uppercase font-semibold text-white/50 mb-3">
               Completed Wheelhouses
             </p>
             <div className="grid grid-cols-3 gap-2 justify-items-center">
@@ -703,15 +703,15 @@ const WheelhouseDiagram = () => {
                   <div className="w-16 h-16 rounded-full border-2 border-dashed flex items-center justify-center" style={{ borderColor: coral }}>
                     <span className="text-xl font-bold" style={{ color: coral }}>+{completedWheelhouses - VISIBLE_WHEELHOUSES}</span>
                   </div>
-                  <p className="text-[10px] font-bold text-muted-foreground mt-1">& counting...</p>
+                  <p className="text-[10px] font-bold text-white/50 mt-1">& counting...</p>
                 </div>
               )}
             </div>
             <div className="text-center mt-3">
-              <p className="text-sm font-bold text-foreground">
+              <p className="text-sm font-bold text-white">
                 Monthly Income: <span style={{ color: coral }} className="text-lg font-mono">{formatCurrency(CYCLE_EARNINGS * completedWheelhouses)}</span>
               </p>
-              <p className="text-[9px] text-muted-foreground/60 mt-2 leading-snug max-w-[220px] mx-auto">
+              <p className="text-[9px] text-white/30 mt-2 leading-snug max-w-[220px] mx-auto">
                 *For illustration purposes only. Figures shown reflect potential income based on full Elite-level contributions ($17,500).
               </p>
             </div>
