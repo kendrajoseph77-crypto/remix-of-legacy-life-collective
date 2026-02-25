@@ -30,13 +30,6 @@ export const SlideHero = () => (
         <span className="text-white font-semibold">100% of every contribution</span>{" "}
         goes directly to you — the participants. No middlemen. No exceptions.
       </SlideBody>
-      <div className="flex items-center justify-center gap-8 text-white/40 text-sm tracking-wider">
-        <span>No Fees</span>
-        <span className="w-1 h-1 rounded-full bg-white/20" />
-        <span>No Middlemen</span>
-        <span className="w-1 h-1 rounded-full bg-white/20" />
-        <span>Instant Payouts</span>
-      </div>
     </div>
   </SlideLayout>
 );
