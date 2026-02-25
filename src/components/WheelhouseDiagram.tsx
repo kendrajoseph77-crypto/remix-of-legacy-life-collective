@@ -536,18 +536,19 @@ const WheelhouseDiagram = () => {
       {!animationDone && (
       <div className="flex flex-col md:flex-row gap-6 items-start justify-center max-w-6xl mx-auto">
         {/* Left: Main wheelhouse animation */}
-        <div className={`flex-1 relative transition-all duration-700 ${completedWheelhouses >= 1 ? 'max-w-[720px]' : 'max-w-[620px]'}`} style={{ minHeight: completedWheelhouses >= 1 ? 720 : 620 }}>
+        <div className="flex-1 relative transition-all duration-700 max-w-[460px]">
       {/* Main active wheelhouse — hidden entirely once animation is done */}
       {!animationDone && (
       <div
-        className="absolute inset-0 transition-all duration-700 ease-in-out"
+        className="transition-all duration-700 ease-in-out"
         style={{
           transform: shrinking ? "scale(0)" : "scale(1)",
           opacity: shrinking ? 0 : 1,
           transformOrigin: "center center",
+          height: shrinking ? 0 : 'auto',
         }}
       >
-        <svg viewBox="0 0 600 520" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+        <svg viewBox="0 0 600 620" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
           <defs>
             <filter id="wh-glow" x="-30%" y="-30%" width="160%" height="160%">
               <feGaussianBlur stdDeviation="3" result="blur" />
@@ -668,7 +669,7 @@ const WheelhouseDiagram = () => {
 
       {/* Playback controls — fixed position below the wheelhouse */}
       {!animationDone && (
-        <div className="absolute bottom-0 left-0 right-0 flex items-center justify-center gap-3 pb-2">
+        <div className="flex items-center justify-center gap-3 py-2">
           <button
             onClick={togglePause}
             className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors bg-background"
