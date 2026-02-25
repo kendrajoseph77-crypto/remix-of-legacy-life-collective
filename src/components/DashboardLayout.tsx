@@ -154,6 +154,77 @@ const DashboardLayout = ({ theme }: { theme: ThemeConfig }) => {
             </div>
           </div>
 
+          {/* My Levels */}
+          <div className="bg-background rounded-xl p-5 border border-border">
+            <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-1.5">
+              <Gem size={14} style={{ color: theme.primary }} /> My Levels
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              {theme.levels.map((level, i) => {
+                const isActive = i === 0 || i === 2;
+                return (
+                  <div
+                    key={level.label}
+                    className="rounded-xl border border-border p-4"
+                    style={{ borderTop: `3px solid ${theme.primary}` }}
+                  >
+                    <div className="flex items-center gap-3 mb-2">
+                      <div
+                        className="w-9 h-9 rounded-lg flex items-center justify-center"
+                        style={{ background: theme.primaryBg }}
+                      >
+                        <level.icon size={16} style={{ color: theme.primary }} />
+                      </div>
+                      <div>
+                        <p className="text-lg font-bold" style={{ color: theme.primary }}>
+                          {level.label.replace("Level ", "$").replace(",", ",")}
+                        </p>
+                        <span
+                          className={`text-[10px] font-semibold px-1.5 py-0.5 rounded ${
+                            isActive
+                              ? "bg-emerald-500/15 text-emerald-500"
+                              : "bg-red-500/15 text-red-400"
+                          }`}
+                        >
+                          {isActive ? "● Active" : "● Inactive"}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between mt-3 text-xs text-muted-foreground">
+                      <span className="flex items-center gap-1">↻ Auto-Renew</span>
+                      <div
+                        className="w-9 h-5 rounded-full relative cursor-pointer"
+                        style={{ background: theme.gradient }}
+                      >
+                        <div className="absolute right-0.5 top-0.5 w-4 h-4 rounded-full bg-white shadow" />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="mt-4 flex items-center justify-between rounded-xl border border-border p-4">
+              <div className="flex items-center gap-3">
+                <div
+                  className="w-9 h-9 rounded-lg flex items-center justify-center"
+                  style={{ background: "hsl(160 80% 42% / 0.12)" }}
+                >
+                  <Lightbulb size={16} className="text-emerald-500" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-foreground">Auto-Upgrade</p>
+                  <p className="text-[11px] text-muted-foreground">Automatically upgrade to next level</p>
+                </div>
+              </div>
+              <div
+                className="w-9 h-5 rounded-full relative cursor-pointer"
+                style={{ background: theme.gradient }}
+              >
+                <div className="absolute right-0.5 top-0.5 w-4 h-4 rounded-full bg-white shadow" />
+              </div>
+            </div>
+          </div>
+
           {/* Stats row */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {[
