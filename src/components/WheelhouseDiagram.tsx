@@ -635,13 +635,13 @@ const WheelhouseDiagram = () => {
             strokeWidth="3" filter={cycleComplete ? "url(#wh-celebGlow)" : "url(#wh-glow)"}
             style={{ transition: "stroke 0.8s ease" }} />
 
-          <rect x={cx - 24} y={cy + 10} width="48" height="22" rx="6" fill="hsl(30 90% 55% / 0.92)" />
-          <text x={cx} y={cy + 26} textAnchor="middle" fontSize="13" fontWeight="800" fill="white" fontFamily="sans-serif">YOU</text>
+          <rect x={cx - 24} y={cy - CENTER_R - 24} width="48" height="22" rx="6" fill="hsl(30 90% 55% / 0.92)" />
+          <text x={cx} y={cy - CENTER_R - 8} textAnchor="middle" fontSize="13" fontWeight="800" fill="white" fontFamily="sans-serif">YOU</text>
 
-          <rect x={cx - 58} y={cy + 38} width="116" height="34" rx="17"
+          <rect x={cx - 58} y={cy + 18} width="116" height="34" rx="17"
             fill={navy} stroke={cycleComplete ? brightYellow : coral} strokeWidth="2.5"
             style={{ transition: "stroke 0.8s ease" }} />
-          <text x={cx} y={cy + 61} textAnchor="middle" fontSize="22" fontWeight="900"
+          <text x={cx} y={cy + 41} textAnchor="middle" fontSize="22" fontWeight="900"
             fill={cycleComplete ? brightYellow : "hsl(0 0% 100%)"} fontFamily="monospace"
             filter="url(#wh-earningsGlow)"
             style={{ transition: "fill 0.8s ease" }}>
