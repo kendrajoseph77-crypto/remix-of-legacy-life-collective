@@ -175,8 +175,8 @@ const DashboardLayout = ({ theme }: { theme: ThemeConfig }) => {
                 return (
                   <div
                     key={level.label}
-                    className="rounded-xl border border-border p-4"
-                    style={{ borderTop: `3px solid ${theme.primary}` }}
+                    className={`rounded-xl border p-4 ${!isActive ? "border-muted bg-muted/40 opacity-70" : "border-border"}`}
+                    style={{ borderTop: `3px solid ${isActive ? theme.primary : "hsl(0 0% 70%)"}` }}
                   >
                     <div className="flex items-center gap-3">
                       <div
