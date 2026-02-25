@@ -170,8 +170,9 @@ export const SlideMatrixFill = () => (
       <SlideLabel>How Your Matrix Fills</SlideLabel>
       <SlideHeading>Your 2×2 Matrix</SlideHeading>
       <SlideBody className="mb-10">
-        YOU sit at the center. Invite 2 personal members (positions 1 & 2).
+        <span className="text-white font-semibold">100% is paid out</span> — YOU sit at the center. Invite 2 personal members (positions 1 & 2).
         Your team helps fill positions 3–6. Each position pays you <span className="text-white font-bold">50% instantly</span>.
+        When you complete each cooperative, you receive <span className="text-white font-bold">300%</span>.
       </SlideBody>
       <div className="inline-block rounded-2xl overflow-hidden" style={{ border: "1px solid hsl(0 0% 100% / 0.1)" }}>
         <div className="p-5" style={{ background: "hsl(41 50% 65% / 0.08)", borderBottom: "1px solid hsl(0 0% 100% / 0.08)" }}>
