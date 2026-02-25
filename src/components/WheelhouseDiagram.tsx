@@ -536,7 +536,7 @@ const WheelhouseDiagram = () => {
       {!animationDone && (
       <div className="flex flex-col md:flex-row gap-6 items-start justify-center max-w-6xl mx-auto">
         {/* Left: Main wheelhouse animation */}
-        <div className="flex-1 relative transition-all duration-700 max-w-[460px]">
+        <div className="flex-1 relative transition-all duration-700 max-w-[680px]">
       {/* Main active wheelhouse — hidden entirely once animation is done */}
       {!animationDone && (
       <div
