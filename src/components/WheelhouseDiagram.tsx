@@ -774,7 +774,7 @@ const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: ()
 
       {/* Playback controls — fixed position below the wheelhouse */}
       {!animationDone && (
-        <div className="flex items-center justify-center gap-3 py-2 -mt-48">
+        <div className="flex items-center justify-center gap-3 py-2 -mt-32">
           {/* First cycle: show forward/back buttons */}
           {!firstCycleDone && (
             <>
