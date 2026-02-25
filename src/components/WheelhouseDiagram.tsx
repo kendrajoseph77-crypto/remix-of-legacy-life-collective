@@ -317,10 +317,10 @@ const WheelhouseDiagram = () => {
   const renderSplitSpoke = (
     key: string, sx: number, sy: number, ex: number, ey: number,
     active: boolean, highlighted: boolean, color: string, inactiveColor: string,
-    markerId: string | undefined, labelColor: string
+    markerId: string | undefined, labelColor: string, labelBias = 0.5
   ) => {
-    const midX = (sx + ex) / 2;
-    const midY = (sy + ey) / 2;
+    const midX = sx + (ex - sx) * labelBias;
+    const midY = sy + (ey - sy) * labelBias;
     const angle = Math.atan2(ey - sy, ex - sx);
     const gapHalf = 16;
     const gx1 = midX - gapHalf * Math.cos(angle);
@@ -372,7 +372,7 @@ const WheelhouseDiagram = () => {
       return renderSplitSpoke(
         `spoke2-${i}`, sx, sy, ex, ey,
         active, showContribution === i, lime, "hsl(210 30% 30% / 0.12)",
-        "arrow-lime", lime
+        "arrow-lime", lime, 0.35
       );
     });
 
