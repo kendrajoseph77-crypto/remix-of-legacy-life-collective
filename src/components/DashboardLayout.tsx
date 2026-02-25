@@ -211,25 +211,32 @@ const DashboardLayout = ({ theme }: { theme: ThemeConfig }) => {
                   </div>
                 );
               })}
-            </div>
-            <div className="mt-3 flex items-center justify-between rounded-xl border border-border px-4 py-3">
-              <div className="flex items-center gap-3">
-                <div
-                  className="w-9 h-9 rounded-lg flex items-center justify-center"
-                  style={{ background: theme.primaryBg }}
-                >
-                  <Lightbulb size={16} style={{ color: theme.primary }} />
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-foreground">Auto-Upgrade</p>
-                  <p className="text-[11px] text-muted-foreground">Automatically upgrade to next level</p>
-                </div>
-              </div>
+              {/* Auto-Upgrade — spans first 2 columns */}
               <div
-                className="w-8 h-[18px] rounded-full relative cursor-pointer"
-                style={{ background: theme.gradient }}
+                className="rounded-xl border border-border p-4 md:col-span-2"
+                style={{ borderTop: `3px solid ${theme.primary}` }}
               >
-                <div className="absolute right-0.5 top-[3px] w-3 h-3 rounded-full bg-white shadow" />
+                <div className="flex items-center gap-3">
+                  <div
+                    className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
+                    style={{ background: theme.primaryBg }}
+                  >
+                    <Lightbulb size={16} style={{ color: theme.primary }} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-foreground">Auto-Upgrade</p>
+                    <p className="text-[11px] text-muted-foreground">Automatically upgrade to next level</p>
+                  </div>
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    <span className="text-[10px] text-muted-foreground">Enabled</span>
+                    <div
+                      className="w-8 h-[18px] rounded-full relative cursor-pointer"
+                      style={{ background: theme.gradient }}
+                    >
+                      <div className="absolute right-0.5 top-[3px] w-3 h-3 rounded-full bg-white shadow" />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
