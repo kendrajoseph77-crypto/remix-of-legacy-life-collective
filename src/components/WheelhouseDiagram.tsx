@@ -91,7 +91,7 @@ const MiniWheelhouse = ({ index, total }: { index: number; total: number }) => {
   );
 };
 
-const WheelhouseDiagram = () => {
+const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: () => void }) => {
   const [activeMembers, setActiveMembers] = useState(0);
   const [currentEarnings, setCurrentEarnings] = useState(0);
   const [showContribution, setShowContribution] = useState<number | null>(null);
@@ -107,6 +107,9 @@ const WheelhouseDiagram = () => {
   const [isPaused, setIsPaused] = useState(false);
   const isPausedRef = useRef(false);
   const currentCycleRef = useRef(0);
+  const [firstCycleDone, setFirstCycleDone] = useState(false);
+  const manualMemberIdx = useRef(0);
+  const isAnimatingMember = useRef(false);
 
   const clearAllTimeouts = useCallback(() => {
     timeoutsRef.current.forEach(clearTimeout);
@@ -239,15 +242,82 @@ const WheelhouseDiagram = () => {
     safeTimeout(addNextMember, 500 * speed);
   }, [resetCycle, safeTimeout]);
 
+  // Manual advance for first cycle
+  const addManualMember = useCallback(() => {
+    if (firstCycleDone || isAnimatingMember.current) return;
+    if (manualMemberIdx.current >= MEMBER_COUNT) return;
+
+    isAnimatingMember.current = true;
+    const current = manualMemberIdx.current;
+    manualMemberIdx.current++;
+    const targetMembers = manualMemberIdx.current;
+    setActiveMembers(targetMembers);
+    setShowContribution(current);
+
+    const startVal = (targetMembers - 1) * YOU_CUT_PER_MEMBER;
+    const targetEarnings = targetMembers * YOU_CUT_PER_MEMBER;
+    const duration = 600 * 3.0;
+    const startTime = performance.now();
+
+    const tick = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCurrentEarnings(startVal + (targetEarnings - startVal) * eased);
+      if (progress < 1) {
+        animationRef.current = requestAnimationFrame(tick);
+      } else {
+        safeTimeout(() => {
+          setShowContribution(null);
+          isAnimatingMember.current = false;
+
+          if (targetMembers >= MEMBER_COUNT) {
+            // First cycle complete
+            setCycleComplete(true);
+            safeTimeout(() => setCelebrationPhase(1), 150);
+            safeTimeout(() => setCelebrationPhase(2), 900);
+            safeTimeout(() => setShrinking(true), 2500);
+            safeTimeout(() => {
+              setCompletedWheelhouses(1);
+              resetCycle();
+              setFirstCycleDone(true);
+              onFirstCycleComplete?.();
+              // Start auto-play from cycle 1
+              safeTimeout(() => startCycleRef.current(1), 300);
+            }, 3200);
+          }
+        }, 400 * 3.0);
+      }
+    };
+    animationRef.current = requestAnimationFrame(tick);
+  }, [firstCycleDone, safeTimeout, resetCycle, onFirstCycleComplete]);
+
+  const addManualMemberRef = useRef(addManualMember);
+  useEffect(() => { addManualMemberRef.current = addManualMember; }, [addManualMember]);
+
+  // Keyboard listener for manual first cycle
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if ((e.key === "ArrowRight" || e.key === " ") && !firstCycleDone) {
+        e.preventDefault();
+        e.stopPropagation();
+        addManualMemberRef.current();
+      }
+    };
+    window.addEventListener("keydown", handleKey, true);
+    return () => window.removeEventListener("keydown", handleKey, true);
+  }, [firstCycleDone]);
+
   // Keep ref in sync
   useEffect(() => { startCycleRef.current = startCycle; }, [startCycle]);
 
+  // Mark as started when visible (but don't auto-play first cycle)
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasStarted.current) {
           hasStarted.current = true;
-          startCycle(0);
+          // Don't auto-start — wait for manual key presses
         }
       },
       { threshold: 0.3 }
@@ -257,7 +327,7 @@ const WheelhouseDiagram = () => {
       observer.disconnect();
       clearAllTimeouts();
     };
-  }, [startCycle, clearAllTimeouts]);
+  }, [clearAllTimeouts]);
 
   const getPos = (r: number, angle: number) => ({
     x: cx + r * Math.cos(angle),

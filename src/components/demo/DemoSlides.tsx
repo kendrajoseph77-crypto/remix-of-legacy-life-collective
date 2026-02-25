@@ -212,7 +212,7 @@ export const SlideMatrixFill = () => (
 );
 
 /* ─── 7. WHEELHOUSE ─── */
-export const SlideWheelhouse = () => (
+export const SlideWheelhouse = ({ onFirstCycleComplete }: { onFirstCycleComplete?: () => void }) => (
   <div className="flex flex-col items-center justify-start h-full px-6 pt-4 overflow-hidden">
     <div className="max-w-6xl w-full">
       <div className="text-center mb-3">
@@ -224,7 +224,7 @@ export const SlideWheelhouse = () => (
       </div>
       <div className="flex justify-center">
         <div className="w-full max-w-3xl">
-          <WheelhouseDiagram />
+          <WheelhouseDiagram onFirstCycleComplete={onFirstCycleComplete} />
         </div>
       </div>
     </div>
