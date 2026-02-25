@@ -31,6 +31,8 @@ const coral = "hsl(38 55% 62%)";
   const lime = "hsl(40 35% 72%)";
   const royal = "hsl(220 20% 28%)";
 const brightYellow = "hsl(38 55% 62%)";
+const directInviteBg = "hsl(224 60% 92%)";   // light blue bg for your personals
+const teamInviteBg = "hsl(160 40% 90%)";      // light green bg for team fills
 
 const ring2Nodes = [
   { label: "01", angle: -Math.PI / 2, avatarIdx: 1 },
@@ -505,7 +507,8 @@ const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: ()
 
   const renderMemberNode = (
     x: number, y: number, label: string, avatarIdx: number,
-    color: string, isActive: boolean, stepIdx: number, outAngle: number
+    color: string, isActive: boolean, stepIdx: number, outAngle: number,
+    ringType: "direct" | "team" = "direct"
   ) => {
     const clipId = `wh-clip-${label}`;
     const opacity = isActive ? 1 : 0;
@@ -517,6 +520,7 @@ const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: ()
     const labelDist = NODE_R + 48;
     const labelX = x + labelDist * Math.cos(outAngle);
     const labelY = y + labelDist * Math.sin(outAngle);
+    const bgFill = ringType === "direct" ? directInviteBg : teamInviteBg;
 
     return (
       <g key={clipId}>
@@ -524,7 +528,7 @@ const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: ()
           <clipPath id={clipId}>
             <circle cx={x} cy={y} r={NODE_R - 3} />
           </clipPath>
-          <circle cx={x} cy={y} r={NODE_R} fill={card} stroke={color} strokeWidth="2.5" />
+          <circle cx={x} cy={y} r={NODE_R} fill={bgFill} stroke={color} strokeWidth="2.5" />
           <image
             href={avatarUrls[avatarIdx]}
             x={x - NODE_R + 3} y={y - NODE_R + 3}
@@ -695,13 +699,13 @@ const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: ()
           {ring3Nodes.map((n, i) => {
             const stepIdx = i + 2;
             const pos = getPos(RING3_R, n.angle);
-            return renderMemberNode(pos.x, pos.y, n.label, n.avatarIdx, royal, stepIdx < activeMembers, stepIdx, n.angle);
+            return renderMemberNode(pos.x, pos.y, n.label, n.avatarIdx, royal, stepIdx < activeMembers, stepIdx, n.angle, "team");
           })}
           </g>
 
           {ring2Nodes.map((n, i) => {
             const pos = getPos(RING2_R, n.angle);
-            return renderMemberNode(pos.x, pos.y, n.label, n.avatarIdx, lime, i < activeMembers, i, n.angle);
+            return renderMemberNode(pos.x, pos.y, n.label, n.avatarIdx, lime, i < activeMembers, i, n.angle, "direct");
           })}
 
           {renderEarningsPills()}
