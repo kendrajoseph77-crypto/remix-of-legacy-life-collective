@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { RotateCcw, Pause, Play, SkipForward } from "lucide-react";
+import { RotateCcw, Pause, Play, SkipForward, ChevronLeft, ChevronRight } from "lucide-react";
 
 const avatarUrls = [
   "https://randomuser.me/api/portraits/men/83.jpg",
@@ -291,6 +291,24 @@ const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: ()
     };
     animationRef.current = requestAnimationFrame(tick);
   }, [firstCycleDone, safeTimeout, resetCycle, onFirstCycleComplete]);
+
+  // Manual go-back for first cycle
+  const removeManualMember = useCallback(() => {
+    if (firstCycleDone || isAnimatingMember.current) return;
+    if (manualMemberIdx.current <= 0) return;
+
+    // Cancel any running animation
+    if (animationRef.current) cancelAnimationFrame(animationRef.current);
+    clearAllTimeouts();
+
+    manualMemberIdx.current--;
+    const targetMembers = manualMemberIdx.current;
+    setActiveMembers(targetMembers);
+    setShowContribution(null);
+    setCurrentEarnings(targetMembers * YOU_CUT_PER_MEMBER);
+    setCycleComplete(false);
+    setCelebrationPhase(0);
+  }, [firstCycleDone, clearAllTimeouts]);
 
   const addManualMemberRef = useRef(addManualMember);
   useEffect(() => { addManualMemberRef.current = addManualMember; }, [addManualMember]);
@@ -739,20 +757,59 @@ const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: ()
       {/* Playback controls — fixed position below the wheelhouse */}
       {!animationDone && (
         <div className="flex items-center justify-center gap-3 py-2">
-           <button
-            onClick={togglePause}
-            className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-white/20 text-white/50 hover:text-white hover:border-white/40 transition-colors"
-            aria-label={isPaused ? "Play" : "Pause"}
-          >
-            {isPaused ? <Play size={14} /> : <Pause size={14} />}
-          </button>
-          <button
-            onClick={skipToNextWheel}
-            className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-white/20 text-white/50 hover:text-white hover:border-white/40 transition-colors"
-            aria-label="Skip to next wheel"
-          >
-            <SkipForward size={14} />
-          </button>
+          {/* First cycle: show forward/back buttons */}
+          {!firstCycleDone && (
+            <>
+              <button
+                onClick={removeManualMember}
+                disabled={manualMemberIdx.current <= 0 || isAnimatingMember.current}
+                className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 disabled:opacity-30 disabled:pointer-events-none"
+                style={{
+                  background: "hsl(0 0% 100% / 0.06)",
+                  border: "1px solid hsl(0 0% 100% / 0.15)",
+                  color: "hsl(0 0% 100% / 0.7)",
+                }}
+                aria-label="Go back one member"
+              >
+                <ChevronLeft size={16} />
+                Back
+              </button>
+              <button
+                onClick={addManualMember}
+                disabled={manualMemberIdx.current >= MEMBER_COUNT || isAnimatingMember.current}
+                className="inline-flex items-center justify-center gap-1.5 px-5 py-2 rounded-lg text-sm font-bold transition-all duration-200 disabled:opacity-30 disabled:pointer-events-none"
+                style={{
+                  background: `linear-gradient(180deg, ${coral}, hsl(38 55% 52%))`,
+                  border: "1px solid hsl(38 55% 72%)",
+                  color: "white",
+                  boxShadow: `0 2px 8px hsl(38 55% 62% / 0.3)`,
+                }}
+                aria-label="Add next member"
+              >
+                Next Member
+                <ChevronRight size={16} />
+              </button>
+            </>
+          )}
+          {/* Auto-play cycle: show pause/skip */}
+          {firstCycleDone && (
+            <>
+              <button
+                onClick={togglePause}
+                className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-white/20 text-white/50 hover:text-white hover:border-white/40 transition-colors"
+                aria-label={isPaused ? "Play" : "Pause"}
+              >
+                {isPaused ? <Play size={14} /> : <Pause size={14} />}
+              </button>
+              <button
+                onClick={skipToNextWheel}
+                className="inline-flex items-center justify-center w-8 h-8 rounded-full border border-white/20 text-white/50 hover:text-white hover:border-white/40 transition-colors"
+                aria-label="Skip to next wheel"
+              >
+                <SkipForward size={14} />
+              </button>
+            </>
+          )}
         </div>
       )}
 
