@@ -280,7 +280,7 @@ const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: ()
             setCycleComplete(true);
             safeTimeout(() => setCelebrationPhase(1), 150);
             safeTimeout(() => setCelebrationPhase(2), 900);
-            safeTimeout(() => setShrinking(true), 2500);
+            safeTimeout(() => setShrinking(true), 4000);
             safeTimeout(() => {
               setCompletedWheelhouses(1);
               resetCycle();
@@ -288,7 +288,7 @@ const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: ()
               onFirstCycleComplete?.();
               // Start auto-play from cycle 1
               safeTimeout(() => startCycleRef.current(1), 300);
-            }, 3200);
+            }, 4700);
           }
         }, 400 * 3.0);
       }
