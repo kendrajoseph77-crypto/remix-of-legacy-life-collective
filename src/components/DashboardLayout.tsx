@@ -143,13 +143,22 @@ const DashboardLayout = ({ theme }: { theme: ThemeConfig }) => {
             </div>
             <div className="hidden md:flex items-center gap-3">
               <button
-                className="px-4 py-2 rounded-lg text-sm font-medium"
-                style={{ background: theme.gradient, color: theme.textOnGradient, boxShadow: `inset 0 1px 0 ${theme.primaryLight}40` }}
+                className="px-4 py-2 rounded-lg text-sm font-medium active:translate-y-[2px] transition-transform"
+                style={{ background: theme.gradient, color: theme.textOnGradient, boxShadow: `inset 0 1px 0 ${theme.primaryLight}40, 0 4px 0 ${theme.primaryDark}` }}
               >
-                Send Contributions
+                <Send size={14} className="inline mr-1.5 -mt-0.5" /> Send
               </button>
-              <button className="px-4 py-2 rounded-lg text-sm font-medium border border-white/20 text-white hover:bg-white/5">
-                + Add Team Member
+              <button
+                className="px-4 py-2 rounded-lg text-sm font-medium active:translate-y-[2px] transition-transform"
+                style={{ background: theme.gradient, color: theme.textOnGradient, boxShadow: `inset 0 1px 0 ${theme.primaryLight}40, 0 4px 0 ${theme.primaryDark}` }}
+              >
+                <Inbox size={14} className="inline mr-1.5 -mt-0.5" /> Receive
+              </button>
+              <button
+                className="px-4 py-2 rounded-lg text-sm font-medium border border-white/20 text-white hover:bg-white/5 active:translate-y-[2px] transition-transform"
+                style={{ boxShadow: "0 4px 0 rgba(255,255,255,0.08)" }}
+              >
+                <Users size={14} className="inline mr-1.5 -mt-0.5" /> Add Member
               </button>
             </div>
           </div>
