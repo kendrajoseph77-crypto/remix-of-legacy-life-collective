@@ -112,8 +112,8 @@ const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: ()
   const isPausedRef = useRef(false);
   const currentCycleRef = useRef(0);
   const [firstCycleDone, setFirstCycleDone] = useState(false);
-  const manualMemberIdx = useRef(0);
-  const isAnimatingMember = useRef(false);
+  const [manualMemberIdx, setManualMemberIdx] = useState(0);
+  const [isAnimatingMember, setIsAnimatingMember] = useState(false);
 
   const clearAllTimeouts = useCallback(() => {
     timeoutsRef.current.forEach(clearTimeout);
@@ -248,13 +248,13 @@ const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: ()
 
   // Manual advance for first cycle
   const addManualMember = useCallback(() => {
-    if (firstCycleDone || isAnimatingMember.current) return;
-    if (manualMemberIdx.current >= MEMBER_COUNT) return;
+    if (firstCycleDone || isAnimatingMember) return;
+    if (manualMemberIdx >= MEMBER_COUNT) return;
 
-    isAnimatingMember.current = true;
-    const current = manualMemberIdx.current;
-    manualMemberIdx.current++;
-    const targetMembers = manualMemberIdx.current;
+    setIsAnimatingMember(true);
+    const current = manualMemberIdx;
+    const targetMembers = manualMemberIdx + 1;
+    setManualMemberIdx(targetMembers);
     setActiveMembers(targetMembers);
     setShowContribution(current);
 
@@ -273,7 +273,7 @@ const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: ()
       } else {
         safeTimeout(() => {
           setShowContribution(null);
-          isAnimatingMember.current = false;
+          setIsAnimatingMember(false);
 
           if (targetMembers >= MEMBER_COUNT) {
             // First cycle complete
@@ -294,25 +294,26 @@ const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: ()
       }
     };
     animationRef.current = requestAnimationFrame(tick);
-  }, [firstCycleDone, safeTimeout, resetCycle, onFirstCycleComplete]);
+  }, [firstCycleDone, isAnimatingMember, manualMemberIdx, safeTimeout, resetCycle, onFirstCycleComplete]);
 
   // Manual go-back for first cycle
   const removeManualMember = useCallback(() => {
-    if (firstCycleDone || isAnimatingMember.current) return;
-    if (manualMemberIdx.current <= 0) return;
+    if (firstCycleDone || isAnimatingMember) return;
+    if (manualMemberIdx <= 0) return;
 
     // Cancel any running animation
     if (animationRef.current) cancelAnimationFrame(animationRef.current);
     clearAllTimeouts();
 
-    manualMemberIdx.current--;
-    const targetMembers = manualMemberIdx.current;
+    const targetMembers = manualMemberIdx - 1;
+    setManualMemberIdx(targetMembers);
     setActiveMembers(targetMembers);
     setShowContribution(null);
     setCurrentEarnings(targetMembers * YOU_CUT_PER_MEMBER);
     setCycleComplete(false);
     setCelebrationPhase(0);
-  }, [firstCycleDone, clearAllTimeouts]);
+    setIsAnimatingMember(false);
+  }, [firstCycleDone, isAnimatingMember, manualMemberIdx, clearAllTimeouts]);
 
   const addManualMemberRef = useRef(addManualMember);
   useEffect(() => { addManualMemberRef.current = addManualMember; }, [addManualMember]);
@@ -774,13 +775,13 @@ const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: ()
 
       {/* Playback controls — fixed position below the wheelhouse */}
       {!animationDone && (
-        <div className="flex items-center justify-center gap-3 py-2 -mt-32">
+        <div className="relative z-30 flex items-center justify-center gap-3 py-2 mt-2">
           {/* First cycle: show forward/back buttons */}
           {!firstCycleDone && (
             <>
               <button
                 onClick={removeManualMember}
-                disabled={manualMemberIdx.current <= 0 || isAnimatingMember.current}
+                disabled={manualMemberIdx <= 0 || isAnimatingMember}
                 className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 disabled:opacity-30 disabled:pointer-events-none"
                 style={{
                   background: "hsl(0 0% 100% / 0.06)",
@@ -794,7 +795,7 @@ const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: ()
               </button>
               <button
                 onClick={addManualMember}
-                disabled={manualMemberIdx.current >= MEMBER_COUNT || isAnimatingMember.current}
+                disabled={manualMemberIdx >= MEMBER_COUNT || isAnimatingMember}
                 className="inline-flex items-center justify-center gap-1.5 px-5 py-2 rounded-lg text-sm font-bold transition-all duration-200 disabled:opacity-30 disabled:pointer-events-none"
                 style={{
                   background: `linear-gradient(180deg, ${coral}, hsl(38 55% 52%))`,
