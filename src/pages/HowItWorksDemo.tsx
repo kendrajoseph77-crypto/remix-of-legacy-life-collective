@@ -13,17 +13,17 @@ import {
   SlideClosing,
 } from "@/components/demo/DemoSlides";
 
-const WHEELHOUSE_INDEX = 6; // index of wheelhouse slide
+const WHEELHOUSE_INDEX = 5; // index of wheelhouse slide
 
 const slides = [
   { id: "hero", label: "Intro", Component: SlideHero },
   { id: "ways", label: "6 Ways to Earn", Component: SlideWaysToEarn },
   { id: "matrix", label: "Matrix Fill", Component: SlideMatrixFill },
   { id: "5050", label: "50/50 Payout", Component: SlideFiftyFifty },
-  { id: "levels", label: "3 Levels", Component: SlideIncomeLevels },
   { id: "300", label: "300% Return", Component: Slide300Percent },
   { id: "wheelhouse", label: "Wheelhouse", Component: SlideWheelhouse },
   { id: "mobius", label: "Mobius Loop", Component: SlideMobiusLoop },
+  { id: "levels", label: "3 Levels", Component: SlideIncomeLevels },
   { id: "automated", label: "Automated", Component: SlideAutomated },
   { id: "closing", label: "Closing", Component: SlideClosing },
 ];
