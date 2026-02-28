@@ -8,12 +8,12 @@ import Index from "./pages/Index";
 import HowItWorks from "./pages/HowItWorks";
 import Join from "./pages/Join";
 import Login from "./pages/Login";
-import RegisterMicro from "./pages/RegisterMicro";
-import RegisterMacro from "./pages/RegisterMacro";
-import RegisterMogul from "./pages/RegisterMogul";
+import RegisterFast from "./pages/RegisterMicro";
+import RegisterCore from "./pages/RegisterMacro";
+import RegisterMax from "./pages/RegisterMogul";
 import Dashboard from "./pages/Dashboard";
-import MicroDashboard from "./pages/BuilderDashboard";
-import MacroDashboard from "./pages/ArchitectDashboard";
+import FastDashboard from "./pages/BuilderDashboard";
+import CoreDashboard from "./pages/ArchitectDashboard";
 import NotFound from "./pages/NotFound";
 import HowItWorksDemo from "./pages/HowItWorksDemo";
 
@@ -32,12 +32,12 @@ const App = () => (
           <Route path="/how-it-works-demo" element={<HowItWorksDemo />} />
           <Route path="/join" element={<Join />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register/micro" element={<RegisterMicro />} />
-          <Route path="/register/macro" element={<RegisterMacro />} />
-          <Route path="/register/mogul" element={<RegisterMogul />} />
+          <Route path="/register/fast" element={<RegisterFast />} />
+          <Route path="/register/core" element={<RegisterCore />} />
+          <Route path="/register/max" element={<RegisterMax />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/dashboard/micro" element={<MicroDashboard />} />
-          <Route path="/dashboard/macro" element={<MacroDashboard />} />
+          <Route path="/dashboard/fast" element={<FastDashboard />} />
+          <Route path="/dashboard/core" element={<CoreDashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

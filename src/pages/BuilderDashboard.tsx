@@ -2,7 +2,7 @@ import { Star, Gem, Crown } from "lucide-react";
 import DashboardLayout from "@/components/DashboardLayout";
 
 const theme = {
-  name: "Micro",
+  name: "Fast",
   primary: "hsl(224 85% 58%)",
   primaryLight: "hsl(224 80% 68%)",
   primaryDark: "hsl(224 90% 38%)",
