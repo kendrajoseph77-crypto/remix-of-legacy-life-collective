@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const businesses = [
   {
-    name: "5050 Micro",
+    name: "5050 Fast",
     tagline: "Clean entry. Foundation. Confidence.",
     gradient: "linear-gradient(135deg, hsl(224 85% 58%), hsl(224 78% 48%), hsl(224 90% 38%))",
     shadow: "hsl(224 78% 48% / 0.4)",
@@ -15,7 +15,7 @@ const businesses = [
     levels: "$25 · $50 · $100",
   },
   {
-    name: "5050 Macro",
+    name: "5050 Core",
     tagline: "Design. Structure. Momentum.",
     gradient: "linear-gradient(135deg, hsl(160 80% 42%), hsl(160 84% 30%), hsl(160 90% 22%))",
     shadow: "hsl(160 84% 30% / 0.4)",
@@ -23,7 +23,7 @@ const businesses = [
     levels: "$250 · $500 · $1,000",
   },
   {
-    name: "5050 Mogul",
+    name: "5050 Max",
     tagline: "Foresight. Authority. Legacy.",
     gradient: "linear-gradient(135deg, hsl(41 50% 65%), hsl(39 55% 52%), hsl(35 55% 40%))",
     shadow: "hsl(39 55% 52% / 0.4)",
