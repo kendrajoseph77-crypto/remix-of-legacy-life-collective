@@ -10,7 +10,7 @@ const GOLD = "hsl(39 55% 52%)";
 
 const heading = "'Cormorant Garamond', Georgia, serif";
 
-/* ── Animated Wheelhouse SVG ── */
+/* ── Animated Wheelhouse SVG with 50% growth ── */
 const AnimatedWheelhouse = ({
   label,
   positions,
@@ -18,6 +18,7 @@ const AnimatedWheelhouse = ({
   size = "md",
   animateSequence = false,
   animationDelay = 0,
+  showGrowth = false,
 }: {
   label: string;
   positions: (string | null)[];
@@ -25,6 +26,7 @@ const AnimatedWheelhouse = ({
   size?: "sm" | "md";
   animateSequence?: boolean;
   animationDelay?: number;
+  showGrowth?: boolean;
 }) => {
   const center = positions[0];
   const [visibleCount, setVisibleCount] = useState(animateSequence ? 0 : 7);
@@ -32,15 +34,16 @@ const AnimatedWheelhouse = ({
   const ref = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
 
-  // Slot positions — placed between the cross lines, not on them
   const slots = [
-    { x: 150, y: 68, label: positions[1] },   // 1 top
-    { x: 150, y: 232, label: positions[2] },   // 2 bottom
-    { x: 68, y: 105, label: positions[3] },    // 3 top-left
-    { x: 232, y: 105, label: positions[4] },   // 4 top-right
-    { x: 68, y: 195, label: positions[5] },    // 5 bottom-left
-    { x: 232, y: 195, label: positions[6] },   // 6 bottom-right
+    { x: 150, y: 68, label: positions[1] },
+    { x: 150, y: 232, label: positions[2] },
+    { x: 68, y: 105, label: positions[3] },
+    { x: 232, y: 105, label: positions[4] },
+    { x: 68, y: 195, label: positions[5] },
+    { x: 232, y: 195, label: positions[6] },
   ];
+
+  const filledSlots = slots.filter(s => s.label !== null);
 
   useEffect(() => {
     if (!animateSequence || hasAnimated.current) return;
@@ -49,16 +52,9 @@ const AnimatedWheelhouse = ({
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated.current) {
           hasAnimated.current = true;
-
-          // Show center first
           setTimeout(() => setCenterVisible(true), animationDelay);
-
-          // Then show each position one by one
-          const filledSlots = slots.filter(s => s.label !== null);
           filledSlots.forEach((_, i) => {
-            setTimeout(() => {
-              setVisibleCount(i + 1);
-            }, animationDelay + 600 + i * 700);
+            setTimeout(() => setVisibleCount(i + 1), animationDelay + 600 + i * 900);
           });
         }
       },
@@ -70,26 +66,19 @@ const AnimatedWheelhouse = ({
   }, [animateSequence, animationDelay]);
 
   const sizeClass = size === "sm" ? "w-36 h-36 md:w-44 md:h-44" : "w-52 h-52 md:w-64 md:h-64";
-
-  // Track which non-null positions should be visible
   let nonNullIndex = 0;
+  const totalPercent = visibleCount * 50;
 
   return (
     <div className="flex flex-col items-center gap-3" ref={ref}>
       <svg viewBox="0 0 300 300" className={sizeClass}>
-        {/* Outer ring */}
         <circle cx="150" cy="150" r="140" fill="none" stroke={borderColor} strokeWidth="3" opacity="0.25" />
         <circle cx="150" cy="150" r="120" fill={borderColor} opacity="0.12" />
-
-        {/* Cross lines — thinner and semi-transparent so they don't obscure */}
-        <line x1="150" y1="12" x2="150" y2="288" stroke="white" strokeWidth="2" opacity="0.2" />
-        <line x1="12" y1="150" x2="288" y2="150" stroke="white" strokeWidth="2" opacity="0.2" />
-
-        {/* Inner ring */}
+        <line x1="150" y1="12" x2="150" y2="288" stroke="white" strokeWidth="2" opacity="0.15" />
+        <line x1="12" y1="150" x2="288" y2="150" stroke="white" strokeWidth="2" opacity="0.15" />
         <circle cx="150" cy="150" r="58" fill="hsl(0 0% 20%)" opacity="0.5" />
         <circle cx="150" cy="150" r="38" fill="white" stroke={borderColor} strokeWidth="2.5" />
 
-        {/* Center label */}
         <text
           x="150" y="154"
           textAnchor="middle" dominantBaseline="middle"
@@ -102,28 +91,59 @@ const AnimatedWheelhouse = ({
           {center}
         </text>
 
-        {/* Position labels — each in a circle badge */}
         {slots.map((slot, i) => {
           if (!slot.label) return null;
           const currentNonNull = nonNullIndex++;
           const isVisible = currentNonNull < visibleCount;
+          const justAppeared = currentNonNull === visibleCount - 1;
 
           return (
             <g key={i} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.6s ease" }}>
-              {/* Background circle for the number */}
               <circle cx={slot.x} cy={slot.y} r="22" fill={borderColor} opacity="0.7" />
               <circle cx={slot.x} cy={slot.y} r="22" fill="none" stroke="white" strokeWidth="1.5" opacity="0.3" />
               <text
-                x={slot.x} y={slot.y + 1}
+                x={slot.x} y={slot.y - 2}
                 textAnchor="middle" dominantBaseline="middle"
-                className="font-bold" fontSize="16" fill="white"
+                className="font-bold" fontSize="14" fill="white"
               >
                 {slot.label}
               </text>
+              {/* 50% label under the number */}
+              <text
+                x={slot.x} y={slot.y + 13}
+                textAnchor="middle" fontSize="8" fill="white" opacity="0.7"
+              >
+                50%
+              </text>
+              {/* Flash ring on appear */}
+              {justAppeared && (
+                <circle
+                  cx={slot.x} cy={slot.y} r="26"
+                  fill="none" stroke="white" strokeWidth="2" opacity="0.6"
+                >
+                  <animate attributeName="r" from="22" to="34" dur="0.8s" fill="freeze" />
+                  <animate attributeName="opacity" from="0.6" to="0" dur="0.8s" fill="freeze" />
+                </circle>
+              )}
             </g>
           );
         })}
       </svg>
+
+      {/* Growth indicator */}
+      {showGrowth && visibleCount > 0 && (
+        <div
+          className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.05] transition-all duration-500"
+          style={{ opacity: visibleCount > 0 ? 1 : 0 }}
+        >
+          <span className="text-xs text-white/50">Received:</span>
+          <span className="text-sm font-bold" style={{ color: borderColor }}>{totalPercent}%</span>
+          {visibleCount >= filledSlots.length && (
+            <span className="text-[10px] tracking-wider uppercase text-white/30 ml-1">· Complete!</span>
+          )}
+        </div>
+      )}
+
       <p className="text-xs font-semibold tracking-widest uppercase text-white/60">{label}</p>
     </div>
   );
@@ -249,19 +269,29 @@ const MobiusLoopVisual = () => {
           { x: 232, y: 195 },
         ].map((pos, i) => {
           const isVisible = i < filling;
+          const justAppeared = i === filling - 1;
           return (
             <g key={i} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.5s ease" }}>
               <circle cx={pos.x} cy={pos.y} r="22" fill={currentColor} opacity="0.8"
                 style={{ transition: "fill 0.8s ease" }} />
               <circle cx={pos.x} cy={pos.y} r="22" fill="none" stroke="white" strokeWidth="1.5" opacity="0.3" />
-              <text x={pos.x} y={pos.y + 1} textAnchor="middle" dominantBaseline="middle"
+              <text x={pos.x} y={pos.y - 2} textAnchor="middle" dominantBaseline="middle"
                 className="font-bold" fontSize="14" fill="white">
                 {posLabels[i]}
               </text>
-              {/* 50% label */}
-              <text x={pos.x} y={pos.y + 16} textAnchor="middle" fontSize="8" fill="white" opacity="0.6">
+              <text x={pos.x} y={pos.y + 13} textAnchor="middle" fontSize="8" fill="white" opacity="0.7">
                 50%
               </text>
+              {/* Flash ring on appear */}
+              {justAppeared && (
+                <circle
+                  cx={pos.x} cy={pos.y} r="26"
+                  fill="none" stroke="white" strokeWidth="2" opacity="0.6"
+                >
+                  <animate attributeName="r" from="22" to="36" dur="0.7s" fill="freeze" />
+                  <animate attributeName="opacity" from="0.6" to="0" dur="0.7s" fill="freeze" />
+                </circle>
+              )}
             </g>
           );
         })}
@@ -276,6 +306,21 @@ const MobiusLoopVisual = () => {
           </g>
         )}
       </svg>
+
+      {/* Running total */}
+      <div className="flex items-center gap-3 transition-all duration-500">
+        <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/[0.05]">
+          <span className="text-xs text-white/50">Total received:</span>
+          <span className="text-lg font-bold tabular-nums" style={{ color: currentColor, transition: "color 0.8s ease" }}>
+            {filling * 50}%
+          </span>
+        </div>
+        {filling > 0 && filling < 6 && (
+          <span className="text-xs font-semibold animate-fade-in" style={{ color: currentColor }}>
+            +50%
+          </span>
+        )}
+      </div>
 
       {/* Loop arrows */}
       <div className="flex items-center gap-2 text-white/40">
@@ -544,6 +589,7 @@ const HowItWorksLife = () => {
               positions={["YOU", "1", "2", "3", "4", "5", "6"]}
               borderColor={BLUE}
               animateSequence
+              showGrowth
             />
             <div className="flex flex-col items-center gap-2">
               <RefreshCw size={28} className="animate-spin" style={{ animationDuration: "4s", color: GOLD }} />
