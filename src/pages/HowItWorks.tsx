@@ -1,6 +1,4 @@
 import Navbar from "@/components/Navbar";
-
-import WheelhouseDiagram from "@/components/WheelhouseDiagram";
 import { Link } from "react-router-dom";
 import { CheckCircle, ArrowRight } from "lucide-react";
 
@@ -149,32 +147,29 @@ const HowItWorks = () => {
         </div>
       </section>
 
-      {/* Wheelhouse */}
+      {/* Wheelhouse & Mobius Loop — Interactive */}
       <section className="py-14 bg-card border-y border-border">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="max-w-2xl mb-10">
-            <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3">Watch It In Action</p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-5">
-              The Wheelhouse
-            </h2>
-            <p className="text-muted-foreground leading-relaxed mb-4 text-sm">
-              YOU are in the center. Your 2 direct invites form the inner circle.
-              Their 2 invites each fill the outer circle — 6 members total.
-            </p>
-            <p className="text-muted-foreground leading-relaxed mb-5 text-sm">
-              <span className="text-foreground font-semibold">You Never Lose Your Team!</span> Each time your Wheelhouse fills,
-              another automatically re-opens — you receive another 6 contributions
-              without additional effort or qualifications.
-            </p>
-            <div className="flex items-center gap-3 p-4 rounded-lg bg-muted/30 border border-border">
-              <div className="w-2 h-2 rounded-full bg-secondary animate-pulse flex-shrink-0" />
-              <p className="text-sm text-muted-foreground">
-                <span className="text-foreground font-medium">You Follow Your Inviter.</span>{" "}
-                Your Team Always Follows You.
-              </p>
-            </div>
-          </div>
-          <WheelhouseDiagram />
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3">Watch It In Action</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-5">
+            The Wheelhouse & Möbius Loop
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4 text-sm max-w-xl mx-auto">
+            YOU are in the center. Your 2 direct invites form the inner circle.
+            Their 2 invites each fill the outer circle — 6 members total.
+            When one cooperative completes, another automatically opens.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-8 text-sm max-w-xl mx-auto">
+            <span className="text-foreground font-semibold">You Never Lose Your Team!</span> Each time your Wheelhouse fills,
+            another automatically re-opens — you receive another 6 contributions
+            without additional effort or qualifications.
+          </p>
+          <Link
+            to="/how-it-works-life"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:scale-105 bg-primary text-primary-foreground"
+          >
+            See the Interactive Demo <ArrowRight size={16} />
+          </Link>
         </div>
       </section>
 
