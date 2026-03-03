@@ -354,15 +354,15 @@ const TwoRingWheelhouse = () => {
   const cy = 200;
 
   const innerPositions = [
-    { angle: -90, label: "1", avatar: avatars[0] },  // top
-    { angle: 90, label: "2", avatar: avatars[1] },   // bottom
+    { angle: 0, label: "1", avatar: avatars[0] },    // right
+    { angle: 180, label: "2", avatar: avatars[1] },   // left
   ];
 
   const outerPositions = [
-    { angle: -45, label: "3", avatar: avatars[2] },   // top-right
-    { angle: -135, label: "4", avatar: avatars[3] },   // top-left
-    { angle: 45, label: "5", avatar: avatars[4] },    // bottom-right
-    { angle: 135, label: "6", avatar: avatars[5] },    // bottom-left
+    { angle: -40, label: "3", avatar: avatars[2] },   // top-right (invited by #1)
+    { angle: 40, label: "4", avatar: avatars[3] },    // bottom-right (invited by #1)
+    { angle: -140, label: "5", avatar: avatars[4] },   // top-left (invited by #2)
+    { angle: 140, label: "6", avatar: avatars[5] },    // bottom-left (invited by #2)
   ];
 
   const allPositions = [...innerPositions, ...outerPositions];
