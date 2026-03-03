@@ -169,6 +169,8 @@ const MobiusLoopVisual = () => {
   // Cumulative total across ALL cycles
   const cumulativePercent = cycle * 300 + filling * 50;
 
+  const MAX_CYCLES = 12;
+
   const runNextCycle = useCallback(() => {
     setFilling(0);
     let pos = 0;
@@ -178,11 +180,25 @@ const MobiusLoopVisual = () => {
       if (pos < 6) {
         timerRefs.current.push(setTimeout(step, 600));
       } else {
-        // Wheel complete — pause, then start next cycle
+        // Wheel complete — pause, then advance or restart
         timerRefs.current.push(setTimeout(() => {
-          setCycle(prev => prev + 1);
-          setFilling(0);
-          timerRefs.current.push(setTimeout(() => runNextCycle(), 400));
+          setCycle(prev => {
+            const next = prev + 1;
+            if (next >= MAX_CYCLES) {
+              // Restart from 0
+              setFilling(0);
+              timerRefs.current.push(setTimeout(() => {
+                setCycle(0);
+                setFilling(0);
+                timerRefs.current.push(setTimeout(() => runNextCycle(), 600));
+              }, 800));
+              return prev;
+            }
+            // Continue to next cycle
+            setFilling(0);
+            timerRefs.current.push(setTimeout(() => runNextCycle(), 400));
+            return next;
+          });
         }, 1500));
       }
     };
@@ -222,7 +238,7 @@ const MobiusLoopVisual = () => {
       <div className="flex items-center gap-3 mb-2">
         <Infinity size={18} style={{ color: currentColor }} />
         <p className="text-xs tracking-widest uppercase text-white/50">
-          Wheel <span className="font-bold text-white/80" style={{ color: currentColor }}>{cycle + 1}</span> · Never stops
+          Wheel <span className="font-bold text-white/80" style={{ color: currentColor }}>{cycle + 1}</span> of {MAX_CYCLES}
         </p>
       </div>
 
