@@ -158,18 +158,37 @@ const AnimatedWheelhouse = ({
   );
 };
 
+/* ── Mini completed wheel thumbnail ── */
+const MiniWheel = ({ wheelNum, color }: { wheelNum: number; color: string }) => (
+  <div className="flex flex-col items-center gap-1 animate-scale-in">
+    <svg viewBox="0 0 100 100" className="w-10 h-10 md:w-12 md:h-12">
+      <circle cx="50" cy="50" r="45" fill="none" stroke={color} strokeWidth="2" opacity="0.4" />
+      <circle cx="50" cy="50" r="38" fill={color} opacity="0.15" />
+      <circle cx="50" cy="50" r="16" fill="white" stroke={color} strokeWidth="1.5" />
+      {[0, 60, 120, 180, 240, 300].map((angle, i) => {
+        const r = 30;
+        const x = 50 + r * Math.cos((angle - 90) * Math.PI / 180);
+        const y = 50 + r * Math.sin((angle - 90) * Math.PI / 180);
+        return <circle key={i} cx={x} cy={y} r="6" fill={color} opacity="0.8" />;
+      })}
+      <text x="50" y="51" textAnchor="middle" dominantBaseline="middle" fontSize="7" fill="hsl(0 0% 20%)" className="font-bold">✓</text>
+    </svg>
+    <span className="text-[9px] font-bold" style={{ color }}>#{wheelNum}</span>
+  </div>
+);
+
 /* ── Mobius Loop Animation ── */
 const MobiusLoopVisual = () => {
   const [cycle, setCycle] = useState(0);
   const [filling, setFilling] = useState(0);
+  const [completedWheels, setCompletedWheels] = useState<number[]>([]);
+  const [isSpinning, setIsSpinning] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const hasStarted = useRef(false);
   const timerRefs = useRef<ReturnType<typeof setTimeout>[]>([]);
 
-  // Cumulative total across ALL cycles
-  const cumulativePercent = cycle * 300 + filling * 50;
-
   const MAX_CYCLES = 12;
+  const cumulativePercent = cycle * 300 + filling * 50;
 
   const runNextCycle = useCallback(() => {
     setFilling(0);
@@ -180,26 +199,30 @@ const MobiusLoopVisual = () => {
       if (pos < 6) {
         timerRefs.current.push(setTimeout(step, 600));
       } else {
-        // Wheel complete — pause, then advance or restart
+        // Wheel complete — spin + shrink, then add to grid
         timerRefs.current.push(setTimeout(() => {
-          setCycle(prev => {
-            const next = prev + 1;
-            if (next >= MAX_CYCLES) {
-              // Restart from 0
+          setIsSpinning(true);
+          timerRefs.current.push(setTimeout(() => {
+            setIsSpinning(false);
+            setCycle(prev => {
+              const completedNum = prev + 1;
+              setCompletedWheels(cw => [...cw, completedNum]);
               setFilling(0);
-              timerRefs.current.push(setTimeout(() => {
-                setCycle(0);
-                setFilling(0);
-                timerRefs.current.push(setTimeout(() => runNextCycle(), 600));
-              }, 800));
-              return prev;
-            }
-            // Continue to next cycle
-            setFilling(0);
-            timerRefs.current.push(setTimeout(() => runNextCycle(), 400));
-            return next;
-          });
-        }, 1500));
+
+              if (completedNum >= MAX_CYCLES) {
+                timerRefs.current.push(setTimeout(() => {
+                  setCycle(0);
+                  setCompletedWheels([]);
+                  setFilling(0);
+                  timerRefs.current.push(setTimeout(() => runNextCycle(), 600));
+                }, 1200));
+                return prev;
+              }
+              timerRefs.current.push(setTimeout(() => runNextCycle(), 400));
+              return prev + 1;
+            });
+          }, 900));
+        }, 800));
       }
     };
     timerRefs.current.push(setTimeout(step, 600));
@@ -207,7 +230,6 @@ const MobiusLoopVisual = () => {
 
   useEffect(() => {
     if (hasStarted.current) return;
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasStarted.current) {
@@ -217,7 +239,6 @@ const MobiusLoopVisual = () => {
       },
       { threshold: 0.3 }
     );
-
     if (ref.current) observer.observe(ref.current);
     return () => {
       observer.disconnect();
@@ -228,13 +249,19 @@ const MobiusLoopVisual = () => {
   const colors = [BLUE, GREEN, GOLD];
   const currentColor = colors[cycle % 3];
   const posLabels = ["1", "2", "3", "4", "5", "6"];
-
-  // Format large percentages
   const formatPercent = (p: number) => p >= 1000 ? `${(p / 1000).toFixed(1)}k` : `${p}`;
 
   return (
     <div ref={ref} className="flex flex-col items-center gap-6">
-      {/* Infinite cycle counter */}
+      <style>{`
+        @keyframes wheel-spin-shrink {
+          0% { transform: rotate(0deg) scale(1); opacity: 1; }
+          60% { transform: rotate(270deg) scale(0.5); opacity: 0.8; }
+          100% { transform: rotate(360deg) scale(0.15); opacity: 0; }
+        }
+      `}</style>
+
+      {/* Cycle counter */}
       <div className="flex items-center gap-3 mb-2">
         <Infinity size={18} style={{ color: currentColor }} />
         <p className="text-xs tracking-widest uppercase text-white/50">
@@ -242,78 +269,57 @@ const MobiusLoopVisual = () => {
         </p>
       </div>
 
-      {/* Animated Wheelhouse */}
-      <svg viewBox="0 0 300 300" className="w-56 h-56 md:w-72 md:h-72">
-        <circle cx="150" cy="150" r="140" fill="none" stroke={currentColor} strokeWidth="3" opacity="0.25"
-          style={{ transition: "stroke 0.8s ease" }} />
-        <circle cx="150" cy="150" r="120" fill={currentColor} opacity="0.12"
-          style={{ transition: "fill 0.8s ease" }} />
-
-        <line x1="150" y1="12" x2="150" y2="288" stroke="white" strokeWidth="2" opacity="0.2" />
-        <line x1="12" y1="150" x2="288" y2="150" stroke="white" strokeWidth="2" opacity="0.2" />
-
-        {/* Center background */}
-        <circle cx="150" cy="150" r="58" fill="hsl(0 0% 20%)" opacity="0.5" />
-        <circle cx="150" cy="150" r="42" fill="white" stroke={currentColor} strokeWidth="2.5"
-          style={{ transition: "stroke 0.8s ease" }} />
-
-        {/* Center: YOU + cumulative % */}
-        <text x="150" y="143" textAnchor="middle" dominantBaseline="middle"
-          className="font-bold" fontSize="12" fill="hsl(0 0% 8%)">
-          YOU
-        </text>
-        <text x="150" y="160" textAnchor="middle" dominantBaseline="middle"
-          className="font-bold" fontSize="11" fill={currentColor}
-          style={{ transition: "fill 0.8s ease" }}>
-          {formatPercent(cumulativePercent)}%
-        </text>
-
-        {/* Positions */}
-        {[
-          { x: 150, y: 68 },
-          { x: 150, y: 232 },
-          { x: 68, y: 105 },
-          { x: 232, y: 105 },
-          { x: 68, y: 195 },
-          { x: 232, y: 195 },
-        ].map((pos, i) => {
-          const isVisible = i < filling;
-          const justAppeared = i === filling - 1;
-          return (
-            <g key={`${cycle}-${i}`} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.5s ease" }}>
-              <circle cx={pos.x} cy={pos.y} r="22" fill={currentColor} opacity="0.8"
-                style={{ transition: "fill 0.8s ease" }} />
-              <circle cx={pos.x} cy={pos.y} r="22" fill="none" stroke="white" strokeWidth="1.5" opacity="0.3" />
-              <text x={pos.x} y={pos.y - 2} textAnchor="middle" dominantBaseline="middle"
-                className="font-bold" fontSize="14" fill="white">
-                {posLabels[i]}
-              </text>
-              <text x={pos.x} y={pos.y + 13} textAnchor="middle" fontSize="8" fill="white" opacity="0.7">
-                50%
-              </text>
-              {justAppeared && (
-                <circle
-                  cx={pos.x} cy={pos.y} r="26"
-                  fill="none" stroke="white" strokeWidth="2" opacity="0.6"
-                >
-                  <animate attributeName="r" from="22" to="36" dur="0.7s" fill="freeze" />
-                  <animate attributeName="opacity" from="0.6" to="0" dur="0.7s" fill="freeze" />
-                </circle>
-              )}
-            </g>
-          );
-        })}
-
-        {/* Completion flash */}
-        {filling >= 6 && (
-          <g opacity="1" style={{ transition: "opacity 0.5s ease" }}>
+      {/* Active Wheelhouse */}
+      <div style={{ animation: isSpinning ? "wheel-spin-shrink 0.9s ease-in-out forwards" : undefined }}>
+        <svg viewBox="0 0 300 300" className="w-56 h-56 md:w-72 md:h-72">
+          <circle cx="150" cy="150" r="140" fill="none" stroke={currentColor} strokeWidth="3" opacity="0.25"
+            style={{ transition: "stroke 0.8s ease" }} />
+          <circle cx="150" cy="150" r="120" fill={currentColor} opacity="0.12"
+            style={{ transition: "fill 0.8s ease" }} />
+          <line x1="150" y1="12" x2="150" y2="288" stroke="white" strokeWidth="2" opacity="0.2" />
+          <line x1="12" y1="150" x2="288" y2="150" stroke="white" strokeWidth="2" opacity="0.2" />
+          <circle cx="150" cy="150" r="58" fill="hsl(0 0% 20%)" opacity="0.5" />
+          <circle cx="150" cy="150" r="42" fill="white" stroke={currentColor} strokeWidth="2.5"
+            style={{ transition: "stroke 0.8s ease" }} />
+          <text x="150" y="143" textAnchor="middle" dominantBaseline="middle"
+            className="font-bold" fontSize="12" fill="hsl(0 0% 8%)">YOU</text>
+          <text x="150" y="160" textAnchor="middle" dominantBaseline="middle"
+            className="font-bold" fontSize="11" fill={currentColor}
+            style={{ transition: "fill 0.8s ease" }}>
+            {formatPercent(cumulativePercent)}%
+          </text>
+          {[
+            { x: 150, y: 68 }, { x: 150, y: 232 },
+            { x: 68, y: 105 }, { x: 232, y: 105 },
+            { x: 68, y: 195 }, { x: 232, y: 195 },
+          ].map((pos, i) => {
+            const isVisible = i < filling;
+            const justAppeared = i === filling - 1;
+            return (
+              <g key={`${cycle}-${i}`} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.5s ease" }}>
+                <circle cx={pos.x} cy={pos.y} r="22" fill={currentColor} opacity="0.8"
+                  style={{ transition: "fill 0.8s ease" }} />
+                <circle cx={pos.x} cy={pos.y} r="22" fill="none" stroke="white" strokeWidth="1.5" opacity="0.3" />
+                <text x={pos.x} y={pos.y - 2} textAnchor="middle" dominantBaseline="middle"
+                  className="font-bold" fontSize="14" fill="white">{posLabels[i]}</text>
+                <text x={pos.x} y={pos.y + 13} textAnchor="middle" fontSize="8" fill="white" opacity="0.7">50%</text>
+                {justAppeared && (
+                  <circle cx={pos.x} cy={pos.y} r="26" fill="none" stroke="white" strokeWidth="2" opacity="0.6">
+                    <animate attributeName="r" from="22" to="36" dur="0.7s" fill="freeze" />
+                    <animate attributeName="opacity" from="0.6" to="0" dur="0.7s" fill="freeze" />
+                  </circle>
+                )}
+              </g>
+            );
+          })}
+          {filling >= 6 && !isSpinning && (
             <text x="150" y="20" textAnchor="middle" fontSize="11" fill={currentColor}
               className="font-bold" style={{ transition: "fill 0.8s ease" }}>
               ✓ WHEEL {cycle + 1} COMPLETE
             </text>
-          </g>
-        )}
-      </svg>
+          )}
+        </svg>
+      </div>
 
       {/* Running total */}
       <div className="flex items-center gap-3 transition-all duration-500">
@@ -324,11 +330,21 @@ const MobiusLoopVisual = () => {
           </span>
         </div>
         {filling > 0 && filling < 6 && (
-          <span className="text-xs font-semibold animate-fade-in" style={{ color: currentColor }}>
-            +50%
-          </span>
+          <span className="text-xs font-semibold animate-fade-in" style={{ color: currentColor }}>+50%</span>
         )}
       </div>
+
+      {/* Completed wheels grid — 2 rows of 6 */}
+      {completedWheels.length > 0 && (
+        <div className="w-full max-w-md mt-4">
+          <p className="text-[10px] text-white/40 uppercase tracking-widest text-center mb-3">Completed Wheels</p>
+          <div className="grid grid-cols-6 gap-2 justify-items-center">
+            {completedWheels.map((wNum) => (
+              <MiniWheel key={wNum} wheelNum={wNum} color={colors[(wNum - 1) % 3]} />
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Infinite loop indicator */}
       <div className="flex items-center gap-2 text-white/40">
