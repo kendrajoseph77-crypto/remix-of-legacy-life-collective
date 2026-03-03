@@ -16,6 +16,7 @@ import FastDashboard from "./pages/BuilderDashboard";
 import CoreDashboard from "./pages/ArchitectDashboard";
 import NotFound from "./pages/NotFound";
 import HowItWorksDemo from "./pages/HowItWorksDemo";
+import HowItWorksLife from "./pages/HowItWorksLife";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/how-it-works-demo" element={<HowItWorksDemo />} />
+          <Route path="/how-it-works-life" element={<HowItWorksLife />} />
           <Route path="/join" element={<Join />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register/fast" element={<RegisterFast />} />
