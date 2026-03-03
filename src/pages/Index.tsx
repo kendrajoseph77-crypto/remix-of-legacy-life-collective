@@ -89,6 +89,9 @@ const Index = () => {
           </div>
 
           <div className="absolute top-4 right-6 z-20 flex items-center gap-4">
+            <Link to="/how-it-works" className="text-white/80 hover:text-white text-sm font-medium underline transition-colors">
+              How It Works
+            </Link>
             <Link to="/how-it-works-demo" className="text-white/80 hover:text-white text-sm font-medium underline transition-colors">
               Demo
             </Link>
