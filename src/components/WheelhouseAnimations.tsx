@@ -17,17 +17,28 @@ const GOLD = "hsl(39 55% 52%)";
 /* ── Mini completed wheel thumbnail ── */
 const MiniWheel = ({ wheelNum, color }: { wheelNum: number; color: string }) => (
   <div className="flex flex-col items-center gap-1 animate-scale-in">
-      <svg viewBox="0 0 100 100" className="w-10 h-10 md:w-12 md:h-12">
-      <circle cx="50" cy="50" r="45" fill="none" stroke={color} strokeWidth="2" opacity="0.4" />
-      <circle cx="50" cy="50" r="38" fill={color} opacity="0.15" />
-      <circle cx="50" cy="50" r="16" fill="white" stroke={color} strokeWidth="1.5" />
-      {[0, 60, 120, 180, 240, 300].map((angle, i) => {
-        const r = 30;
-        const x = 50 + r * Math.cos((angle - 90) * Math.PI / 180);
-        const y = 50 + r * Math.sin((angle - 90) * Math.PI / 180);
-        return <circle key={i} cx={x} cy={y} r="6" fill={color} opacity="0.8" />;
-      })}
-      <text x="50" y="51" textAnchor="middle" dominantBaseline="middle" fontSize="7" fill="hsl(0 0% 20%)" className="font-bold">✓</text>
+    <svg viewBox="0 0 100 110" className="w-10 h-10 md:w-12 md:h-12">
+      {/* Pyramid outline */}
+      <polygon points="50,8 10,95 90,95" fill={color} opacity="0.15" stroke={color} strokeWidth="2" />
+      {/* Apex node */}
+      <circle cx="50" cy="18" r="8" fill="white" stroke={color} strokeWidth="1.5" />
+      {/* Middle row */}
+      <circle cx="37" cy="55" r="6" fill={color} opacity="0.8" />
+      <circle cx="63" cy="55" r="6" fill={color} opacity="0.8" />
+      {/* Bottom row */}
+      <circle cx="22" cy="85" r="5" fill={color} opacity="0.8" />
+      <circle cx="38" cy="85" r="5" fill={color} opacity="0.8" />
+      <circle cx="62" cy="85" r="5" fill={color} opacity="0.8" />
+      <circle cx="78" cy="85" r="5" fill={color} opacity="0.8" />
+      {/* Connection lines */}
+      <line x1="50" y1="26" x2="37" y2="49" stroke={color} strokeWidth="1" opacity="0.4" />
+      <line x1="50" y1="26" x2="63" y2="49" stroke={color} strokeWidth="1" opacity="0.4" />
+      <line x1="37" y1="61" x2="22" y2="80" stroke={color} strokeWidth="1" opacity="0.4" />
+      <line x1="37" y1="61" x2="38" y2="80" stroke={color} strokeWidth="1" opacity="0.4" />
+      <line x1="63" y1="61" x2="62" y2="80" stroke={color} strokeWidth="1" opacity="0.4" />
+      <line x1="63" y1="61" x2="78" y2="80" stroke={color} strokeWidth="1" opacity="0.4" />
+      {/* Checkmark */}
+      <text x="50" y="20" textAnchor="middle" dominantBaseline="middle" fontSize="7" fill="hsl(0 0% 20%)" className="font-bold">✓</text>
     </svg>
     <span className="text-[9px] font-bold" style={{ color }}>#{wheelNum}</span>
   </div>
