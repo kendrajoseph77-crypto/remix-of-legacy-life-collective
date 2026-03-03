@@ -791,8 +791,7 @@ const HowItWorksLife = () => {
             Works
           </h1>
           <p className="text-lg md:text-xl leading-relaxed max-w-2xl mx-auto text-white/60 mb-3">
-            A 2×2 peer-to-peer cooperative where 100% of every contribution goes directly to participants.
-            No middlemen. No exceptions.
+            Coop5050 is our high-impact Cooperative Crowdfunding System built for speed. Rapid participation cycles create instant income opportunities capable of generating significant short and mid-term income to meet your immediate financial needs.
           </p>
           <p className="text-base text-white/40 italic">Money for Everything!</p>
         </div>
