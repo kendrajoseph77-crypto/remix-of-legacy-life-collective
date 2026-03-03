@@ -164,55 +164,40 @@ const MobiusLoopVisual = () => {
   const [filling, setFilling] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const hasStarted = useRef(false);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const timerRefs = useRef<ReturnType<typeof setTimeout>[]>([]);
 
-  const startAnimation = useCallback(() => {
-    if (hasStarted.current) return;
-    hasStarted.current = true;
+  // Cumulative total across ALL cycles
+  const cumulativePercent = cycle * 300 + filling * 50;
 
-    const runCycle = () => {
-      setFilling(0);
-      let pos = 0;
-      const fillInterval = setInterval(() => {
-        pos++;
-        setFilling(pos);
-        if (pos >= 6) {
-          clearInterval(fillInterval);
-          // After filling, show complete then move to next cycle
-          setTimeout(() => {
-            setCycle(prev => prev + 1);
-            setFilling(0);
-            // Start next fill
-            let pos2 = 0;
-            const fillInterval2 = setInterval(() => {
-              pos2++;
-              setFilling(pos2);
-              if (pos2 >= 6) {
-                clearInterval(fillInterval2);
-                setTimeout(() => {
-                  setCycle(prev => prev + 1);
-                  setFilling(0);
-                  // Reset after showing 3 cycles
-                  setTimeout(() => {
-                    hasStarted.current = false;
-                    setCycle(0);
-                    startAnimation();
-                  }, 2000);
-                }, 1500);
-              }
-            }, 600);
-          }, 1500);
-        }
-      }, 600);
+  const runNextCycle = useCallback(() => {
+    setFilling(0);
+    let pos = 0;
+    const step = () => {
+      pos++;
+      setFilling(pos);
+      if (pos < 6) {
+        timerRefs.current.push(setTimeout(step, 600));
+      } else {
+        // Wheel complete — pause, then start next cycle
+        timerRefs.current.push(setTimeout(() => {
+          setCycle(prev => prev + 1);
+          setFilling(0);
+          timerRefs.current.push(setTimeout(() => runNextCycle(), 400));
+        }, 1500));
+      }
     };
-
-    setTimeout(runCycle, 500);
+    timerRefs.current.push(setTimeout(step, 600));
   }, []);
 
   useEffect(() => {
+    if (hasStarted.current) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) startAnimation();
+        if (entry.isIntersecting && !hasStarted.current) {
+          hasStarted.current = true;
+          timerRefs.current.push(setTimeout(() => runNextCycle(), 500));
+        }
       },
       { threshold: 0.3 }
     );
@@ -220,32 +205,24 @@ const MobiusLoopVisual = () => {
     if (ref.current) observer.observe(ref.current);
     return () => {
       observer.disconnect();
-      if (intervalRef.current) clearInterval(intervalRef.current);
+      timerRefs.current.forEach(clearTimeout);
     };
-  }, [startAnimation]);
+  }, [runNextCycle]);
 
   const colors = [BLUE, GREEN, GOLD];
   const currentColor = colors[cycle % 3];
-
   const posLabels = ["1", "2", "3", "4", "5", "6"];
+
+  // Format large percentages
+  const formatPercent = (p: number) => p >= 1000 ? `${(p / 1000).toFixed(1)}k` : `${p}`;
 
   return (
     <div ref={ref} className="flex flex-col items-center gap-6">
-      {/* Cycle counter */}
+      {/* Infinite cycle counter */}
       <div className="flex items-center gap-3 mb-2">
-        {[0, 1, 2].map(c => (
-          <div
-            key={c}
-            className="w-3 h-3 rounded-full transition-all duration-500"
-            style={{
-              background: cycle > c ? colors[c] : "transparent",
-              border: `2px solid ${colors[c]}`,
-              transform: cycle === c ? "scale(1.4)" : "scale(1)",
-            }}
-          />
-        ))}
-        <p className="text-xs tracking-widest uppercase text-white/50 ml-2">
-          Cycle {(cycle % 3) + 1}
+        <Infinity size={18} style={{ color: currentColor }} />
+        <p className="text-xs tracking-widest uppercase text-white/50">
+          Wheel <span className="font-bold text-white/80" style={{ color: currentColor }}>{cycle + 1}</span> · Never stops
         </p>
       </div>
 
@@ -259,13 +236,20 @@ const MobiusLoopVisual = () => {
         <line x1="150" y1="12" x2="150" y2="288" stroke="white" strokeWidth="2" opacity="0.2" />
         <line x1="12" y1="150" x2="288" y2="150" stroke="white" strokeWidth="2" opacity="0.2" />
 
+        {/* Center background */}
         <circle cx="150" cy="150" r="58" fill="hsl(0 0% 20%)" opacity="0.5" />
-        <circle cx="150" cy="150" r="38" fill="white" stroke={currentColor} strokeWidth="2.5"
+        <circle cx="150" cy="150" r="42" fill="white" stroke={currentColor} strokeWidth="2.5"
           style={{ transition: "stroke 0.8s ease" }} />
 
-        <text x="150" y="154" textAnchor="middle" dominantBaseline="middle"
-          className="font-bold" fontSize="14" fill="hsl(0 0% 8%)">
+        {/* Center: YOU + cumulative % */}
+        <text x="150" y="143" textAnchor="middle" dominantBaseline="middle"
+          className="font-bold" fontSize="12" fill="hsl(0 0% 8%)">
           YOU
+        </text>
+        <text x="150" y="160" textAnchor="middle" dominantBaseline="middle"
+          className="font-bold" fontSize="11" fill={currentColor}
+          style={{ transition: "fill 0.8s ease" }}>
+          {formatPercent(cumulativePercent)}%
         </text>
 
         {/* Positions */}
@@ -280,7 +264,7 @@ const MobiusLoopVisual = () => {
           const isVisible = i < filling;
           const justAppeared = i === filling - 1;
           return (
-            <g key={i} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.5s ease" }}>
+            <g key={`${cycle}-${i}`} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.5s ease" }}>
               <circle cx={pos.x} cy={pos.y} r="22" fill={currentColor} opacity="0.8"
                 style={{ transition: "fill 0.8s ease" }} />
               <circle cx={pos.x} cy={pos.y} r="22" fill="none" stroke="white" strokeWidth="1.5" opacity="0.3" />
@@ -291,7 +275,6 @@ const MobiusLoopVisual = () => {
               <text x={pos.x} y={pos.y + 13} textAnchor="middle" fontSize="8" fill="white" opacity="0.7">
                 50%
               </text>
-              {/* Flash ring on appear */}
               {justAppeared && (
                 <circle
                   cx={pos.x} cy={pos.y} r="26"
@@ -305,12 +288,12 @@ const MobiusLoopVisual = () => {
           );
         })}
 
-        {/* Completion overlay */}
+        {/* Completion flash */}
         {filling >= 6 && (
           <g opacity="1" style={{ transition: "opacity 0.5s ease" }}>
             <text x="150" y="20" textAnchor="middle" fontSize="11" fill={currentColor}
               className="font-bold" style={{ transition: "fill 0.8s ease" }}>
-              ✓ 300% COMPLETE
+              ✓ WHEEL {cycle + 1} COMPLETE
             </text>
           </g>
         )}
@@ -319,9 +302,9 @@ const MobiusLoopVisual = () => {
       {/* Running total */}
       <div className="flex items-center gap-3 transition-all duration-500">
         <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/[0.05]">
-          <span className="text-xs text-white/50">Total received:</span>
+          <span className="text-xs text-white/50">Cumulative:</span>
           <span className="text-lg font-bold tabular-nums" style={{ color: currentColor, transition: "color 0.8s ease" }}>
-            {filling * 50}%
+            {formatPercent(cumulativePercent)}%
           </span>
         </div>
         {filling > 0 && filling < 6 && (
@@ -331,10 +314,10 @@ const MobiusLoopVisual = () => {
         )}
       </div>
 
-      {/* Loop arrows */}
+      {/* Infinite loop indicator */}
       <div className="flex items-center gap-2 text-white/40">
-        <RefreshCw size={16} className="animate-spin" style={{ animationDuration: "3s", color: currentColor }} />
-        <p className="text-xs tracking-widest uppercase">Mobius Loop Active</p>
+        <Infinity size={18} className="animate-pulse" style={{ color: currentColor }} />
+        <p className="text-xs tracking-widest uppercase">Infinite Möbius Loop</p>
       </div>
     </div>
   );
