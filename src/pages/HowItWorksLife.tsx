@@ -1045,71 +1045,52 @@ const HowItWorksLife = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
-            {/* 5050 FAST */}
-            <div className="rounded-xl border-2 p-6 text-center bg-white/[0.03]" style={{ borderColor: BLUE }}>
-              <h3 className="text-2xl font-bold mb-4" style={{ color: BLUE, fontFamily: heading }}>5050 Fast</h3>
-              <div className="grid grid-cols-3 gap-3 mb-6">
-                {[
+            {[
+              {
+                name: "5050 Fast", color: BLUE,
+                vaults: [
                   { contribution: "$25", payout: "$75", per: "6 × $12.50" },
                   { contribution: "$50", payout: "$150", per: "6 × $25" },
                   { contribution: "$150", payout: "$450", per: "6 × $75" },
-                ].map((v, i) => (
-                  <div key={i} className="p-3 rounded-lg border border-white/10 bg-white/[0.03]">
-                    <p className="text-sm font-semibold" style={{ color: GOLD }}>{v.contribution}</p>
-                    <p className="text-[10px] text-white/40 mb-2">Cooperative</p>
-                    <p className="text-xl font-bold text-white">{v.payout}</p>
-                    <p className="text-[10px] text-white/40">Over and Over</p>
-                    <p className="text-[10px] text-white/30 mt-1">{v.per}</p>
-                  </div>
-                ))}
-              </div>
-              <p className="text-sm text-white/50">Receive</p>
-              <p className="text-2xl font-bold" style={{ color: GOLD }}>$675 <span className="text-sm font-normal text-white/40">Each Cycle</span></p>
-            </div>
-
-            {/* 5050 CORE */}
-            <div className="rounded-xl border-2 p-6 text-center bg-white/[0.03]" style={{ borderColor: GREEN }}>
-              <h3 className="text-2xl font-bold mb-4" style={{ color: GREEN, fontFamily: heading }}>5050 Core</h3>
-              <div className="grid grid-cols-3 gap-3 mb-6">
-                {[
+                ],
+                total: "$675",
+              },
+              {
+                name: "5050 Core", color: GREEN,
+                vaults: [
                   { contribution: "$250", payout: "$750", per: "6 × $125" },
                   { contribution: "$500", payout: "$1,500", per: "6 × $250" },
                   { contribution: "$1,000", payout: "$3,000", per: "6 × $500" },
-                ].map((v, i) => (
-                  <div key={i} className="p-3 rounded-lg border border-white/10 bg-white/[0.03]">
-                    <p className="text-sm font-semibold" style={{ color: GOLD }}>{v.contribution}</p>
-                    <p className="text-[10px] text-white/40 mb-2">Cooperative</p>
-                    <p className="text-xl font-bold text-white">{v.payout}</p>
-                    <p className="text-[10px] text-white/40">Over and Over</p>
-                    <p className="text-[10px] text-white/30 mt-1">{v.per}</p>
-                  </div>
-                ))}
-              </div>
-              <p className="text-sm text-white/50">Receive</p>
-              <p className="text-2xl font-bold" style={{ color: GOLD }}>$5,250 <span className="text-sm font-normal text-white/40">Each Cycle</span></p>
-            </div>
-
-            {/* 5050 MAX */}
-            <div className="rounded-xl border-2 p-6 text-center bg-white/[0.03]" style={{ borderColor: GOLD }}>
-              <h3 className="text-2xl font-bold mb-4" style={{ color: GOLD, fontFamily: heading }}>5050 Max</h3>
-              <div className="grid grid-cols-3 gap-3 mb-6">
-                {[
+                ],
+                total: "$5,250",
+              },
+              {
+                name: "5050 Max", color: GOLD,
+                vaults: [
                   { contribution: "$2,500", payout: "$7,500", per: "6 × $1,250" },
                   { contribution: "$5,000", payout: "$15,000", per: "6 × $2,500" },
                   { contribution: "$10,000", payout: "$30,000", per: "6 × $5,000" },
-                ].map((v, i) => (
-                  <div key={i} className="p-3 rounded-lg border border-white/10 bg-white/[0.03]">
-                    <p className="text-sm font-semibold" style={{ color: GOLD }}>{v.contribution}</p>
-                    <p className="text-[10px] text-white/40 mb-2">Cooperative</p>
-                    <p className="text-xl font-bold text-white">{v.payout}</p>
-                    <p className="text-[10px] text-white/40">Over and Over</p>
-                    <p className="text-[10px] text-white/30 mt-1">{v.per}</p>
-                  </div>
-                ))}
+                ],
+                total: "$52,500",
+              },
+            ].map((level, li) => (
+              <div key={li} className="rounded-xl border-2 p-4 md:p-5 text-center bg-white/[0.03]" style={{ borderColor: level.color }}>
+                <h3 className="text-2xl font-bold mb-4" style={{ color: level.color, fontFamily: heading }}>{level.name}</h3>
+                <div className="grid grid-cols-3 gap-2 mb-6">
+                  {level.vaults.map((v, i) => (
+                    <div key={i} className="p-2 rounded-lg border border-white/10 bg-white/[0.03] flex flex-col items-center justify-center">
+                      <p className="text-xs font-semibold truncate w-full" style={{ color: GOLD }}>{v.contribution}</p>
+                      <p className="text-[9px] text-white/40 mb-1">Cooperative</p>
+                      <p className="text-base md:text-lg font-bold text-white truncate w-full">{v.payout}</p>
+                      <p className="text-[9px] text-white/40">Over and Over</p>
+                      <p className="text-[9px] text-white/30 mt-0.5 truncate w-full">{v.per}</p>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-sm text-white/50">Receive</p>
+                <p className="text-2xl font-bold" style={{ color: GOLD }}>{level.total} <span className="text-sm font-normal text-white/40">Each Cycle</span></p>
               </div>
-              <p className="text-sm text-white/50">Receive</p>
-              <p className="text-2xl font-bold" style={{ color: GOLD }}>$52,500 <span className="text-sm font-normal text-white/40">Each Cycle</span></p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
