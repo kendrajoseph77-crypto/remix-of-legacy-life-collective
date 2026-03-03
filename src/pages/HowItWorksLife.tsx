@@ -210,12 +210,6 @@ const MobiusLoopVisual = () => {
               setFilling(0);
 
               if (completedNum >= MAX_CYCLES) {
-                timerRefs.current.push(setTimeout(() => {
-                  setCycle(0);
-                  setCompletedWheels([]);
-                  setFilling(0);
-                  timerRefs.current.push(setTimeout(() => runNextCycle(), 600));
-                }, 1200));
                 return prev;
               }
               timerRefs.current.push(setTimeout(() => runNextCycle(), 400));
