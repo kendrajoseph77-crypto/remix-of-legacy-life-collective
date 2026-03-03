@@ -308,31 +308,28 @@ export const MobiusLoopVisual = () => {
   );
 };
 
-/* ── Two-Ring Wheelhouse with Avatar Photos ── */
+/* ── Pyramid Wheelhouse with Avatar Photos ── */
 export const TwoRingWheelhouse = () => {
   const [visibleCount, setVisibleCount] = useState(0);
   const [totalPercent, setTotalPercent] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
 
-  const innerRadius = 90;
-  const outerRadius = 160;
-  const cx = 200;
-  const cy = 200;
+  const youPos = { x: 250, y: 55 };
 
-  const innerPositions = [
-    { angle: 0, label: "1", avatar: avatars[0] },
-    { angle: 180, label: "2", avatar: avatars[1] },
+  const middleRow = [
+    { x: 155, y: 175, label: "1", avatar: avatars[0] },
+    { x: 345, y: 175, label: "2", avatar: avatars[1] },
   ];
 
-  const outerPositions = [
-    { angle: -40, label: "3", avatar: avatars[2] },
-    { angle: 40, label: "4", avatar: avatars[3] },
-    { angle: -140, label: "5", avatar: avatars[4] },
-    { angle: 140, label: "6", avatar: avatars[5] },
+  const bottomRow = [
+    { x: 70,  y: 305, label: "3", avatar: avatars[2] },
+    { x: 190, y: 305, label: "4", avatar: avatars[3] },
+    { x: 310, y: 305, label: "5", avatar: avatars[4] },
+    { x: 430, y: 305, label: "6", avatar: avatars[5] },
   ];
 
-  const allPositions = [...innerPositions, ...outerPositions];
+  const allPositions = [...middleRow, ...bottomRow];
 
   useEffect(() => {
     if (hasAnimated.current) return;
@@ -354,131 +351,74 @@ export const TwoRingWheelhouse = () => {
     return () => observer.disconnect();
   }, []);
 
-  const getPos = (angle: number, radius: number) => ({
-    x: cx + radius * Math.cos((angle * Math.PI) / 180),
-    y: cy + radius * Math.sin((angle * Math.PI) / 180),
-  });
-
   const clipId = useRef(`clip-${Math.random().toString(36).slice(2)}`).current;
+
+  const renderNode = (pos: { x: number; y: number; label: string; avatar: string }, idx: number, color: string, r: number) => {
+    const isVisible = idx < visibleCount;
+    const justAppeared = idx === visibleCount - 1;
+    return (
+      <g key={`node-${idx}`} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.6s ease" }}>
+        <g transform={`translate(${pos.x}, ${pos.y})`}>
+          <circle r={r + 2} fill={color} opacity="0.3" />
+          <clipPath id={`${clipId}-n-${idx}`}>
+            <circle r={r} />
+          </clipPath>
+          <image
+            href={pos.avatar}
+            x={-r} y={-r} width={r * 2} height={r * 2}
+            clipPath={`url(#${clipId}-n-${idx})`}
+            preserveAspectRatio="xMidYMid slice"
+          />
+          <circle r={r} fill="none" stroke={color} strokeWidth="2.5" />
+        </g>
+        <circle cx={pos.x + r * 0.7} cy={pos.y - r * 0.7} r="10" fill={color} />
+        <text x={pos.x + r * 0.7} y={pos.y - r * 0.7 + 1} textAnchor="middle" dominantBaseline="middle"
+          fontSize="10" fill="white" className="font-bold">{pos.label}</text>
+        <g transform={`translate(${pos.x}, ${pos.y + r + 14})`}>
+          <rect x="-18" y="-8" width="36" height="16" rx="8" fill={color} opacity="0.9" />
+          <text x="0" y="1" textAnchor="middle" dominantBaseline="middle"
+            fontSize="9" fill="white" className="font-bold">50%</text>
+        </g>
+        {justAppeared && (
+          <circle cx={pos.x} cy={pos.y} r={r} fill="none" stroke={color} strokeWidth="2" opacity="0.6">
+            <animate attributeName="r" from={`${r}`} to={`${r + 16}`} dur="0.8s" fill="freeze" />
+            <animate attributeName="opacity" from="0.6" to="0" dur="0.8s" fill="freeze" />
+          </circle>
+        )}
+      </g>
+    );
+  };
 
   return (
     <div ref={ref} className="flex flex-col items-center gap-6">
-      <svg viewBox="0 0 400 400" className="w-72 h-72 md:w-96 md:h-96">
-        <defs>
-          {allPositions.map((_, i) => (
-            <clipPath key={i} id={`${clipId}-${i}`}>
-              <circle cx="0" cy="0" r="28" />
-            </clipPath>
-          ))}
-          <clipPath id={`${clipId}-center`}>
-            <circle cx={cx} cy={cy} r="32" />
-          </clipPath>
-        </defs>
+      <svg viewBox="0 0 500 380" className="w-full max-w-lg md:max-w-xl">
+        {/* Lines from YOU to middle row */}
+        {middleRow.map((pos, i) => (
+          <line key={`lm-${i}`} x1={youPos.x} y1={youPos.y} x2={pos.x} y2={pos.y}
+            stroke={BLUE} strokeWidth="2" opacity={i < visibleCount ? 0.35 : 0.08}
+            style={{ transition: "opacity 0.6s ease" }} />
+        ))}
 
-        <circle cx={cx} cy={cy} r={outerRadius} fill="none" stroke={GOLD} strokeWidth="1.5" opacity="0.15" strokeDasharray="6 4" />
-        <circle cx={cx} cy={cy} r={innerRadius} fill="none" stroke={BLUE} strokeWidth="1.5" opacity="0.2" strokeDasharray="6 4" />
-
-        {innerPositions.map((pos, i) => {
-          const p = getPos(pos.angle, innerRadius);
+        {/* Lines from middle to bottom */}
+        {bottomRow.map((pos, i) => {
+          const parent = middleRow[i < 2 ? 0 : 1];
           return (
-            <line key={`ci-${i}`} x1={cx} y1={cy} x2={p.x} y2={p.y}
-              stroke={BLUE} strokeWidth="1.5" opacity={i < visibleCount ? 0.4 : 0.1}
+            <line key={`lb-${i}`} x1={parent.x} y1={parent.y} x2={pos.x} y2={pos.y}
+              stroke={GREEN} strokeWidth="2" opacity={i + 2 < visibleCount ? 0.3 : 0.08}
               style={{ transition: "opacity 0.6s ease" }} />
           );
         })}
 
-        {outerPositions.map((pos, i) => {
-          const p = getPos(pos.angle, outerRadius);
-          const parentIdx = i < 2 ? 0 : 1;
-          const parent = getPos(innerPositions[parentIdx].angle, innerRadius);
-          return (
-            <line key={`co-${i}`} x1={parent.x} y1={parent.y} x2={p.x} y2={p.y}
-              stroke={GREEN} strokeWidth="1.5" opacity={i + 2 < visibleCount ? 0.3 : 0.08}
-              style={{ transition: "opacity 0.6s ease" }} />
-          );
-        })}
+        {/* YOU at apex */}
+        <circle cx={youPos.x} cy={youPos.y} r="32" fill="white" stroke={GOLD} strokeWidth="3" />
+        <text x={youPos.x} y={youPos.y + 1} textAnchor="middle" dominantBaseline="middle"
+          className="font-bold" fontSize="15" fill="hsl(0 0% 8%)">YOU</text>
 
-        <circle cx={cx} cy={cy} r="36" fill="white" stroke={GOLD} strokeWidth="3" />
-        <text x={cx} y={cy + 1} textAnchor="middle" dominantBaseline="middle"
-          className="font-bold" fontSize="16" fill="hsl(0 0% 8%)">
-          YOU
-        </text>
+        {/* Middle row – blue */}
+        {middleRow.map((pos, i) => renderNode(pos, i, BLUE, 28))}
 
-
-        {innerPositions.map((pos, i) => {
-          const p = getPos(pos.angle, innerRadius);
-          const isVisible = i < visibleCount;
-          const justAppeared = i === visibleCount - 1;
-          return (
-            <g key={`inner-${i}`} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.6s ease" }}>
-              <g transform={`translate(${p.x}, ${p.y})`}>
-                <circle r="30" fill={BLUE} opacity="0.3" />
-                <clipPath id={`${clipId}-inner-${i}`}>
-                  <circle r="28" />
-                </clipPath>
-                <image
-                  href={pos.avatar}
-                  x="-28" y="-28" width="56" height="56"
-                  clipPath={`url(#${clipId}-inner-${i})`}
-                  preserveAspectRatio="xMidYMid slice"
-                />
-                <circle r="28" fill="none" stroke={BLUE} strokeWidth="3" />
-              </g>
-              <circle cx={p.x + 20} cy={p.y - 20} r="10" fill={BLUE} />
-              <text x={p.x + 20} y={p.y - 19} textAnchor="middle" dominantBaseline="middle"
-                fontSize="10" fill="white" className="font-bold">{pos.label}</text>
-              <g transform={`translate(${p.x}, ${p.y + 38})`}>
-                <rect x="-18" y="-8" width="36" height="16" rx="8" fill={BLUE} opacity="0.9" />
-                <text x="0" y="1" textAnchor="middle" dominantBaseline="middle"
-                  fontSize="9" fill="white" className="font-bold">50%</text>
-              </g>
-              {justAppeared && (
-                <circle cx={p.x} cy={p.y} r="30" fill="none" stroke={BLUE} strokeWidth="2" opacity="0.6">
-                  <animate attributeName="r" from="28" to="44" dur="0.8s" fill="freeze" />
-                  <animate attributeName="opacity" from="0.6" to="0" dur="0.8s" fill="freeze" />
-                </circle>
-              )}
-            </g>
-          );
-        })}
-
-        {outerPositions.map((pos, i) => {
-          const p = getPos(pos.angle, outerRadius);
-          const globalIdx = i + 2;
-          const isVisible = globalIdx < visibleCount;
-          const justAppeared = globalIdx === visibleCount - 1;
-          return (
-            <g key={`outer-${i}`} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.6s ease" }}>
-              <g transform={`translate(${p.x}, ${p.y})`}>
-                <circle r="28" fill={GREEN} opacity="0.3" />
-                <clipPath id={`${clipId}-outer-${i}`}>
-                  <circle r="26" />
-                </clipPath>
-                <image
-                  href={pos.avatar}
-                  x="-26" y="-26" width="52" height="52"
-                  clipPath={`url(#${clipId}-outer-${i})`}
-                  preserveAspectRatio="xMidYMid slice"
-                />
-                <circle r="26" fill="none" stroke={GREEN} strokeWidth="2.5" />
-              </g>
-              <circle cx={p.x + 18} cy={p.y - 18} r="10" fill={GREEN} />
-              <text x={p.x + 18} y={p.y - 17} textAnchor="middle" dominantBaseline="middle"
-                fontSize="10" fill="white" className="font-bold">{pos.label}</text>
-              <g transform={`translate(${p.x}, ${p.y + 35})`}>
-                <rect x="-18" y="-8" width="36" height="16" rx="8" fill={GREEN} opacity="0.9" />
-                <text x="0" y="1" textAnchor="middle" dominantBaseline="middle"
-                  fontSize="9" fill="white" className="font-bold">50%</text>
-              </g>
-              {justAppeared && (
-                <circle cx={p.x} cy={p.y} r="28" fill="none" stroke={GREEN} strokeWidth="2" opacity="0.6">
-                  <animate attributeName="r" from="26" to="42" dur="0.8s" fill="freeze" />
-                  <animate attributeName="opacity" from="0.6" to="0" dur="0.8s" fill="freeze" />
-                </circle>
-              )}
-            </g>
-          );
-        })}
+        {/* Bottom row – green */}
+        {bottomRow.map((pos, i) => renderNode(pos, i + 2, GREEN, 24))}
       </svg>
 
       {visibleCount > 0 && (
