@@ -3,6 +3,15 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Users, RefreshCw, Shield, Zap, TrendingUp, Infinity, UserPlus } from "lucide-react";
 import { useState, useEffect, useRef, useCallback } from "react";
 
+import avatar1 from "@/assets/avatar-1.jpg";
+import avatar2 from "@/assets/avatar-2.jpg";
+import avatar3 from "@/assets/avatar-3.jpg";
+import avatar4 from "@/assets/avatar-4.jpg";
+import avatar5 from "@/assets/avatar-5.jpg";
+import avatar6 from "@/assets/avatar-6.jpg";
+
+const avatars = [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6];
+
 /* ── Brand colors (HSL from design system) ── */
 const BLUE = "hsl(224 85% 58%)";
 const GREEN = "hsl(160 80% 42%)";
@@ -331,6 +340,245 @@ const MobiusLoopVisual = () => {
   );
 };
 
+/* ── Two-Ring Wheelhouse with Avatar Photos ── */
+const TwoRingWheelhouse = () => {
+  const [visibleCount, setVisibleCount] = useState(0);
+  const [totalPercent, setTotalPercent] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
+
+  // Inner ring: 2 direct invites (positions 1-2)
+  // Outer ring: 4 team fills (positions 3-6)
+  const innerRadius = 90;
+  const outerRadius = 160;
+  const cx = 200;
+  const cy = 200;
+
+  const innerPositions = [
+    { angle: -90, label: "1", avatar: avatars[0] },  // top
+    { angle: 90, label: "2", avatar: avatars[1] },   // bottom
+  ];
+
+  const outerPositions = [
+    { angle: -45, label: "3", avatar: avatars[2] },   // top-right
+    { angle: -135, label: "4", avatar: avatars[3] },   // top-left
+    { angle: 45, label: "5", avatar: avatars[4] },    // bottom-right
+    { angle: 135, label: "6", avatar: avatars[5] },    // bottom-left
+  ];
+
+  const allPositions = [...innerPositions, ...outerPositions];
+
+  useEffect(() => {
+    if (hasAnimated.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+          // Animate: inner 2 first, then outer 4
+          allPositions.forEach((_, i) => {
+            setTimeout(() => {
+              setVisibleCount(i + 1);
+              setTotalPercent((i + 1) * 50);
+            }, 800 + i * 900);
+          });
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const getPos = (angle: number, radius: number) => ({
+    x: cx + radius * Math.cos((angle * Math.PI) / 180),
+    y: cy + radius * Math.sin((angle * Math.PI) / 180),
+  });
+
+  const clipId = useRef(`clip-${Math.random().toString(36).slice(2)}`).current;
+
+  return (
+    <div ref={ref} className="flex flex-col items-center gap-6">
+      <svg viewBox="0 0 400 400" className="w-72 h-72 md:w-96 md:h-96">
+        <defs>
+          {allPositions.map((_, i) => (
+            <clipPath key={i} id={`${clipId}-${i}`}>
+              <circle cx="0" cy="0" r="28" />
+            </clipPath>
+          ))}
+          <clipPath id={`${clipId}-center`}>
+            <circle cx={cx} cy={cy} r="32" />
+          </clipPath>
+        </defs>
+
+        {/* Outer ring track */}
+        <circle cx={cx} cy={cy} r={outerRadius} fill="none" stroke={GOLD} strokeWidth="1.5" opacity="0.15" strokeDasharray="6 4" />
+        {/* Inner ring track */}
+        <circle cx={cx} cy={cy} r={innerRadius} fill="none" stroke={BLUE} strokeWidth="1.5" opacity="0.2" strokeDasharray="6 4" />
+
+        {/* Connection lines from center to inner */}
+        {innerPositions.map((pos, i) => {
+          const p = getPos(pos.angle, innerRadius);
+          return (
+            <line key={`ci-${i}`} x1={cx} y1={cy} x2={p.x} y2={p.y}
+              stroke={BLUE} strokeWidth="1.5" opacity={i < visibleCount ? 0.4 : 0.1}
+              style={{ transition: "opacity 0.6s ease" }} />
+          );
+        })}
+
+        {/* Connection lines from inner to outer */}
+        {outerPositions.map((pos, i) => {
+          const p = getPos(pos.angle, outerRadius);
+          const parentIdx = i < 2 ? 0 : 1;
+          const parent = getPos(innerPositions[parentIdx].angle, innerRadius);
+          return (
+            <line key={`co-${i}`} x1={parent.x} y1={parent.y} x2={p.x} y2={p.y}
+              stroke={GREEN} strokeWidth="1.5" opacity={i + 2 < visibleCount ? 0.3 : 0.08}
+              style={{ transition: "opacity 0.6s ease" }} />
+          );
+        })}
+
+        {/* Center — YOU */}
+        <circle cx={cx} cy={cy} r="36" fill="white" stroke={GOLD} strokeWidth="3" />
+        <text x={cx} y={cy + 1} textAnchor="middle" dominantBaseline="middle"
+          className="font-bold" fontSize="16" fill="hsl(0 0% 8%)">
+          YOU
+        </text>
+
+        {/* Inner ring label */}
+        <text x={cx} y={cy - innerRadius - 18} textAnchor="middle" fontSize="9"
+          fill={BLUE} opacity="0.7" className="font-semibold" letterSpacing="2">
+          YOUR 2 INVITES
+        </text>
+
+        {/* Outer ring label */}
+        <text x={cx} y={cy - outerRadius - 14} textAnchor="middle" fontSize="9"
+          fill={GREEN} opacity="0.7" className="font-semibold" letterSpacing="2">
+          THEIR 2 INVITES EACH
+        </text>
+
+        {/* Inner positions (1-2) */}
+        {innerPositions.map((pos, i) => {
+          const p = getPos(pos.angle, innerRadius);
+          const isVisible = i < visibleCount;
+          const justAppeared = i === visibleCount - 1;
+
+          return (
+            <g key={`inner-${i}`} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.6s ease" }}>
+              {/* Avatar */}
+              <g transform={`translate(${p.x}, ${p.y})`}>
+                <circle r="30" fill={BLUE} opacity="0.3" />
+                <clipPath id={`${clipId}-inner-${i}`}>
+                  <circle r="28" />
+                </clipPath>
+                <image
+                  href={pos.avatar}
+                  x="-28" y="-28" width="56" height="56"
+                  clipPath={`url(#${clipId}-inner-${i})`}
+                  preserveAspectRatio="xMidYMid slice"
+                />
+                <circle r="28" fill="none" stroke={BLUE} strokeWidth="3" />
+              </g>
+              {/* Position number */}
+              <circle cx={p.x + 20} cy={p.y - 20} r="10" fill={BLUE} />
+              <text x={p.x + 20} y={p.y - 19} textAnchor="middle" dominantBaseline="middle"
+                fontSize="10" fill="white" className="font-bold">{pos.label}</text>
+              {/* 50% badge */}
+              <g transform={`translate(${p.x}, ${p.y + 38})`}>
+                <rect x="-18" y="-8" width="36" height="16" rx="8" fill={BLUE} opacity="0.9" />
+                <text x="0" y="1" textAnchor="middle" dominantBaseline="middle"
+                  fontSize="9" fill="white" className="font-bold">50%</text>
+              </g>
+              {/* Flash ring */}
+              {justAppeared && (
+                <circle cx={p.x} cy={p.y} r="30" fill="none" stroke={BLUE} strokeWidth="2" opacity="0.6">
+                  <animate attributeName="r" from="28" to="44" dur="0.8s" fill="freeze" />
+                  <animate attributeName="opacity" from="0.6" to="0" dur="0.8s" fill="freeze" />
+                </circle>
+              )}
+            </g>
+          );
+        })}
+
+        {/* Outer positions (3-6) */}
+        {outerPositions.map((pos, i) => {
+          const p = getPos(pos.angle, outerRadius);
+          const globalIdx = i + 2;
+          const isVisible = globalIdx < visibleCount;
+          const justAppeared = globalIdx === visibleCount - 1;
+
+          return (
+            <g key={`outer-${i}`} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.6s ease" }}>
+              <g transform={`translate(${p.x}, ${p.y})`}>
+                <circle r="28" fill={GREEN} opacity="0.3" />
+                <clipPath id={`${clipId}-outer-${i}`}>
+                  <circle r="26" />
+                </clipPath>
+                <image
+                  href={pos.avatar}
+                  x="-26" y="-26" width="52" height="52"
+                  clipPath={`url(#${clipId}-outer-${i})`}
+                  preserveAspectRatio="xMidYMid slice"
+                />
+                <circle r="26" fill="none" stroke={GREEN} strokeWidth="2.5" />
+              </g>
+              <circle cx={p.x + 18} cy={p.y - 18} r="10" fill={GREEN} />
+              <text x={p.x + 18} y={p.y - 17} textAnchor="middle" dominantBaseline="middle"
+                fontSize="10" fill="white" className="font-bold">{pos.label}</text>
+              <g transform={`translate(${p.x}, ${p.y + 35})`}>
+                <rect x="-18" y="-8" width="36" height="16" rx="8" fill={GREEN} opacity="0.9" />
+                <text x="0" y="1" textAnchor="middle" dominantBaseline="middle"
+                  fontSize="9" fill="white" className="font-bold">50%</text>
+              </g>
+              {justAppeared && (
+                <circle cx={p.x} cy={p.y} r="28" fill="none" stroke={GREEN} strokeWidth="2" opacity="0.6">
+                  <animate attributeName="r" from="26" to="42" dur="0.8s" fill="freeze" />
+                  <animate attributeName="opacity" from="0.6" to="0" dur="0.8s" fill="freeze" />
+                </circle>
+              )}
+            </g>
+          );
+        })}
+      </svg>
+
+      {/* Running total */}
+      {visibleCount > 0 && (
+        <div className="flex items-center gap-3 transition-all duration-500">
+          <div className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 bg-white/[0.05]">
+            <span className="text-xs text-white/50">Total received:</span>
+            <span className="text-xl font-bold tabular-nums" style={{ color: GOLD }}>
+              {totalPercent}%
+            </span>
+          </div>
+          {visibleCount > 0 && visibleCount <= 6 && (
+            <span className="text-sm font-semibold animate-fade-in" style={{ color: visibleCount <= 2 ? BLUE : GREEN }}>
+              +50%
+            </span>
+          )}
+          {visibleCount >= 6 && (
+            <span className="text-xs font-bold tracking-wider uppercase" style={{ color: GOLD }}>
+              300% · Complete!
+            </span>
+          )}
+        </div>
+      )}
+
+      {/* Legend */}
+      <div className="flex items-center gap-6 mt-2">
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 rounded-full" style={{ background: BLUE }} />
+          <span className="text-xs text-white/50">Your direct invites</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 rounded-full" style={{ background: GREEN }} />
+          <span className="text-xs text-white/50">Their invites</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 /* ── Steps ── */
 const steps = [
   {
@@ -566,7 +814,7 @@ const HowItWorksLife = () => {
         </div>
       </section>
 
-      {/* ── Wheelhouse Visualization ── */}
+      {/* ── Wheelhouse Visualization — 2-Ring with Avatars ── */}
       <section className="py-20 border-t border-white/10">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
@@ -577,51 +825,32 @@ const HowItWorksLife = () => {
               The Wheelhouse
             </h2>
             <p className="text-white/50 max-w-2xl mx-auto">
-              YOU are in the center. Watch as 6 Active Contributors fill your Wheelhouse one by one.
-              When it closes, another automatically opens.
+              YOU are in the center. Your 2 direct invites form the inner circle.
+              Their 2 invites each fill the outer circle — 6 members total.
             </p>
           </div>
 
-          {/* Animated Wheelhouse pair */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16 mb-12">
-            <AnimatedWheelhouse
-              label="Filling Wheelhouse"
-              positions={["YOU", "1", "2", "3", "4", "5", "6"]}
-              borderColor={BLUE}
-              animateSequence
-              showGrowth
-            />
-            <div className="flex flex-col items-center gap-2">
-              <RefreshCw size={28} className="animate-spin" style={{ animationDuration: "4s", color: GOLD }} />
-              <p className="text-xs tracking-widest uppercase text-white/40">Auto Re-Entry</p>
-            </div>
-            <AnimatedWheelhouse
-              label="New Wheelhouse"
-              positions={["YOU", "1", "2", null, null, null, null]}
-              borderColor={GREEN}
-              animateSequence
-              animationDelay={5000}
-            />
-          </div>
+          {/* Two-ring wheelhouse */}
+          <TwoRingWheelhouse />
 
           {/* Explanation cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto mt-12">
             <div className="p-5 rounded-xl border border-white/10 bg-white/[0.03]">
-              <p className="text-sm font-semibold text-white mb-2">Wheelhouse Fills</p>
+              <p className="text-sm font-semibold text-white mb-2">Inner Circle — Your 2 Invites</p>
               <p className="text-white/50 text-sm leading-relaxed">
-                Your 2 friends each invite 2 friends. That completes your Wheelhouse — you've received 6 contributions totalling 300%.
+                You invite 2 friends. They each contribute and you receive 50% from each one instantly.
+              </p>
+            </div>
+            <div className="p-5 rounded-xl border border-white/10 bg-white/[0.03]">
+              <p className="text-sm font-semibold text-white mb-2">Outer Circle — Their 2 Invites Each</p>
+              <p className="text-white/50 text-sm leading-relaxed">
+                Your 2 friends each invite 2 more. That's 4 more contributors — and you receive 50% from each.
               </p>
             </div>
             <div className="p-5 rounded-xl border border-white/10 bg-white/[0.03]">
               <p className="text-sm font-semibold text-white mb-2">Automatic Re-Entry</p>
               <p className="text-white/50 text-sm leading-relaxed">
                 Your Wheelhouse closes and you are automatically re-entered into an open Wheelhouse to receive again — without any extra effort!
-              </p>
-            </div>
-            <div className="p-5 rounded-xl border border-white/10 bg-white/[0.03]">
-              <p className="text-sm font-semibold text-white mb-2">Your Team Follows You</p>
-              <p className="text-white/50 text-sm leading-relaxed">
-                They follow you, giving you more contributions. When their friends complete their Wheelhouses, they follow them — and you receive even more.
               </p>
             </div>
             <div className="p-5 rounded-xl border border-white/10 bg-white/[0.03]">
