@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import { Link } from "react-router-dom";
-import { ArrowRight, Users, RefreshCw, Shield, Zap, TrendingUp, Infinity, UserPlus } from "lucide-react";
+import { ArrowRight, Users, RefreshCw, Shield, Zap, TrendingUp, Infinity, UserPlus, Play, Pause, SkipForward } from "lucide-react";
 import { useState, useEffect, useRef, useCallback } from "react";
 
 import avatar1 from "@/assets/avatar-1.jpg";
@@ -183,17 +183,31 @@ const MobiusLoopVisual = () => {
   const [filling, setFilling] = useState(0);
   const [completedWheels, setCompletedWheels] = useState<number[]>([]);
   const [isSpinning, setIsSpinning] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const hasStarted = useRef(false);
   const timerRefs = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const isPausedRef = useRef(false);
+  const fillingRef = useRef(0);
+  const cycleRef = useRef(0);
 
   const MAX_CYCLES = 6;
   const cumulativePercent = cycle * 300 + filling * 50;
+
+  // Keep refs in sync
+  useEffect(() => { isPausedRef.current = isPaused; }, [isPaused]);
+  useEffect(() => { fillingRef.current = filling; }, [filling]);
+  useEffect(() => { cycleRef.current = cycle; }, [cycle]);
 
   const runNextCycle = useCallback(() => {
     setFilling(0);
     let pos = 0;
     const step = () => {
+      if (isPausedRef.current) {
+        // Re-check every 200ms while paused
+        timerRefs.current.push(setTimeout(step, 200));
+        return;
+      }
       pos++;
       setFilling(pos);
       if (pos < 6) {
@@ -222,6 +236,28 @@ const MobiusLoopVisual = () => {
     timerRefs.current.push(setTimeout(step, 600));
   }, []);
 
+  const skipToNext = useCallback(() => {
+    // Clear all timers
+    timerRefs.current.forEach(clearTimeout);
+    timerRefs.current = [];
+    // Complete current wheel instantly
+    setFilling(6);
+    setIsSpinning(true);
+    timerRefs.current.push(setTimeout(() => {
+      setIsSpinning(false);
+      setCycle(prev => {
+        const completedNum = prev + 1;
+        setCompletedWheels(cw => [...cw, completedNum]);
+        setFilling(0);
+        if (completedNum >= MAX_CYCLES) {
+          return prev;
+        }
+        timerRefs.current.push(setTimeout(() => runNextCycle(), 400));
+        return prev + 1;
+      });
+    }, 900));
+  }, [runNextCycle]);
+
   useEffect(() => {
     if (hasStarted.current) return;
     const observer = new IntersectionObserver(
@@ -244,6 +280,7 @@ const MobiusLoopVisual = () => {
   const currentColor = colors[cycle % 3];
   const posLabels = ["1", "2", "3", "4", "5", "6"];
   const formatPercent = (p: number) => p >= 1000 ? `${(p / 1000).toFixed(1)}k` : `${p}`;
+  const isFinished = completedWheels.length >= MAX_CYCLES;
 
   return (
     <div ref={ref} className="flex flex-col items-center gap-6">
@@ -255,13 +292,33 @@ const MobiusLoopVisual = () => {
         }
       `}</style>
 
-      {/* Cycle counter */}
-      <div className="flex items-center gap-3 mb-2">
-        <Infinity size={18} style={{ color: currentColor }} />
-        <p className="text-xs tracking-widest uppercase text-white/50">
-          Wheel <span className="font-bold text-white/80" style={{ color: currentColor }}>{cycle + 1}</span> of {MAX_CYCLES}
-        </p>
-      </div>
+      {/* Cycle counter + controls */}
+      {!isFinished && (
+        <div className="flex items-center gap-4 mb-2">
+          <div className="flex items-center gap-3">
+            <Infinity size={18} style={{ color: currentColor }} />
+            <p className="text-xs tracking-widest uppercase text-white/50">
+              Wheel <span className="font-bold text-white/80" style={{ color: currentColor }}>{cycle + 1}</span> of {MAX_CYCLES}
+            </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setIsPaused(p => !p)}
+              className="flex items-center justify-center w-8 h-8 rounded-full border border-white/20 text-white/50 hover:text-white hover:border-white/40 transition-all"
+              title={isPaused ? "Play" : "Pause"}
+            >
+              {isPaused ? <Play size={12} /> : <Pause size={12} />}
+            </button>
+            <button
+              onClick={skipToNext}
+              className="flex items-center justify-center w-8 h-8 rounded-full border border-white/20 text-white/50 hover:text-white hover:border-white/40 transition-all"
+              title="Next wheel"
+            >
+              <SkipForward size={12} />
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Active Wheelhouse */}
       <div style={{ animation: isSpinning ? "wheel-spin-shrink 0.9s ease-in-out forwards" : undefined }}>
