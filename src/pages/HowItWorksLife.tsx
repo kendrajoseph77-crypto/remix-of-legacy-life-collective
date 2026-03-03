@@ -607,16 +607,6 @@ const TwoRingWheelhouse = () => {
               {totalPercent}%
             </span>
           </div>
-          {visibleCount > 0 && visibleCount <= 6 && (
-            <span className="text-sm font-semibold animate-fade-in" style={{ color: visibleCount <= 2 ? BLUE : GREEN }}>
-              +50%
-            </span>
-          )}
-          {visibleCount >= 6 && (
-            <span className="text-xs font-bold tracking-wider uppercase" style={{ color: GOLD }}>
-              300% · Complete!
-            </span>
-          )}
         </div>
       )}
 
