@@ -221,9 +221,9 @@ export const MobiusLoopVisual = () => {
             </svg>
           </div>
 
-          <div className="flex items-center gap-3 transition-all duration-500">
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-muted/30">
-              <span className="text-xs text-muted-foreground">Cumulative:</span>
+      <div className="flex items-center gap-3 transition-all duration-500">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full border-2" style={{ borderColor: currentColor }}>
+              <span className="text-xs font-medium" style={{ color: currentColor }}>Cumulative:</span>
               <span className="text-lg font-bold tabular-nums" style={{ color: currentColor, transition: "color 0.8s ease" }}>
                 {formatPercent(cumulativePercent)}%
               </span>
@@ -253,12 +253,12 @@ export const MobiusLoopVisual = () => {
 
       {isFinished && (
         <div className="flex flex-col items-center gap-6 py-8 animate-fade-in text-center px-4">
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-muted/30">
-            <span className="text-xs text-muted-foreground">Cumulative:</span>
-            <span className="text-lg font-bold tabular-nums" style={{ color: GOLD }}>
-              {formatPercent(MAX_CYCLES * 300)}%
-            </span>
-          </div>
+           <div className="flex items-center gap-2 px-4 py-2 rounded-full border-2" style={{ borderColor: GOLD }}>
+             <span className="text-xs font-medium" style={{ color: GOLD }}>Cumulative:</span>
+             <span className="text-lg font-bold tabular-nums" style={{ color: GOLD }}>
+               {formatPercent(MAX_CYCLES * 300)}%
+             </span>
+           </div>
 
           <div className="w-full max-w-md">
             <p className="text-[10px] text-muted-foreground uppercase tracking-widest text-center mb-3">Completed Wheels</p>
@@ -423,8 +423,8 @@ export const TwoRingWheelhouse = () => {
 
       {visibleCount > 0 && (
         <div className="flex items-center gap-3 transition-all duration-500">
-          <div className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-border bg-muted/30">
-            <span className="text-xs text-muted-foreground">Total received:</span>
+          <div className="flex items-center gap-2 px-5 py-2.5 rounded-full border-2" style={{ borderColor: GOLD }}>
+            <span className="text-xs font-medium" style={{ color: GOLD }}>Total received:</span>
             <span className="text-xl font-bold tabular-nums" style={{ color: GOLD }}>
               {totalPercent}%
             </span>
