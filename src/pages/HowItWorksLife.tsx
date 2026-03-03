@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import { Link } from "react-router-dom";
 import { ArrowRight, Users, RefreshCw, Shield, Zap, TrendingUp, Infinity, UserPlus } from "lucide-react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 /* ── Brand colors (HSL from design system) ── */
 const BLUE = "hsl(224 85% 58%)";
@@ -9,55 +10,278 @@ const GOLD = "hsl(39 55% 52%)";
 
 const heading = "'Cormorant Garamond', Georgia, serif";
 
-/* ── Wheelhouse SVG ── */
-const WheelhouseSVG = ({
+/* ── Animated Wheelhouse SVG ── */
+const AnimatedWheelhouse = ({
   label,
   positions,
   borderColor,
   size = "md",
+  animateSequence = false,
+  animationDelay = 0,
 }: {
   label: string;
   positions: (string | null)[];
   borderColor: string;
   size?: "sm" | "md";
+  animateSequence?: boolean;
+  animationDelay?: number;
 }) => {
   const center = positions[0];
+  const [visibleCount, setVisibleCount] = useState(animateSequence ? 0 : 7);
+  const [centerVisible, setCenterVisible] = useState(!animateSequence);
+  const ref = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
+
+  // Slot positions — placed between the cross lines, not on them
   const slots = [
-    { x: 150, y: 52, label: positions[1] },
-    { x: 150, y: 248, label: positions[2] },
-    { x: 52, y: 100, label: positions[3] },
-    { x: 248, y: 100, label: positions[4] },
-    { x: 52, y: 200, label: positions[5] },
-    { x: 248, y: 200, label: positions[6] },
+    { x: 150, y: 68, label: positions[1] },   // 1 top
+    { x: 150, y: 232, label: positions[2] },   // 2 bottom
+    { x: 68, y: 105, label: positions[3] },    // 3 top-left
+    { x: 232, y: 105, label: positions[4] },   // 4 top-right
+    { x: 68, y: 195, label: positions[5] },    // 5 bottom-left
+    { x: 232, y: 195, label: positions[6] },   // 6 bottom-right
   ];
 
-  const sizeClass = size === "sm" ? "w-36 h-36 md:w-40 md:h-40" : "w-48 h-48 md:w-56 md:h-56";
+  useEffect(() => {
+    if (!animateSequence || hasAnimated.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+
+          // Show center first
+          setTimeout(() => setCenterVisible(true), animationDelay);
+
+          // Then show each position one by one
+          const filledSlots = slots.filter(s => s.label !== null);
+          filledSlots.forEach((_, i) => {
+            setTimeout(() => {
+              setVisibleCount(i + 1);
+            }, animationDelay + 600 + i * 700);
+          });
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [animateSequence, animationDelay]);
+
+  const sizeClass = size === "sm" ? "w-36 h-36 md:w-44 md:h-44" : "w-52 h-52 md:w-64 md:h-64";
+
+  // Track which non-null positions should be visible
+  let nonNullIndex = 0;
 
   return (
-    <div className="flex flex-col items-center gap-3">
+    <div className="flex flex-col items-center gap-3" ref={ref}>
       <svg viewBox="0 0 300 300" className={sizeClass}>
-        <circle cx="150" cy="150" r="140" fill="none" stroke={borderColor} strokeWidth="4" opacity="0.3" />
-        <circle cx="150" cy="150" r="120" fill={borderColor} opacity="0.15" />
-        <line x1="150" y1="10" x2="150" y2="290" stroke="white" strokeWidth="3" opacity="0.5" />
-        <line x1="10" y1="150" x2="290" y2="150" stroke="white" strokeWidth="3" opacity="0.5" />
-        <circle cx="150" cy="150" r="65" fill="hsl(0 0% 90%)" opacity="0.4" />
-        <circle cx="150" cy="150" r="40" fill="white" stroke={borderColor} strokeWidth="3" />
-        <text x="150" y="155" textAnchor="middle" dominantBaseline="middle"
-          className="font-bold" fontSize={center && center.length > 3 ? "13" : "16"} fill="hsl(0 0% 8%)">
+        {/* Outer ring */}
+        <circle cx="150" cy="150" r="140" fill="none" stroke={borderColor} strokeWidth="3" opacity="0.25" />
+        <circle cx="150" cy="150" r="120" fill={borderColor} opacity="0.12" />
+
+        {/* Cross lines — thinner and semi-transparent so they don't obscure */}
+        <line x1="150" y1="12" x2="150" y2="288" stroke="white" strokeWidth="2" opacity="0.2" />
+        <line x1="12" y1="150" x2="288" y2="150" stroke="white" strokeWidth="2" opacity="0.2" />
+
+        {/* Inner ring */}
+        <circle cx="150" cy="150" r="58" fill="hsl(0 0% 20%)" opacity="0.5" />
+        <circle cx="150" cy="150" r="38" fill="white" stroke={borderColor} strokeWidth="2.5" />
+
+        {/* Center label */}
+        <text
+          x="150" y="154"
+          textAnchor="middle" dominantBaseline="middle"
+          className="font-bold"
+          fontSize={center && center.length > 3 ? "12" : "15"}
+          fill="hsl(0 0% 8%)"
+          opacity={centerVisible ? 1 : 0}
+          style={{ transition: "opacity 0.5s ease" }}
+        >
           {center}
         </text>
-        {slots.map((slot, i) =>
-          slot.label ? (
-            <g key={i}>
-              <text x={slot.x} y={slot.y} textAnchor="middle" dominantBaseline="middle"
-                className="font-bold" fontSize="20" fill="white">
+
+        {/* Position labels — each in a circle badge */}
+        {slots.map((slot, i) => {
+          if (!slot.label) return null;
+          const currentNonNull = nonNullIndex++;
+          const isVisible = currentNonNull < visibleCount;
+
+          return (
+            <g key={i} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.6s ease" }}>
+              {/* Background circle for the number */}
+              <circle cx={slot.x} cy={slot.y} r="22" fill={borderColor} opacity="0.7" />
+              <circle cx={slot.x} cy={slot.y} r="22" fill="none" stroke="white" strokeWidth="1.5" opacity="0.3" />
+              <text
+                x={slot.x} y={slot.y + 1}
+                textAnchor="middle" dominantBaseline="middle"
+                className="font-bold" fontSize="16" fill="white"
+              >
                 {slot.label}
               </text>
             </g>
-          ) : null
-        )}
+          );
+        })}
       </svg>
       <p className="text-xs font-semibold tracking-widest uppercase text-white/60">{label}</p>
+    </div>
+  );
+};
+
+/* ── Mobius Loop Animation ── */
+const MobiusLoopVisual = () => {
+  const [cycle, setCycle] = useState(0);
+  const [filling, setFilling] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const hasStarted = useRef(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startAnimation = useCallback(() => {
+    if (hasStarted.current) return;
+    hasStarted.current = true;
+
+    const runCycle = () => {
+      setFilling(0);
+      let pos = 0;
+      const fillInterval = setInterval(() => {
+        pos++;
+        setFilling(pos);
+        if (pos >= 6) {
+          clearInterval(fillInterval);
+          // After filling, show complete then move to next cycle
+          setTimeout(() => {
+            setCycle(prev => prev + 1);
+            setFilling(0);
+            // Start next fill
+            let pos2 = 0;
+            const fillInterval2 = setInterval(() => {
+              pos2++;
+              setFilling(pos2);
+              if (pos2 >= 6) {
+                clearInterval(fillInterval2);
+                setTimeout(() => {
+                  setCycle(prev => prev + 1);
+                  setFilling(0);
+                  // Reset after showing 3 cycles
+                  setTimeout(() => {
+                    hasStarted.current = false;
+                    setCycle(0);
+                    startAnimation();
+                  }, 2000);
+                }, 1500);
+              }
+            }, 600);
+          }, 1500);
+        }
+      }, 600);
+    };
+
+    setTimeout(runCycle, 500);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) startAnimation();
+      },
+      { threshold: 0.3 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => {
+      observer.disconnect();
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [startAnimation]);
+
+  const colors = [BLUE, GREEN, GOLD];
+  const currentColor = colors[cycle % 3];
+
+  const posLabels = ["1", "2", "3", "4", "5", "6"];
+
+  return (
+    <div ref={ref} className="flex flex-col items-center gap-6">
+      {/* Cycle counter */}
+      <div className="flex items-center gap-3 mb-2">
+        {[0, 1, 2].map(c => (
+          <div
+            key={c}
+            className="w-3 h-3 rounded-full transition-all duration-500"
+            style={{
+              background: cycle > c ? colors[c] : "transparent",
+              border: `2px solid ${colors[c]}`,
+              transform: cycle === c ? "scale(1.4)" : "scale(1)",
+            }}
+          />
+        ))}
+        <p className="text-xs tracking-widest uppercase text-white/50 ml-2">
+          Cycle {(cycle % 3) + 1}
+        </p>
+      </div>
+
+      {/* Animated Wheelhouse */}
+      <svg viewBox="0 0 300 300" className="w-56 h-56 md:w-72 md:h-72">
+        <circle cx="150" cy="150" r="140" fill="none" stroke={currentColor} strokeWidth="3" opacity="0.25"
+          style={{ transition: "stroke 0.8s ease" }} />
+        <circle cx="150" cy="150" r="120" fill={currentColor} opacity="0.12"
+          style={{ transition: "fill 0.8s ease" }} />
+
+        <line x1="150" y1="12" x2="150" y2="288" stroke="white" strokeWidth="2" opacity="0.2" />
+        <line x1="12" y1="150" x2="288" y2="150" stroke="white" strokeWidth="2" opacity="0.2" />
+
+        <circle cx="150" cy="150" r="58" fill="hsl(0 0% 20%)" opacity="0.5" />
+        <circle cx="150" cy="150" r="38" fill="white" stroke={currentColor} strokeWidth="2.5"
+          style={{ transition: "stroke 0.8s ease" }} />
+
+        <text x="150" y="154" textAnchor="middle" dominantBaseline="middle"
+          className="font-bold" fontSize="14" fill="hsl(0 0% 8%)">
+          YOU
+        </text>
+
+        {/* Positions */}
+        {[
+          { x: 150, y: 68 },
+          { x: 150, y: 232 },
+          { x: 68, y: 105 },
+          { x: 232, y: 105 },
+          { x: 68, y: 195 },
+          { x: 232, y: 195 },
+        ].map((pos, i) => {
+          const isVisible = i < filling;
+          return (
+            <g key={i} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.5s ease" }}>
+              <circle cx={pos.x} cy={pos.y} r="22" fill={currentColor} opacity="0.8"
+                style={{ transition: "fill 0.8s ease" }} />
+              <circle cx={pos.x} cy={pos.y} r="22" fill="none" stroke="white" strokeWidth="1.5" opacity="0.3" />
+              <text x={pos.x} y={pos.y + 1} textAnchor="middle" dominantBaseline="middle"
+                className="font-bold" fontSize="14" fill="white">
+                {posLabels[i]}
+              </text>
+              {/* 50% label */}
+              <text x={pos.x} y={pos.y + 16} textAnchor="middle" fontSize="8" fill="white" opacity="0.6">
+                50%
+              </text>
+            </g>
+          );
+        })}
+
+        {/* Completion overlay */}
+        {filling >= 6 && (
+          <g opacity="1" style={{ transition: "opacity 0.5s ease" }}>
+            <text x="150" y="20" textAnchor="middle" fontSize="11" fill={currentColor}
+              className="font-bold" style={{ transition: "fill 0.8s ease" }}>
+              ✓ 300% COMPLETE
+            </text>
+          </g>
+        )}
+      </svg>
+
+      {/* Loop arrows */}
+      <div className="flex items-center gap-2 text-white/40">
+        <RefreshCw size={16} className="animate-spin" style={{ animationDuration: "3s", color: currentColor }} />
+        <p className="text-xs tracking-widest uppercase">Mobius Loop Active</p>
+      </div>
     </div>
   );
 };
@@ -126,23 +350,50 @@ const features = [
 
 /* ── 50% Position Visual ── */
 const PositionFillVisual = () => {
+  const [visibleCount, setVisibleCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+          for (let i = 0; i < 6; i++) {
+            setTimeout(() => setVisibleCount(i + 1), i * 400);
+          }
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
   const positionData = [
-    { pos: "1", label: "50%", color: BLUE },
-    { pos: "2", label: "50%", color: BLUE },
-    { pos: "3", label: "50%", color: GREEN },
-    { pos: "4", label: "50%", color: GREEN },
-    { pos: "5", label: "50%", color: GOLD },
-    { pos: "6", label: "50%", color: GOLD },
+    { pos: "1", color: BLUE },
+    { pos: "2", color: BLUE },
+    { pos: "3", color: GREEN },
+    { pos: "4", color: GREEN },
+    { pos: "5", color: GOLD },
+    { pos: "6", color: GOLD },
   ];
 
   return (
-    <div className="grid grid-cols-3 md:grid-cols-6 gap-3 max-w-2xl mx-auto">
+    <div ref={ref} className="grid grid-cols-3 md:grid-cols-6 gap-3 max-w-2xl mx-auto">
       {positionData.map((p, i) => (
-        <div key={i} className="flex flex-col items-center gap-2 p-4 rounded-xl border border-white/10 bg-white/[0.03]">
+        <div
+          key={i}
+          className="flex flex-col items-center gap-2 p-4 rounded-xl border border-white/10 bg-white/[0.03] transition-all duration-500"
+          style={{
+            opacity: i < visibleCount ? 1 : 0,
+            transform: i < visibleCount ? "translateY(0) scale(1)" : "translateY(20px) scale(0.9)",
+          }}
+        >
           <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold" style={{ background: `${p.color}25`, color: p.color }}>
             {p.pos}
           </div>
-          <p className="text-lg font-bold" style={{ color: p.color }}>{p.label}</p>
+          <p className="text-lg font-bold" style={{ color: p.color }}>50%</p>
           <p className="text-[10px] text-white/40 uppercase tracking-wider">to you</p>
         </div>
       ))}
@@ -275,32 +526,35 @@ const HowItWorksLife = () => {
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
             <p className="text-sm tracking-[0.3em] uppercase font-medium mb-3" style={{ color: GOLD }}>
-              The Mobius Loop
+              Watch It In Action
             </p>
             <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: heading }}>
               The Wheelhouse
             </h2>
             <p className="text-white/50 max-w-2xl mx-auto">
-              YOU are in the center. 6 Active Contributors fill your Wheelhouse.
-              When it closes, another automatically opens — you receive again without any extra effort.
+              YOU are in the center. Watch as 6 Active Contributors fill your Wheelhouse one by one.
+              When it closes, another automatically opens.
             </p>
           </div>
 
-          {/* Wheelhouse pair */}
+          {/* Animated Wheelhouse pair */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16 mb-12">
-            <WheelhouseSVG
-              label="Closed Wheelhouse"
-              positions={["$", "1", "2", "3", "4", "5", "6"]}
+            <AnimatedWheelhouse
+              label="Filling Wheelhouse"
+              positions={["YOU", "1", "2", "3", "4", "5", "6"]}
               borderColor={BLUE}
+              animateSequence
             />
             <div className="flex flex-col items-center gap-2">
               <RefreshCw size={28} className="animate-spin" style={{ animationDuration: "4s", color: GOLD }} />
               <p className="text-xs tracking-widest uppercase text-white/40">Auto Re-Entry</p>
             </div>
-            <WheelhouseSVG
-              label="Open Wheelhouse"
+            <AnimatedWheelhouse
+              label="New Wheelhouse"
               positions={["YOU", "1", "2", null, null, null, null]}
               borderColor={GREEN}
+              animateSequence
+              animationDelay={5000}
             />
           </div>
 
@@ -309,7 +563,7 @@ const HowItWorksLife = () => {
             <div className="p-5 rounded-xl border border-white/10 bg-white/[0.03]">
               <p className="text-sm font-semibold text-white mb-2">Wheelhouse Fills</p>
               <p className="text-white/50 text-sm leading-relaxed">
-                Your 2 friends each invite 2 friends. That completes your Wheelhouse — you've received 6 contributions totalling 300% of your initial contribution.
+                Your 2 friends each invite 2 friends. That completes your Wheelhouse — you've received 6 contributions totalling 300%.
               </p>
             </div>
             <div className="p-5 rounded-xl border border-white/10 bg-white/[0.03]">
@@ -334,53 +588,26 @@ const HowItWorksLife = () => {
         </div>
       </section>
 
-      {/* ── Mobius Loop Stacking ── */}
+      {/* ── Mobius Loop Live ── */}
       <section className="py-20 border-t border-white/10 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,hsl(224_85%_58%/0.04)_0%,transparent_70%)]" />
         <div className="max-w-5xl mx-auto px-6 relative z-10">
           <div className="text-center mb-14">
             <p className="text-sm tracking-[0.3em] uppercase font-medium mb-3" style={{ color: BLUE }}>
-              World Famous
+              The Mobius Loop
             </p>
             <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: heading }}>
               When One Completes, Another Opens
             </h2>
             <p className="text-white/50 max-w-2xl mx-auto">
-              The Mobius Loop means your Wheelhouses stack. As your team grows, new Wheelhouses open automatically. You can receive contributions multiple times a day.
+              Watch the Mobius Loop in action. Each Wheelhouse fills, closes, and a new one opens — automatically. The cycle never ends.
             </p>
           </div>
 
-          {/* Stacking Wheelhouses visual */}
-          <div className="flex flex-wrap items-center justify-center gap-6 mb-12">
-            <WheelhouseSVG
-              label="Cycle 1"
-              positions={["YOU", "1", "2", "3", "4", "5", "6"]}
-              borderColor={BLUE}
-              size="sm"
-            />
-            <ArrowRight size={24} className="text-white/30 hidden md:block" />
-            <WheelhouseSVG
-              label="Cycle 2"
-              positions={["YOU", "7", "8", "9", "10", null, null]}
-              borderColor={GREEN}
-              size="sm"
-            />
-            <ArrowRight size={24} className="text-white/30 hidden md:block" />
-            <WheelhouseSVG
-              label="Cycle 3"
-              positions={["YOU", null, null, null, null, null, null]}
-              borderColor={GOLD}
-              size="sm"
-            />
-            <ArrowRight size={24} className="text-white/30 hidden md:block" />
-            <div className="flex flex-col items-center gap-2">
-              <Infinity size={40} style={{ color: GOLD }} />
-              <p className="text-xs tracking-widest uppercase text-white/40">∞ Cycles</p>
-            </div>
-          </div>
+          <MobiusLoopVisual />
 
           {/* Highlight callout */}
-          <div className="max-w-2xl mx-auto text-center p-8 rounded-2xl border border-white/10 bg-white/[0.03]">
+          <div className="max-w-2xl mx-auto text-center p-8 rounded-2xl border border-white/10 bg-white/[0.03] mt-12">
             <p className="text-sm tracking-[0.3em] uppercase font-medium mb-4" style={{ color: GOLD }}>
               Here's the Best Part
             </p>
