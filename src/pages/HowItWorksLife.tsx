@@ -187,7 +187,7 @@ const MobiusLoopVisual = () => {
   const hasStarted = useRef(false);
   const timerRefs = useRef<ReturnType<typeof setTimeout>[]>([]);
 
-  const MAX_CYCLES = 12;
+  const MAX_CYCLES = 6;
   const cumulativePercent = cycle * 300 + filling * 50;
 
   const runNextCycle = useCallback(() => {
