@@ -502,17 +502,6 @@ const TwoRingWheelhouse = () => {
           YOU
         </text>
 
-        {/* Inner ring label */}
-        <text x={cx} y={cy - innerRadius - 18} textAnchor="middle" fontSize="9"
-          fill={BLUE} opacity="0.7" className="font-semibold" letterSpacing="2">
-          YOUR 2 INVITES
-        </text>
-
-        {/* Outer ring label */}
-        <text x={cx} y={cy - outerRadius - 14} textAnchor="middle" fontSize="9"
-          fill={GREEN} opacity="0.7" className="font-semibold" letterSpacing="2">
-          THEIR 2 INVITES EACH
-        </text>
 
         {/* Inner positions (1-2) */}
         {innerPositions.map((pos, i) => {
@@ -610,17 +599,6 @@ const TwoRingWheelhouse = () => {
         </div>
       )}
 
-      {/* Legend */}
-      <div className="flex items-center gap-6 mt-2">
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full" style={{ background: BLUE }} />
-          <span className="text-xs text-white/50">Your direct invites</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full" style={{ background: GREEN }} />
-          <span className="text-xs text-white/50">Their invites</span>
-        </div>
-      </div>
     </div>
   );
 };
