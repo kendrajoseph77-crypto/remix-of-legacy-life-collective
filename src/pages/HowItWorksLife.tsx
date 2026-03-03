@@ -367,6 +367,21 @@ const MobiusLoopVisual = () => {
               Infinite Earning Potential
             </span>
           </div>
+          <button
+            onClick={() => {
+              setCycle(0);
+              setFilling(0);
+              setCompletedWheels([]);
+              setIsSpinning(false);
+              timerRefs.current.forEach(clearTimeout);
+              timerRefs.current = [];
+              setTimeout(() => runNextCycle(), 500);
+            }}
+            className="flex items-center gap-2 px-6 py-2.5 rounded-full border border-white/20 text-white/60 hover:text-white hover:border-white/40 transition-all duration-300 mt-2 text-sm"
+          >
+            <RefreshCw size={14} />
+            Replay
+          </button>
         </div>
       )}
 
