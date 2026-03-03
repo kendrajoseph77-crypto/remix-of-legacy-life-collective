@@ -346,11 +346,37 @@ const MobiusLoopVisual = () => {
         </div>
       )}
 
+      {/* All 12 complete — finale text */}
+      {completedWheels.length >= MAX_CYCLES && (
+        <div className="flex flex-col items-center gap-6 mt-6 animate-fade-in text-center px-4">
+          <h3 className="text-3xl md:text-4xl font-bold text-white">
+            And It Never Stops.
+          </h3>
+          <p className="text-white/50 text-sm md:text-base max-w-lg">
+            Unlimited re-entries. Unlimited follows. <span className="font-bold text-white">Unlimited income.</span>
+          </p>
+          <p className="text-white/50 text-sm md:text-base max-w-lg">
+            Every completed wheelhouse automatically opens a new one. There is no cap. No ceiling. No limit.
+          </p>
+          <p className="text-base md:text-lg font-bold text-white">
+            Money for Everything! — and it's all automated.
+          </p>
+          <div className="flex items-center gap-3 px-8 py-4 rounded-full border border-[hsl(40,60%,50%)] mt-2">
+            <Infinity size={20} style={{ color: GOLD }} />
+            <span className="text-sm tracking-[0.25em] uppercase" style={{ color: GOLD }}>
+              Infinite Earning Potential
+            </span>
+          </div>
+        </div>
+      )}
+
       {/* Infinite loop indicator */}
-      <div className="flex items-center gap-2 text-white/40">
-        <Infinity size={18} className="animate-pulse" style={{ color: currentColor }} />
-        <p className="text-xs tracking-widest uppercase">Infinite Möbius Loop</p>
-      </div>
+      {completedWheels.length < MAX_CYCLES && (
+        <div className="flex items-center gap-2 text-white/40">
+          <Infinity size={18} className="animate-pulse" style={{ color: currentColor }} />
+          <p className="text-xs tracking-widest uppercase">Infinite Möbius Loop</p>
+        </div>
+      )}
     </div>
   );
 };
