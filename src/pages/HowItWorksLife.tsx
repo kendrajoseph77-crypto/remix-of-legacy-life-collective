@@ -320,86 +320,96 @@ const MobiusLoopVisual = () => {
         </div>
       )}
 
-      {/* Active Wheelhouse */}
-      <div style={{ animation: isSpinning ? "wheel-spin-shrink 0.9s ease-in-out forwards" : undefined }}>
-        <svg viewBox="0 0 300 300" className="w-56 h-56 md:w-72 md:h-72">
-          <circle cx="150" cy="150" r="140" fill="none" stroke={currentColor} strokeWidth="3" opacity="0.25"
-            style={{ transition: "stroke 0.8s ease" }} />
-          <circle cx="150" cy="150" r="120" fill={currentColor} opacity="0.12"
-            style={{ transition: "fill 0.8s ease" }} />
-          <line x1="150" y1="12" x2="150" y2="288" stroke="white" strokeWidth="2" opacity="0.2" />
-          <line x1="12" y1="150" x2="288" y2="150" stroke="white" strokeWidth="2" opacity="0.2" />
-          <circle cx="150" cy="150" r="58" fill="hsl(0 0% 20%)" opacity="0.5" />
-          <circle cx="150" cy="150" r="42" fill="white" stroke={currentColor} strokeWidth="2.5"
-            style={{ transition: "stroke 0.8s ease" }} />
-          <text x="150" y="143" textAnchor="middle" dominantBaseline="middle"
-            className="font-bold" fontSize="12" fill="hsl(0 0% 8%)">YOU</text>
-          <text x="150" y="160" textAnchor="middle" dominantBaseline="middle"
-            className="font-bold" fontSize="11" fill={currentColor}
-            style={{ transition: "fill 0.8s ease" }}>
-            {formatPercent(cumulativePercent)}%
-          </text>
-          {[
-            { x: 150, y: 68 }, { x: 150, y: 232 },
-            { x: 68, y: 105 }, { x: 232, y: 105 },
-            { x: 68, y: 195 }, { x: 232, y: 195 },
-          ].map((pos, i) => {
-            const isVisible = i < filling;
-            const justAppeared = i === filling - 1;
-            return (
-              <g key={`${cycle}-${i}`} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.5s ease" }}>
-                <circle cx={pos.x} cy={pos.y} r="22" fill={currentColor} opacity="0.8"
-                  style={{ transition: "fill 0.8s ease" }} />
-                <circle cx={pos.x} cy={pos.y} r="22" fill="none" stroke="white" strokeWidth="1.5" opacity="0.3" />
-                <text x={pos.x} y={pos.y - 2} textAnchor="middle" dominantBaseline="middle"
-                  className="font-bold" fontSize="14" fill="white">{posLabels[i]}</text>
-                <text x={pos.x} y={pos.y + 13} textAnchor="middle" fontSize="8" fill="white" opacity="0.7">50%</text>
-                {justAppeared && (
-                  <circle cx={pos.x} cy={pos.y} r="26" fill="none" stroke="white" strokeWidth="2" opacity="0.6">
-                    <animate attributeName="r" from="22" to="36" dur="0.7s" fill="freeze" />
-                    <animate attributeName="opacity" from="0.6" to="0" dur="0.7s" fill="freeze" />
-                  </circle>
-                )}
-              </g>
-            );
-          })}
-          {filling >= 6 && !isSpinning && (
-            <text x="150" y="20" textAnchor="middle" fontSize="11" fill={currentColor}
-              className="font-bold" style={{ transition: "fill 0.8s ease" }}>
-              ✓ WHEEL {cycle + 1} COMPLETE
-            </text>
-          )}
-        </svg>
-      </div>
-
-      {/* Running total */}
-      <div className="flex items-center gap-3 transition-all duration-500">
-        <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/[0.05]">
-          <span className="text-xs text-white/50">Cumulative:</span>
-          <span className="text-lg font-bold tabular-nums" style={{ color: currentColor, transition: "color 0.8s ease" }}>
-            {formatPercent(cumulativePercent)}%
-          </span>
-        </div>
-        {filling > 0 && filling < 6 && (
-          <span className="text-xs font-semibold animate-fade-in" style={{ color: currentColor }}>+50%</span>
-        )}
-      </div>
-
-      {/* Completed wheels grid — 2 rows of 6 */}
-      {completedWheels.length > 0 && (
-        <div className="w-full max-w-md mt-4">
-          <p className="text-[10px] text-white/40 uppercase tracking-widest text-center mb-3">Completed Wheels</p>
-          <div className="grid grid-cols-6 gap-2 justify-items-center">
-            {completedWheels.map((wNum) => (
-              <MiniWheel key={wNum} wheelNum={wNum} color={colors[(wNum - 1) % 3]} />
-            ))}
+      {!isFinished && (
+        <>
+          {/* Active Wheelhouse */}
+          <div style={{ animation: isSpinning ? "wheel-spin-shrink 0.9s ease-in-out forwards" : undefined }}>
+            <svg viewBox="0 0 300 300" className="w-56 h-56 md:w-72 md:h-72">
+              <circle cx="150" cy="150" r="140" fill="none" stroke={currentColor} strokeWidth="3" opacity="0.25"
+                style={{ transition: "stroke 0.8s ease" }} />
+              <circle cx="150" cy="150" r="120" fill={currentColor} opacity="0.12"
+                style={{ transition: "fill 0.8s ease" }} />
+              <line x1="150" y1="12" x2="150" y2="288" stroke="white" strokeWidth="2" opacity="0.2" />
+              <line x1="12" y1="150" x2="288" y2="150" stroke="white" strokeWidth="2" opacity="0.2" />
+              <circle cx="150" cy="150" r="58" fill="hsl(0 0% 20%)" opacity="0.5" />
+              <circle cx="150" cy="150" r="42" fill="white" stroke={currentColor} strokeWidth="2.5"
+                style={{ transition: "stroke 0.8s ease" }} />
+              <text x="150" y="143" textAnchor="middle" dominantBaseline="middle"
+                className="font-bold" fontSize="12" fill="hsl(0 0% 8%)">YOU</text>
+              <text x="150" y="160" textAnchor="middle" dominantBaseline="middle"
+                className="font-bold" fontSize="11" fill={currentColor}
+                style={{ transition: "fill 0.8s ease" }}>
+                {formatPercent(cumulativePercent)}%
+              </text>
+              {[
+                { x: 150, y: 68 }, { x: 150, y: 232 },
+                { x: 68, y: 105 }, { x: 232, y: 105 },
+                { x: 68, y: 195 }, { x: 232, y: 195 },
+              ].map((pos, i) => {
+                const isVisible = i < filling;
+                const justAppeared = i === filling - 1;
+                return (
+                  <g key={`${cycle}-${i}`} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.5s ease" }}>
+                    <circle cx={pos.x} cy={pos.y} r="22" fill={currentColor} opacity="0.8"
+                      style={{ transition: "fill 0.8s ease" }} />
+                    <circle cx={pos.x} cy={pos.y} r="22" fill="none" stroke="white" strokeWidth="1.5" opacity="0.3" />
+                    <text x={pos.x} y={pos.y - 2} textAnchor="middle" dominantBaseline="middle"
+                      className="font-bold" fontSize="14" fill="white">{posLabels[i]}</text>
+                    <text x={pos.x} y={pos.y + 13} textAnchor="middle" fontSize="8" fill="white" opacity="0.7">50%</text>
+                    {justAppeared && (
+                      <circle cx={pos.x} cy={pos.y} r="26" fill="none" stroke="white" strokeWidth="2" opacity="0.6">
+                        <animate attributeName="r" from="22" to="36" dur="0.7s" fill="freeze" />
+                        <animate attributeName="opacity" from="0.6" to="0" dur="0.7s" fill="freeze" />
+                      </circle>
+                    )}
+                  </g>
+                );
+              })}
+              {filling >= 6 && !isSpinning && (
+                <text x="150" y="20" textAnchor="middle" fontSize="11" fill={currentColor}
+                  className="font-bold" style={{ transition: "fill 0.8s ease" }}>
+                  ✓ WHEEL {cycle + 1} COMPLETE
+                </text>
+              )}
+            </svg>
           </div>
-        </div>
+
+          {/* Running total */}
+          <div className="flex items-center gap-3 transition-all duration-500">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/[0.05]">
+              <span className="text-xs text-white/50">Cumulative:</span>
+              <span className="text-lg font-bold tabular-nums" style={{ color: currentColor, transition: "color 0.8s ease" }}>
+                {formatPercent(cumulativePercent)}%
+              </span>
+            </div>
+            {filling > 0 && filling < 6 && (
+              <span className="text-xs font-semibold animate-fade-in" style={{ color: currentColor }}>+50%</span>
+            )}
+          </div>
+
+          {/* Completed wheels grid */}
+          {completedWheels.length > 0 && (
+            <div className="w-full max-w-md mt-4">
+              <p className="text-[10px] text-white/40 uppercase tracking-widest text-center mb-3">Completed Wheels</p>
+              <div className="grid grid-cols-6 gap-2 justify-items-center">
+                {completedWheels.map((wNum) => (
+                  <MiniWheel key={wNum} wheelNum={wNum} color={colors[(wNum - 1) % 3]} />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Infinite loop indicator */}
+          <div className="flex items-center gap-2 text-white/40">
+            <Infinity size={18} className="animate-pulse" style={{ color: currentColor }} />
+            <p className="text-xs tracking-widest uppercase">Infinite Möbius Loop</p>
+          </div>
+        </>
       )}
 
-      {/* All 12 complete — finale text */}
-      {completedWheels.length >= MAX_CYCLES && (
-        <div className="flex flex-col items-center gap-6 mt-6 animate-fade-in text-center px-4">
+      {/* Finale text — replaces wheelhouse */}
+      {isFinished && (
+        <div className="flex flex-col items-center gap-6 py-12 animate-fade-in text-center px-4">
           <h3 className="text-3xl md:text-4xl font-bold text-white">
             And It Never Stops.
           </h3>
@@ -433,14 +443,6 @@ const MobiusLoopVisual = () => {
             <RefreshCw size={14} />
             Replay
           </button>
-        </div>
-      )}
-
-      {/* Infinite loop indicator */}
-      {completedWheels.length < MAX_CYCLES && (
-        <div className="flex items-center gap-2 text-white/40">
-          <Infinity size={18} className="animate-pulse" style={{ color: currentColor }} />
-          <p className="text-xs tracking-widest uppercase">Infinite Möbius Loop</p>
         </div>
       )}
     </div>
