@@ -171,53 +171,82 @@ export const MobiusLoopVisual = () => {
       {!isFinished && (
         <>
           <div style={{ animation: isSpinning ? "wheel-spin-shrink 0.9s ease-in-out forwards" : undefined }}>
-            <svg viewBox="0 0 300 300" className="w-56 h-56 md:w-72 md:h-72">
-              <circle cx="150" cy="150" r="140" fill="none" stroke={currentColor} strokeWidth="3" opacity="0.25"
-                style={{ transition: "stroke 0.8s ease" }} />
-              <circle cx="150" cy="150" r="120" fill={currentColor} opacity="0.12"
-                style={{ transition: "fill 0.8s ease" }} />
-              <line x1="150" y1="12" x2="150" y2="288" stroke={TEXT} strokeWidth="2" opacity="0.1" />
-              <line x1="12" y1="150" x2="288" y2="150" stroke={TEXT} strokeWidth="2" opacity="0.1" />
-              <circle cx="150" cy="150" r="58" fill="hsl(0 0% 90%)" opacity="0.5" />
-              <circle cx="150" cy="150" r="42" fill="white" stroke={currentColor} strokeWidth="2.5"
-                style={{ transition: "stroke 0.8s ease" }} />
-              <text x="150" y="143" textAnchor="middle" dominantBaseline="middle"
-                className="font-bold" fontSize="12" fill={TEXT}>YOU</text>
-              <text x="150" y="160" textAnchor="middle" dominantBaseline="middle"
-                className="font-bold" fontSize="11" fill={currentColor}
-                style={{ transition: "fill 0.8s ease" }}>
-                {formatPercent(cumulativePercent)}%
-              </text>
-              {[
-                { x: 150, y: 68 }, { x: 150, y: 232 },
-                { x: 68, y: 105 }, { x: 232, y: 105 },
-                { x: 68, y: 195 }, { x: 232, y: 195 },
-              ].map((pos, i) => {
-                const isVisible = i < filling;
-                const justAppeared = i === filling - 1;
+            <svg viewBox="0 0 500 380" className="w-full max-w-sm md:max-w-md">
+              {/* Pyramid positions */}
+              {(() => {
+                const youP = { x: 250, y: 50 };
+                const midRow = [
+                  { x: 160, y: 160, label: "1" },
+                  { x: 340, y: 160, label: "2" },
+                ];
+                const botRow = [
+                  { x: 80,  y: 280, label: "3" },
+                  { x: 190, y: 280, label: "4" },
+                  { x: 310, y: 280, label: "5" },
+                  { x: 420, y: 280, label: "6" },
+                ];
+                const allNodes = [...midRow, ...botRow];
+
                 return (
-                  <g key={`${cycle}-${i}`} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.5s ease" }}>
-                    <circle cx={pos.x} cy={pos.y} r="22" fill={currentColor} opacity="0.8"
-                      style={{ transition: "fill 0.8s ease" }} />
-                    <circle cx={pos.x} cy={pos.y} r="22" fill="none" stroke="white" strokeWidth="1.5" opacity="0.4" />
-                    <text x={pos.x} y={pos.y - 2} textAnchor="middle" dominantBaseline="middle"
-                      className="font-bold" fontSize="14" fill="white">{posLabels[i]}</text>
-                    <text x={pos.x} y={pos.y + 13} textAnchor="middle" fontSize="8" fill="white" opacity="0.9">50%</text>
-                    {justAppeared && (
-                      <circle cx={pos.x} cy={pos.y} r="26" fill="none" stroke={currentColor} strokeWidth="2" opacity="0.6">
-                        <animate attributeName="r" from="22" to="36" dur="0.7s" fill="freeze" />
-                        <animate attributeName="opacity" from="0.6" to="0" dur="0.7s" fill="freeze" />
-                      </circle>
+                  <>
+                    {/* Lines from YOU to middle */}
+                    {midRow.map((pos, i) => (
+                      <line key={`lm-${i}`} x1={youP.x} y1={youP.y} x2={pos.x} y2={pos.y}
+                        stroke={currentColor} strokeWidth="2" opacity={i < filling ? 0.35 : 0.08}
+                        style={{ transition: "opacity 0.5s ease" }} />
+                    ))}
+                    {/* Lines from middle to bottom */}
+                    {botRow.map((pos, i) => {
+                      const parent = midRow[i < 2 ? 0 : 1];
+                      return (
+                        <line key={`lb-${i}`} x1={parent.x} y1={parent.y} x2={pos.x} y2={pos.y}
+                          stroke={currentColor} strokeWidth="2" opacity={i + 2 < filling ? 0.3 : 0.08}
+                          style={{ transition: "opacity 0.5s ease" }} />
+                      );
+                    })}
+
+                    {/* YOU apex */}
+                    <circle cx={youP.x} cy={youP.y} r="30" fill="white" stroke={currentColor} strokeWidth="2.5"
+                      style={{ transition: "stroke 0.8s ease" }} />
+                    <text x={youP.x} y={youP.y - 6} textAnchor="middle" dominantBaseline="middle"
+                      className="font-bold" fontSize="12" fill={TEXT}>YOU</text>
+                    <text x={youP.x} y={youP.y + 10} textAnchor="middle" dominantBaseline="middle"
+                      className="font-bold" fontSize="10" fill={currentColor}
+                      style={{ transition: "fill 0.8s ease" }}>
+                      {formatPercent(cumulativePercent)}%
+                    </text>
+
+                    {/* Member nodes */}
+                    {allNodes.map((pos, i) => {
+                      const isVisible = i < filling;
+                      const justAppeared = i === filling - 1;
+                      const nodeColor = i < 2 ? BLUE : GREEN;
+                      return (
+                        <g key={`${cycle}-${i}`} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.5s ease" }}>
+                          <circle cx={pos.x} cy={pos.y} r="22" fill={nodeColor} opacity="0.8" />
+                          <circle cx={pos.x} cy={pos.y} r="22" fill="none" stroke="white" strokeWidth="1.5" opacity="0.4" />
+                          <text x={pos.x} y={pos.y - 2} textAnchor="middle" dominantBaseline="middle"
+                            className="font-bold" fontSize="14" fill="white">{pos.label}</text>
+                          <text x={pos.x} y={pos.y + 13} textAnchor="middle" fontSize="8" fill="white" opacity="0.9">50%</text>
+                          {justAppeared && (
+                            <circle cx={pos.x} cy={pos.y} r="26" fill="none" stroke={nodeColor} strokeWidth="2" opacity="0.6">
+                              <animate attributeName="r" from="22" to="36" dur="0.7s" fill="freeze" />
+                              <animate attributeName="opacity" from="0.6" to="0" dur="0.7s" fill="freeze" />
+                            </circle>
+                          )}
+                        </g>
+                      );
+                    })}
+
+                    {filling >= 6 && !isSpinning && (
+                      <text x="250" y="340" textAnchor="middle" fontSize="11" fill={currentColor}
+                        className="font-bold" style={{ transition: "fill 0.8s ease" }}>
+                        ✓ WHEEL {cycle + 1} COMPLETE
+                      </text>
                     )}
-                  </g>
+                  </>
                 );
-              })}
-              {filling >= 6 && !isSpinning && (
-                <text x="150" y="20" textAnchor="middle" fontSize="11" fill={currentColor}
-                  className="font-bold" style={{ transition: "fill 0.8s ease" }}>
-                  ✓ WHEEL {cycle + 1} COMPLETE
-                </text>
-              )}
+              })()}
             </svg>
           </div>
 
