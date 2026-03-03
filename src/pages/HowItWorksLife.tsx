@@ -1015,19 +1015,6 @@ const HowItWorksLife = () => {
         </div>
       </section>
 
-      {/* ── 9 Vaults ── */}
-      <section className="py-16 border-t border-white/10">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: heading, color: GOLD }}>
-            9 Cooperative Crowdfunding Vaults
-          </h2>
-          <p className="text-xl md:text-2xl text-white/60 mb-2">All paying Simultaneously.</p>
-          <p className="text-3xl md:text-4xl font-bold text-white mt-6" style={{ fontFamily: heading }}>
-            That Pay You Instantly!
-          </p>
-          <p className="text-lg mt-4" style={{ color: GOLD, fontFamily: heading }}>Money For Today</p>
-        </div>
-      </section>
 
       {/* ── 3 Cooperative Levels with Dollar Breakdowns ── */}
       <section className="py-16 border-t border-white/10">
