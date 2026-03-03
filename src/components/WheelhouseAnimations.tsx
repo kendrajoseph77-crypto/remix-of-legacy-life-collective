@@ -17,7 +17,7 @@ const GOLD = "hsl(39 55% 52%)";
 /* ── Mini completed wheel thumbnail ── */
 const MiniWheel = ({ wheelNum, color }: { wheelNum: number; color: string }) => (
   <div className="flex flex-col items-center gap-1 animate-scale-in">
-    <svg viewBox="0 0 100 100" className="w-10 h-10 md:w-12 md:h-12">
+      <svg viewBox="0 0 100 100" className="w-10 h-10 md:w-12 md:h-12">
       <circle cx="50" cy="50" r="45" fill="none" stroke={color} strokeWidth="2" opacity="0.4" />
       <circle cx="50" cy="50" r="38" fill={color} opacity="0.15" />
       <circle cx="50" cy="50" r="16" fill="white" stroke={color} strokeWidth="1.5" />
@@ -44,6 +44,9 @@ export const MobiusLoopVisual = () => {
   const hasStarted = useRef(false);
   const timerRefs = useRef<ReturnType<typeof setTimeout>[]>([]);
   const isPausedRef = useRef(false);
+
+  const TEXT = "hsl(0 0% 8%)";
+  const TEXT_MUTED = "hsl(0 0% 40%)";
 
   const MAX_CYCLES = 6;
   const cumulativePercent = cycle * 300 + filling * 50;
@@ -142,21 +145,21 @@ export const MobiusLoopVisual = () => {
         <div className="flex items-center gap-4 mb-2">
           <div className="flex items-center gap-3">
             <Infinity size={18} style={{ color: currentColor }} />
-            <p className="text-xs tracking-widest uppercase text-white/50">
-              Wheel <span className="font-bold text-white/80" style={{ color: currentColor }}>{cycle + 1}</span> of {MAX_CYCLES}
+            <p className="text-xs tracking-widest uppercase text-muted-foreground">
+              Wheel <span className="font-bold" style={{ color: currentColor }}>{cycle + 1}</span> of {MAX_CYCLES}
             </p>
           </div>
           <div className="flex items-center gap-2">
             <button
               onClick={() => setIsPaused(p => !p)}
-              className="flex items-center justify-center w-8 h-8 rounded-full border border-white/20 text-white/50 hover:text-white hover:border-white/40 transition-all"
+              className="flex items-center justify-center w-8 h-8 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-foreground/40 transition-all"
               title={isPaused ? "Play" : "Pause"}
             >
               {isPaused ? <Play size={12} /> : <Pause size={12} />}
             </button>
             <button
               onClick={skipToNext}
-              className="flex items-center justify-center w-8 h-8 rounded-full border border-white/20 text-white/50 hover:text-white hover:border-white/40 transition-all"
+              className="flex items-center justify-center w-8 h-8 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-foreground/40 transition-all"
               title="Next wheel"
             >
               <SkipForward size={12} />
@@ -173,13 +176,13 @@ export const MobiusLoopVisual = () => {
                 style={{ transition: "stroke 0.8s ease" }} />
               <circle cx="150" cy="150" r="120" fill={currentColor} opacity="0.12"
                 style={{ transition: "fill 0.8s ease" }} />
-              <line x1="150" y1="12" x2="150" y2="288" stroke="white" strokeWidth="2" opacity="0.2" />
-              <line x1="12" y1="150" x2="288" y2="150" stroke="white" strokeWidth="2" opacity="0.2" />
-              <circle cx="150" cy="150" r="58" fill="hsl(0 0% 20%)" opacity="0.5" />
+              <line x1="150" y1="12" x2="150" y2="288" stroke={TEXT} strokeWidth="2" opacity="0.1" />
+              <line x1="12" y1="150" x2="288" y2="150" stroke={TEXT} strokeWidth="2" opacity="0.1" />
+              <circle cx="150" cy="150" r="58" fill="hsl(0 0% 90%)" opacity="0.5" />
               <circle cx="150" cy="150" r="42" fill="white" stroke={currentColor} strokeWidth="2.5"
                 style={{ transition: "stroke 0.8s ease" }} />
               <text x="150" y="143" textAnchor="middle" dominantBaseline="middle"
-                className="font-bold" fontSize="12" fill="hsl(0 0% 8%)">YOU</text>
+                className="font-bold" fontSize="12" fill={TEXT}>YOU</text>
               <text x="150" y="160" textAnchor="middle" dominantBaseline="middle"
                 className="font-bold" fontSize="11" fill={currentColor}
                 style={{ transition: "fill 0.8s ease" }}>
@@ -196,12 +199,12 @@ export const MobiusLoopVisual = () => {
                   <g key={`${cycle}-${i}`} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.5s ease" }}>
                     <circle cx={pos.x} cy={pos.y} r="22" fill={currentColor} opacity="0.8"
                       style={{ transition: "fill 0.8s ease" }} />
-                    <circle cx={pos.x} cy={pos.y} r="22" fill="none" stroke="white" strokeWidth="1.5" opacity="0.3" />
+                    <circle cx={pos.x} cy={pos.y} r="22" fill="none" stroke="white" strokeWidth="1.5" opacity="0.4" />
                     <text x={pos.x} y={pos.y - 2} textAnchor="middle" dominantBaseline="middle"
                       className="font-bold" fontSize="14" fill="white">{posLabels[i]}</text>
-                    <text x={pos.x} y={pos.y + 13} textAnchor="middle" fontSize="8" fill="white" opacity="0.7">50%</text>
+                    <text x={pos.x} y={pos.y + 13} textAnchor="middle" fontSize="8" fill="white" opacity="0.9">50%</text>
                     {justAppeared && (
-                      <circle cx={pos.x} cy={pos.y} r="26" fill="none" stroke="white" strokeWidth="2" opacity="0.6">
+                      <circle cx={pos.x} cy={pos.y} r="26" fill="none" stroke={currentColor} strokeWidth="2" opacity="0.6">
                         <animate attributeName="r" from="22" to="36" dur="0.7s" fill="freeze" />
                         <animate attributeName="opacity" from="0.6" to="0" dur="0.7s" fill="freeze" />
                       </circle>
@@ -219,8 +222,8 @@ export const MobiusLoopVisual = () => {
           </div>
 
           <div className="flex items-center gap-3 transition-all duration-500">
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/[0.05]">
-              <span className="text-xs text-white/50">Cumulative:</span>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-muted/30">
+              <span className="text-xs text-muted-foreground">Cumulative:</span>
               <span className="text-lg font-bold tabular-nums" style={{ color: currentColor, transition: "color 0.8s ease" }}>
                 {formatPercent(cumulativePercent)}%
               </span>
@@ -232,7 +235,7 @@ export const MobiusLoopVisual = () => {
 
           {completedWheels.length > 0 && (
             <div className="w-full max-w-md mt-4">
-              <p className="text-[10px] text-white/40 uppercase tracking-widest text-center mb-3">Completed Wheels</p>
+              <p className="text-[10px] text-muted-foreground uppercase tracking-widest text-center mb-3">Completed Wheels</p>
               <div className="grid grid-cols-6 gap-2 justify-items-center">
                 {completedWheels.map((wNum) => (
                   <MiniWheel key={wNum} wheelNum={wNum} color={colors[(wNum - 1) % 3]} />
@@ -241,7 +244,7 @@ export const MobiusLoopVisual = () => {
             </div>
           )}
 
-          <div className="flex items-center gap-2 text-white/40">
+          <div className="flex items-center gap-2 text-muted-foreground">
             <Infinity size={18} className="animate-pulse" style={{ color: currentColor }} />
             <p className="text-xs tracking-widest uppercase">Infinite Möbius Loop</p>
           </div>
@@ -250,15 +253,15 @@ export const MobiusLoopVisual = () => {
 
       {isFinished && (
         <div className="flex flex-col items-center gap-6 py-8 animate-fade-in text-center px-4">
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/[0.05]">
-            <span className="text-xs text-white/50">Cumulative:</span>
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-muted/30">
+            <span className="text-xs text-muted-foreground">Cumulative:</span>
             <span className="text-lg font-bold tabular-nums" style={{ color: GOLD }}>
               {formatPercent(MAX_CYCLES * 300)}%
             </span>
           </div>
 
           <div className="w-full max-w-md">
-            <p className="text-[10px] text-white/40 uppercase tracking-widest text-center mb-3">Completed Wheels</p>
+            <p className="text-[10px] text-muted-foreground uppercase tracking-widest text-center mb-3">Completed Wheels</p>
             <div className="grid grid-cols-6 gap-2 justify-items-center">
               {completedWheels.map((wNum) => (
                 <MiniWheel key={wNum} wheelNum={wNum} color={colors[(wNum - 1) % 3]} />
@@ -266,16 +269,16 @@ export const MobiusLoopVisual = () => {
             </div>
           </div>
 
-          <h3 className="text-3xl md:text-4xl font-bold text-white mt-4">
+          <h3 className="text-3xl md:text-4xl font-bold text-foreground mt-4">
             And It Never Stops.
           </h3>
-          <p className="text-white/50 text-sm md:text-base max-w-lg">
-            Unlimited re-entries. Unlimited follows. <span className="font-bold text-white">Unlimited income.</span>
+          <p className="text-muted-foreground text-sm md:text-base max-w-lg">
+            Unlimited re-entries. Unlimited follows. <span className="font-bold text-foreground">Unlimited income.</span>
           </p>
-          <p className="text-white/50 text-sm md:text-base max-w-lg">
+          <p className="text-muted-foreground text-sm md:text-base max-w-lg">
             Every completed wheelhouse automatically opens a new one. There is no cap. No ceiling. No limit.
           </p>
-          <p className="text-base md:text-lg font-bold text-white">
+          <p className="text-base md:text-lg font-bold text-foreground">
             Money for Everything! — and it's all automated.
           </p>
           <div className="flex items-center gap-3 px-8 py-4 rounded-full border border-[hsl(40,60%,50%)] mt-2">
@@ -294,7 +297,7 @@ export const MobiusLoopVisual = () => {
               timerRefs.current = [];
               setTimeout(() => runNextCycle(), 500);
             }}
-            className="flex items-center gap-2 px-6 py-2.5 rounded-full border border-white/20 text-white/60 hover:text-white hover:border-white/40 transition-all duration-300 mt-2 text-sm"
+            className="flex items-center gap-2 px-6 py-2.5 rounded-full border border-border text-muted-foreground hover:text-foreground hover:border-foreground/40 transition-all duration-300 mt-2 text-sm"
           >
             <RefreshCw size={14} />
             Replay
@@ -401,6 +404,7 @@ export const TwoRingWheelhouse = () => {
           YOU
         </text>
 
+
         {innerPositions.map((pos, i) => {
           const p = getPos(pos.angle, innerRadius);
           const isVisible = i < visibleCount;
@@ -479,8 +483,8 @@ export const TwoRingWheelhouse = () => {
 
       {visibleCount > 0 && (
         <div className="flex items-center gap-3 transition-all duration-500">
-          <div className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 bg-white/[0.05]">
-            <span className="text-xs text-white/50">Total received:</span>
+          <div className="flex items-center gap-2 px-5 py-2.5 rounded-full border border-border bg-muted/30">
+            <span className="text-xs text-muted-foreground">Total received:</span>
             <span className="text-xl font-bold tabular-nums" style={{ color: GOLD }}>
               {totalPercent}%
             </span>
