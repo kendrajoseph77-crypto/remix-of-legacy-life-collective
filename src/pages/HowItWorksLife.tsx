@@ -977,14 +977,11 @@ const HowItWorksLife = () => {
 
           {/* Highlight callout */}
           <div className="max-w-2xl mx-auto text-center p-8 rounded-2xl border border-white/10 bg-white/[0.03] mt-12">
-            <p className="text-sm tracking-[0.3em] uppercase font-medium mb-4" style={{ color: GOLD }}>
-              Here's the Best Part
-            </p>
-            <h3 className="text-2xl md:text-3xl font-bold mb-4" style={{ fontFamily: heading }}>
-              Invite as Many Friends as You Like
+            <h3 className="text-2xl md:text-3xl font-bold mb-4" style={{ fontFamily: heading, color: GOLD }}>
+              More Money — Not More Work!
             </h3>
             <p className="text-white/50 leading-relaxed">
-              You will always receive half of every contribution. The more friends invite friends, the more contributions flow to you — over and over again.
+              Invite as many friends as you like. You will always receive half of every contribution. The more friends invite friends, the more contributions flow to you — over and over again.
             </p>
           </div>
         </div>
@@ -1018,12 +1015,26 @@ const HowItWorksLife = () => {
         </div>
       </section>
 
-      {/* ── 3 Systems ── */}
+      {/* ── 9 Vaults ── */}
+      <section className="py-16 border-t border-white/10">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: heading, color: GOLD }}>
+            9 Cooperative Crowdfunding Vaults
+          </h2>
+          <p className="text-xl md:text-2xl text-white/60 mb-2">All paying Simultaneously.</p>
+          <p className="text-3xl md:text-4xl font-bold text-white mt-6" style={{ fontFamily: heading }}>
+            That Pay You Instantly!
+          </p>
+          <p className="text-lg mt-4" style={{ color: GOLD, fontFamily: heading }}>Money For Today</p>
+        </div>
+      </section>
+
+      {/* ── 3 Cooperative Levels with Dollar Breakdowns ── */}
       <section className="py-16 border-t border-white/10">
         <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-12">
+          <div className="text-center mb-4">
             <p className="text-sm tracking-[0.3em] uppercase font-medium mb-3" style={{ color: GOLD }}>
-              3 Cooperative Systems
+              100% Instant Payout 50/50 — 300% Per Cycle
             </p>
             <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: heading }}>
               Get In Where You Fit In
@@ -1033,31 +1044,85 @@ const HowItWorksLife = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {[
-              { name: "5050 Fast", color: BLUE, desc: "Start quickly with accessible entry levels. Build momentum and learn the system.", link: "/how-it-works" },
-              { name: "5050 Core", color: GREEN, desc: "Strengthen your position with mid-range contributions. Grow your team and your returns.", link: "/how-it-works" },
-              { name: "5050 Max", color: GOLD, desc: "Maximize your potential with premium-level contributions. Designed for serious participants.", link: "/how-it-works" },
-            ].map((sys, i) => (
-              <div
-                key={i}
-                className="rounded-xl p-6 border-2 text-center transition-all duration-300 hover:scale-[1.02] bg-white/[0.03]"
-                style={{ borderColor: sys.color }}
-              >
-                <p className="text-xl font-bold mb-3" style={{ color: sys.color, fontFamily: heading }}>
-                  {sys.name}
-                </p>
-                <p className="text-white/50 text-sm leading-relaxed mb-5">{sys.desc}</p>
-                <Link
-                  to={sys.link}
-                  className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase transition-colors"
-                  style={{ color: sys.color }}
-                >
-                  Learn More <ArrowRight size={14} />
-                </Link>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+            {/* 5050 FAST */}
+            <div className="rounded-xl border-2 p-6 text-center bg-white/[0.03]" style={{ borderColor: BLUE }}>
+              <h3 className="text-2xl font-bold mb-4" style={{ color: BLUE, fontFamily: heading }}>5050 Fast</h3>
+              <div className="grid grid-cols-3 gap-3 mb-6">
+                {[
+                  { contribution: "$25", payout: "$75", per: "6 × $12.50" },
+                  { contribution: "$50", payout: "$150", per: "6 × $25" },
+                  { contribution: "$150", payout: "$450", per: "6 × $75" },
+                ].map((v, i) => (
+                  <div key={i} className="p-3 rounded-lg border border-white/10 bg-white/[0.03]">
+                    <p className="text-sm font-semibold" style={{ color: GOLD }}>{v.contribution}</p>
+                    <p className="text-[10px] text-white/40 mb-2">Cooperative</p>
+                    <p className="text-xl font-bold text-white">{v.payout}</p>
+                    <p className="text-[10px] text-white/40">Over and Over</p>
+                    <p className="text-[10px] text-white/30 mt-1">{v.per}</p>
+                  </div>
+                ))}
               </div>
-            ))}
+              <p className="text-sm text-white/50">Receive</p>
+              <p className="text-2xl font-bold" style={{ color: GOLD }}>$675 <span className="text-sm font-normal text-white/40">Each Cycle</span></p>
+            </div>
+
+            {/* 5050 CORE */}
+            <div className="rounded-xl border-2 p-6 text-center bg-white/[0.03]" style={{ borderColor: GREEN }}>
+              <h3 className="text-2xl font-bold mb-4" style={{ color: GREEN, fontFamily: heading }}>5050 Core</h3>
+              <div className="grid grid-cols-3 gap-3 mb-6">
+                {[
+                  { contribution: "$250", payout: "$750", per: "6 × $125" },
+                  { contribution: "$500", payout: "$1,500", per: "6 × $250" },
+                  { contribution: "$1,000", payout: "$3,000", per: "6 × $500" },
+                ].map((v, i) => (
+                  <div key={i} className="p-3 rounded-lg border border-white/10 bg-white/[0.03]">
+                    <p className="text-sm font-semibold" style={{ color: GOLD }}>{v.contribution}</p>
+                    <p className="text-[10px] text-white/40 mb-2">Cooperative</p>
+                    <p className="text-xl font-bold text-white">{v.payout}</p>
+                    <p className="text-[10px] text-white/40">Over and Over</p>
+                    <p className="text-[10px] text-white/30 mt-1">{v.per}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="text-sm text-white/50">Receive</p>
+              <p className="text-2xl font-bold" style={{ color: GOLD }}>$5,250 <span className="text-sm font-normal text-white/40">Each Cycle</span></p>
+            </div>
+
+            {/* 5050 MAX */}
+            <div className="rounded-xl border-2 p-6 text-center bg-white/[0.03]" style={{ borderColor: GOLD }}>
+              <h3 className="text-2xl font-bold mb-4" style={{ color: GOLD, fontFamily: heading }}>5050 Max</h3>
+              <div className="grid grid-cols-3 gap-3 mb-6">
+                {[
+                  { contribution: "$2,500", payout: "$7,500", per: "6 × $1,250" },
+                  { contribution: "$5,000", payout: "$15,000", per: "6 × $2,500" },
+                  { contribution: "$10,000", payout: "$30,000", per: "6 × $5,000" },
+                ].map((v, i) => (
+                  <div key={i} className="p-3 rounded-lg border border-white/10 bg-white/[0.03]">
+                    <p className="text-sm font-semibold" style={{ color: GOLD }}>{v.contribution}</p>
+                    <p className="text-[10px] text-white/40 mb-2">Cooperative</p>
+                    <p className="text-xl font-bold text-white">{v.payout}</p>
+                    <p className="text-[10px] text-white/40">Over and Over</p>
+                    <p className="text-[10px] text-white/30 mt-1">{v.per}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="text-sm text-white/50">Receive</p>
+              <p className="text-2xl font-bold" style={{ color: GOLD }}>$52,500 <span className="text-sm font-normal text-white/40">Each Cycle</span></p>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── Earn from 100s or 1000s ── */}
+      <section className="py-20 border-t border-white/10">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-3xl md:text-5xl font-bold mb-6" style={{ fontFamily: heading, color: GOLD }}>
+            Earn From 100's or Even 1,000's of Cooperatives
+          </h2>
+          <p className="text-2xl md:text-3xl font-bold text-white" style={{ fontFamily: heading }}>
+            Would That Change Your Life?
+          </p>
         </div>
       </section>
 
