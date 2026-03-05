@@ -260,17 +260,6 @@ export const MobiusLoopVisual = () => {
             </svg>
           </div>
 
-      <div className="flex items-center gap-3 transition-all duration-500">
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full border-2" style={{ borderColor: currentColor }}>
-              <span className="text-xs font-medium" style={{ color: currentColor }}>Cumulative:</span>
-              <span className="text-lg font-bold tabular-nums" style={{ color: currentColor, transition: "color 0.8s ease" }}>
-                {formatPercent(cumulativePercent)}%
-              </span>
-            </div>
-            {filling > 0 && filling < 6 && (
-              <span className="text-xs font-semibold animate-fade-in" style={{ color: currentColor }}>+50%</span>
-            )}
-          </div>
 
           {completedWheels.length > 0 && (
             <div className="w-full max-w-md mt-4">
