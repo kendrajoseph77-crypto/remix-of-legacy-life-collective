@@ -14,7 +14,7 @@ const BLUE = "hsl(224 85% 58%)";
 const GREEN = "hsl(160 80% 42%)";
 const GOLD = "hsl(39 55% 52%)";
 
-/* ── Möbius Loop — statement section ── */
+/* ── Mobius Loop — statement section ── */
 export const MobiusLoopVisual = () => (
   <div className="flex flex-col items-center gap-5 py-12 text-center px-6">
     <Infinity size={32} strokeWidth={1.5} style={{ color: GOLD }} className="opacity-40" />
@@ -26,10 +26,16 @@ export const MobiusLoopVisual = () => (
 
     <div className="w-12 h-[2px] rounded-full" style={{ background: GOLD }} />
 
-    <p className="text-muted-foreground text-sm md:text-base max-w-md leading-relaxed">
-      Every completed wheelhouse automatically opens a new one.
-      Unlimited re-entries. Unlimited follows.{" "}
-      <span className="font-semibold text-foreground">Unlimited income.</span>
+    <p className="text-foreground text-base md:text-lg font-semibold max-w-md">
+      You Never Lose Your Team!
+    </p>
+
+    <p className="text-muted-foreground text-sm md:text-base max-w-lg leading-relaxed">
+      Each and every time your Income Center fills with 6 Active Contributors, another automatically re-opens for you to receive another 6 contributions — without additional effort or qualifications!
+    </p>
+
+    <p className="text-muted-foreground text-sm md:text-base max-w-lg leading-relaxed">
+      The Mobius Loop ensures you always follow your inviter and your team always follows you!
     </p>
 
     <div className="flex items-center gap-3 px-8 py-3 rounded-full mt-2"
