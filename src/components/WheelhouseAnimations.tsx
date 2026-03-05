@@ -16,17 +16,17 @@ const GOLD = "hsl(39 55% 52%)";
 
 /* ── Mobius Loop — statement section ── */
 export const MobiusLoopVisual = () => (
-  <div className="flex flex-col items-center gap-5 py-12 text-center px-6">
-    <Infinity size={32} strokeWidth={1.5} style={{ color: GOLD }} className="opacity-40" />
+  <div className="flex flex-col items-center gap-6 text-center">
+    <Infinity size={28} strokeWidth={1.2} style={{ color: GOLD }} className="opacity-30" />
 
-    <h3 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight"
+    <h3 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-[1.1]"
       style={{ fontFamily: "'Cormorant Garamond', serif" }}>
       And It Never Stops.
     </h3>
 
-    <div className="w-12 h-[2px] rounded-full" style={{ background: GOLD }} />
+    <div className="w-10 h-[2px] rounded-full mt-1" style={{ background: GOLD }} />
 
-    <p className="text-foreground text-base md:text-lg font-semibold max-w-md">
+    <p className="text-foreground text-lg md:text-xl font-semibold max-w-md mt-2">
       You Never Lose Your Team!
     </p>
 
@@ -38,10 +38,10 @@ export const MobiusLoopVisual = () => (
       The Mobius Loop ensures you always follow your inviter and your team always follows you!
     </p>
 
-    <div className="flex items-center gap-3 px-8 py-3 rounded-full mt-2"
-      style={{ border: `1.5px solid ${GOLD}` }}>
-      <Infinity size={18} style={{ color: GOLD }} />
-      <span className="text-xs font-semibold tracking-[0.2em] uppercase" style={{ color: GOLD }}>
+    <div className="flex items-center gap-3 px-7 py-3 rounded-full mt-4"
+      style={{ border: `1px solid hsl(39 55% 52% / 0.5)` }}>
+      <Infinity size={16} style={{ color: GOLD }} />
+      <span className="text-[11px] font-semibold tracking-[0.25em] uppercase" style={{ color: GOLD }}>
         Infinite Earning Potential
       </span>
     </div>

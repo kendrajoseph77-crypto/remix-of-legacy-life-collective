@@ -165,22 +165,25 @@ const HowItWorks = () => {
         </div>
       </section>
 
-      {/* Möbius Loop */}
-      <section className="py-14 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,hsl(224_85%_58%/0.04)_0%,transparent_70%)]" />
-        <div className="max-w-5xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-14">
-            <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3">The Möbius Loop</p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              When One Completes, Another Opens
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-sm">
-              Watch the Möbius Loop in action. Each Wheelhouse fills, closes, and a new one opens — automatically. The cycle never ends.
-            </p>
-          </div>
+      {/* Mobius Loop */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_40%,hsl(39_55%_52%/0.06)_0%,transparent_70%)]" />
+
+        <div className="max-w-3xl mx-auto px-6 relative z-10 text-center">
+          <p className="text-muted-foreground text-xs tracking-[0.35em] uppercase font-medium mb-4">The Mobius Loop</p>
+          <h2 className="text-3xl md:text-5xl font-bold mb-5" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+            When One Completes, Another Opens
+          </h2>
+          <p className="text-muted-foreground max-w-xl mx-auto text-sm leading-relaxed mb-16">
+            Each Wheelhouse fills, closes, and a new one opens — automatically. The cycle never ends.
+          </p>
+
+          <div className="w-16 h-[1px] mx-auto mb-16" style={{ background: "linear-gradient(90deg, transparent, hsl(39 55% 52%), transparent)" }} />
+
           <MobiusLoopVisual />
-          <div className="max-w-2xl mx-auto text-center p-8 rounded-2xl border border-border bg-muted/30 mt-12">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4" style={{ color: "hsl(41 50% 65%)" }}>
+
+          <div className="max-w-xl mx-auto mt-16 p-8 rounded-2xl border border-border/60 bg-gradient-to-b from-muted/40 to-transparent">
+            <h3 className="text-xl md:text-2xl font-bold mb-3" style={{ color: "hsl(41 50% 65%)", fontFamily: "'Cormorant Garamond', serif" }}>
               More Money — Not More Work!
             </h3>
             <p className="text-muted-foreground leading-relaxed text-sm">
