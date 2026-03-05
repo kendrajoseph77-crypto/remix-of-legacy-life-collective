@@ -14,24 +14,52 @@ const BLUE = "hsl(224 85% 58%)";
 const GREEN = "hsl(160 80% 42%)";
 const GOLD = "hsl(39 55% 52%)";
 
-/* ── Mobius Loop — simplified to static text ── */
+/* ── Möbius Loop — bold statement section ── */
 export const MobiusLoopVisual = () => (
-  <div className="flex flex-col items-center gap-6 py-8 text-center px-4">
-    <h3 className="text-3xl md:text-4xl font-bold text-foreground">
+  <div className="relative flex flex-col items-center gap-8 py-16 md:py-24 text-center px-6 overflow-hidden">
+    {/* Decorative background glow */}
+    <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full opacity-[0.07]"
+        style={{ background: `radial-gradient(circle, ${GOLD}, transparent 70%)` }} />
+    </div>
+
+    {/* Infinity icon accent */}
+    <div className="relative">
+      <Infinity size={48} strokeWidth={1.5} style={{ color: GOLD }} className="opacity-30" />
+      <Infinity size={48} strokeWidth={1.5} style={{ color: GOLD }} className="absolute inset-0 animate-pulse opacity-15" />
+    </div>
+
+    <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight leading-tight"
+      style={{ fontFamily: "'Cormorant Garamond', serif" }}>
       And It Never Stops.
     </h3>
-    <p className="text-muted-foreground text-sm md:text-base max-w-lg">
-      Unlimited re-entries. Unlimited follows. <span className="font-bold text-foreground">Unlimited income.</span>
-    </p>
-    <p className="text-muted-foreground text-sm md:text-base max-w-lg">
-      Every completed wheelhouse automatically opens a new one. There is no cap. No ceiling. No limit.
-    </p>
-    <p className="text-base md:text-lg font-bold text-foreground">
+
+    <div className="w-16 h-[2px] rounded-full" style={{ background: GOLD }} />
+
+    <div className="flex flex-col gap-4 max-w-xl">
+      <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
+        Unlimited re-entries. Unlimited follows.{" "}
+        <span className="font-semibold text-foreground">Unlimited income.</span>
+      </p>
+      <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+        Every completed wheelhouse automatically opens a new one.<br />
+        No cap. No ceiling. No limit.
+      </p>
+    </div>
+
+    <p className="text-lg md:text-xl font-bold text-foreground tracking-wide mt-2"
+      style={{ fontFamily: "'Cormorant Garamond', serif" }}>
       Money for Everything! — and it's all automated.
     </p>
-    <div className="flex items-center gap-3 px-8 py-4 rounded-full border border-[hsl(40,60%,50%)] mt-2">
-      <Infinity size={20} style={{ color: GOLD }} />
-      <span className="text-sm tracking-[0.25em] uppercase" style={{ color: GOLD }}>
+
+    <div className="flex items-center gap-3 px-10 py-4 rounded-full mt-4 backdrop-blur-sm"
+      style={{
+        border: `1.5px solid ${GOLD}`,
+        background: `linear-gradient(135deg, hsla(39, 55%, 52%, 0.06), hsla(39, 55%, 52%, 0.02))`,
+        boxShadow: `0 0 40px -10px hsla(39, 55%, 52%, 0.2)`,
+      }}>
+      <Infinity size={22} style={{ color: GOLD }} />
+      <span className="text-sm md:text-base font-semibold tracking-[0.2em] uppercase" style={{ color: GOLD }}>
         Infinite Earning Potential
       </span>
     </div>
