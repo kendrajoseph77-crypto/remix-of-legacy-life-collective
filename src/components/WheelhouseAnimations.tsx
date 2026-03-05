@@ -182,8 +182,15 @@ export const TwoRingWheelhouse = () => {
 
         {/* ── YOU node (GOLD) ── */}
         <circle cx={youPos.x} cy={youPos.y} r={youR} fill="white" stroke={GOLD} strokeWidth="3.5" />
-        <text x={youPos.x} y={youPos.y + 1} textAnchor="middle" dominantBaseline="middle"
+        <text x={youPos.x} y={visibleCount > 0 ? youPos.y - 7 : youPos.y + 1} textAnchor="middle" dominantBaseline="middle"
           className="font-bold" fontSize="20" fill="hsl(0 0% 8%)">YOU</text>
+        {visibleCount > 0 && (
+          <text x={youPos.x} y={youPos.y + 16} textAnchor="middle" dominantBaseline="middle"
+            fontSize="14" fontWeight="700" fill={GOLD}
+            key={`you-pct-${visibleCount}`}>
+            {visibleCount * 50}%
+          </text>
+        )}
 
         {/* ── Inner nodes (01, 02) — BLUE ── */}
         {innerNodes.map((node, i) => {
@@ -199,11 +206,27 @@ export const TwoRingWheelhouse = () => {
               <circle cx={node.x - innerR * 0.75} cy={node.y - innerR * 0.75} r="13" fill={DARK} />
               <text x={node.x - innerR * 0.75} y={node.y - innerR * 0.75 + 1} textAnchor="middle"
                 dominantBaseline="middle" fontSize="11" fill="white" fontWeight="700">{node.label}</text>
+              {/* 50% badge — their own contribution to YOU */}
               <g transform={`translate(${node.x + innerR * 0.65}, ${node.y + innerR * 0.65})`}>
                 <rect x="-17" y="-10" width="34" height="20" rx="10" fill={BLUE} />
                 <text x="0" y="1" textAnchor="middle" dominantBaseline="middle"
                   fontSize="10" fill="white" fontWeight="700">50%</text>
               </g>
+              {/* Accumulated % from their children */}
+              {(() => {
+                const childIndices = i === 0 ? [0, 1] : [2, 3];
+                const childCount = childIndices.filter(ci => ci + 2 < visibleCount).length;
+                if (childCount === 0) return null;
+                const pct = childCount * 50;
+                const yOff = i === 0 ? node.y - innerR - 22 : node.y + innerR + 22;
+                return (
+                  <g>
+                    <rect x={node.x - 22} y={yOff - 10} width="44" height="20" rx="10" fill={GREEN} />
+                    <text x={node.x} y={yOff + 1} textAnchor="middle" dominantBaseline="middle"
+                      fontSize="10" fill="white" fontWeight="700">+{pct}%</text>
+                  </g>
+                );
+              })()}
               {justAppeared && (
                 <circle cx={node.x} cy={node.y} r={innerR} fill="none" stroke={BLUE} strokeWidth="2" opacity="0.5">
                   <animate attributeName="r" from={`${innerR}`} to={`${innerR + 18}`} dur="0.8s" fill="freeze" />
