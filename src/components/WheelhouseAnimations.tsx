@@ -162,12 +162,14 @@ export const TwoRingWheelhouse = () => {
           fill="none" stroke={GREEN} strokeWidth="1.5" strokeDasharray="6 4" opacity="0.2" />
 
 
-        {/* YOU → inner lines */}
-        <line x1={youPos.x} y1={youPos.y - youR} x2={innerNodes[0].x} y2={innerNodes[0].y + innerR}
-          stroke={DARK} strokeWidth="2" opacity={0 < visibleCount ? 0.5 : 0.08}
+        {/* Inner → YOU arrows */}
+        <line x1={innerNodes[0].x} y1={innerNodes[0].y + innerR} x2={youPos.x} y2={youPos.y - youR}
+          stroke={DARK} strokeWidth="2" markerEnd="url(#wh-arrow)"
+          opacity={0 < visibleCount ? 0.5 : 0.08}
           style={{ transition: "opacity 0.6s" }} />
-        <line x1={youPos.x} y1={youPos.y + youR} x2={innerNodes[1].x} y2={innerNodes[1].y - innerR}
-          stroke={DARK} strokeWidth="2" opacity={1 < visibleCount ? 0.5 : 0.08}
+        <line x1={innerNodes[1].x} y1={innerNodes[1].y - innerR} x2={youPos.x} y2={youPos.y + youR}
+          stroke={DARK} strokeWidth="2" markerEnd="url(#wh-arrow)"
+          opacity={1 < visibleCount ? 0.5 : 0.08}
           style={{ transition: "opacity 0.6s" }} />
 
         {/* Elbow connectors to outer nodes */}
