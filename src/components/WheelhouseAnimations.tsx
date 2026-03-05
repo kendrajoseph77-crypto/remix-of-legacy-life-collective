@@ -347,28 +347,31 @@ export const MobiusLoopVisual = () => {
   );
 };
 
-/* ── Pyramid Wheelhouse with Avatar Photos ── */
+/* ── Radial Wheelhouse with Avatar Photos ── */
 export const TwoRingWheelhouse = () => {
   const [visibleCount, setVisibleCount] = useState(0);
   const [totalPercent, setTotalPercent] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
 
-  const youPos = { x: 250, y: 55 };
+  const youPos = { x: 350, y: 260 };
+  const youR = 50;
+  const innerR = 38;
+  const outerR = 34;
 
-  const middleRow = [
-    { x: 155, y: 175, label: "1", avatar: avatars[0] },
-    { x: 345, y: 175, label: "2", avatar: avatars[1] },
+  const innerNodes = [
+    { x: 350, y: 115, label: "01", avatar: avatars[0] },
+    { x: 350, y: 405, label: "02", avatar: avatars[1] },
   ];
 
-  const bottomRow = [
-    { x: 70,  y: 305, label: "3", avatar: avatars[2] },
-    { x: 190, y: 305, label: "4", avatar: avatars[3] },
-    { x: 310, y: 305, label: "5", avatar: avatars[4] },
-    { x: 430, y: 305, label: "6", avatar: avatars[5] },
+  const outerNodes = [
+    { x: 100, y: 70, label: "03", avatar: avatars[2], parentIdx: 0 },
+    { x: 600, y: 70, label: "04", avatar: avatars[3], parentIdx: 0 },
+    { x: 100, y: 450, label: "05", avatar: avatars[4], parentIdx: 1 },
+    { x: 600, y: 450, label: "06", avatar: avatars[5], parentIdx: 1 },
   ];
 
-  const allPositions = [...middleRow, ...bottomRow];
+  const allPositions = [...innerNodes, ...outerNodes];
 
   useEffect(() => {
     if (hasAnimated.current) return;
@@ -391,73 +394,120 @@ export const TwoRingWheelhouse = () => {
   }, []);
 
   const clipId = useRef(`clip-${Math.random().toString(36).slice(2)}`).current;
+  const ACCENT = "hsl(224 85% 68%)";
+  const DARK = "hsl(0 0% 20%)";
 
-  const renderNode = (pos: { x: number; y: number; label: string; avatar: string }, idx: number, color: string, r: number) => {
-    const isVisible = idx < visibleCount;
-    const justAppeared = idx === visibleCount - 1;
-    return (
-      <g key={`node-${idx}`} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.6s ease" }}>
-        <g transform={`translate(${pos.x}, ${pos.y})`}>
-          <circle r={r + 2} fill={color} opacity="0.3" />
-          <clipPath id={`${clipId}-n-${idx}`}>
-            <circle r={r} />
-          </clipPath>
-          <image
-            href={pos.avatar}
-            x={-r} y={-r} width={r * 2} height={r * 2}
-            clipPath={`url(#${clipId}-n-${idx})`}
-            preserveAspectRatio="xMidYMid slice"
-          />
-          <circle r={r} fill="none" stroke={color} strokeWidth="2.5" />
-        </g>
-        <circle cx={pos.x + r * 0.7} cy={pos.y - r * 0.7} r="10" fill={color} />
-        <text x={pos.x + r * 0.7} y={pos.y - r * 0.7 + 1} textAnchor="middle" dominantBaseline="middle"
-          fontSize="10" fill="hsl(0 0% 100%)" className="font-bold">{pos.label}</text>
-        <g transform={`translate(${pos.x}, ${pos.y + r + 14})`}>
-          <rect x="-18" y="-8" width="36" height="16" rx="8" fill={color} opacity="0.9" />
-          <text x="0" y="1" textAnchor="middle" dominantBaseline="middle"
-            fontSize="9" fill="hsl(0 0% 100%)" className="font-bold">50%</text>
-        </g>
-        {justAppeared && (
-          <circle cx={pos.x} cy={pos.y} r={r} fill="none" stroke={color} strokeWidth="2" opacity="0.6">
-            <animate attributeName="r" from={`${r}`} to={`${r + 16}`} dur="0.8s" fill="freeze" />
-            <animate attributeName="opacity" from="0.6" to="0" dur="0.8s" fill="freeze" />
-          </circle>
-        )}
-      </g>
-    );
-  };
+  /* Elbow connector paths from inner to outer nodes */
+  const elbowPaths = [
+    `M ${innerNodes[0].x - innerR},${innerNodes[0].y} L 210,${innerNodes[0].y} L 210,${outerNodes[0].y} L ${outerNodes[0].x + outerR},${outerNodes[0].y}`,
+    `M ${innerNodes[0].x + innerR},${innerNodes[0].y} L 490,${innerNodes[0].y} L 490,${outerNodes[1].y} L ${outerNodes[1].x - outerR},${outerNodes[1].y}`,
+    `M ${innerNodes[1].x - innerR},${innerNodes[1].y} L 210,${innerNodes[1].y} L 210,${outerNodes[2].y} L ${outerNodes[2].x + outerR},${outerNodes[2].y}`,
+    `M ${innerNodes[1].x + innerR},${innerNodes[1].y} L 490,${innerNodes[1].y} L 490,${outerNodes[3].y} L ${outerNodes[3].x - outerR},${outerNodes[3].y}`,
+  ];
+  const elbowParentIdx = [0, 0, 1, 1];
 
   return (
     <div ref={ref} className="flex flex-col items-center gap-6">
-      <svg viewBox="0 0 500 380" className="w-full max-w-lg md:max-w-xl">
-        {/* Lines from YOU to middle row */}
-        {middleRow.map((pos, i) => (
-          <line key={`lm-${i}`} x1={youPos.x} y1={youPos.y} x2={pos.x} y2={pos.y}
-            stroke={BLUE} strokeWidth="2" opacity={i < visibleCount ? 0.35 : 0.08}
-            style={{ transition: "opacity 0.6s ease" }} />
+      <svg viewBox="0 0 700 520" className="w-full max-w-lg md:max-w-2xl">
+        <defs>
+          <marker id="wh-arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill={DARK} />
+          </marker>
+        </defs>
+
+        {/* Title */}
+        <text x="350" y="38" textAnchor="middle" fontSize="17" fill="hsl(0 0% 30%)"
+          fontFamily="'Plus Jakarta Sans', sans-serif" fontWeight="600" letterSpacing="0.06em">
+          2 × 2 Wheelhouse
+        </text>
+
+        {/* Inner ring (dashed circle) */}
+        <circle cx={youPos.x} cy={youPos.y} r="150" fill="none" stroke={ACCENT}
+          strokeWidth="1.5" strokeDasharray="6 4" opacity="0.2" />
+
+        {/* YOU → inner lines */}
+        <line x1={youPos.x} y1={youPos.y - youR} x2={innerNodes[0].x} y2={innerNodes[0].y + innerR}
+          stroke={DARK} strokeWidth="2" opacity={0 < visibleCount ? 0.5 : 0.08}
+          style={{ transition: "opacity 0.6s" }} />
+        <line x1={youPos.x} y1={youPos.y + youR} x2={innerNodes[1].x} y2={innerNodes[1].y - innerR}
+          stroke={DARK} strokeWidth="2" opacity={1 < visibleCount ? 0.5 : 0.08}
+          style={{ transition: "opacity 0.6s" }} />
+
+        {/* Elbow connectors to outer nodes */}
+        {elbowPaths.map((d, i) => (
+          <path key={`elbow-${i}`} d={d} fill="none" stroke={DARK} strokeWidth="2"
+            markerEnd="url(#wh-arrow)"
+            opacity={i + 2 < visibleCount ? 0.5 : 0.08}
+            style={{ transition: "opacity 0.6s" }} />
         ))}
 
-        {/* Lines from middle to bottom */}
-        {bottomRow.map((pos, i) => {
-          const parent = middleRow[i < 2 ? 0 : 1];
+        {/* ── YOU node ── */}
+        <circle cx={youPos.x} cy={youPos.y} r={youR} fill="white" stroke={ACCENT} strokeWidth="3.5" />
+        <text x={youPos.x} y={youPos.y + 1} textAnchor="middle" dominantBaseline="middle"
+          className="font-bold" fontSize="20" fill="hsl(0 0% 8%)">YOU</text>
+
+        {/* ── Inner nodes (01, 02) ── */}
+        {innerNodes.map((node, i) => {
+          const isVisible = i < visibleCount;
+          const justAppeared = i === visibleCount - 1;
           return (
-            <line key={`lb-${i}`} x1={parent.x} y1={parent.y} x2={pos.x} y2={pos.y}
-              stroke={GREEN} strokeWidth="2" opacity={i + 2 < visibleCount ? 0.3 : 0.08}
-              style={{ transition: "opacity 0.6s ease" }} />
+            <g key={`inner-${i}`} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.6s ease" }}>
+              <clipPath id={`${clipId}-i-${i}`}><circle cx={node.x} cy={node.y} r={innerR - 2} /></clipPath>
+              <circle cx={node.x} cy={node.y} r={innerR} fill="white" stroke={ACCENT} strokeWidth="2.5" />
+              <image href={node.avatar} x={node.x - innerR + 2} y={node.y - innerR + 2}
+                width={(innerR - 2) * 2} height={(innerR - 2) * 2}
+                clipPath={`url(#${clipId}-i-${i})`} preserveAspectRatio="xMidYMid slice" />
+              {/* Number badge */}
+              <circle cx={node.x - innerR * 0.75} cy={node.y - innerR * 0.75} r="13" fill={DARK} />
+              <text x={node.x - innerR * 0.75} y={node.y - innerR * 0.75 + 1} textAnchor="middle"
+                dominantBaseline="middle" fontSize="11" fill="white" fontWeight="700">{node.label}</text>
+              {/* 50% pill */}
+              <g transform={`translate(${node.x + innerR * 0.65}, ${node.y + innerR * 0.65})`}>
+                <rect x="-17" y="-10" width="34" height="20" rx="10" fill={BLUE} />
+                <text x="0" y="1" textAnchor="middle" dominantBaseline="middle"
+                  fontSize="10" fill="white" fontWeight="700">50%</text>
+              </g>
+              {justAppeared && (
+                <circle cx={node.x} cy={node.y} r={innerR} fill="none" stroke={ACCENT} strokeWidth="2" opacity="0.5">
+                  <animate attributeName="r" from={`${innerR}`} to={`${innerR + 18}`} dur="0.8s" fill="freeze" />
+                  <animate attributeName="opacity" from="0.5" to="0" dur="0.8s" fill="freeze" />
+                </circle>
+              )}
+            </g>
           );
         })}
 
-        {/* YOU at apex */}
-        <circle cx={youPos.x} cy={youPos.y} r="32" fill="white" stroke={GOLD} strokeWidth="3" />
-        <text x={youPos.x} y={youPos.y + 1} textAnchor="middle" dominantBaseline="middle"
-          className="font-bold" fontSize="15" fill="hsl(0 0% 8%)">YOU</text>
-
-        {/* Middle row – blue */}
-        {middleRow.map((pos, i) => renderNode(pos, i, BLUE, 28))}
-
-        {/* Bottom row – green */}
-        {bottomRow.map((pos, i) => renderNode(pos, i + 2, GREEN, 24))}
+        {/* ── Outer nodes (03–06) ── */}
+        {outerNodes.map((node, i) => {
+          const idx = i + 2;
+          const isVisible = idx < visibleCount;
+          const justAppeared = idx === visibleCount - 1;
+          return (
+            <g key={`outer-${i}`} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.6s ease" }}>
+              <clipPath id={`${clipId}-o-${i}`}><circle cx={node.x} cy={node.y} r={outerR - 2} /></clipPath>
+              <circle cx={node.x} cy={node.y} r={outerR} fill="white" stroke={ACCENT} strokeWidth="2.5" />
+              <image href={node.avatar} x={node.x - outerR + 2} y={node.y - outerR + 2}
+                width={(outerR - 2) * 2} height={(outerR - 2) * 2}
+                clipPath={`url(#${clipId}-o-${i})`} preserveAspectRatio="xMidYMid slice" />
+              {/* Number badge */}
+              <circle cx={node.x - outerR * 0.75} cy={node.y - outerR * 0.75} r="12" fill={DARK} />
+              <text x={node.x - outerR * 0.75} y={node.y - outerR * 0.75 + 1} textAnchor="middle"
+                dominantBaseline="middle" fontSize="10" fill="white" fontWeight="700">{node.label}</text>
+              {/* 50% pill */}
+              <g transform={`translate(${node.x}, ${node.y + outerR + 18})`}>
+                <rect x="-17" y="-10" width="34" height="20" rx="10" fill={BLUE} />
+                <text x="0" y="1" textAnchor="middle" dominantBaseline="middle"
+                  fontSize="10" fill="white" fontWeight="700">50%</text>
+              </g>
+              {justAppeared && (
+                <circle cx={node.x} cy={node.y} r={outerR} fill="none" stroke={ACCENT} strokeWidth="2" opacity="0.5">
+                  <animate attributeName="r" from={`${outerR}`} to={`${outerR + 16}`} dur="0.8s" fill="freeze" />
+                  <animate attributeName="opacity" from="0.5" to="0" dur="0.8s" fill="freeze" />
+                </circle>
+              )}
+            </g>
+          );
+        })}
       </svg>
 
       {visibleCount > 0 && (
