@@ -2,6 +2,9 @@ import Navbar from "@/components/Navbar";
 import { Link } from "react-router-dom";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import { TwoRingWheelhouse, MobiusLoopVisual } from "@/components/WheelhouseAnimations";
+import logoF from "@/assets/logo-5050-f.svg";
+import logoC from "@/assets/logo-5050-c.svg";
+import logoM from "@/assets/logo-5050-m.svg";
 
 const steps = [
   {
@@ -227,7 +230,7 @@ const HowItWorks = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
             {[
               {
-                name: "5050 Fast", color: "hsl(224 85% 58%)",
+                name: "5050 Fast", color: "hsl(224 85% 58%)", logo: logoF,
                 vaults: [
                   { contribution: "$25", payout: "$75", per: "6 × $12.50" },
                   { contribution: "$50", payout: "$150", per: "6 × $25" },
@@ -236,7 +239,7 @@ const HowItWorks = () => {
                 total: "$675",
               },
               {
-                name: "5050 Core", color: "hsl(160 80% 42%)",
+                name: "5050 Core", color: "hsl(160 80% 42%)", logo: logoC,
                 vaults: [
                   { contribution: "$250", payout: "$750", per: "6 × $125" },
                   { contribution: "$500", payout: "$1,500", per: "6 × $250" },
@@ -245,7 +248,7 @@ const HowItWorks = () => {
                 total: "$5,250",
               },
               {
-                name: "5050 Max", color: "hsl(41 50% 65%)",
+                name: "5050 Max", color: "hsl(41 50% 65%)", logo: logoM,
                 vaults: [
                   { contribution: "$2,500", payout: "$7,500", per: "6 × $1,250" },
                   { contribution: "$5,000", payout: "$15,000", per: "6 × $2,500" },
@@ -255,6 +258,7 @@ const HowItWorks = () => {
               },
             ].map((level, li) => (
               <div key={li} className="rounded-xl border-2 p-4 md:p-5 text-center bg-background" style={{ borderColor: level.color }}>
+                <img src={level.logo} alt={`${level.name} logo`} className="w-auto mx-auto mb-3" style={{ height: "60px" }} />
                 <h3 className="text-2xl font-bold mb-4" style={{ color: level.color }}>{level.name}</h3>
                 <div className="grid grid-cols-3 gap-2 mb-6">
                   {level.vaults.map((v, i) => (

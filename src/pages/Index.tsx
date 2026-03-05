@@ -1,4 +1,4 @@
-import logoImg from "@/assets/logo-max-gold.png";
+import logoImg from "@/assets/logo-5050-main.svg";
 
 import logoM from "@/assets/logo-5050-m.svg";
 import logoC from "@/assets/logo-5050-c.svg";
