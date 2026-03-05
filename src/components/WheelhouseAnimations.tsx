@@ -181,76 +181,135 @@ export const MobiusLoopVisual = () => {
       {!isFinished && (
         <>
           <div style={{ animation: isSpinning ? "wheel-spin-shrink 0.9s ease-in-out forwards" : undefined }}>
-            <svg viewBox="0 0 500 380" className="w-full max-w-sm md:max-w-md">
-              {/* Pyramid positions */}
+            <svg viewBox="0 0 700 520" className="w-full max-w-lg md:max-w-2xl">
+              <defs>
+                <marker id="ml-arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                  <polygon points="0 0, 10 3.5, 0 7" fill="hsl(0 0% 20%)" />
+                </marker>
+              </defs>
               {(() => {
-                const youP = { x: 250, y: 50 };
+                const youP = { x: 350, y: 80 };
+                const youR = 42;
+                const midR = 34;
+                const botR = 30;
                 const midRow = [
-                  { x: 160, y: 160, label: "1" },
-                  { x: 340, y: 160, label: "2" },
+                  { x: 230, y: 230, label: "01" },
+                  { x: 470, y: 230, label: "02" },
                 ];
                 const botRow = [
-                  { x: 80,  y: 280, label: "3" },
-                  { x: 190, y: 280, label: "4" },
-                  { x: 310, y: 280, label: "5" },
-                  { x: 420, y: 280, label: "6" },
+                  { x: 100, y: 400, label: "03", parentIdx: 0 },
+                  { x: 280, y: 400, label: "04", parentIdx: 0 },
+                  { x: 420, y: 400, label: "05", parentIdx: 1 },
+                  { x: 600, y: 400, label: "06", parentIdx: 1 },
                 ];
-                const allNodes = [...midRow, ...botRow];
 
                 return (
                   <>
-                    {/* Lines from YOU to middle */}
+                    {/* Connection lines: YOU → middle */}
                     {midRow.map((pos, i) => (
-                      <line key={`lm-${i}`} x1={youP.x} y1={youP.y} x2={pos.x} y2={pos.y}
-                        stroke={currentColor} strokeWidth="2" opacity={i < filling ? 0.35 : 0.08}
+                      <line key={`lm-${i}`} x1={youP.x} y1={youP.y + youR} x2={pos.x} y2={pos.y - midR}
+                        stroke="hsl(0 0% 20%)" strokeWidth="2" markerEnd="url(#ml-arrow)"
+                        opacity={i < filling ? 0.5 : 0.08}
                         style={{ transition: "opacity 0.5s ease" }} />
                     ))}
-                    {/* Lines from middle to bottom */}
+                    {/* Connection lines: middle → bottom (elbow style) */}
                     {botRow.map((pos, i) => {
-                      const parent = midRow[i < 2 ? 0 : 1];
+                      const parent = midRow[pos.parentIdx];
+                      const midY = (parent.y + midR + pos.y - botR) / 2;
+                      const d = `M ${parent.x},${parent.y + midR} L ${parent.x},${midY} L ${pos.x},${midY} L ${pos.x},${pos.y - botR}`;
                       return (
-                        <line key={`lb-${i}`} x1={parent.x} y1={parent.y} x2={pos.x} y2={pos.y}
-                          stroke={currentColor} strokeWidth="2" opacity={i + 2 < filling ? 0.3 : 0.08}
+                        <path key={`lb-${i}`} d={d} fill="none" stroke="hsl(0 0% 20%)" strokeWidth="2"
+                          markerEnd="url(#ml-arrow)"
+                          opacity={i + 2 < filling ? 0.5 : 0.08}
                           style={{ transition: "opacity 0.5s ease" }} />
                       );
                     })}
 
-                    {/* YOU apex */}
-                    <circle cx={youP.x} cy={youP.y} r="30" fill="white" stroke={currentColor} strokeWidth="2.5"
-                      style={{ transition: "stroke 0.8s ease" }} />
-                    <text x={youP.x} y={youP.y - 6} textAnchor="middle" dominantBaseline="middle"
-                      className="font-bold" fontSize="12" fill={TEXT}>YOU</text>
-                    <text x={youP.x} y={youP.y + 10} textAnchor="middle" dominantBaseline="middle"
-                      className="font-bold" fontSize="10" fill={currentColor}
-                      style={{ transition: "fill 0.8s ease" }}>
-                      {formatPercent(cumulativePercent)}%
-                    </text>
+                    {/* Dashed guide circles */}
+                    <circle cx={youP.x} cy={youP.y + 75} r="120" fill="none" stroke={BLUE} strokeWidth="1" strokeDasharray="6 4" opacity="0.15" />
 
-                    {/* Member nodes */}
-                    {allNodes.map((pos, i) => {
+                    {/* ── YOU node (GOLD) ── */}
+                    <circle cx={youP.x} cy={youP.y} r={youR} fill="white" stroke={GOLD} strokeWidth="3" />
+                    <text x={youP.x} y={youP.y + 1} textAnchor="middle" dominantBaseline="middle"
+                      className="font-bold" fontSize="18" fill="hsl(0 0% 8%)">YOU</text>
+                    {/* Gold label */}
+                    <g transform={`translate(${youP.x + youR * 0.7}, ${youP.y - youR * 0.7})`}>
+                      <rect x="-20" y="-10" width="40" height="20" rx="10" fill={GOLD} />
+                      <text x="0" y="1" textAnchor="middle" dominantBaseline="middle" fontSize="9" fill="white" fontWeight="700">YOU</text>
+                    </g>
+
+                    {/* ── Middle row nodes (BLUE — Your Invitees) ── */}
+                    {midRow.map((pos, i) => {
                       const isVisible = i < filling;
                       const justAppeared = i === filling - 1;
-                      const nodeColor = i < 2 ? BLUE : GREEN;
                       return (
-                        <g key={`${cycle}-${i}`} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.5s ease" }}>
-                          <circle cx={pos.x} cy={pos.y} r="22" fill={nodeColor} opacity="0.8" />
-                          <circle cx={pos.x} cy={pos.y} r="22" fill="none" stroke="hsl(0 0% 8%)" strokeWidth="1.5" opacity="0.2" />
-                          <text x={pos.x} y={pos.y - 2} textAnchor="middle" dominantBaseline="middle"
-                            className="font-bold" fontSize="14" fill="hsl(0 0% 100%)">{pos.label}</text>
-                          <text x={pos.x} y={pos.y + 13} textAnchor="middle" fontSize="8" fill="hsl(0 0% 100%)" opacity="0.9">50%</text>
+                        <g key={`mid-${cycle}-${i}`} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.5s ease" }}>
+                          <circle cx={pos.x} cy={pos.y} r={midR} fill="white" stroke={BLUE} strokeWidth="2.5" />
+                          {/* Number badge */}
+                          <circle cx={pos.x - midR * 0.75} cy={pos.y - midR * 0.75} r="13" fill="hsl(0 0% 20%)" />
+                          <text x={pos.x - midR * 0.75} y={pos.y - midR * 0.75 + 1} textAnchor="middle"
+                            dominantBaseline="middle" fontSize="10" fill="white" fontWeight="700">{pos.label}</text>
+                          {/* Avatar placeholder */}
+                          <text x={pos.x} y={pos.y + 2} textAnchor="middle" dominantBaseline="middle"
+                            fontSize="22" fill={BLUE} opacity="0.6">👤</text>
+                          {/* 50% pill */}
+                          <g transform={`translate(${pos.x + midR * 0.65}, ${pos.y + midR * 0.65})`}>
+                            <rect x="-17" y="-10" width="34" height="20" rx="10" fill={BLUE} />
+                            <text x="0" y="1" textAnchor="middle" dominantBaseline="middle" fontSize="10" fill="white" fontWeight="700">50%</text>
+                          </g>
                           {justAppeared && (
-                            <circle cx={pos.x} cy={pos.y} r="26" fill="none" stroke={nodeColor} strokeWidth="2" opacity="0.6">
-                              <animate attributeName="r" from="22" to="36" dur="0.7s" fill="freeze" />
-                              <animate attributeName="opacity" from="0.6" to="0" dur="0.7s" fill="freeze" />
+                            <circle cx={pos.x} cy={pos.y} r={midR} fill="none" stroke={BLUE} strokeWidth="2" opacity="0.5">
+                              <animate attributeName="r" from={`${midR}`} to={`${midR + 18}`} dur="0.8s" fill="freeze" />
+                              <animate attributeName="opacity" from="0.5" to="0" dur="0.8s" fill="freeze" />
                             </circle>
                           )}
                         </g>
                       );
                     })}
 
+                    {/* ── Bottom row nodes (GREEN — Their Invitees) ── */}
+                    {botRow.map((pos, i) => {
+                      const idx = i + 2;
+                      const isVisible = idx < filling;
+                      const justAppeared = idx === filling - 1;
+                      return (
+                        <g key={`bot-${cycle}-${i}`} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.5s ease" }}>
+                          <circle cx={pos.x} cy={pos.y} r={botR} fill="white" stroke={GREEN} strokeWidth="2.5" />
+                          {/* Number badge */}
+                          <circle cx={pos.x - botR * 0.75} cy={pos.y - botR * 0.75} r="12" fill="hsl(0 0% 20%)" />
+                          <text x={pos.x - botR * 0.75} y={pos.y - botR * 0.75 + 1} textAnchor="middle"
+                            dominantBaseline="middle" fontSize="9" fill="white" fontWeight="700">{pos.label}</text>
+                          {/* Avatar placeholder */}
+                          <text x={pos.x} y={pos.y + 2} textAnchor="middle" dominantBaseline="middle"
+                            fontSize="18" fill={GREEN} opacity="0.6">👤</text>
+                          {/* 50% pill */}
+                          <g transform={`translate(${pos.x}, ${pos.y + botR + 16})`}>
+                            <rect x="-17" y="-10" width="34" height="20" rx="10" fill={GREEN} />
+                            <text x="0" y="1" textAnchor="middle" dominantBaseline="middle" fontSize="10" fill="white" fontWeight="700">50%</text>
+                          </g>
+                          {justAppeared && (
+                            <circle cx={pos.x} cy={pos.y} r={botR} fill="none" stroke={GREEN} strokeWidth="2" opacity="0.5">
+                              <animate attributeName="r" from={`${botR}`} to={`${botR + 16}`} dur="0.8s" fill="freeze" />
+                              <animate attributeName="opacity" from="0.5" to="0" dur="0.8s" fill="freeze" />
+                            </circle>
+                          )}
+                        </g>
+                      );
+                    })}
+
+                    {/* Legend */}
+                    <g transform="translate(20, 490)">
+                      <circle cx="8" cy="0" r="6" fill={GOLD} />
+                      <text x="20" y="1" dominantBaseline="middle" fontSize="10" fill="hsl(0 0% 40%)">You</text>
+                      <circle cx="70" cy="0" r="6" fill={BLUE} />
+                      <text x="82" y="1" dominantBaseline="middle" fontSize="10" fill="hsl(0 0% 40%)">Your Invitees</text>
+                      <circle cx="185" cy="0" r="6" fill={GREEN} />
+                      <text x="197" y="1" dominantBaseline="middle" fontSize="10" fill="hsl(0 0% 40%)">Their Invitees</text>
+                    </g>
+
                     {filling >= 6 && !isSpinning && (
-                      <text x="250" y="340" textAnchor="middle" fontSize="11" fill={currentColor}
-                        className="font-bold" style={{ transition: "fill 0.8s ease" }}>
+                      <text x="350" y="475" textAnchor="middle" fontSize="13" fill="hsl(0 0% 30%)"
+                        className="font-bold" fontFamily="'Plus Jakarta Sans', sans-serif" letterSpacing="0.05em">
                         ✓ WHEEL {cycle + 1} COMPLETE
                       </text>
                     )}
