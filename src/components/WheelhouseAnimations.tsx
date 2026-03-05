@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Infinity } from "lucide-react";
+import { Infinity, RotateCcw } from "lucide-react";
 
 import avatar1 from "@/assets/avatar-1.jpg";
 import avatar2 from "@/assets/avatar-2.jpg";
@@ -51,8 +51,10 @@ export const MobiusLoopVisual = () => (
 export const TwoRingWheelhouse = () => {
   const [visibleCount, setVisibleCount] = useState(0);
   const [totalPercent, setTotalPercent] = useState(0);
+  const [animationDone, setAnimationDone] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
+  const timers = useRef<number[]>([]);
 
   const youPos = { x: 350, y: 260 };
   const youR = 50;
@@ -73,24 +75,38 @@ export const TwoRingWheelhouse = () => {
 
   const allPositions = [...innerNodes, ...outerNodes];
 
+  const startAnimation = () => {
+    timers.current.forEach(clearTimeout);
+    timers.current = [];
+    setVisibleCount(0);
+    setTotalPercent(0);
+    setAnimationDone(false);
+    allPositions.forEach((_, i) => {
+      const t = window.setTimeout(() => {
+        setVisibleCount(i + 1);
+        setTotalPercent((i + 1) * 50);
+        if (i === allPositions.length - 1) setAnimationDone(true);
+      }, 800 + i * 900);
+      timers.current.push(t);
+    });
+  };
+
   useEffect(() => {
     if (hasAnimated.current) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated.current) {
           hasAnimated.current = true;
-          allPositions.forEach((_, i) => {
-            setTimeout(() => {
-              setVisibleCount(i + 1);
-              setTotalPercent((i + 1) * 50);
-            }, 800 + i * 900);
-          });
+          startAnimation();
         }
       },
       { threshold: 0.3 }
     );
     if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      timers.current.forEach(clearTimeout);
+    };
   }, []);
 
   const clipId = useRef(`clip-${Math.random().toString(36).slice(2)}`).current;
@@ -226,6 +242,16 @@ export const TwoRingWheelhouse = () => {
           );
         })}
       </svg>
+
+      {animationDone && (
+        <button
+          onClick={startAnimation}
+          className="flex items-center gap-2 mx-auto mt-4 px-5 py-2 rounded-full text-xs font-semibold tracking-widest uppercase transition-all duration-300 hover:scale-105 border border-border bg-muted/30 text-muted-foreground hover:text-foreground"
+        >
+          <RotateCcw size={14} />
+          Replay
+        </button>
+      )}
     </div>
   );
 };
