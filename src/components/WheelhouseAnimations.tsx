@@ -162,8 +162,16 @@ export const TwoRingWheelhouse = () => {
 
         {/* ── YOU node ── */}
         <circle cx={youPos.x} cy={youPos.y} r={youR} fill="white" stroke={ACCENT} strokeWidth="3.5" />
-        <text x={youPos.x} y={youPos.y + 1} textAnchor="middle" dominantBaseline="middle"
+        <text x={youPos.x} y={youPos.y - 4} textAnchor="middle" dominantBaseline="middle"
           className="font-bold" fontSize="20" fill="hsl(0 0% 8%)">YOU</text>
+        {/* Climbing percentage pill */}
+        {visibleCount > 0 && (
+          <g key={`you-pill-${visibleCount}`}>
+            <rect x={youPos.x - 24} y={youPos.y + 12} width="48" height="22" rx="11" fill={GOLD} />
+            <text x={youPos.x} y={youPos.y + 24} textAnchor="middle" dominantBaseline="middle"
+              fontSize="11" fill="white" fontWeight="700">{totalPercent}%</text>
+          </g>
+        )}
 
         {/* ── Inner nodes (01, 02) ── */}
         {innerNodes.map((node, i) => {
