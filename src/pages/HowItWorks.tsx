@@ -170,15 +170,15 @@ const HowItWorks = () => {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_40%,hsl(39_55%_52%/0.06)_0%,transparent_70%)]" />
 
         <div className="max-w-3xl mx-auto px-6 relative z-10 text-center">
-          <p className="text-muted-foreground text-xs tracking-[0.35em] uppercase font-medium mb-4">The Mobius Loop</p>
-          <h2 className="text-3xl md:text-5xl font-bold mb-5" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+          <p className="text-muted-foreground text-xs tracking-[0.35em] uppercase font-medium mb-2">The Mobius Loop</p>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 whitespace-nowrap" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
             When One Completes, Another Opens
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto text-sm leading-relaxed mb-16">
+          <p className="text-muted-foreground max-w-xl mx-auto text-sm leading-relaxed mb-12">
             Each Wheelhouse fills, closes, and a new one opens — automatically. The cycle never ends.
           </p>
 
-          <div className="w-16 h-[1px] mx-auto mb-16" style={{ background: "linear-gradient(90deg, transparent, hsl(39 55% 52%), transparent)" }} />
+          <div className="w-16 h-[1px] mx-auto mb-12" style={{ background: "linear-gradient(90deg, transparent, hsl(39 55% 52%), transparent)" }} />
 
           <MobiusLoopVisual />
 
