@@ -1,4 +1,4 @@
-import logoImg from "@/assets/logo-5050-gold.png";
+import logoImg from "@/assets/logo-max-gold.png";
 
 
 import anniversarySeal from "@/assets/anniversary-seal-hq.png";
