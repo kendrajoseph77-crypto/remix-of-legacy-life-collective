@@ -226,7 +226,15 @@ export const MobiusLoopVisual = () => {
                     })}
 
                     {/* Dashed guide circles */}
-                    <circle cx={youP.x} cy={youP.y + 75} r="120" fill="none" stroke={BLUE} strokeWidth="1" strokeDasharray="6 4" opacity="0.15" />
+                    {/* Top half arc (Blue - Your Invitees) */}
+                    <path d={`M ${youP.x - 160},${youP.y + 75} A 160,160 0 0,1 ${youP.x + 160},${youP.y + 75}`}
+                      fill="none" stroke={BLUE} strokeWidth="1.5" strokeDasharray="6 4" opacity="0.15" />
+                    {/* Bottom half arc (Green - Their Invitees) */}
+                    <path d={`M ${youP.x + 160},${youP.y + 75} A 160,160 0 0,1 ${youP.x - 160},${youP.y + 75}`}
+                      fill="none" stroke={GREEN} strokeWidth="1.5" strokeDasharray="6 4" opacity="0.15" />
+                    {/* Divider line */}
+                    <line x1={youP.x - 165} y1={youP.y + 75} x2={youP.x + 165} y2={youP.y + 75}
+                      stroke="hsl(0 0% 70%)" strokeWidth="1" strokeDasharray="4 3" opacity="0.3" />
 
                     {/* ── YOU node (GOLD) ── */}
                     <circle cx={youP.x} cy={youP.y} r={youR} fill="white" stroke={GOLD} strokeWidth="3" />
