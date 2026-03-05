@@ -14,58 +14,33 @@ const BLUE = "hsl(224 85% 58%)";
 const GREEN = "hsl(160 80% 42%)";
 const GOLD = "hsl(39 55% 52%)";
 
-/* ── Möbius Loop — bold statement section ── */
+/* ── Möbius Loop — statement section ── */
 export const MobiusLoopVisual = () => (
-  <div className="relative flex flex-col items-center gap-8 py-16 md:py-24 text-center px-6 overflow-hidden">
-    {/* Decorative background glow */}
-    <div className="absolute inset-0 pointer-events-none">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full opacity-[0.07]"
-        style={{ background: `radial-gradient(circle, ${GOLD}, transparent 70%)` }} />
-    </div>
+  <div className="flex flex-col items-center gap-5 py-12 text-center px-6">
+    <Infinity size={32} strokeWidth={1.5} style={{ color: GOLD }} className="opacity-40" />
 
-    {/* Infinity icon accent */}
-    <div className="relative">
-      <Infinity size={48} strokeWidth={1.5} style={{ color: GOLD }} className="opacity-30" />
-      <Infinity size={48} strokeWidth={1.5} style={{ color: GOLD }} className="absolute inset-0 animate-pulse opacity-15" />
-    </div>
-
-    <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight leading-tight"
+    <h3 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight"
       style={{ fontFamily: "'Cormorant Garamond', serif" }}>
       And It Never Stops.
     </h3>
 
-    <div className="w-16 h-[2px] rounded-full" style={{ background: GOLD }} />
+    <div className="w-12 h-[2px] rounded-full" style={{ background: GOLD }} />
 
-    <div className="flex flex-col gap-4 max-w-xl">
-      <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-        Unlimited re-entries. Unlimited follows.{" "}
-        <span className="font-semibold text-foreground">Unlimited income.</span>
-      </p>
-      <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
-        Every completed wheelhouse automatically opens a new one.<br />
-        No cap. No ceiling. No limit.
-      </p>
-    </div>
-
-    <p className="text-lg md:text-xl font-bold text-foreground tracking-wide mt-2"
-      style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-      Money for Everything! — and it's all automated.
+    <p className="text-muted-foreground text-sm md:text-base max-w-md leading-relaxed">
+      Every completed wheelhouse automatically opens a new one.
+      Unlimited re-entries. Unlimited follows.{" "}
+      <span className="font-semibold text-foreground">Unlimited income.</span>
     </p>
 
-    <div className="flex items-center gap-3 px-10 py-4 rounded-full mt-4 backdrop-blur-sm"
-      style={{
-        border: `1.5px solid ${GOLD}`,
-        background: `linear-gradient(135deg, hsla(39, 55%, 52%, 0.06), hsla(39, 55%, 52%, 0.02))`,
-        boxShadow: `0 0 40px -10px hsla(39, 55%, 52%, 0.2)`,
-      }}>
-      <Infinity size={22} style={{ color: GOLD }} />
-      <span className="text-sm md:text-base font-semibold tracking-[0.2em] uppercase" style={{ color: GOLD }}>
+    <div className="flex items-center gap-3 px-8 py-3 rounded-full mt-2"
+      style={{ border: `1.5px solid ${GOLD}` }}>
+      <Infinity size={18} style={{ color: GOLD }} />
+      <span className="text-xs font-semibold tracking-[0.2em] uppercase" style={{ color: GOLD }}>
         Infinite Earning Potential
       </span>
     </div>
   </div>
 );
-
 /* ── Radial Wheelhouse with Avatar Photos ── */
 export const TwoRingWheelhouse = () => {
   const [visibleCount, setVisibleCount] = useState(0);
