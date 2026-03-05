@@ -21,12 +21,6 @@ const Navbar = () => {
         <Link to="/" className="flex items-center group">
           <Logo darkBg />
         </Link>
-        <Link
-          to="/how-it-works-demo"
-          className="text-sm font-medium tracking-wide text-muted-foreground hover:text-foreground transition-colors"
-        >
-          Demo
-        </Link>
       </div>
     </nav>
   );
