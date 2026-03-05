@@ -102,11 +102,18 @@ export const TwoRingWheelhouse = () => {
 
   return (
     <div ref={ref} className="flex flex-col items-center gap-6">
-      <svg viewBox="0 0 700 520" className="w-full max-w-lg md:max-w-2xl">
+       <svg viewBox="0 0 700 520" className="w-full max-w-lg md:max-w-2xl">
         <defs>
           <marker id="wh-arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
             <polygon points="0 0, 10 3.5, 0 7" fill={DARK} />
           </marker>
+          {/* Clip paths for top/bottom halves */}
+          <clipPath id="wh-top-half">
+            <rect x="0" y="0" width="700" height={youPos.y} />
+          </clipPath>
+          <clipPath id="wh-bottom-half">
+            <rect x="0" y={youPos.y} width="700" height={520 - youPos.y} />
+          </clipPath>
         </defs>
 
         {/* Title */}
@@ -115,9 +122,28 @@ export const TwoRingWheelhouse = () => {
           2 × 2 Wheelhouse
         </text>
 
-        {/* Inner ring (dashed circle) */}
-        <circle cx={youPos.x} cy={youPos.y} r="150" fill="none" stroke={ACCENT}
-          strokeWidth="1.5" strokeDasharray="6 4" opacity="0.2" />
+        {/* Shaded top half (Blue tint) */}
+        <circle cx={youPos.x} cy={youPos.y} r="190" fill={BLUE} opacity="0.04" clipPath="url(#wh-top-half)" />
+        {/* Shaded bottom half (Green tint) */}
+        <circle cx={youPos.x} cy={youPos.y} r="190" fill={GREEN} opacity="0.04" clipPath="url(#wh-bottom-half)" />
+
+        {/* Horizontal divider line through YOU */}
+        <line x1={youPos.x - 195} y1={youPos.y} x2={youPos.x - youR - 5} y2={youPos.y}
+          stroke="hsl(0 0% 60%)" strokeWidth="1" strokeDasharray="4 3" opacity="0.4" />
+        <line x1={youPos.x + youR + 5} y1={youPos.y} x2={youPos.x + 195} y2={youPos.y}
+          stroke="hsl(0 0% 60%)" strokeWidth="1" strokeDasharray="4 3" opacity="0.4" />
+
+        {/* Outer ring (dashed) — top half blue, bottom half green */}
+        <path d={`M ${youPos.x - 190},${youPos.y} A 190,190 0 0,1 ${youPos.x + 190},${youPos.y}`}
+          fill="none" stroke={BLUE} strokeWidth="1.5" strokeDasharray="6 4" opacity="0.2" />
+        <path d={`M ${youPos.x + 190},${youPos.y} A 190,190 0 0,1 ${youPos.x - 190},${youPos.y}`}
+          fill="none" stroke={GREEN} strokeWidth="1.5" strokeDasharray="6 4" opacity="0.2" />
+
+        {/* Zone labels */}
+        <text x={youPos.x - 170} y={youPos.y - 8} fontSize="9" fill={BLUE} opacity="0.6"
+          fontWeight="600" letterSpacing="0.1em">YOUR INVITEES</text>
+        <text x={youPos.x - 170} y={youPos.y + 16} fontSize="9" fill={GREEN} opacity="0.6"
+          fontWeight="600" letterSpacing="0.1em">THEIR INVITEES</text>
 
         {/* YOU → inner lines */}
         <line x1={youPos.x} y1={youPos.y - youR} x2={innerNodes[0].x} y2={innerNodes[0].y + innerR}
@@ -137,16 +163,8 @@ export const TwoRingWheelhouse = () => {
 
         {/* ── YOU node (GOLD) ── */}
         <circle cx={youPos.x} cy={youPos.y} r={youR} fill="white" stroke={GOLD} strokeWidth="3.5" />
-        <text x={youPos.x} y={youPos.y - 4} textAnchor="middle" dominantBaseline="middle"
+        <text x={youPos.x} y={youPos.y + 1} textAnchor="middle" dominantBaseline="middle"
           className="font-bold" fontSize="20" fill="hsl(0 0% 8%)">YOU</text>
-        {/* Climbing percentage pill */}
-        {visibleCount > 0 && (
-          <g key={`you-pill-${visibleCount}`}>
-            <rect x={youPos.x - 24} y={youPos.y + 12} width="48" height="22" rx="11" fill={GOLD} />
-            <text x={youPos.x} y={youPos.y + 24} textAnchor="middle" dominantBaseline="middle"
-              fontSize="11" fill="white" fontWeight="700">{totalPercent}%</text>
-          </g>
-        )}
 
         {/* ── Inner nodes (01, 02) — BLUE ── */}
         {innerNodes.map((node, i) => {
@@ -159,11 +177,9 @@ export const TwoRingWheelhouse = () => {
               <image href={node.avatar} x={node.x - innerR + 2} y={node.y - innerR + 2}
                 width={(innerR - 2) * 2} height={(innerR - 2) * 2}
                 clipPath={`url(#${clipId}-i-${i})`} preserveAspectRatio="xMidYMid slice" />
-              {/* Number badge */}
               <circle cx={node.x - innerR * 0.75} cy={node.y - innerR * 0.75} r="13" fill={DARK} />
               <text x={node.x - innerR * 0.75} y={node.y - innerR * 0.75 + 1} textAnchor="middle"
                 dominantBaseline="middle" fontSize="11" fill="white" fontWeight="700">{node.label}</text>
-              {/* 50% pill */}
               <g transform={`translate(${node.x + innerR * 0.65}, ${node.y + innerR * 0.65})`}>
                 <rect x="-17" y="-10" width="34" height="20" rx="10" fill={BLUE} />
                 <text x="0" y="1" textAnchor="middle" dominantBaseline="middle"
@@ -191,11 +207,9 @@ export const TwoRingWheelhouse = () => {
               <image href={node.avatar} x={node.x - outerR + 2} y={node.y - outerR + 2}
                 width={(outerR - 2) * 2} height={(outerR - 2) * 2}
                 clipPath={`url(#${clipId}-o-${i})`} preserveAspectRatio="xMidYMid slice" />
-              {/* Number badge */}
               <circle cx={node.x - outerR * 0.75} cy={node.y - outerR * 0.75} r="12" fill={DARK} />
               <text x={node.x - outerR * 0.75} y={node.y - outerR * 0.75 + 1} textAnchor="middle"
                 dominantBaseline="middle" fontSize="10" fill="white" fontWeight="700">{node.label}</text>
-              {/* 50% pill */}
               <g transform={`translate(${node.x}, ${node.y + outerR + 18})`}>
                 <rect x="-17" y="-10" width="34" height="20" rx="10" fill={GREEN} />
                 <text x="0" y="1" textAnchor="middle" dominantBaseline="middle"
@@ -210,28 +224,7 @@ export const TwoRingWheelhouse = () => {
             </g>
           );
         })}
-
-        {/* Legend */}
-        <g transform="translate(175, 500)">
-          <circle cx="8" cy="0" r="6" fill={GOLD} />
-          <text x="20" y="1" dominantBaseline="middle" fontSize="10" fill="hsl(0 0% 40%)">You</text>
-          <circle cx="70" cy="0" r="6" fill={BLUE} />
-          <text x="82" y="1" dominantBaseline="middle" fontSize="10" fill="hsl(0 0% 40%)">Your Invitees</text>
-          <circle cx="185" cy="0" r="6" fill={GREEN} />
-          <text x="197" y="1" dominantBaseline="middle" fontSize="10" fill="hsl(0 0% 40%)">Their Invitees</text>
-        </g>
       </svg>
-
-      {visibleCount > 0 && (
-        <div className="flex items-center gap-3 transition-all duration-500">
-          <div className="flex items-center gap-2 px-5 py-2.5 rounded-full border-2" style={{ borderColor: GOLD }}>
-            <span className="text-xs font-medium" style={{ color: GOLD }}>Total received:</span>
-            <span className="text-xl font-bold tabular-nums" style={{ color: GOLD }}>
-              {totalPercent}%
-            </span>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
