@@ -1,6 +1,8 @@
 import logoImg from "@/assets/logo-max-gold.png";
 
-
+import logoM from "@/assets/logo-5050-m.svg";
+import logoC from "@/assets/logo-5050-c.svg";
+import logoF from "@/assets/logo-5050-f.svg";
 import anniversarySeal from "@/assets/anniversary-seal-hq.png";
 import heroVideo from "@/assets/hero-video-new.mp4";
 import { Link } from "react-router-dom";
@@ -13,6 +15,7 @@ const businesses = [
     shadow: "hsl(224 78% 48% / 0.4)",
     highlight: "hsl(224 80% 68% / 0.5)",
     levels: "$25 · $50 · $100",
+    logo: logoF,
   },
   {
     name: "5050 Core",
@@ -21,6 +24,7 @@ const businesses = [
     shadow: "hsl(160 84% 30% / 0.4)",
     highlight: "hsl(160 75% 50% / 0.5)",
     levels: "$250 · $500 · $1,000",
+    logo: logoC,
   },
   {
     name: "5050 Max",
@@ -29,6 +33,7 @@ const businesses = [
     shadow: "hsl(39 55% 52% / 0.4)",
     highlight: "hsl(42 45% 75% / 0.5)",
     levels: "$2,500 · $5,000 · $10,000",
+    logo: logoM,
   },
 ];
 
@@ -117,10 +122,12 @@ const Index = () => {
                 key={i}
                 className="rounded-lg bg-card border border-border p-10 flex flex-col items-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group"
               >
-                {/* Chrome accent bar */}
-                <div
-                  className="w-12 h-1 rounded-full mb-8"
-                  style={{ background: biz.gradient, boxShadow: `0 0 8px ${biz.shadow}` }}
+                {/* Logo */}
+                <img
+                  src={biz.logo}
+                  alt={`${biz.name} logo`}
+                  className="w-auto mb-6"
+                  style={{ height: "80px" }}
                 />
                 <h3 className="text-2xl font-semibold text-foreground mb-2">{biz.name}</h3>
                 
