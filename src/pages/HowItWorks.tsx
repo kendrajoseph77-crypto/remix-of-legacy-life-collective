@@ -10,12 +10,12 @@ const steps = [
   {
     number: "01",
     title: "Register & Activate",
-    desc: "Register and become an Active Contributor by making a contribution at your chosen level.",
+    desc: "Make a contribution at your chosen level to become an Active Contributor.",
   },
   {
     number: "02",
     title: "Invite 2 Members",
-    desc: "You help 2 or more people become Active Contributors and join the wheelhouse.",
+    desc: "Help 2 or more people become Active Contributors and join the wheelhouse.",
   },
   {
     number: "03",
@@ -40,17 +40,15 @@ const HowItWorks = () => {
 
       {/* Hero */}
       <section className="pt-28 pb-12 relative overflow-hidden">
-        {/* Layered ambient glows */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,hsl(39_55%_52%/0.13)_0%,transparent_70%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_50%_0%,hsl(39_55%_52%/0.08)_0%,transparent_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_30%_30%_at_50%_10%,hsl(39_55%_52%/0.06)_0%,transparent_50%)]" />
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <p className="text-sm tracking-[0.3em] uppercase font-medium mb-3" style={{ color: "hsl(41 50% 65%)" }}>Cooperative Crowdfunding</p>
           <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
             How Coop5050 Works
           </h1>
           <p className="text-muted-foreground text-base leading-relaxed max-w-2xl mx-auto mb-4">
-            Coop5050 is our high-impact Cooperative Crowdfunding System built for speed. Rapid participation cycles create instant income opportunities capable of generating significant short and mid-term income to meet your immediate financial needs.
+            A high-impact Cooperative Crowdfunding System built for speed — generating significant short and mid-term income to meet your immediate financial needs.
           </p>
           <p className="text-muted-foreground text-sm italic mb-8">Money for Everything!</p>
           <Link
@@ -62,7 +60,7 @@ const HowItWorks = () => {
         </div>
       </section>
 
-      {/* Core Concept */}
+      {/* 50/50 Promise */}
       <section className="py-14 max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div>
@@ -72,12 +70,12 @@ const HowItWorks = () => {
             </h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
               Coop5050™ is transparent, fully automated, and cannot be manipulated.
-              There is no middleman. You immediately receive all your money.
+              There is no middleman — you immediately receive all your money.
             </p>
             <p className="text-muted-foreground leading-relaxed">
               <span className="text-foreground font-semibold">50%</span> Instant Payout to you.{" "}
               <span className="text-foreground font-semibold">50%</span> Instant Payout to a teammate.
-              Together, we each do a little so all can receive a lot.
+              6 members fill your Wheelhouse — that's <span className="font-semibold" style={{ color: "hsl(41 50% 65%)" }}>300% return</span> every cycle.
             </p>
           </div>
           <div className="rounded-xl overflow-hidden border border-border">
@@ -93,66 +91,43 @@ const HowItWorks = () => {
               </div>
             </div>
             <div className="p-4 bg-muted/30 text-center border-t border-border">
-              <p className="text-muted-foreground text-xs tracking-widest uppercase">100% Instant Payout · 300% Each Completed Cooperative</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Receive 50% from Each Position — 300% Per Cycle */}
-      <section className="py-14 bg-card border-y border-border">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-10">
-            <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3">Receive 50% from Each Position</p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Earn <span style={{ color: "hsl(41 50% 65%)" }}>300%</span> Each Cycle
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-sm">
-              6 Active Contributors fill your Wheelhouse. You receive 50% from each position — that's 300% of your original contribution, every single cycle.
-            </p>
-          </div>
-
-          <div className="text-center">
-            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-border bg-muted/30">
-              <p className="text-sm">
-                <span className="font-bold text-foreground">6 × 50%</span>
-                <span className="text-muted-foreground mx-2">=</span>
-                <span className="font-bold" style={{ color: "hsl(41 50% 65%)" }}>300% Return Per Cycle</span>
-              </p>
+              <p className="text-muted-foreground text-xs tracking-widest uppercase">6 × 50% = 300% Per Cycle</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* 3 Steps */}
-      <section className="py-14 max-w-6xl mx-auto px-6">
-        <div className="text-center mb-10">
-          <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3">Simple Process</p>
-          <h2 className="text-3xl md:text-4xl font-bold">
-            Just 3 Simple Steps
-          </h2>
-        </div>
+      <section className="py-14 bg-card border-y border-border">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3">Simple Process</p>
+            <h2 className="text-3xl md:text-4xl font-bold">
+              Just 3 Simple Steps
+            </h2>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {steps.map((step, i) => (
-            <div key={i} className="relative">
-              {i < steps.length - 1 && (
-                <div className="hidden md:block absolute top-8 left-full w-full h-px bg-gradient-to-r from-border to-transparent z-10" />
-              )}
-              <div className="rounded-xl p-6 bg-card border border-border">
-                <div className="text-5xl font-bold mb-3 text-muted-foreground/30">
-                  {step.number}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {steps.map((step, i) => (
+              <div key={i} className="relative">
+                {i < steps.length - 1 && (
+                  <div className="hidden md:block absolute top-8 left-full w-full h-px bg-gradient-to-r from-border to-transparent z-10" />
+                )}
+                <div className="rounded-xl p-6 bg-background border border-border">
+                  <div className="text-5xl font-bold mb-3 text-muted-foreground/30">
+                    {step.number}
+                  </div>
+                  <h3 className="text-lg font-bold mb-2 text-foreground">{step.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
                 </div>
-                <h3 className="text-lg font-bold mb-2 text-foreground">{step.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Wheelhouse Visualization */}
-      <section className="py-14 bg-card border-y border-border">
+      <section className="py-14">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
             <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3">Watch It In Action</p>
@@ -169,7 +144,7 @@ const HowItWorks = () => {
       </section>
 
       {/* Mobius Loop */}
-      <section className="py-24 relative overflow-hidden">
+      <section className="py-24 relative overflow-hidden bg-card border-y border-border">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_40%,hsl(39_55%_52%/0.06)_0%,transparent_70%)]" />
 
         <div className="max-w-3xl mx-auto px-6 relative z-10 text-center">
@@ -216,11 +191,11 @@ const HowItWorks = () => {
         </div>
       </section>
 
-      {/* Income Levels — Full Dollar Breakdowns */}
+      {/* Income Levels + Final CTA */}
       <section className="py-14 bg-card border-y border-border">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-4">
-            <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3">100% Instant Payout 50/50 — 300% Per Cycle</p>
+            <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3">100% Instant Payout · 50/50 · 300% Per Cycle</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Where You Fit In</h2>
             <p className="text-muted-foreground max-w-xl mx-auto text-sm">
               One time out of pocket. Your ultimate goal is to be active on all 3 Income Centers simultaneously.
@@ -277,39 +252,21 @@ const HowItWorks = () => {
             ))}
           </div>
 
-          <div className="text-center mt-10">
+          {/* Merged closer + CTA */}
+          <div className="text-center mt-14">
+            <h3 className="text-2xl md:text-3xl font-bold mb-2" style={{ color: "hsl(41 50% 65%)" }}>
+              Earn From 100's or Even 1,000's of Cooperatives
+            </h3>
+            <p className="text-lg font-bold text-foreground mb-8">
+              Would That Change Your Life?
+            </p>
             <Link
               to="/#join"
               className="inline-flex items-center gap-2 px-10 py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:scale-105 bg-primary text-primary-foreground"
             >
-              Start Receiving Today <ArrowRight size={16} />
+              Join Us & Start Receiving <ArrowRight size={16} />
             </Link>
           </div>
-        </div>
-      </section>
-
-      {/* Earn from 100s or 1000s */}
-      <section className="py-14 max-w-6xl mx-auto px-6 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: "hsl(41 50% 65%)" }}>
-          Earn From 100's or Even 1,000's of Cooperatives
-        </h2>
-        <p className="text-2xl font-bold text-foreground">
-          Would That Change Your Life?
-        </p>
-      </section>
-
-      {/* Final CTA */}
-      <section className="py-14 bg-card border-t border-border">
-        <div className="max-w-2xl mx-auto px-6 text-center">
-          <p className="text-muted-foreground text-sm mb-2">100% Instant Payout · 50/50 · 300% Per Cycle</p>
-          <h2 className="text-foreground font-bold text-2xl md:text-3xl mb-3">Money for Everything!</h2>
-          <p className="text-muted-foreground text-sm mb-8">The system is live and waiting for you. Join thousands who are already receiving — over and over again.</p>
-          <Link
-            to="/#join"
-            className="inline-flex items-center gap-2 px-10 py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:scale-105 bg-primary text-primary-foreground"
-          >
-            Join Us & Start Receiving <ArrowRight size={16} />
-          </Link>
         </div>
       </section>
 
