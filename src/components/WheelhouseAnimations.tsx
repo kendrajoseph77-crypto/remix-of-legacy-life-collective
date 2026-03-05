@@ -145,11 +145,6 @@ export const TwoRingWheelhouse = () => {
         <path d={`M ${youPos.x + 190},${youPos.y} A 190,190 0 0,1 ${youPos.x - 190},${youPos.y}`}
           fill="none" stroke={GREEN} strokeWidth="1.5" strokeDasharray="6 4" opacity="0.2" />
 
-        {/* Zone labels */}
-        <text x={youPos.x - 170} y={youPos.y - 8} fontSize="9" fill={BLUE} opacity="0.6"
-          fontWeight="600" letterSpacing="0.1em">YOUR INVITEES</text>
-        <text x={youPos.x - 170} y={youPos.y + 16} fontSize="9" fill={GREEN} opacity="0.6"
-          fontWeight="600" letterSpacing="0.1em">THEIR INVITEES</text>
 
         {/* YOU → inner lines */}
         <line x1={youPos.x} y1={youPos.y - youR} x2={innerNodes[0].x} y2={innerNodes[0].y + innerR}
