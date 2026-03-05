@@ -135,8 +135,8 @@ export const TwoRingWheelhouse = () => {
             style={{ transition: "opacity 0.6s" }} />
         ))}
 
-        {/* ── YOU node ── */}
-        <circle cx={youPos.x} cy={youPos.y} r={youR} fill="white" stroke={ACCENT} strokeWidth="3.5" />
+        {/* ── YOU node (GOLD) ── */}
+        <circle cx={youPos.x} cy={youPos.y} r={youR} fill="white" stroke={GOLD} strokeWidth="3.5" />
         <text x={youPos.x} y={youPos.y - 4} textAnchor="middle" dominantBaseline="middle"
           className="font-bold" fontSize="20" fill="hsl(0 0% 8%)">YOU</text>
         {/* Climbing percentage pill */}
@@ -148,14 +148,14 @@ export const TwoRingWheelhouse = () => {
           </g>
         )}
 
-        {/* ── Inner nodes (01, 02) ── */}
+        {/* ── Inner nodes (01, 02) — BLUE ── */}
         {innerNodes.map((node, i) => {
           const isVisible = i < visibleCount;
           const justAppeared = i === visibleCount - 1;
           return (
             <g key={`inner-${i}`} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.6s ease" }}>
               <clipPath id={`${clipId}-i-${i}`}><circle cx={node.x} cy={node.y} r={innerR - 2} /></clipPath>
-              <circle cx={node.x} cy={node.y} r={innerR} fill="white" stroke={ACCENT} strokeWidth="2.5" />
+              <circle cx={node.x} cy={node.y} r={innerR} fill="white" stroke={BLUE} strokeWidth="2.5" />
               <image href={node.avatar} x={node.x - innerR + 2} y={node.y - innerR + 2}
                 width={(innerR - 2) * 2} height={(innerR - 2) * 2}
                 clipPath={`url(#${clipId}-i-${i})`} preserveAspectRatio="xMidYMid slice" />
@@ -170,7 +170,7 @@ export const TwoRingWheelhouse = () => {
                   fontSize="10" fill="white" fontWeight="700">50%</text>
               </g>
               {justAppeared && (
-                <circle cx={node.x} cy={node.y} r={innerR} fill="none" stroke={ACCENT} strokeWidth="2" opacity="0.5">
+                <circle cx={node.x} cy={node.y} r={innerR} fill="none" stroke={BLUE} strokeWidth="2" opacity="0.5">
                   <animate attributeName="r" from={`${innerR}`} to={`${innerR + 18}`} dur="0.8s" fill="freeze" />
                   <animate attributeName="opacity" from="0.5" to="0" dur="0.8s" fill="freeze" />
                 </circle>
@@ -179,7 +179,7 @@ export const TwoRingWheelhouse = () => {
           );
         })}
 
-        {/* ── Outer nodes (03–06) ── */}
+        {/* ── Outer nodes (03–06) — GREEN ── */}
         {outerNodes.map((node, i) => {
           const idx = i + 2;
           const isVisible = idx < visibleCount;
@@ -187,7 +187,7 @@ export const TwoRingWheelhouse = () => {
           return (
             <g key={`outer-${i}`} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.6s ease" }}>
               <clipPath id={`${clipId}-o-${i}`}><circle cx={node.x} cy={node.y} r={outerR - 2} /></clipPath>
-              <circle cx={node.x} cy={node.y} r={outerR} fill="white" stroke={ACCENT} strokeWidth="2.5" />
+              <circle cx={node.x} cy={node.y} r={outerR} fill="white" stroke={GREEN} strokeWidth="2.5" />
               <image href={node.avatar} x={node.x - outerR + 2} y={node.y - outerR + 2}
                 width={(outerR - 2) * 2} height={(outerR - 2) * 2}
                 clipPath={`url(#${clipId}-o-${i})`} preserveAspectRatio="xMidYMid slice" />
@@ -197,12 +197,12 @@ export const TwoRingWheelhouse = () => {
                 dominantBaseline="middle" fontSize="10" fill="white" fontWeight="700">{node.label}</text>
               {/* 50% pill */}
               <g transform={`translate(${node.x}, ${node.y + outerR + 18})`}>
-                <rect x="-17" y="-10" width="34" height="20" rx="10" fill={BLUE} />
+                <rect x="-17" y="-10" width="34" height="20" rx="10" fill={GREEN} />
                 <text x="0" y="1" textAnchor="middle" dominantBaseline="middle"
                   fontSize="10" fill="white" fontWeight="700">50%</text>
               </g>
               {justAppeared && (
-                <circle cx={node.x} cy={node.y} r={outerR} fill="none" stroke={ACCENT} strokeWidth="2" opacity="0.5">
+                <circle cx={node.x} cy={node.y} r={outerR} fill="none" stroke={GREEN} strokeWidth="2" opacity="0.5">
                   <animate attributeName="r" from={`${outerR}`} to={`${outerR + 16}`} dur="0.8s" fill="freeze" />
                   <animate attributeName="opacity" from="0.5" to="0" dur="0.8s" fill="freeze" />
                 </circle>
@@ -210,6 +210,16 @@ export const TwoRingWheelhouse = () => {
             </g>
           );
         })}
+
+        {/* Legend */}
+        <g transform="translate(175, 500)">
+          <circle cx="8" cy="0" r="6" fill={GOLD} />
+          <text x="20" y="1" dominantBaseline="middle" fontSize="10" fill="hsl(0 0% 40%)">You</text>
+          <circle cx="70" cy="0" r="6" fill={BLUE} />
+          <text x="82" y="1" dominantBaseline="middle" fontSize="10" fill="hsl(0 0% 40%)">Your Invitees</text>
+          <circle cx="185" cy="0" r="6" fill={GREEN} />
+          <text x="197" y="1" dominantBaseline="middle" fontSize="10" fill="hsl(0 0% 40%)">Their Invitees</text>
+        </g>
       </svg>
 
       {visibleCount > 0 && (
