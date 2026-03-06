@@ -596,9 +596,6 @@ const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: ()
       {/* Completion state — full width, no sidebar constraint */}
       {animationDone && (
         <div className="text-center animate-fade-in py-12 px-4 max-w-3xl mx-auto">
-          <p className="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-6">
-            You Never Lose Your Team!
-          </p>
           <p className="text-base md:text-lg text-white/60 max-w-xl mx-auto leading-relaxed mb-6">
             Unlimited re-entries. Unlimited follows. <span className="font-bold text-white">Unlimited income.</span><br />
             Every completed wheelhouse automatically opens a new one. There is no cap. No ceiling. No limit.
