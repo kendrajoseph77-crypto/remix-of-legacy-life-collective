@@ -86,7 +86,7 @@ const HowItWorks = () => {
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-5">
-              100% Instantly Goes Back to You…
+              100% Instantly Goes to You…
             </h2>
             <p className="text-lg font-semibold mb-4" style={{ color: "hsl(41 50% 65%)" }}>Our members!</p>
             <p className="text-muted-foreground leading-relaxed mb-4">
