@@ -57,8 +57,10 @@ const HowItWorks = () => {
 
           {/* Logo + Text */}
           <div className="text-center">
-            <img src={logoMain} alt="5050L logo" className="mx-auto mb-4 w-auto" style={{ height: "56px" }} />
-            <p className="text-sm tracking-[0.3em] uppercase font-medium mb-3" style={{ color: "hsl(41 50% 65%)" }}>Cooperative Crowdfunding</p>
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <img src={logoMain} alt="5050L logo" className="w-auto" style={{ height: "64px" }} />
+              <p className="text-base tracking-[0.3em] uppercase font-medium" style={{ color: "hsl(41 50% 65%)" }}>Cooperative Crowdfunding</p>
+            </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
               How Coop5050 Works
             </h1>
