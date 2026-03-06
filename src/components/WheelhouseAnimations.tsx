@@ -29,9 +29,9 @@ export const MobiusLoopVisual = () => (
 /* ── Single Wheelhouse SVG (extracted for reuse) ── */
 const WheelhouseSVG = ({ visibleCount, scale = 1, opacity = 1 }: { visibleCount: number; scale?: number; opacity?: number }) => {
   const clipId = useRef(`clip-${Math.random().toString(36).slice(2)}`).current;
-  const ACCENT = GREEN;
-  const GOLD_LIGHT = "hsl(160 70% 55%)";
-  const GOLD_DARK = "hsl(160 80% 30%)";
+  const ACCENT = GOLD;
+  const GOLD_LIGHT = "hsl(39 60% 60%)";
+  const GOLD_DARK = "hsl(39 55% 38%)";
   const BLACK = "hsl(0 0% 8%)";
 
   const youPos = { x: 350, y: 260 };
