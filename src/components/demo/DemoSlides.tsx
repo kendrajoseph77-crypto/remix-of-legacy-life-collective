@@ -1,12 +1,14 @@
-import { CheckCircle, Users, RefreshCw, TrendingUp, ArrowDownUp, UserPlus, DollarSign, Zap } from "lucide-react";
+import { CheckCircle, Zap } from "lucide-react";
 import WheelhouseDiagram from "@/components/WheelhouseDiagram";
 import SlideLayout, { SlideLabel, SlideHeading, SlideBody } from "./SlideLayout";
+import logoF from "@/assets/logo-5050-f.svg";
+import logoC from "@/assets/logo-5050-c.svg";
+import logoM from "@/assets/logo-5050-m.svg";
 
 const gold = "hsl(41 50% 65%)";
 const navy = "hsl(220 30% 12%)";
 const cobalt = "hsl(224 85% 58%)";
 const emerald = "hsl(160 80% 42%)";
-const goldBorder = "hsl(41 50% 65%)";
 
 /* ─── 1. HERO ─── */
 export const SlideHero = () => (
@@ -14,22 +16,23 @@ export const SlideHero = () => (
     <div className="text-center">
       <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border mb-8" style={{ borderColor: gold, background: "hsl(41 50% 65% / 0.08)" }}>
         <Zap size={14} style={{ color: gold }} />
-        <span className="text-xs tracking-[0.3em] uppercase font-bold" style={{ color: gold }}>Live Presentation</span>
+        <span className="text-xs tracking-[0.3em] uppercase font-bold" style={{ color: gold }}>Cooperative Crowdfunding</span>
       </div>
-      <SlideLabel>Cooperative Crowdfunding</SlideLabel>
       <h1
         className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 leading-[0.95]"
         style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
       >
-        <span className="text-white">How </span>
-        <span className="gold-gradient">Coop5050</span>
-        <span className="text-white"> Works</span>
+        <span className="gold-gradient">5050</span>
+        <span className="text-white"> Works...</span>
       </h1>
-      <SlideBody className="mb-10">
-        A 2×2 peer-to-peer crowdfunding platform where{" "}
-        <span className="text-white font-semibold">100% of every contribution</span>{" "}
-        goes directly to you — the participants. No middlemen. No exceptions.
+      <SlideBody className="mb-6">
+        for <span className="text-white font-semibold">100% of the people</span>,{" "}
+        <span className="text-white font-semibold">100% of the time</span>, who complete the{" "}
+        <span className="text-white font-semibold">3 simple, doable steps</span>.
       </SlideBody>
+      <p className="text-2xl md:text-3xl italic" style={{ color: gold, fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+        Money for Everything!
+      </p>
     </div>
   </SlideLayout>
 );
@@ -39,52 +42,70 @@ export const SlideFiftyFifty = () => (
   <SlideLayout>
     <div className="max-w-5xl w-full text-center">
       <SlideLabel>The 50/50 Promise</SlideLabel>
-      <SlideHeading>100% Instant Payout</SlideHeading>
-      <SlideBody className="mb-12">
-        Every contribution results in an <span className="text-white font-semibold">instant payout</span> — 50% goes directly to{" "}
-        <span className="text-white font-semibold">you</span> and 50% goes to a{" "}
-        <span className="text-white font-semibold">teammate</span>.
-        No middleman. No waiting.
-      </SlideBody>
+      <SlideHeading>100% Instantly Goes to You…</SlideHeading>
+      <p className="text-3xl md:text-4xl italic mb-12 text-white/80" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+        Our members!
+      </p>
+      <div className="max-w-2xl mx-auto rounded-2xl overflow-hidden" style={{ border: "1px solid hsl(0 0% 100% / 0.1)" }}>
+        <div className="flex">
+          <div className="flex-1 p-10 text-center" style={{ background: "hsl(0 0% 100% / 0.04)" }}>
+            <p className="text-6xl font-black" style={{ color: gold }}>50%</p>
+            <p className="text-white/50 text-sm mt-3">Instant Payout to <span className="text-white font-semibold">YOU</span></p>
+          </div>
+          <div className="w-px" style={{ background: "hsl(0 0% 100% / 0.1)" }} />
+          <div className="flex-1 p-10 text-center" style={{ background: "hsl(0 0% 100% / 0.04)" }}>
+            <p className="text-6xl font-black" style={{ color: gold }}>50%</p>
+            <p className="text-white/50 text-sm mt-3">Instant Payout to <span className="text-white font-semibold">Teammate</span></p>
+          </div>
+        </div>
+      </div>
     </div>
   </SlideLayout>
 );
 
-/* ─── 3. INCOME LEVELS ─── */
-export const SlideIncomeLevels = () => (
+/* ─── 3. THREE STEPS ─── */
+const steps = [
+  {
+    number: "01",
+    keyword: "Become",
+    title: "Register & Activate",
+    desc: "Make a contribution at your chosen level to become an Active Contributor.",
+  },
+  {
+    number: "02",
+    keyword: "Build",
+    title: "Invite 2 Members",
+    desc: "Help 2 or more people become Active Contributors and join the cooperative.",
+  },
+  {
+    number: "03",
+    keyword: "Bond",
+    title: "Your Team Grows",
+    desc: "Your 2 each help 2 or more, and the cycle of giving and receiving continues.",
+  },
+];
+
+export const SlideThreeSteps = () => (
   <SlideLayout>
     <div className="max-w-5xl w-full text-center">
-      <SlideLabel>Get In Where You Fit In</SlideLabel>
-      <SlideHeading>3 Cooperative Levels</SlideHeading>
-      <SlideBody className="mb-12">
-        <span className="text-white font-semibold">100% instant payout</span> — being on all levels is a{" "}
-        <span className="text-white font-semibold">one-time</span> out-of-pocket contribution of{" "}
-        <span className="text-white font-semibold">$17,500</span>.
-        Earn <span className="text-white font-semibold">300% per cycle</span> on each level.
-      </SlideBody>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {[
-          { name: "Level 1", amount: "$2,500", receive: "$7,500", perPos: "$1,250", color: cobalt, glow: "hsl(224 85% 58% / 0.15)" },
-          { name: "Level 2", amount: "$5,000", receive: "$15,000", perPos: "$2,500", color: emerald, glow: "hsl(160 80% 42% / 0.15)" },
-          { name: "Level 3", amount: "$10,000", receive: "$30,000", perPos: "$5,000", color: goldBorder, glow: "hsl(41 50% 65% / 0.15)" },
-        ].map((tier, i) => (
+      <SlideLabel>Affordable. Understandable. Rewarding.</SlideLabel>
+      <SlideHeading>Just 3 Simple Steps</SlideHeading>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+        {steps.map((step, i) => (
           <div
             key={i}
-            className="rounded-2xl p-8 text-center transition-all duration-300 hover:scale-[1.02]"
+            className="rounded-2xl p-8 text-left"
             style={{
-              border: `2px solid ${tier.color}`,
-              background: `linear-gradient(180deg, ${tier.glow} 0%, transparent 100%)`,
+              background: "hsl(0 0% 100% / 0.04)",
+              border: "1px solid hsl(0 0% 100% / 0.08)",
             }}
           >
-            <p className="text-xs tracking-[0.3em] uppercase font-bold mb-3" style={{ color: tier.color }}>{tier.name}</p>
-            <p className="text-4xl font-black text-white mb-1">{tier.amount}</p>
-            <p className="text-white/40 text-sm mb-6">One-time contribution</p>
-            <div className="border-t pt-6 mb-2" style={{ borderColor: `${tier.color}33` }}>
-              <p className="text-white/40 text-xs uppercase tracking-wider mb-2">You Receive Per Cycle</p>
-              <p className="text-4xl font-black text-white">{tier.receive}</p>
-              <p className="text-white/40 text-sm mt-2">{tier.perPos} × 6 positions</p>
+            <div className="flex items-baseline gap-3 mb-3">
+              <span className="text-5xl font-bold text-white/15">{step.number}</span>
+              <span className="text-5xl font-bold uppercase" style={{ color: gold }}>{step.keyword}</span>
             </div>
-            <p className="text-xs italic mt-4" style={{ color: tier.color }}>Over and over again</p>
+            <h3 className="text-white font-bold text-lg mb-2">{step.title}</h3>
+            <p className="text-white/50 text-sm leading-relaxed">{step.desc}</p>
           </div>
         ))}
       </div>
@@ -128,44 +149,7 @@ export const Slide300Percent = () => (
   </SlideLayout>
 );
 
-/* ─── 5. 6 WAYS TO EARN ─── */
-const waysToEarn = [
-  { icon: UserPlus, title: "Personals", desc: "Earn from people you personally invite into the cooperative." },
-  { icon: Users, title: "Team Personals", desc: "Earn from people your team members invite — their activity benefits you." },
-  { icon: ArrowDownUp, title: "Help From Above", desc: "Your inviter and upline can place members into your cooperative." },
-  { icon: TrendingUp, title: "Help From Below", desc: "Your downline's growth spills over and fills positions in your matrix." },
-  { icon: RefreshCw, title: "Follow Reentries", desc: "When a teammate completes a cycle, they re-enter and follow you again." },
-  { icon: DollarSign, title: "One-Time Contributions", desc: "Each level requires only a single out-of-pocket contribution to activate." },
-];
-
-export const SlideWaysToEarn = () => (
-  <SlideLayout>
-    <div className="max-w-5xl w-full text-center">
-      <SlideLabel>Multiple Streams</SlideLabel>
-      <SlideHeading>6 Ways To Earn</SlideHeading>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
-        {waysToEarn.map((way, i) => (
-          <div
-            key={i}
-            className="rounded-xl p-6 text-left transition-all duration-300 hover:scale-[1.02] group"
-            style={{
-              background: "hsl(0 0% 100% / 0.04)",
-              border: "1px solid hsl(0 0% 100% / 0.08)",
-            }}
-          >
-            <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-4" style={{ background: "hsl(41 50% 65% / 0.12)" }}>
-              <way.icon size={20} style={{ color: gold }} />
-            </div>
-            <h3 className="text-white font-bold text-base mb-2">{way.title}</h3>
-            <p className="text-white/50 text-sm leading-relaxed">{way.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </SlideLayout>
-);
-
-/* ─── 6. MATRIX FILL ─── */
+/* ─── 5. MATRIX FILL ─── */
 export const SlideMatrixFill = () => (
   <SlideLayout>
     <div className="max-w-4xl w-full text-center">
@@ -211,13 +195,13 @@ export const SlideMatrixFill = () => (
   </SlideLayout>
 );
 
-/* ─── 7. WHEELHOUSE ─── */
+/* ─── 6. WHEELHOUSE ─── */
 export const SlideWheelhouse = ({ onFirstCycleComplete }: { onFirstCycleComplete?: () => void }) => (
   <div className="flex flex-col items-center justify-start h-full px-6 pt-0 overflow-hidden -mt-10">
     <div className="max-w-6xl w-full">
       <div className="text-center mb-0">
-        <SlideLabel>The Technology</SlideLabel>
-        <SlideHeading>The Mobius Loop Wheelhouse</SlideHeading>
+        <SlideLabel>2 × 2</SlideLabel>
+        <SlideHeading>The Cooperative</SlideHeading>
         <p className="text-white/50 text-sm max-w-2xl mx-auto">
           When one cooperative completes, another automatically opens. Your team always follows you.
         </p>
@@ -231,12 +215,12 @@ export const SlideWheelhouse = ({ onFirstCycleComplete }: { onFirstCycleComplete
   </div>
 );
 
-/* ─── 8. MOBIUS LOOP ─── */
+/* ─── 7. MOBIUS LOOP ─── */
 export const SlideMobiusLoop = () => (
   <SlideLayout>
     <div className="max-w-4xl w-full text-center">
-      <SlideLabel>Infinite Cycles</SlideLabel>
-      <SlideHeading>Unlimited Reentries & Follows</SlideHeading>
+      <SlideLabel>World Famous Mobius Loop</SlideLabel>
+      <SlideHeading>When One Completes, Another One Opens</SlideHeading>
       <SlideBody className="mb-12">
         When a teammate completes their cooperative, they follow you into your next one — automatically.
         You never lose your team. More money, not more work.
@@ -267,7 +251,7 @@ export const SlideMobiusLoop = () => (
   </SlideLayout>
 );
 
-/* ─── 9. AUTOMATED ─── */
+/* ─── 8. AUTOMATED ─── */
 const automations = [
   "Automated Positioning",
   "Automated Sending & Receiving",
@@ -304,17 +288,93 @@ export const SlideAutomated = () => (
   </SlideLayout>
 );
 
+/* ─── 9. INCOME LEVELS ─── */
+export const SlideIncomeLevels = () => (
+  <SlideLayout>
+    <div className="max-w-6xl w-full text-center">
+      <SlideLabel>100% Instant Payout · 50/50 · 300% Per Cycle</SlideLabel>
+      <SlideHeading>Get In Where You Fit In</SlideHeading>
+      <SlideBody className="mb-10">
+        One time out of pocket. Your ultimate goal is to be active on all 3 Income Centers simultaneously.
+      </SlideBody>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {[
+          {
+            name: "5050 Fast", color: cobalt, logo: logoF,
+            glow: "hsl(224 85% 58% / 0.15)",
+            vaults: [
+              { contribution: "$25", payout: "$75", per: "6 × $12.50" },
+              { contribution: "$50", payout: "$150", per: "6 × $25" },
+              { contribution: "$100", payout: "$300", per: "6 × $50" },
+            ],
+            total: "$525",
+          },
+          {
+            name: "5050 Core", color: emerald, logo: logoC,
+            glow: "hsl(160 80% 42% / 0.15)",
+            vaults: [
+              { contribution: "$250", payout: "$750", per: "6 × $125" },
+              { contribution: "$500", payout: "$1,500", per: "6 × $250" },
+              { contribution: "$1,000", payout: "$3,000", per: "6 × $500" },
+            ],
+            total: "$5,250",
+          },
+          {
+            name: "5050 Max", color: gold, logo: logoM,
+            glow: "hsl(41 50% 65% / 0.15)",
+            vaults: [
+              { contribution: "$2,500", payout: "$7,500", per: "6 × $1,250" },
+              { contribution: "$5,000", payout: "$15,000", per: "6 × $2,500" },
+              { contribution: "$10,000", payout: "$30,000", per: "6 × $5,000" },
+            ],
+            total: "$52,500",
+          },
+        ].map((level, li) => (
+          <div
+            key={li}
+            className="rounded-2xl p-5 text-center transition-all duration-300 hover:scale-[1.02]"
+            style={{
+              border: `2px solid ${level.color}`,
+              background: `linear-gradient(180deg, ${level.glow} 0%, transparent 100%)`,
+            }}
+          >
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <img src={level.logo} alt={level.name} className="h-8" />
+              <p className="text-lg font-bold" style={{ color: level.color }}>{level.name}</p>
+            </div>
+            <div className="grid grid-cols-3 gap-2 mb-4">
+              {level.vaults.map((v, i) => (
+                <div key={i} className="rounded-lg p-2" style={{ background: "hsl(0 0% 100% / 0.04)", border: "1px solid hsl(0 0% 100% / 0.08)" }}>
+                  <p className="text-xs font-semibold" style={{ color: level.color }}>{v.contribution}</p>
+                  <p className="text-[10px] text-white/30">Cooperative</p>
+                  <p className="text-white font-bold text-base">{v.payout}</p>
+                  <p className="text-[10px] text-white/30">Over and Over</p>
+                  <p className="text-[9px] text-white/20">{v.per}</p>
+                </div>
+              ))}
+            </div>
+            <div className="pt-3" style={{ borderTop: `1px solid ${level.color}33` }}>
+              <p className="text-white/40 text-xs mb-1">Receive Each Cycle</p>
+              <p className="text-3xl font-black" style={{ color: level.color }}>{level.total}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </SlideLayout>
+);
+
 /* ─── 10. CLOSING ─── */
 export const SlideClosing = () => (
   <SlideLayout>
     <div className="text-center">
-      <p className="text-white/40 text-sm mb-6 tracking-wider">Use over 150 FIAT currencies and 100+ cryptocurrencies</p>
-      <SlideHeading className="mb-8">
-        Would That <span className="gold-gradient">Change Your Life?</span>
+      <SlideHeading className="mb-4">
+        Earn From 100's or Even 1,000's of{" "}
+        <span className="gold-gradient">Cooperatives</span>
       </SlideHeading>
-      <SlideBody className="mb-10">
-        Earn from 100s or even 1,000s of cooperatives. The system is live, fully automated, and waiting for you.
-      </SlideBody>
+      <p className="text-3xl md:text-4xl font-bold text-white mb-10" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+        Wouldn't that change your life!
+      </p>
       <div className="inline-flex items-center gap-3 px-10 py-5 rounded-full mb-8" style={{ background: "hsl(41 50% 65% / 0.1)", border: `2px solid ${gold}` }}>
         <span className="text-4xl" style={{ color: gold }}>∞</span>
         <span className="text-lg tracking-[0.2em] uppercase font-bold" style={{ color: gold }}>Money for Everything.</span>

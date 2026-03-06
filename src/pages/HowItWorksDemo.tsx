@@ -1,32 +1,32 @@
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import logoGold from "@/assets/logo-5050-gold.png";
 import {
   SlideHero,
   SlideFiftyFifty,
-  SlideIncomeLevels,
+  SlideThreeSteps,
   Slide300Percent,
-  SlideWaysToEarn,
   SlideMatrixFill,
   SlideWheelhouse,
   SlideMobiusLoop,
   SlideAutomated,
+  SlideIncomeLevels,
   SlideClosing,
 } from "@/components/demo/DemoSlides";
 
-const WHEELHOUSE_INDEX = 5; // index of wheelhouse slide
+const WHEELHOUSE_INDEX = 5;
 
 const slides = [
   { id: "hero", label: "Intro", Component: SlideHero },
-  { id: "ways", label: "6 Ways to Earn", Component: SlideWaysToEarn },
-  { id: "matrix", label: "Matrix Fill", Component: SlideMatrixFill },
-  { id: "300", label: "300% Return", Component: Slide300Percent },
   { id: "5050", label: "50/50 Payout", Component: SlideFiftyFifty },
+  { id: "steps", label: "3 Steps", Component: SlideThreeSteps },
+  { id: "300", label: "300% Return", Component: Slide300Percent },
+  { id: "matrix", label: "Matrix Fill", Component: SlideMatrixFill },
   { id: "wheelhouse", label: "Wheelhouse", Component: SlideWheelhouse },
   { id: "mobius", label: "Mobius Loop", Component: SlideMobiusLoop },
-  { id: "levels", label: "3 Levels", Component: SlideIncomeLevels },
   { id: "automated", label: "Automated", Component: SlideAutomated },
+  { id: "levels", label: "Income Levels", Component: SlideIncomeLevels },
   { id: "closing", label: "Closing", Component: SlideClosing },
 ];
 
@@ -42,7 +42,6 @@ const HowItWorksDemo = () => {
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      // Don't handle if wheelhouse is capturing keys
       if (current === WHEELHOUSE_INDEX && !wheelhouseFirstCycleDone) return;
       if (e.key === "ArrowRight" || e.key === " ") { e.preventDefault(); goNext(); }
       if (e.key === "ArrowLeft") { e.preventDefault(); goPrev(); }
@@ -69,26 +68,19 @@ const HowItWorksDemo = () => {
 
       {/* Slide area */}
       <div className="flex-1 relative flex items-stretch min-h-0">
-        {/* Logo — top left */}
         <Link to="/" className="absolute top-4 left-4 z-30 hover:opacity-80 transition-opacity">
           <img src={logoGold} alt="Coop5050 Home" className="h-10" style={{ filter: "drop-shadow(0 0 6px hsl(41 50% 65% / 0.4))" }} />
         </Link>
-        {/* Prev button */}
         <button
           onClick={goPrev}
           disabled={current === 0}
           className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200 disabled:opacity-0 disabled:pointer-events-none"
-          style={{
-            background: "hsl(0 0% 100% / 0.06)",
-            border: "1px solid hsl(0 0% 100% / 0.1)",
-            color: "hsl(0 0% 100% / 0.6)",
-          }}
+          style={{ background: "hsl(0 0% 100% / 0.06)", border: "1px solid hsl(0 0% 100% / 0.1)", color: "hsl(0 0% 100% / 0.6)" }}
           aria-label="Previous slide"
         >
           <ChevronLeft size={22} />
         </button>
 
-        {/* Slide content */}
         <div className="flex-1 flex items-center justify-center overflow-hidden px-16">
           <div key={current} className="w-full h-full animate-in fade-in slide-in-from-right-4 duration-500">
             {current === WHEELHOUSE_INDEX ? (
@@ -99,16 +91,11 @@ const HowItWorksDemo = () => {
           </div>
         </div>
 
-        {/* Next button */}
         <button
           onClick={isWheelhouseBlocking ? undefined : goNext}
           disabled={current === slides.length - 1 || isWheelhouseBlocking}
           className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200 disabled:opacity-0 disabled:pointer-events-none"
-          style={{
-            background: "hsl(0 0% 100% / 0.06)",
-            border: "1px solid hsl(0 0% 100% / 0.1)",
-            color: "hsl(0 0% 100% / 0.6)",
-          }}
+          style={{ background: "hsl(0 0% 100% / 0.06)", border: "1px solid hsl(0 0% 100% / 0.1)", color: "hsl(0 0% 100% / 0.6)" }}
           aria-label="Next slide"
         >
           <ChevronRight size={22} />
@@ -117,23 +104,17 @@ const HowItWorksDemo = () => {
 
       {/* Bottom bar */}
       <div className="py-4 flex items-center justify-between px-8" style={{ borderTop: "1px solid hsl(0 0% 100% / 0.06)" }}>
-        {/* Slide dots */}
         <div className="flex items-center gap-2">
           {slides.map((s, i) => (
             <button
               key={s.id}
               onClick={() => setCurrent(i)}
               className="h-2 rounded-full transition-all duration-300"
-              style={{
-                width: i === current ? 32 : 8,
-                background: i === current ? gold : "hsl(0 0% 100% / 0.15)",
-              }}
+              style={{ width: i === current ? 32 : 8, background: i === current ? gold : "hsl(0 0% 100% / 0.15)" }}
               aria-label={`Go to slide: ${s.label}`}
             />
           ))}
         </div>
-
-        {/* Slide counter */}
         <div className="flex items-center gap-4">
           <p className="text-xs tracking-[0.2em] uppercase" style={{ color: "hsl(0 0% 100% / 0.35)" }}>
             <span style={{ color: gold }} className="font-bold">{String(current + 1).padStart(2, "0")}</span>
