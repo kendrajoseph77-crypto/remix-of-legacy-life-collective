@@ -51,6 +51,28 @@ const automations = [
 ];
 
 const HowItWorks = () => {
+  const [visibleNotifs, setVisibleNotifs] = useState<number[]>([]);
+
+  useEffect(() => {
+    const timers: NodeJS.Timeout[] = [];
+    const showNext = (index: number) => {
+      if (index >= notifications.length) {
+        // Reset and loop
+        setTimeout(() => {
+          setVisibleNotifs([]);
+          setTimeout(() => showNext(0), 800);
+        }, 3000);
+        return;
+      }
+      timers.push(setTimeout(() => {
+        setVisibleNotifs(prev => [...prev, index]);
+        showNext(index + 1);
+      }, 1200));
+    };
+    showNext(0);
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar hideLogo />
@@ -58,11 +80,29 @@ const HowItWorks = () => {
       {/* Hero with 3 Images */}
       <section className="pt-20 pb-10 relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-6">
-          {/* 3 Images Side by Side */}
-          <div className="grid grid-cols-3 gap-1 rounded-xl overflow-hidden mb-8 max-h-[280px] md:max-h-[320px]">
-            <img src={heroPerson1} alt="Professional on phone" className="w-full h-full object-cover" />
-            <img src={heroPerson2} alt="Professional on laptop" className="w-full h-full object-cover" />
-            <img src={heroPerson3} alt="Professional on tablet" className="w-full h-full object-cover" />
+          {/* 3 Images Side by Side with Notifications */}
+          <div className="relative">
+            <div className="grid grid-cols-3 gap-1 rounded-xl overflow-hidden mb-8 max-h-[280px] md:max-h-[320px]">
+              <img src={heroPerson1} alt="Woman relaxing in hammock" className="w-full h-full object-cover" />
+              <img src={heroPerson2} alt="Man flying first class" className="w-full h-full object-cover" />
+              <img src={heroPerson3} alt="Friends celebrating" className="w-full h-full object-cover" />
+            </div>
+            {/* Animated notification popups */}
+            {notifications.map((notif, i) => (
+              <div
+                key={i}
+                className={`absolute ${notif.position} pointer-events-none transition-all duration-500 ${
+                  visibleNotifs.includes(i)
+                    ? "opacity-100 translate-y-0 scale-100"
+                    : "opacity-0 translate-y-4 scale-90"
+                }`}
+              >
+                <div className="bg-background/90 backdrop-blur-md border border-border rounded-lg px-3 py-2 shadow-xl flex items-center gap-2">
+                  <CheckCircle size={14} className="text-secondary flex-shrink-0" />
+                  <span className="text-xs font-semibold text-foreground whitespace-nowrap">{notif.text}</span>
+                </div>
+              </div>
+            ))}
           </div>
 
           {/* Logo + Text */}
