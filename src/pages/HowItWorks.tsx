@@ -169,7 +169,7 @@ const HowItWorks = () => {
           </div>
           <MobiusLoopVisual />
           <div className="mt-14">
-            <TwoRingWheelhouse />
+            <MultiCycleWheelhouse />
           </div>
 
           <div className="max-w-xl mx-auto mt-16 p-8 rounded-2xl border border-border/60 bg-gradient-to-b from-muted/40 to-transparent text-center">
