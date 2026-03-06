@@ -150,7 +150,7 @@ const HowItWorks = () => {
               The Cooperative
             </h2>
           </div>
-          <TwoRingWheelhouse />
+          <MobiusLoopVisual />
         </div>
       </section>
 
@@ -158,17 +158,18 @@ const HowItWorks = () => {
       <section className="py-24 relative overflow-hidden bg-card border-y border-border">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_40%,hsl(39_55%_52%/0.06)_0%,transparent_70%)]" />
 
-        <div className="max-w-3xl mx-auto px-6 relative z-10 text-center">
-          <p className="text-muted-foreground text-xs tracking-[0.35em] uppercase font-medium mb-2">The Mobius Loop</p>
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 md:whitespace-nowrap" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-            When One Completes, Another Opens
-          </h2>
+        <div className="max-w-5xl mx-auto px-6 relative z-10">
+          <div className="text-center mb-10">
+            <p className="text-muted-foreground text-xs tracking-[0.35em] uppercase font-medium mb-2">The Mobius Loop</p>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 md:whitespace-nowrap" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+              When One Completes, Another Opens
+            </h2>
+            <div className="w-16 h-[1px] mx-auto mb-12" style={{ background: "linear-gradient(90deg, transparent, hsl(39 55% 52%), transparent)" }} />
+          </div>
 
-          <div className="w-16 h-[1px] mx-auto mb-12" style={{ background: "linear-gradient(90deg, transparent, hsl(39 55% 52%), transparent)" }} />
+          <TwoRingWheelhouse />
 
-          <MobiusLoopVisual />
-
-          <div className="max-w-xl mx-auto mt-16 p-8 rounded-2xl border border-border/60 bg-gradient-to-b from-muted/40 to-transparent">
+          <div className="max-w-xl mx-auto mt-16 p-8 rounded-2xl border border-border/60 bg-gradient-to-b from-muted/40 to-transparent text-center">
             <h3 className="text-xl md:text-2xl font-bold mb-3" style={{ color: "hsl(41 50% 65%)", fontFamily: "'Cormorant Garamond', serif" }}>
               More Money — Not More Work!
             </h3>
