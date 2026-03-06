@@ -299,7 +299,7 @@ export const TwoRingWheelhouse = () => {
 export const MultiCycleWheelhouse = () => {
   const TOTAL_NODES = 6;
   const TOTAL_CYCLES = 5;
-  const GOLD = GREEN;
+  const GOLD_LOCAL = GOLD;
 
   const [cycle, setCycle] = useState(0);
   const [visibleCount, setVisibleCount] = useState(0);
