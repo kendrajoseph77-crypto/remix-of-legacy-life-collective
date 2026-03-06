@@ -253,8 +253,8 @@ export const TwoRingWheelhouse = () => {
             <text x={youPos.x} y={visibleCount > 0 ? youPos.y - 7 : youPos.y + 1} textAnchor="middle" dominantBaseline="middle"
               className="font-bold" fontSize="20" fill={GOLD}>YOU</text>
             {visibleCount > 0 && (
-              <text x={youPos.x} y={youPos.y + 16} textAnchor="middle" dominantBaseline="middle"
-                fontSize="14" fontWeight="700" fill={GOLD_LIGHT}
+              <text x={youPos.x} y={youPos.y + 18} textAnchor="middle" dominantBaseline="middle"
+                fontSize="22" fontWeight="900" fill={GOLD_LIGHT}
                 key={`you-pct-${visibleCount}`}>
                 {visibleCount * 50}%
               </text>
