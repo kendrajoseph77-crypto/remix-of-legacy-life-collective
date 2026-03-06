@@ -390,7 +390,10 @@ export const MultiCycleWheelhouse = () => {
             <div className="mt-4 pt-3 border-t border-border w-full text-center">
               <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Total Earned</p>
               <div className="flex items-center justify-center gap-3">
-                <p className="text-2xl font-bold" style={{ color: GOLD }}>{totalEarned}%</p>
+                <div className="flex items-center gap-2">
+                  <p className="text-2xl font-bold" style={{ color: GOLD }}>{totalEarned}%</p>
+                  <Infinity size={22} strokeWidth={1.5} style={{ color: GOLD }} />
+                </div>
                 {animationDone && (
                   <button
                     onClick={() => {
