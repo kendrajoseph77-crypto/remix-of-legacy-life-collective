@@ -164,7 +164,7 @@ const HowItWorks = () => {
           <div className="text-center mb-14">
             <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3">World Famous Mobius Loop</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              The Cooperative
+              When One Completes, Another One Opens
             </h2>
           </div>
           <MobiusLoopVisual />
