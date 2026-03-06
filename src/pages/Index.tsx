@@ -114,7 +114,7 @@ const Index = () => {
             <Link to="/login" className="text-white/80 hover:text-white text-sm font-medium underline transition-colors">
               Log in
             </Link>
-            <a href="#join" className="px-4 py-2 rounded-md text-xs font-bold tracking-wide btn-gold inline-block">
+            <a href="#join" className="text-white/80 hover:text-white text-sm font-medium underline transition-colors">
               Join Now
             </a>
           </div>
