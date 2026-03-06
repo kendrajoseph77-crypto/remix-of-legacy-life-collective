@@ -5,6 +5,10 @@ import { TwoRingWheelhouse, MobiusLoopVisual } from "@/components/WheelhouseAnim
 import logoF from "@/assets/logo-5050-f.svg";
 import logoC from "@/assets/logo-5050-c.svg";
 import logoM from "@/assets/logo-5050-m.svg";
+import logoMain from "@/assets/logo-5050-main.svg";
+import heroPerson1 from "@/assets/hero-person-1.jpg";
+import heroPerson2 from "@/assets/hero-person-2.jpg";
+import heroPerson3 from "@/assets/hero-person-3.jpg";
 
 const steps = [
   {
