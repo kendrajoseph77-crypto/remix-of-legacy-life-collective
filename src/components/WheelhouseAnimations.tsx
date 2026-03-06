@@ -415,7 +415,7 @@ export const MultiCycleWheelhouse = () => {
                 </div>
               ))}
               {animationDone && (
-                <div className="flex flex-col items-center justify-center col-span-1 gap-2">
+                <div className="flex flex-col items-center justify-center col-span-3 md:col-span-1 gap-2 mt-2 md:mt-0">
                   <p className="text-base md:text-lg font-semibold italic text-muted-foreground whitespace-nowrap">
                     And so on and so on....
                   </p>
