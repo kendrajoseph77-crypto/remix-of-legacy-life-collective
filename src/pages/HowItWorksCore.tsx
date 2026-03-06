@@ -58,7 +58,7 @@ const HowItWorksCore = () => {
       <section className="pt-20 pb-4 relative overflow-hidden">
         <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-3 bg-white">
           <Link to="/">
-            <img src={logoC} alt="5050 Core logo" className="w-auto" style={{ height: "54px" }} />
+            <img src={logoC} alt="5050 Core logo" className="w-auto" style={{ height: "600px" }} />
           </Link>
           <nav className="flex items-center gap-4">
             <Link to="/" className="text-sm font-medium underline text-black/70 hover:text-black transition-colors">
@@ -211,7 +211,7 @@ const HowItWorksCore = () => {
           <div className="flex justify-center mt-10">
             <div className="rounded-xl border-2 p-5 md:p-6 bg-background max-w-md w-full" style={{ borderColor: coreLevel.color }}>
               <div className="relative mb-4">
-                <img src={coreLevel.logo} alt={`${coreLevel.name} logo`} className="absolute left-0 top-1/2 -translate-y-1/2 w-auto" style={{ height: "240px" }} />
+                <img src={coreLevel.logo} alt={`${coreLevel.name} logo`} className="absolute left-0 top-0 w-auto" style={{ height: "240px" }} />
                 <h3 className="text-xl font-bold text-center" style={{ color: coreLevel.color }}>{coreLevel.name}</h3>
               </div>
               <div className="grid grid-cols-3 gap-1.5 mb-4">
