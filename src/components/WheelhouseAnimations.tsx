@@ -12,7 +12,7 @@ const avatars = [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6];
 
 const BLUE = "hsl(224 85% 58%)";
 const GREEN = "hsl(160 80% 42%)";
-const GOLD = "hsl(39 55% 52%)";
+// GOLD kept as reference but overridden to GREEN for Core theme
 
 /* ── Mobius Loop — statement section ── */
 export const MobiusLoopVisual = () => (
