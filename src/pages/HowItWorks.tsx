@@ -168,6 +168,9 @@ const HowItWorks = () => {
             </h2>
           </div>
           <MobiusLoopVisual />
+          <div className="mt-14">
+            <TwoRingWheelhouse />
+          </div>
 
           <div className="max-w-xl mx-auto mt-16 p-8 rounded-2xl border border-border/60 bg-gradient-to-b from-muted/40 to-transparent text-center">
             <h3 className="text-xl md:text-2xl font-bold mb-3" style={{ color: "hsl(41 50% 65%)", fontFamily: "'Cormorant Garamond', serif" }}>
