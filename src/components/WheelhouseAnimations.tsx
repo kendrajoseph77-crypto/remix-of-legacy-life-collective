@@ -408,7 +408,7 @@ export const MultiCycleWheelhouse = () => {
                   </div>
                   <div className="absolute inset-0 flex items-center justify-center">
                     <span className="text-[9px] font-bold tracking-wider uppercase px-2 py-1 rounded-full border"
-                      style={{ color: GREEN, borderColor: GREEN, background: "hsl(0 0% 6% / 0.8)" }}>
+                      style={{ color: GOLD, borderColor: GOLD, background: "hsl(0 0% 6% / 0.8)" }}>
                       #{c + 1} ✓
                     </span>
                   </div>
