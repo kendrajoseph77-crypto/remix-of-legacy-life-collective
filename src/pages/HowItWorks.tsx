@@ -83,7 +83,7 @@ const HowItWorks = () => {
       </section>
 
       {/* 50/50 Promise */}
-      <section className="pt-28 md:pt-40 pb-6 max-w-6xl mx-auto px-6">
+      <section className="pt-14 md:pt-20 pb-6 max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-3">
