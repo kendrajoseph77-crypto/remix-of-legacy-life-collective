@@ -192,7 +192,7 @@ const WheelhouseSVG = ({ visibleCount, scale = 1, opacity = 1 }: { visibleCount:
 
 export const TwoRingWheelhouse = () => {
   const TOTAL_NODES = 6;
-  const GOLD = "hsl(39 55% 52%)";
+  const GOLD = GREEN;
 
   const [visibleCount, setVisibleCount] = useState(0);
   const [animationDone, setAnimationDone] = useState(false);
