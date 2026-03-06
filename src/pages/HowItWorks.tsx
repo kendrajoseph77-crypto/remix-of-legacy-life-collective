@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import { Link } from "react-router-dom";
 import { CheckCircle, ArrowRight } from "lucide-react";
-import { TwoRingWheelhouse, MobiusLoopVisual } from "@/components/WheelhouseAnimations";
+import { TwoRingWheelhouse, MobiusLoopVisual, MultiCycleWheelhouse } from "@/components/WheelhouseAnimations";
 import logoF from "@/assets/logo-5050-f.svg";
 import logoC from "@/assets/logo-5050-c.svg";
 import logoM from "@/assets/logo-5050-m.svg";
