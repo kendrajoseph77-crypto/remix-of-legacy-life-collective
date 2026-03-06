@@ -210,9 +210,9 @@ const HowItWorksCore = () => {
 
           <div className="flex justify-center mt-10">
             <div className="rounded-xl border-2 p-5 md:p-6 bg-background max-w-md w-full" style={{ borderColor: coreLevel.color }}>
-              <div className="relative mb-4">
-                <img src={coreLevel.logo} alt={`${coreLevel.name} logo`} className="absolute -left-2 -top-2 w-auto opacity-15" style={{ height: "120px" }} />
-                <h3 className="text-xl font-bold text-center relative z-10" style={{ color: coreLevel.color }}>{coreLevel.name}</h3>
+              <div className="flex items-center gap-3 mb-4">
+                <img src={coreLevel.logo} alt={`${coreLevel.name} logo`} className="w-auto" style={{ height: "50px" }} />
+                <h3 className="text-xl font-bold" style={{ color: coreLevel.color }}>{coreLevel.name}</h3>
               </div>
               <div className="grid grid-cols-3 gap-1.5 mb-4">
                 {coreLevel.vaults.map((v, i) => (
