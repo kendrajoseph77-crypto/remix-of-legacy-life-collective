@@ -127,7 +127,7 @@ const Index = () => {
           <p className="text-muted-foreground text-base leading-relaxed mb-3">
             a revolutionary way to earn income, pay your monthly expenses, eliminate debt, and fund your best life. Instead of competing, we cooperate—each doing a little so everyone can receive a lot.
           </p>
-          <p className="text-muted-foreground text-sm italic">Money for Everything!</p>
+          <p className="text-muted-foreground text-lg font-bold italic">Money for Everything!</p>
         </div>
       </section>
 
