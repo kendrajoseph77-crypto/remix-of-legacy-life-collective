@@ -155,12 +155,12 @@ const HowItWorksCore = () => {
 
       {/* Mobius Loop */}
       <section className="py-24 relative overflow-hidden bg-card border-y border-border">
-        <div className="absolute inset-0" style={{ background: `radial-gradient(ellipse 60% 50% at 50% 40%, hsl(160 80% 42% / 0.06) 0%, transparent 70%)` }} />
+        <div className="absolute inset-0" style={{ background: `radial-gradient(ellipse 60% 50% at 50% 40%, hsl(39 55% 52% / 0.06) 0%, transparent 70%)` }} />
         <div className="max-w-5xl mx-auto px-6 relative z-10">
           <div className="text-center mb-10">
             <p className="text-muted-foreground text-xs tracking-[0.35em] uppercase font-medium mb-2">2 x 2</p>
             <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: "'Cormorant Garamond', serif" }}>The Cooperative</h2>
-            <div className="w-16 h-[1px] mx-auto mb-12" style={{ background: `linear-gradient(90deg, transparent, ${GREEN}, transparent)` }} />
+            <div className="w-16 h-[1px] mx-auto mb-12" style={{ background: `linear-gradient(90deg, transparent, hsl(39 55% 52%), transparent)` }} />
           </div>
           <TwoRingWheelhouse />
         </div>
