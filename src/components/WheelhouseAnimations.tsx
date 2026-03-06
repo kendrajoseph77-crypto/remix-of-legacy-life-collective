@@ -196,7 +196,23 @@ export const TwoRingWheelhouse = () => {
             <circle cx={youPos.x} cy={youPos.y} r="190" fill={GREEN} opacity="0.04" clipPath="url(#wh-bottom-half)" />
 
             {/* Outer circle (03-06) */}
-            <circle cx={youPos.x} cy={youPos.y} r="340" fill={GOLD} fillOpacity="0.04" stroke={GOLD} strokeWidth="2.5" opacity="0.5" />
+            {/* Outer circle with 4 quadrant sections */}
+            <circle cx={youPos.x} cy={youPos.y} r="340" fill="none" stroke={GOLD} strokeWidth="2.5" opacity="0.5" />
+            {/* Top-right quadrant */}
+            <path d={`M ${youPos.x},${youPos.y} L ${youPos.x},${youPos.y - 340} A 340,340 0 0,1 ${youPos.x + 340},${youPos.y} Z`}
+              fill={GOLD} opacity="0.08" />
+            {/* Bottom-right quadrant */}
+            <path d={`M ${youPos.x},${youPos.y} L ${youPos.x + 340},${youPos.y} A 340,340 0 0,1 ${youPos.x},${youPos.y + 340} Z`}
+              fill={GOLD} opacity="0.15" />
+            {/* Bottom-left quadrant */}
+            <path d={`M ${youPos.x},${youPos.y} L ${youPos.x},${youPos.y + 340} A 340,340 0 0,1 ${youPos.x - 340},${youPos.y} Z`}
+              fill={GOLD} opacity="0.08" />
+            {/* Top-left quadrant */}
+            <path d={`M ${youPos.x},${youPos.y} L ${youPos.x - 340},${youPos.y} A 340,340 0 0,1 ${youPos.x},${youPos.y - 340} Z`}
+              fill={GOLD} opacity="0.15" />
+            {/* Dividing lines */}
+            <line x1={youPos.x} y1={youPos.y - 340} x2={youPos.x} y2={youPos.y + 340} stroke={GOLD} strokeWidth="1" opacity="0.2" />
+            <line x1={youPos.x - 340} y1={youPos.y} x2={youPos.x + 340} y2={youPos.y} stroke={GOLD} strokeWidth="1" opacity="0.2" />
 
             <line x1={youPos.x - 195} y1={youPos.y} x2={youPos.x - youR - 5} y2={youPos.y}
               stroke="hsl(0 0% 60%)" strokeWidth="1" strokeDasharray="4 3" opacity="0.4" />
