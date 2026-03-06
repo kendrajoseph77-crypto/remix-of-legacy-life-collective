@@ -312,7 +312,7 @@ export const TwoRingWheelhouse = () => {
 /* ── Multi-cycle Wheelhouse: fills 3 times, first 2 minimize ── */
 export const MultiCycleWheelhouse = () => {
   const TOTAL_NODES = 6;
-  const TOTAL_CYCLES = 3;
+  const TOTAL_CYCLES = 5;
   const GOLD = "hsl(39 55% 52%)";
 
   const [cycle, setCycle] = useState(0);
@@ -322,15 +322,6 @@ export const MultiCycleWheelhouse = () => {
   const ref = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
   const timers = useRef<number[]>([]);
-
-  const earningMessages = [
-    { title: "You Invited #1", note: "You Earned 50%" },
-    { title: "You Invited #2", note: "You Earned 50% — now you're even." },
-    { title: "#1 Invited #3", note: "They Earned 50% & You Earned 50%" },
-    { title: "#1 Invited #4", note: "They Earned 50% & You Earned 50%" },
-    { title: "#2 Invited #5", note: "They Earned 50% & You Earned 50%" },
-    { title: "#2 Invited #6", note: "They Earned 50% & You Earned 50%" },
-  ];
 
   const startCycle = (cycleNum: number) => {
     setVisibleCount(0);
@@ -387,17 +378,18 @@ export const MultiCycleWheelhouse = () => {
   const totalEarned = completedCycles.length * TOTAL_NODES * 50 + visibleCount * 50;
 
   return (
-    <div ref={ref} className="flex flex-col items-center gap-6">
+    <div ref={ref} className="flex flex-col items-center gap-4">
       <div className="flex flex-col md:flex-row items-center md:items-start gap-4 w-full">
-        {/* Left side — earnings feed */}
-        <div className="flex-1 flex flex-col justify-center min-h-[200px] md:min-h-[280px]">
+        {/* Left side — earnings + active wheelhouse */}
+        <div className="flex-1 flex flex-col items-center">
           <p className="text-xs tracking-[0.2em] uppercase font-medium text-muted-foreground mb-2">
             Cooperative {cycle + 1} of {TOTAL_CYCLES}
           </p>
+          <WheelhouseSVG visibleCount={visibleCount} />
           {totalEarned > 0 && (
-            <div className="mt-6 pt-4 border-t border-border">
+            <div className="mt-4 pt-3 border-t border-border w-full text-center">
               <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Total Earned</p>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center gap-3">
                 <p className="text-2xl font-bold" style={{ color: GOLD }}>{totalEarned}%</p>
                 {animationDone && (
                   <button
@@ -416,28 +408,27 @@ export const MultiCycleWheelhouse = () => {
           )}
         </div>
 
-        {/* Right side — active wheelhouse + completed thumbnails */}
-        <div className="w-full md:w-[55%] flex-shrink-0">
-          <WheelhouseSVG visibleCount={visibleCount} />
-
-          {completedCycles.length > 0 && (
-            <div className="flex items-center justify-center gap-4 mt-4">
-              {completedCycles.map((c) => (
-                <div key={c} className="relative">
-                  <div className="w-20 h-20 md:w-24 md:h-24 opacity-50">
-                    <WheelhouseSVG visibleCount={TOTAL_NODES} />
-                  </div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-full border"
-                      style={{ color: GOLD, borderColor: GOLD, background: "hsl(0 0% 6% / 0.8)" }}>
-                      #{c + 1} ✓
-                    </span>
-                  </div>
+        {/* Right side — completed thumbnails stacked */}
+        {completedCycles.length > 0 && (
+          <div className="flex flex-row md:flex-col flex-wrap items-center justify-center gap-3 md:w-[140px] flex-shrink-0">
+            {completedCycles.map((c) => (
+              <div key={c} className="relative">
+                <div className="w-16 h-16 md:w-20 md:h-20 opacity-50">
+                  <WheelhouseSVG visibleCount={TOTAL_NODES} />
                 </div>
-              ))}
-            </div>
-          )}
-        </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-[9px] font-bold tracking-wider uppercase px-1.5 py-0.5 rounded-full border"
+                    style={{ color: GOLD, borderColor: GOLD, background: "hsl(0 0% 6% / 0.8)" }}>
+                    #{c + 1} ✓
+                  </span>
+                </div>
+              </div>
+            ))}
+            {animationDone && (
+              <p className="text-sm font-semibold italic text-muted-foreground mt-1">and so on...</p>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
