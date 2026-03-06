@@ -57,7 +57,7 @@ const HowItWorks = () => {
 
           {/* Logo + Text */}
           <div className="text-center">
-            <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="flex items-center justify-center gap-4 mb-6">
               <img src={logoMain} alt="5050L logo" className="w-auto" style={{ height: "64px" }} />
               <p className="text-base tracking-[0.3em] uppercase font-medium" style={{ color: "hsl(41 50% 65%)" }}>Cooperative Crowdfunding</p>
             </div>
