@@ -129,7 +129,7 @@ const HowItWorks = () => {
                 <div className="rounded-xl p-6 bg-background border border-border">
                   <div className="flex items-baseline gap-3 mb-1">
                     <span className="text-5xl font-bold text-muted-foreground/30">{step.number}</span>
-                    <span className="text-5xl font-bold" style={{ color: "hsl(41 50% 65%)" }}>{step.keyword}</span>
+                    <span className="text-5xl font-bold uppercase" style={{ color: "hsl(41 50% 65%)" }}>{step.keyword}</span>
                   </div>
                   
                   <h3 className="text-lg font-bold mb-2 text-foreground">{step.title}</h3>
