@@ -67,13 +67,14 @@ const HowItWorks = () => {
             <p className="text-muted-foreground text-base leading-relaxed max-w-2xl mx-auto mb-4">
               For 100% of the people, 100% of the time, who complete the 3 simple, doable steps.
             </p>
-            <div className="flex items-center justify-center gap-4 mb-8">
+            <div className="flex items-center justify-center gap-6 mb-8">
               <p className="text-muted-foreground text-lg md:text-xl italic font-bold">Money for Everything!</p>
               <Link
                 to="/#join"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-sm font-bold tracking-widest uppercase text-xs transition-all duration-300 hover:scale-105 bg-primary text-primary-foreground"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-sm font-bold tracking-widest uppercase text-[11px] transition-all duration-300 hover:scale-105 text-background"
+                style={{ background: "linear-gradient(180deg, hsl(39 55% 62%), hsl(39 55% 42%))", boxShadow: "0 3px 0 hsl(39 55% 32%), inset 0 1px 0 hsl(39 55% 72%)" }}
               >
-                Join Us Now <ArrowRight size={14} />
+                Join Us Now <ArrowRight size={12} />
               </Link>
             </div>
           </div>
