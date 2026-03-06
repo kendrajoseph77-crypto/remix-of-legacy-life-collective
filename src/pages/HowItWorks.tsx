@@ -23,7 +23,7 @@ const steps = [
     number: "02",
     title: "Invite 2 Members",
     keyword: "Build",
-    desc: "Help 2 or more people become Active Contributors and join the wheelhouse.",
+    desc: "Help 2 or more people become Active Contributors and join the cooperativvvve.",
   },
   {
     number: "03",
@@ -141,7 +141,7 @@ const HowItWorks = () => {
         </div>
       </section>
 
-      {/* Wheelhouse Visualization */}
+      {/* Cooperative Visualization */}
       <section className="py-14">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
@@ -168,7 +168,7 @@ const HowItWorks = () => {
             When One Completes, Another Opens
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto text-sm leading-relaxed mb-12">
-            Each Wheelhouse fills, closes, and a new one opens — automatically. The cycle never ends.
+            EacCooperativuse fills, closes, and a new one opens — automatically. The cycle never ends.
           </p>
 
           <div className="w-16 h-[1px] mx-auto mb-12" style={{ background: "linear-gradient(90deg, transparent, hsl(39 55% 52%), transparent)" }} />
