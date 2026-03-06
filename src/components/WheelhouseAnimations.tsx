@@ -308,3 +308,154 @@ export const TwoRingWheelhouse = () => {
     </div>
   );
 };
+
+/* ── Multi-cycle Wheelhouse: fills 3 times, first 2 minimize ── */
+export const MultiCycleWheelhouse = () => {
+  const TOTAL_NODES = 6;
+  const TOTAL_CYCLES = 3;
+  const GOLD = "hsl(39 55% 52%)";
+
+  const [cycle, setCycle] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(0);
+  const [completedCycles, setCompletedCycles] = useState<number[]>([]);
+  const [animationDone, setAnimationDone] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
+  const timers = useRef<number[]>([]);
+
+  const earningMessages = [
+    { title: "You Invited #1", note: "You Earned 50%" },
+    { title: "You Invited #2", note: "You Earned 50% — now you're even." },
+    { title: "#1 Invited #3", note: "They Earned 50% & You Earned 50%" },
+    { title: "#1 Invited #4", note: "They Earned 50% & You Earned 50%" },
+    { title: "#2 Invited #5", note: "They Earned 50% & You Earned 50%" },
+    { title: "#2 Invited #6", note: "They Earned 50% & You Earned 50%" },
+  ];
+
+  const startCycle = (cycleNum: number) => {
+    setVisibleCount(0);
+
+    for (let i = 0; i < TOTAL_NODES; i++) {
+      const t = window.setTimeout(() => {
+        setVisibleCount(i + 1);
+
+        if (i === TOTAL_NODES - 1) {
+          if (cycleNum < TOTAL_CYCLES - 1) {
+            const nextT = window.setTimeout(() => {
+              setCompletedCycles(prev => [...prev, cycleNum]);
+              setCycle(cycleNum + 1);
+              startCycle(cycleNum + 1);
+            }, 1200);
+            timers.current.push(nextT);
+          } else {
+            setAnimationDone(true);
+          }
+        }
+      }, 800 + i * 900);
+      timers.current.push(t);
+    }
+  };
+
+  const startAnimation = () => {
+    timers.current.forEach(clearTimeout);
+    timers.current = [];
+    setCycle(0);
+    setVisibleCount(0);
+    setCompletedCycles([]);
+    setAnimationDone(false);
+    startCycle(0);
+  };
+
+  useEffect(() => {
+    if (hasAnimated.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+          startAnimation();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => {
+      observer.disconnect();
+      timers.current.forEach(clearTimeout);
+    };
+  }, []);
+
+  const totalEarned = completedCycles.length * TOTAL_NODES * 50 + visibleCount * 50;
+
+  return (
+    <div ref={ref} className="flex flex-col items-center gap-6">
+      <div className="flex flex-col md:flex-row items-center md:items-start gap-6 w-full">
+        {/* Left side — earnings feed */}
+        <div className="flex-1 flex flex-col justify-center min-h-[300px] md:min-h-[400px]">
+          <p className="text-xs tracking-[0.2em] uppercase font-medium text-muted-foreground mb-2">
+            Cooperative {cycle + 1} of {TOTAL_CYCLES}
+          </p>
+          <p className="text-xs tracking-[0.2em] uppercase font-medium text-muted-foreground mb-4">How You Earn</p>
+          <div className="space-y-3">
+            {earningMessages.map((msg, i) => (
+              <div
+                key={`${cycle}-${i}`}
+                className={`flex items-start gap-3 transition-all duration-500 ${
+                  i < visibleCount ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
+                }`}
+              >
+                <div className="w-2 h-2 rounded-full mt-1.5 flex-shrink-0" style={{ background: GOLD }} />
+                <div>
+                  <p className="text-sm font-semibold text-foreground">{msg.title}</p>
+                  <p className="text-xs text-muted-foreground">{msg.note}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          {totalEarned > 0 && (
+            <div className="mt-6 pt-4 border-t border-border">
+              <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Total Earned</p>
+              <div className="flex items-center gap-3">
+                <p className="text-2xl font-bold" style={{ color: GOLD }}>{totalEarned}%</p>
+                {animationDone && (
+                  <button
+                    onClick={() => {
+                      hasAnimated.current = false;
+                      startAnimation();
+                    }}
+                    className="flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase transition-all duration-300 hover:scale-105 border border-border bg-muted/30 text-muted-foreground hover:text-foreground"
+                  >
+                    <RotateCcw size={14} />
+                    Replay
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Right side — active wheelhouse + completed thumbnails */}
+        <div className="w-full md:w-[55%] flex-shrink-0">
+          <WheelhouseSVG visibleCount={visibleCount} />
+
+          {completedCycles.length > 0 && (
+            <div className="flex items-center justify-center gap-4 mt-4">
+              {completedCycles.map((c) => (
+                <div key={c} className="relative">
+                  <div className="w-20 h-20 md:w-24 md:h-24 opacity-50">
+                    <WheelhouseSVG visibleCount={TOTAL_NODES} />
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-full border"
+                      style={{ color: GOLD, borderColor: GOLD, background: "hsl(0 0% 6% / 0.8)" }}>
+                      #{c + 1} ✓
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
