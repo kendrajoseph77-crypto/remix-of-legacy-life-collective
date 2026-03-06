@@ -565,7 +565,7 @@ const HowItWorksLife = () => {
             Earn From 100's or Even 1,000's of Cooperatives
           </h2>
           <p className="text-2xl md:text-3xl font-bold text-white" style={{ fontFamily: heading }}>
-            Would That Change Your Life?
+            Wouldn't that change your life!
           </p>
         </div>
       </section>

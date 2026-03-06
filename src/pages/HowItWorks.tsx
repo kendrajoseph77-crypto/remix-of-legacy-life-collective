@@ -284,7 +284,7 @@ const HowItWorks = () => {
               Earn From 100's or Even 1,000's of Cooperatives
             </h3>
             <p className="text-lg font-bold text-foreground mb-8">
-              Would That Change Your Life?
+              Wouldn't that change your life!
             </p>
             <Link
               to="/#join"
