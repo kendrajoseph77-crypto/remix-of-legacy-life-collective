@@ -394,23 +394,6 @@ export const MultiCycleWheelhouse = () => {
           <p className="text-xs tracking-[0.2em] uppercase font-medium text-muted-foreground mb-2">
             Cooperative {cycle + 1} of {TOTAL_CYCLES}
           </p>
-          <p className="text-xs tracking-[0.2em] uppercase font-medium text-muted-foreground mb-4">How You Earn</p>
-          <div className="space-y-3">
-            {earningMessages.map((msg, i) => (
-              <div
-                key={`${cycle}-${i}`}
-                className={`flex items-start gap-3 transition-all duration-500 ${
-                  i < visibleCount ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
-                }`}
-              >
-                <div className="w-2 h-2 rounded-full mt-1.5 flex-shrink-0" style={{ background: GOLD }} />
-                <div>
-                  <p className="text-sm font-semibold text-foreground">{msg.title}</p>
-                  <p className="text-xs text-muted-foreground">{msg.note}</p>
-                </div>
-              </div>
-            ))}
-          </div>
           {totalEarned > 0 && (
             <div className="mt-6 pt-4 border-t border-border">
               <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Total Earned</p>
