@@ -388,9 +388,9 @@ export const MultiCycleWheelhouse = () => {
 
   return (
     <div ref={ref} className="flex flex-col items-center gap-6">
-      <div className="flex flex-col md:flex-row items-center md:items-start gap-6 w-full">
+      <div className="flex flex-col md:flex-row items-center md:items-start gap-4 w-full">
         {/* Left side — earnings feed */}
-        <div className="flex-1 flex flex-col justify-center min-h-[300px] md:min-h-[400px]">
+        <div className="flex-1 flex flex-col justify-center min-h-[200px] md:min-h-[280px]">
           <p className="text-xs tracking-[0.2em] uppercase font-medium text-muted-foreground mb-2">
             Cooperative {cycle + 1} of {TOTAL_CYCLES}
           </p>
