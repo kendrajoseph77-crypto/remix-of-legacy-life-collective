@@ -10,30 +10,45 @@ import { Link } from "react-router-dom";
 const businesses = [
   {
     name: "5050 Fast",
-    tagline: "Clean entry. Foundation. Confidence.",
+    color: "hsl(224 85% 58%)",
     gradient: "linear-gradient(135deg, hsl(224 85% 58%), hsl(224 78% 48%), hsl(224 90% 38%))",
     shadow: "hsl(224 78% 48% / 0.4)",
     highlight: "hsl(224 80% 68% / 0.5)",
-    levels: "$25 · $50 · $100",
     logo: logoF,
+    vaults: [
+      { contribution: "$25", payout: "$75", per: "6 × $12.50" },
+      { contribution: "$50", payout: "$150", per: "6 × $25" },
+      { contribution: "$100", payout: "$300", per: "6 × $50" },
+    ],
+    total: "$525",
   },
   {
     name: "5050 Core",
-    tagline: "Design. Structure. Momentum.",
+    color: "hsl(160 80% 42%)",
     gradient: "linear-gradient(135deg, hsl(160 80% 42%), hsl(160 84% 30%), hsl(160 90% 22%))",
     shadow: "hsl(160 84% 30% / 0.4)",
     highlight: "hsl(160 75% 50% / 0.5)",
-    levels: "$250 · $500 · $1,000",
     logo: logoC,
+    vaults: [
+      { contribution: "$250", payout: "$750", per: "6 × $125" },
+      { contribution: "$500", payout: "$1,500", per: "6 × $250" },
+      { contribution: "$1,000", payout: "$3,000", per: "6 × $500" },
+    ],
+    total: "$5,250",
   },
   {
     name: "5050 Max",
-    tagline: "Foresight. Authority. Legacy.",
+    color: "hsl(41 50% 65%)",
     gradient: "linear-gradient(135deg, hsl(41 50% 65%), hsl(39 55% 52%), hsl(35 55% 40%))",
     shadow: "hsl(39 55% 52% / 0.4)",
     highlight: "hsl(42 45% 75% / 0.5)",
-    levels: "$2,500 · $5,000 · $10,000",
     logo: logoM,
+    vaults: [
+      { contribution: "$2,500", payout: "$7,500", per: "6 × $1,250" },
+      { contribution: "$5,000", payout: "$15,000", per: "6 × $2,500" },
+      { contribution: "$10,000", payout: "$30,000", per: "6 × $5,000" },
+    ],
+    total: "$52,500",
   },
 ];
 
