@@ -146,9 +146,7 @@ export const TwoRingWheelhouse = () => {
               >
                 <div className="w-2 h-2 rounded-full mt-1.5 flex-shrink-0" style={{ background: GOLD }} />
                 <div>
-                  <p className="text-sm font-semibold text-foreground">
-                    {msg.member} activated — <span style={{ color: GOLD }}>{msg.amount}</span>
-                  </p>
+                  <p className="text-sm font-semibold text-foreground">{msg.title}</p>
                   <p className="text-xs text-muted-foreground">{msg.note}</p>
                 </div>
               </div>
