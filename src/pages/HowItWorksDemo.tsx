@@ -62,14 +62,14 @@ const HowItWorksDemo = () => {
       <div className="h-1 w-full relative" style={{ background: "hsl(0 0% 100% / 0.05)" }}>
         <div
           className="h-full transition-all duration-500 ease-out"
-          style={{ width: `${progress}%`, background: `linear-gradient(90deg, ${gold}, hsl(160 80% 30%))` }}
+          style={{ width: `${progress}%`, background: `linear-gradient(90deg, ${gold}, hsl(160 80% 300%))` }}
         />
       </div>
 
       {/* Slide area */}
       <div className="flex-1 relative flex items-stretch min-h-0">
         <Link to="/" className="absolute top-4 left-4 z-30 hover:opacity-80 transition-opacity">
-          <img src={logoGold} alt="Coop5050 Home" className="h-10" style={{ filter: "drop-shadow(0 0 6px hsl(41 50% 65% / 0.4))" }} />
+          <img src={logoGold} alt="Coop5050 Home" className="h-10" style={{ filter: "drop-shadow(0 0 6px hsl160 80% 425% / 0.4))" }} />
         </Link>
         <button
           onClick={goPrev}
