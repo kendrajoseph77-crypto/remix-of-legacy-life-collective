@@ -49,9 +49,26 @@ const HowItWorks = () => {
 
       {/* Hero with 3 Images */}
       <section className="pt-20 pb-4 relative overflow-hidden">
-        <Link to="/" className="fixed top-4 left-6 z-50">
-          <img src={logoMain} alt="5050L logo" className="w-auto" style={{ height: "64px", filter: "drop-shadow(0 0 16px hsl(38 70% 60% / 0.4))" }} />
-        </Link>
+        <div className="fixed top-4 left-6 right-6 z-50 flex items-center justify-between">
+          <Link to="/">
+            <img src={logoMain} alt="5050L logo" className="w-auto" style={{ height: "64px", filter: "drop-shadow(0 0 16px hsl(38 70% 60% / 0.4))" }} />
+          </Link>
+          <nav className="flex items-center gap-6">
+            <Link to="/" className="text-xs font-semibold tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors">
+              Home
+            </Link>
+            <Link
+              to="/#join"
+              className="text-xs font-semibold tracking-[0.15em] uppercase hover:text-foreground transition-colors"
+              style={{ color: "hsl(39 55% 52%)" }}
+            >
+              Join Now
+            </Link>
+            <Link to="/login" className="text-xs font-semibold tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors">
+              Log In
+            </Link>
+          </nav>
+        </div>
         <div className="max-w-4xl mx-auto px-6">
           <div className="grid grid-cols-3 gap-1 rounded-xl overflow-hidden mb-8 max-h-[280px] md:max-h-[320px]">
             <img src={heroPerson1} alt="Woman relaxing in hammock" className="w-full h-full object-cover" />
