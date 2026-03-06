@@ -597,7 +597,7 @@ const WheelhouseDiagram = ({ onFirstCycleComplete }: { onFirstCycleComplete?: ()
       {animationDone && (
         <div className="text-center animate-fade-in py-12 px-4 max-w-3xl mx-auto">
           <p className="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-6">
-            And It Never Stops.
+            You Never Lose Your Team!
           </p>
           <p className="text-base md:text-lg text-white/60 max-w-xl mx-auto leading-relaxed mb-6">
             Unlimited re-entries. Unlimited follows. <span className="font-bold text-white">Unlimited income.</span><br />

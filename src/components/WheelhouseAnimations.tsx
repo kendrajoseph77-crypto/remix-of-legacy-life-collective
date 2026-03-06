@@ -21,7 +21,7 @@ export const MobiusLoopVisual = () => (
 
     <h3 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-[1.1]"
       style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-      And It Never Stops.
+      You Never Lose Your Team!
     </h3>
 
     <div className="w-10 h-[2px] rounded-full mt-1" style={{ background: GOLD }} />
