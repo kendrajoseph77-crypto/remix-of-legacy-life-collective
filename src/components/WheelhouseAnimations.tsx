@@ -204,16 +204,11 @@ const WheelhouseSVG = ({ visibleCount, scale = 1, opacity = 1 }: { visibleCount:
   );
 };
 
-/* ── Multi-cycle Wheelhouse: completes 3 times, first 2 shrink ── */
 export const TwoRingWheelhouse = () => {
   const TOTAL_NODES = 6;
-  const TOTAL_CYCLES = 3;
   const GOLD = "hsl(39 55% 52%)";
 
-  const [cycle, setCycle] = useState(0); // 0, 1, 2
   const [visibleCount, setVisibleCount] = useState(0);
-  const [completedCycles, setCompletedCycles] = useState<number[]>([]); // cycles that finished & shrunk
-  const [shrinking, setShrinking] = useState(false); // current cycle shrinking
   const [animationDone, setAnimationDone] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
@@ -228,43 +223,19 @@ export const TwoRingWheelhouse = () => {
     { title: "#2 Invited #6", note: "They Earned 50% & You Earned 50%" },
   ];
 
-  const startCycle = (cycleNum: number) => {
+  const startAnimation = () => {
+    timers.current.forEach(clearTimeout);
+    timers.current = [];
     setVisibleCount(0);
-    setShrinking(false);
+    setAnimationDone(false);
 
     for (let i = 0; i < TOTAL_NODES; i++) {
       const t = window.setTimeout(() => {
         setVisibleCount(i + 1);
-
-        // Last node in this cycle
-        if (i === TOTAL_NODES - 1) {
-          if (cycleNum < TOTAL_CYCLES - 1) {
-            // After a pause, move completed wheel to bottom and start next
-            const nextT = window.setTimeout(() => {
-              setCompletedCycles(prev => [...prev, cycleNum]);
-              setCycle(cycleNum + 1);
-              startCycle(cycleNum + 1);
-            }, 1200);
-            timers.current.push(nextT);
-          } else {
-            // 3rd cycle — done
-            setAnimationDone(true);
-          }
-        }
+        if (i === TOTAL_NODES - 1) setAnimationDone(true);
       }, 800 + i * 900);
       timers.current.push(t);
     }
-  };
-
-  const startAnimation = () => {
-    timers.current.forEach(clearTimeout);
-    timers.current = [];
-    setCycle(0);
-    setVisibleCount(0);
-    setCompletedCycles([]);
-    setShrinking(false);
-    setAnimationDone(false);
-    startCycle(0);
   };
 
   useEffect(() => {
@@ -285,21 +256,16 @@ export const TwoRingWheelhouse = () => {
     };
   }, []);
 
-  const totalEarned = completedCycles.length * TOTAL_NODES * 50 + visibleCount * 50;
-
   return (
     <div ref={ref} className="flex flex-col items-center gap-6">
       <div className="flex flex-col md:flex-row items-center md:items-start gap-6 w-full">
         {/* Left side — earnings feed */}
         <div className="flex-1 flex flex-col justify-center min-h-[300px] md:min-h-[400px]">
-          <p className="text-xs tracking-[0.2em] uppercase font-medium text-muted-foreground mb-2">
-            Cooperative {cycle + 1} of {TOTAL_CYCLES}
-          </p>
           <p className="text-xs tracking-[0.2em] uppercase font-medium text-muted-foreground mb-4">How You Earn</p>
           <div className="space-y-3">
             {earningMessages.map((msg, i) => (
               <div
-                key={`${cycle}-${i}`}
+                key={i}
                 className={`flex items-start gap-3 transition-all duration-500 ${
                   i < visibleCount ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
                 }`}
@@ -312,11 +278,11 @@ export const TwoRingWheelhouse = () => {
               </div>
             ))}
           </div>
-          {totalEarned > 0 && (
+          {visibleCount > 0 && (
             <div className="mt-6 pt-4 border-t border-border">
               <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Total Earned</p>
               <div className="flex items-center gap-3">
-                <p className="text-2xl font-bold" style={{ color: GOLD }}>{totalEarned}%</p>
+                <p className="text-2xl font-bold" style={{ color: GOLD }}>{visibleCount * 50}%</p>
                 {animationDone && (
                   <button
                     onClick={() => {
@@ -334,33 +300,9 @@ export const TwoRingWheelhouse = () => {
           )}
         </div>
 
-        {/* Right side — active wheelhouse + completed thumbnails */}
+        {/* Right side — wheelhouse diagram */}
         <div className="w-full md:w-[55%] flex-shrink-0">
-          {/* Active wheel */}
-          <WheelhouseSVG
-            visibleCount={visibleCount}
-            scale={1}
-            opacity={1}
-          />
-
-          {/* Completed wheels as thumbnails */}
-          {completedCycles.length > 0 && (
-            <div className="flex items-center justify-center gap-4 mt-4">
-              {completedCycles.map((c) => (
-                <div key={c} className="relative">
-                  <div className="w-20 h-20 md:w-24 md:h-24 opacity-50">
-                    <WheelhouseSVG visibleCount={TOTAL_NODES} scale={1} opacity={1} />
-                  </div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-full border" 
-                      style={{ color: GOLD, borderColor: GOLD, background: "hsl(0 0% 6% / 0.8)" }}>
-                      #{c + 1} ✓
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
+          <WheelhouseSVG visibleCount={visibleCount} />
         </div>
       </div>
     </div>
