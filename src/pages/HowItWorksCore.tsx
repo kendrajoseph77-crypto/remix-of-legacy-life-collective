@@ -56,7 +56,7 @@ const HowItWorksCore = () => {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <section className="pt-20 pb-4 relative overflow-hidden">
-        <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-3 bg-white">
+        <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between pl-2 pr-6 py-1 bg-white">
           <Link to="/">
             <img src={logoC} alt="5050 Core logo" className="w-auto" style={{ height: "54px" }} />
           </Link>
