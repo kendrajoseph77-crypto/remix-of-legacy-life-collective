@@ -49,6 +49,9 @@ const HowItWorks = () => {
 
       {/* Hero with 3 Images */}
       <section className="pt-20 pb-4 relative overflow-hidden">
+        <div className="absolute top-4 left-6 z-20">
+          <img src={logoMain} alt="5050L logo" className="w-auto" style={{ height: "64px", filter: "drop-shadow(0 0 16px hsl(38 70% 60% / 0.4))" }} />
+        </div>
         <div className="max-w-4xl mx-auto px-6">
           <div className="grid grid-cols-3 gap-1 rounded-xl overflow-hidden mb-8 max-h-[280px] md:max-h-[320px]">
             <img src={heroPerson1} alt="Woman relaxing in hammock" className="w-full h-full object-cover" />
@@ -56,12 +59,9 @@ const HowItWorks = () => {
             <img src={heroPerson3} alt="Friends celebrating" className="w-full h-full object-cover" />
           </div>
 
-          {/* Logo + Text */}
+          {/* Text */}
           <div className="text-center">
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <img src={logoMain} alt="5050L logo" className="w-auto" style={{ height: "64px" }} />
-              <p className="text-base tracking-[0.3em] uppercase font-medium" style={{ color: "hsl(41 50% 65%)" }}>Cooperative Crowdfunding</p>
-            </div>
+            <p className="text-base tracking-[0.3em] uppercase font-medium mb-6" style={{ color: "hsl(41 50% 65%)" }}>Cooperative Crowdfunding</p>
             <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
               5050 Works...
             </h1>
