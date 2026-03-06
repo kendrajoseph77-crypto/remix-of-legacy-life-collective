@@ -141,19 +141,6 @@ const HowItWorks = () => {
         </div>
       </section>
 
-      {/* Cooperative Visualization */}
-      <section className="py-14">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3">World Famous Mobius Loop</p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              The Cooperative
-            </h2>
-          </div>
-          <MobiusLoopVisual />
-        </div>
-      </section>
-
       {/* Mobius Loop */}
       <section className="py-24 relative overflow-hidden bg-card border-y border-border">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_40%,hsl(39_55%_52%/0.06)_0%,transparent_70%)]" />
@@ -177,6 +164,19 @@ const HowItWorks = () => {
               Invite as many friends as you like. You will always receive half of every contribution. The more friends invite friends, the more contributions flow to you — over and over again.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Cooperative Visualization */}
+      <section className="py-14">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-14">
+            <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3">World Famous Mobius Loop</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              The Cooperative
+            </h2>
+          </div>
+          <MobiusLoopVisual />
         </div>
       </section>
 
