@@ -239,17 +239,13 @@ export const TwoRingWheelhouse = () => {
         // Last node in this cycle
         if (i === TOTAL_NODES - 1) {
           if (cycleNum < TOTAL_CYCLES - 1) {
-            // Shrink after a pause, then start next cycle
-            const shrinkT = window.setTimeout(() => {
-              setShrinking(true);
-              const nextT = window.setTimeout(() => {
-                setCompletedCycles(prev => [...prev, cycleNum]);
-                setCycle(cycleNum + 1);
-                startCycle(cycleNum + 1);
-              }, 900);
-              timers.current.push(nextT);
+            // After a pause, move completed wheel to bottom and start next
+            const nextT = window.setTimeout(() => {
+              setCompletedCycles(prev => [...prev, cycleNum]);
+              setCycle(cycleNum + 1);
+              startCycle(cycleNum + 1);
             }, 1200);
-            timers.current.push(shrinkT);
+            timers.current.push(nextT);
           } else {
             // 3rd cycle — done
             setAnimationDone(true);
@@ -343,8 +339,8 @@ export const TwoRingWheelhouse = () => {
           {/* Active wheel */}
           <WheelhouseSVG
             visibleCount={visibleCount}
-            scale={shrinking ? 0.3 : 1}
-            opacity={shrinking ? 0.4 : 1}
+            scale={1}
+            opacity={1}
           />
 
           {/* Completed wheels as thumbnails */}
