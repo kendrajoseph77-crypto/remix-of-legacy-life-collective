@@ -49,22 +49,21 @@ const HowItWorks = () => {
 
       {/* Hero with 3 Images */}
       <section className="pt-20 pb-4 relative overflow-hidden">
-        <div className="fixed top-4 left-6 right-6 z-50 flex items-center justify-between">
+        <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-3 bg-white shadow-sm">
           <Link to="/">
-            <img src={logoMain} alt="5050L logo" className="w-auto" style={{ height: "64px", filter: "drop-shadow(0 0 16px hsl(38 70% 60% / 0.4))" }} />
+            <img src={logoMain} alt="5050L logo" className="w-auto" style={{ height: "54px" }} />
           </Link>
           <nav className="flex items-center gap-6">
-            <Link to="/" className="text-xs font-semibold tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors">
+            <Link to="/" className="text-xs font-semibold tracking-[0.15em] uppercase text-black/70 hover:text-black transition-colors">
               Home
             </Link>
             <Link
               to="/#join"
-              className="text-xs font-semibold tracking-[0.15em] uppercase hover:text-foreground transition-colors"
-              style={{ color: "hsl(39 55% 52%)" }}
+              className="text-xs font-semibold tracking-[0.15em] uppercase text-black/70 hover:text-black transition-colors"
             >
               Join Now
             </Link>
-            <Link to="/login" className="text-xs font-semibold tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors">
+            <Link to="/login" className="text-xs font-semibold tracking-[0.15em] uppercase text-black/70 hover:text-black transition-colors">
               Log In
             </Link>
           </nav>
