@@ -26,9 +26,6 @@ export const MobiusLoopVisual = () => (
 
     <div className="w-10 h-[2px] rounded-full mt-1" style={{ background: GOLD }} />
 
-    <p className="text-foreground text-lg md:text-xl font-semibold max-w-md mt-2">
-      You Never Lose Your Team!
-    </p>
 
     <p className="text-muted-foreground text-sm md:text-base max-w-lg leading-relaxed">
       Each and every time your Income Center fills with 6 Active Contributors, another automatically re-opens for you to receive another 6 contributions — without additional effort or qualifications!
