@@ -339,8 +339,8 @@ export const TwoRingWheelhouse = () => {
           {/* Active wheel */}
           <WheelhouseSVG
             visibleCount={visibleCount}
-            scale={shrinking ? 0.3 : 1}
-            opacity={shrinking ? 0.4 : 1}
+            scale={1}
+            opacity={1}
           />
 
           {/* Completed wheels as thumbnails */}
