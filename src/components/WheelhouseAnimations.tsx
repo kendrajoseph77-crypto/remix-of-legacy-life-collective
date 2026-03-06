@@ -134,7 +134,7 @@ export const TwoRingWheelhouse = () => {
       <div className="flex flex-col md:flex-row items-center md:items-start gap-6 w-full">
         {/* Left side — earnings feed */}
         <div className="flex-1 flex flex-col justify-center min-h-[300px] md:min-h-[400px]">
-          <p className="text-xs tracking-[0.2em] uppercase font-medium text-muted-foreground mb-4">Your Earnings</p>
+          <p className="text-xs tracking-[0.2em] uppercase font-medium text-muted-foreground mb-4">How You Earn</p>
           <div className="space-y-3">
             {earningMessages.map((msg, i) => (
               <div
