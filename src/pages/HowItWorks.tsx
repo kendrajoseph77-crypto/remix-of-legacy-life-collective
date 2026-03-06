@@ -164,7 +164,7 @@ const HowItWorks = () => {
             When One Completes, Another Opens
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto text-sm leading-relaxed mb-12">
-            EacCooperativuse fills, closes, and a new one opens — automatically. The cycle never ends.
+            When a cooperative fills, a new one opens — automatically. The cycle never ends.
           </p>
 
           <div className="w-16 h-[1px] mx-auto mb-12" style={{ background: "linear-gradient(90deg, transparent, hsl(39 55% 52%), transparent)" }} />
