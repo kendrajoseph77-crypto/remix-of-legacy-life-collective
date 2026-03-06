@@ -17,21 +17,7 @@ const GOLD = "hsl(39 55% 52%)";
 /* ── Mobius Loop — statement section ── */
 export const MobiusLoopVisual = () => (
   <div className="flex flex-col items-center gap-6 text-center">
-    <Infinity size={28} strokeWidth={1.2} style={{ color: GOLD }} className="opacity-30" />
-
-    <h3 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-[1.1]"
-      style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-      You Never Lose Your Team!
-    </h3>
-
-    <div className="w-10 h-[2px] rounded-full mt-1" style={{ background: GOLD }} />
-
-
-    <p className="text-muted-foreground text-sm md:text-base max-w-lg leading-relaxed">
-      Each and every time your Income Center fills with 6 Active Contributors, another automatically re-opens for you to receive another 6 contributions — more money not more work! The Mobius Loop ensures you always follow your inviter and your team always follows you!
-    </p>
-
-    <div className="flex items-center gap-3 px-7 py-3 rounded-full mt-4"
+    <div className="flex items-center gap-3 px-7 py-3 rounded-full"
       style={{ border: `1px solid hsl(39 55% 52% / 0.5)` }}>
       <Infinity size={16} style={{ color: GOLD }} />
       <span className="text-[11px] font-semibold tracking-[0.25em] uppercase" style={{ color: GOLD }}>
