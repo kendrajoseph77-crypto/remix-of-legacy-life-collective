@@ -176,7 +176,7 @@ const HowItWorks = () => {
       </section>
 
       {/* Cooperative Visualization */}
-      <section className="py-14">
+      <section className="pt-14 pb-6">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
             <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3">World Famous Mobius Loop</p>
