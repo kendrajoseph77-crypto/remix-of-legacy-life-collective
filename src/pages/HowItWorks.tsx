@@ -5,6 +5,10 @@ import { TwoRingWheelhouse, MobiusLoopVisual } from "@/components/WheelhouseAnim
 import logoF from "@/assets/logo-5050-f.svg";
 import logoC from "@/assets/logo-5050-c.svg";
 import logoM from "@/assets/logo-5050-m.svg";
+import logoMain from "@/assets/logo-5050-main.svg";
+import heroPerson1 from "@/assets/hero-person-1.jpg";
+import heroPerson2 from "@/assets/hero-person-2.jpg";
+import heroPerson3 from "@/assets/hero-person-3.jpg";
 
 const steps = [
   {
@@ -41,25 +45,34 @@ const HowItWorks = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      {/* Hero */}
-      <section className="pt-28 pb-12 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,hsl(39_55%_52%/0.13)_0%,transparent_70%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_50%_0%,hsl(39_55%_52%/0.08)_0%,transparent_60%)]" />
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <p className="text-sm tracking-[0.3em] uppercase font-medium mb-3" style={{ color: "hsl(41 50% 65%)" }}>Cooperative Crowdfunding</p>
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
-            How Coop5050 Works
-          </h1>
-          <p className="text-muted-foreground text-base leading-relaxed max-w-2xl mx-auto mb-4">
-            A high-impact Cooperative Crowdfunding System built for speed — generating significant short and mid-term income to meet your immediate financial needs.
-          </p>
-          <p className="text-muted-foreground text-sm italic mb-8">Money for Everything!</p>
-          <Link
-            to="/#join"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:scale-105 bg-primary text-primary-foreground"
-          >
-            Join Us Now <ArrowRight size={16} />
-          </Link>
+      {/* Hero with 3 Images */}
+      <section className="pt-20 pb-10 relative overflow-hidden">
+        <div className="max-w-4xl mx-auto px-6">
+          {/* 3 Images Side by Side */}
+          <div className="grid grid-cols-3 gap-1 rounded-xl overflow-hidden mb-8 max-h-[280px] md:max-h-[320px]">
+            <img src={heroPerson1} alt="Professional on phone" className="w-full h-full object-cover" />
+            <img src={heroPerson2} alt="Professional on laptop" className="w-full h-full object-cover" />
+            <img src={heroPerson3} alt="Professional on tablet" className="w-full h-full object-cover" />
+          </div>
+
+          {/* Logo + Text */}
+          <div className="text-center">
+            <img src={logoMain} alt="5050L logo" className="mx-auto mb-4 w-auto" style={{ height: "56px" }} />
+            <p className="text-sm tracking-[0.3em] uppercase font-medium mb-3" style={{ color: "hsl(41 50% 65%)" }}>Cooperative Crowdfunding</p>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+              How Coop5050 Works
+            </h1>
+            <p className="text-muted-foreground text-base leading-relaxed max-w-2xl mx-auto mb-4">
+              A high-impact Cooperative Crowdfunding System built for speed — generating significant short and mid-term income to meet your immediate financial needs.
+            </p>
+            <p className="text-muted-foreground text-sm italic mb-8">Money for Everything!</p>
+            <Link
+              to="/#join"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:scale-105 bg-primary text-primary-foreground"
+            >
+              Join Us Now <ArrowRight size={16} />
+            </Link>
+          </div>
         </div>
       </section>
 
