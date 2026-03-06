@@ -11,14 +11,6 @@ import heroPerson1 from "@/assets/hero-person-1.jpg";
 import heroPerson2 from "@/assets/hero-person-2.jpg";
 import heroPerson3 from "@/assets/hero-person-3.jpg";
 
-const notifications = [
-  { text: "Congratulations! You've earned $8,750", position: "left-[8%] top-[15%]" },
-  { text: "You just received $2,500! 🎉", position: "left-[35%] top-[8%]" },
-  { text: "New payout: $5,000 sent!", position: "right-[10%] top-[20%]" },
-  { text: "Congrats! $1,250 received! 💰", position: "left-[15%] bottom-[18%]" },
-  { text: "You earned $15,000 this cycle!", position: "right-[8%] bottom-[12%]" },
-  { text: "Payout alert: $3,000! 🔥", position: "left-[40%] bottom-[25%]" },
-];
 
 const steps = [
   {
