@@ -28,11 +28,7 @@ export const MobiusLoopVisual = () => (
 
 
     <p className="text-muted-foreground text-sm md:text-base max-w-lg leading-relaxed">
-      Each and every time your Income Center fills with 6 Active Contributors, another automatically re-opens for you to receive another 6 contributions — more money not more work!
-    </p>
-
-    <p className="text-muted-foreground text-sm md:text-base max-w-lg leading-relaxed">
-      The Mobius Loop ensures you always follow your inviter and your team always follows you!
+      Each and every time your Income Center fills with 6 Active Contributors, another automatically re-opens for you to receive another 6 contributions — more money not more work! The Mobius Loop ensures you always follow your inviter and your team always follows you!
     </p>
 
     <div className="flex items-center gap-3 px-7 py-3 rounded-full mt-4"
