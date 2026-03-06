@@ -28,7 +28,7 @@ export const MobiusLoopVisual = () => (
 
 
     <p className="text-muted-foreground text-sm md:text-base max-w-lg leading-relaxed">
-      Each and every time your Income Center fills with 6 Active Contributors, another automatically re-opens for you to receive another 6 contributions — without additional effort or qualifications!
+      Each and every time your Income Center fills with 6 Active Contributors, another automatically re-opens for you to receive another 6 contributions — more money not more work!
     </p>
 
     <p className="text-muted-foreground text-sm md:text-base max-w-lg leading-relaxed">
