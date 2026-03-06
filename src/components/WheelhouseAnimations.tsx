@@ -119,8 +119,11 @@ export const TwoRingWheelhouse = () => {
   }, []);
 
   const clipId = useRef(`clip-${Math.random().toString(36).slice(2)}`).current;
-  const ACCENT = "hsl(224 85% 68%)";
-  const DARK = "hsl(0 0% 20%)";
+  const ACCENT = "hsl(39 55% 52%)";
+  const DARK = "hsl(0 0% 6%)";
+  const GOLD_LIGHT = "hsl(39 60% 65%)";
+  const GOLD_DARK = "hsl(39 50% 38%)";
+  const BLACK = "hsl(0 0% 8%)";
 
   const elbowPaths = [
     `M ${innerNodes[0].x - innerR},${innerNodes[0].y} L 210,${innerNodes[0].y} L 210,${outerNodes[0].y} L ${outerNodes[0].x + outerR},${outerNodes[0].y}`,
