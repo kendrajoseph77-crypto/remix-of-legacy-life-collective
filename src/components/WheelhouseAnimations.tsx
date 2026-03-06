@@ -179,7 +179,7 @@ export const TwoRingWheelhouse = () => {
           <svg viewBox="-20 -100 740 720" className="w-full max-w-md mx-auto">
             <defs>
               <marker id="wh-arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                <polygon points="0 0, 10 3.5, 0 7" fill={DARK} />
+                <polygon points="0 0, 10 3.5, 0 7" fill={GOLD} />
               </marker>
               <clipPath id="wh-top-half">
                 <rect x="0" y="0" width="700" height={youPos.y} />
@@ -187,41 +187,50 @@ export const TwoRingWheelhouse = () => {
               <clipPath id="wh-bottom-half">
                 <rect x="0" y={youPos.y} width="700" height={520 - youPos.y} />
               </clipPath>
+              <radialGradient id="wh-bg-glow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor={GOLD} stopOpacity="0.08" />
+                <stop offset="100%" stopColor={BLACK} stopOpacity="0" />
+              </radialGradient>
+              <linearGradient id="wh-gold-grad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor={GOLD_LIGHT} />
+                <stop offset="100%" stopColor={GOLD_DARK} />
+              </linearGradient>
             </defs>
 
+            {/* Background glow */}
+            <circle cx={youPos.x} cy={youPos.y} r="360" fill="url(#wh-bg-glow)" />
 
             {/* Inner circle (01-02) */}
-            <circle cx={youPos.x} cy={youPos.y} r="190" fill={BLUE} opacity="0.04" clipPath="url(#wh-top-half)" />
-            <circle cx={youPos.x} cy={youPos.y} r="190" fill={GREEN} opacity="0.04" clipPath="url(#wh-bottom-half)" />
+            <circle cx={youPos.x} cy={youPos.y} r="190" fill={BLACK} opacity="0.06" clipPath="url(#wh-top-half)" />
+            <circle cx={youPos.x} cy={youPos.y} r="190" fill={BLACK} opacity="0.06" clipPath="url(#wh-bottom-half)" />
 
-            {/* Outer circle (03-06) */}
             {/* Outer circle with 4 quadrant sections */}
-            <circle cx={youPos.x} cy={youPos.y} r="340" fill="none" stroke={GOLD} strokeWidth="2.5" opacity="0.5" />
+            <circle cx={youPos.x} cy={youPos.y} r="340" fill="none" stroke="url(#wh-gold-grad)" strokeWidth="3" opacity="0.6" />
             {/* Top-right quadrant */}
             <path d={`M ${youPos.x},${youPos.y} L ${youPos.x},${youPos.y - 340} A 340,340 0 0,1 ${youPos.x + 340},${youPos.y} Z`}
-              fill={GOLD} opacity="0.08" />
+              fill={BLACK} opacity="0.06" />
             {/* Bottom-right quadrant */}
             <path d={`M ${youPos.x},${youPos.y} L ${youPos.x + 340},${youPos.y} A 340,340 0 0,1 ${youPos.x},${youPos.y + 340} Z`}
-              fill={GOLD} opacity="0.15" />
+              fill={GOLD} opacity="0.06" />
             {/* Bottom-left quadrant */}
             <path d={`M ${youPos.x},${youPos.y} L ${youPos.x},${youPos.y + 340} A 340,340 0 0,1 ${youPos.x - 340},${youPos.y} Z`}
-              fill={GOLD} opacity="0.08" />
+              fill={BLACK} opacity="0.06" />
             {/* Top-left quadrant */}
             <path d={`M ${youPos.x},${youPos.y} L ${youPos.x - 340},${youPos.y} A 340,340 0 0,1 ${youPos.x},${youPos.y - 340} Z`}
-              fill={GOLD} opacity="0.15" />
+              fill={GOLD} opacity="0.06" />
             {/* Dividing lines */}
-            <line x1={youPos.x} y1={youPos.y - 340} x2={youPos.x} y2={youPos.y + 340} stroke={GOLD} strokeWidth="1" opacity="0.2" />
-            <line x1={youPos.x - 340} y1={youPos.y} x2={youPos.x + 340} y2={youPos.y} stroke={GOLD} strokeWidth="1" opacity="0.2" />
+            <line x1={youPos.x} y1={youPos.y - 340} x2={youPos.x} y2={youPos.y + 340} stroke={GOLD} strokeWidth="1" opacity="0.15" />
+            <line x1={youPos.x - 340} y1={youPos.y} x2={youPos.x + 340} y2={youPos.y} stroke={GOLD} strokeWidth="1" opacity="0.15" />
 
             <line x1={youPos.x - 195} y1={youPos.y} x2={youPos.x - youR - 5} y2={youPos.y}
-              stroke="hsl(0 0% 60%)" strokeWidth="1" strokeDasharray="4 3" opacity="0.4" />
+              stroke={GOLD} strokeWidth="1" strokeDasharray="4 3" opacity="0.3" />
             <line x1={youPos.x + youR + 5} y1={youPos.y} x2={youPos.x + 195} y2={youPos.y}
-              stroke="hsl(0 0% 60%)" strokeWidth="1" strokeDasharray="4 3" opacity="0.4" />
+              stroke={GOLD} strokeWidth="1" strokeDasharray="4 3" opacity="0.3" />
 
             <path d={`M ${youPos.x - 190},${youPos.y} A 190,190 0 0,1 ${youPos.x + 190},${youPos.y}`}
-              fill="none" stroke={BLUE} strokeWidth="1.5" strokeDasharray="6 4" opacity="0.2" />
+              fill="none" stroke={GOLD} strokeWidth="2" strokeDasharray="6 4" opacity="0.3" />
             <path d={`M ${youPos.x + 190},${youPos.y} A 190,190 0 0,1 ${youPos.x - 190},${youPos.y}`}
-              fill="none" stroke={GREEN} strokeWidth="1.5" strokeDasharray="6 4" opacity="0.2" />
+              fill="none" stroke={GOLD} strokeWidth="2" strokeDasharray="6 4" opacity="0.3" />
 
             <line x1={youPos.x} y1={youPos.y - youR} x2={innerNodes[0].x} y2={innerNodes[0].y + innerR}
               stroke={DARK} strokeWidth="2" markerEnd="url(#wh-arrow)"
