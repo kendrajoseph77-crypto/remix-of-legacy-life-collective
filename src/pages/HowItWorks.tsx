@@ -8,6 +8,7 @@ import logoM from "@/assets/logo-5050-m.svg";
 import logoMain from "@/assets/logo-5050-main.svg";
 import heroPerson1 from "@/assets/hero-person-1.jpg";
 import heroPerson2 from "@/assets/hero-person-2.jpg";
+import classyAsianWoman from "@/assets/classy-asian-woman.jpg";
 import heroPerson3 from "@/assets/hero-person-3.jpg";
 
 
@@ -93,27 +94,27 @@ const HowItWorks = () => {
               Coop5050™ is transparent, fully automated, and cannot be manipulated.
               There is no middleman — you immediately receive all your money.
             </p>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-muted-foreground leading-relaxed mb-6">
               <span className="text-foreground font-semibold">50%</span> Instant Payout to you.{" "}
               <span className="text-foreground font-semibold">50%</span> Instant Payout to a teammate.
               6 members fill your Wheelhouse — that's <span className="font-semibold" style={{ color: "hsl(41 50% 65%)" }}>300% return</span> every cycle.
             </p>
+            <div className="rounded-xl overflow-hidden border border-border">
+              <div className="flex">
+                <div className="flex-1 p-6 text-center bg-muted/20">
+                  <p className="text-primary text-4xl font-bold">50%</p>
+                  <p className="text-muted-foreground text-sm mt-2">Instant Payout to <span className="text-foreground font-medium">YOU</span></p>
+                </div>
+                <div className="w-px bg-border" />
+                <div className="flex-1 p-6 text-center bg-muted/20">
+                  <p className="text-secondary text-4xl font-bold">50%</p>
+                  <p className="text-muted-foreground text-sm mt-2">Instant Payout to <span className="text-foreground font-medium">Teammate</span></p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="rounded-xl overflow-hidden border border-border">
-            <div className="flex">
-              <div className="flex-1 p-6 text-center bg-muted/20">
-                <p className="text-primary text-4xl font-bold">50%</p>
-                <p className="text-muted-foreground text-sm mt-2">Instant Payout to <span className="text-foreground font-medium">YOU</span></p>
-              </div>
-              <div className="w-px bg-border" />
-              <div className="flex-1 p-6 text-center bg-muted/20">
-                <p className="text-secondary text-4xl font-bold">50%</p>
-                <p className="text-muted-foreground text-sm mt-2">Instant Payout to <span className="text-foreground font-medium">Teammate</span></p>
-              </div>
-            </div>
-            <div className="p-4 bg-muted/30 text-center border-t border-border">
-              <p className="text-muted-foreground text-xs tracking-widest uppercase">6 × 50% = 300% Per Cycle</p>
-            </div>
+          <div className="rounded-xl overflow-hidden">
+            <img src={classyAsianWoman} alt="Elegant woman" className="w-full h-full object-cover rounded-xl" />
           </div>
         </div>
       </section>
