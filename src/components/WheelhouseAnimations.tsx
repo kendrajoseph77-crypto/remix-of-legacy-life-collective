@@ -282,9 +282,9 @@ export const TwoRingWheelhouse = () => {
                     const yOff = i === 0 ? node.y - innerR - 24 : node.y + innerR + 24;
                     return (
                       <g key={`inner-pct-${i}-${pct}`}>
-                        <rect x={node.x - 28} y={yOff - 14} width="56" height="28" rx="14" fill={BLACK} stroke={GOLD} strokeWidth="1.5" />
+                        <rect x={node.x - 34} y={yOff - 17} width="68" height="34" rx="17" fill={BLACK} stroke={GOLD} strokeWidth="1.5" />
                         <text x={node.x} y={yOff + 1} textAnchor="middle" dominantBaseline="middle"
-                          fontSize="14" fill={GOLD} fontWeight="700">{pct}%</text>
+                          fontSize="18" fill={GOLD} fontWeight="800">{pct}%</text>
                       </g>
                     );
                   })()}
