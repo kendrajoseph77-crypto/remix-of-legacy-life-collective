@@ -86,19 +86,10 @@ const HowItWorks = () => {
       <section className="py-14 max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-5">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3">
               100% Instantly Goes to You…
             </h2>
-            <p className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Our members!</p>
-            <p className="text-muted-foreground leading-relaxed mb-4">
-              Coop5050™ is transparent, fully automated, and cannot be manipulated.
-              There is no middleman — you immediately receive all your money.
-            </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
-              <span className="text-foreground font-semibold">50%</span> Instant Payout to you.{" "}
-              <span className="text-foreground font-semibold">50%</span> Instant Payout to a teammate.
-              6 members fill your Wheelhouse — that's <span className="font-semibold" style={{ color: "hsl(41 50% 65%)" }}>300% return</span> every cycle.
-            </p>
+            <p className="text-3xl md:text-4xl font-bold italic mb-6 text-foreground">Our members!</p>
             <div className="rounded-xl overflow-hidden border border-border">
               <div className="flex">
                 <div className="flex-1 p-6 text-center bg-muted/20">
@@ -113,8 +104,8 @@ const HowItWorks = () => {
               </div>
             </div>
           </div>
-          <div className="rounded-xl overflow-hidden">
-            <img src={classyAsianWoman} alt="Elegant woman" className="w-full h-full object-cover rounded-xl" />
+          <div className="rounded-xl overflow-hidden max-w-sm mx-auto">
+            <img src={classyAsianWoman} alt="Woman celebrating earnings on phone" className="w-full h-auto object-cover rounded-xl" />
           </div>
         </div>
       </section>
