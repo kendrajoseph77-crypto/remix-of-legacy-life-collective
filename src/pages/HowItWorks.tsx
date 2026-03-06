@@ -45,7 +45,7 @@ const automations = [
 const HowItWorks = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Navbar hideLogo />
+      
 
       {/* Hero with 3 Images */}
       <section className="pt-20 pb-4 relative overflow-hidden">
