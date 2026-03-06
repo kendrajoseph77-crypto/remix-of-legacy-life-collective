@@ -308,15 +308,6 @@ export const TwoRingWheelhouse = () => {
         </div>
       </div>
 
-      {animationDone && (
-        <button
-          onClick={startAnimation}
-          className="flex items-center gap-2 mx-auto mt-4 px-5 py-2 rounded-full text-xs font-semibold tracking-widest uppercase transition-all duration-300 hover:scale-105 border border-border bg-muted/30 text-muted-foreground hover:text-foreground"
-        >
-          <RotateCcw size={14} />
-          Replay
-        </button>
-      )}
     </div>
   );
 };
