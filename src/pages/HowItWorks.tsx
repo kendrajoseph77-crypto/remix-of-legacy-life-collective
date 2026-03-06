@@ -23,7 +23,7 @@ const steps = [
     number: "02",
     title: "Invite 2 Members",
     keyword: "Build",
-    desc: "Help 2 or more people become Active Contributors and join the cooperative.",
+    desc: "Help 2 or more people become Active Contributors and join the cooperativve.",
   },
   {
     number: "03",
@@ -141,7 +141,7 @@ const HowItWorks = () => {
         </div>
       </section>
 
-      {/* Wheelhouse Visualization */}
+      {/*Cooperativse Visualization */}
       <section className="py-14">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
