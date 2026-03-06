@@ -17,6 +17,8 @@ import CoreDashboard from "./pages/ArchitectDashboard";
 import NotFound from "./pages/NotFound";
 import HowItWorksDemo from "./pages/HowItWorksDemo";
 import HowItWorksLife from "./pages/HowItWorksLife";
+import HowItWorksFast from "./pages/HowItWorksFast";
+import HowItWorksCore from "./pages/HowItWorksCore";
 
 const queryClient = new QueryClient();
 
