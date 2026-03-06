@@ -30,7 +30,7 @@ const slides = [
   { id: "closing", label: "Closing", Component: SlideClosing },
 ];
 
-const gold = "hsl(41 50% 65%)";
+const gold = "hsl(160 80% 42%)";
 
 const HowItWorksDemo = () => {
   const [current, setCurrent] = useState(0);

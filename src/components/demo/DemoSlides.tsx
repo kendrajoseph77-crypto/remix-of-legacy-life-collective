@@ -5,7 +5,7 @@ import logoF from "@/assets/logo-5050-f.svg";
 import logoC from "@/assets/logo-5050-c.svg";
 import logoM from "@/assets/logo-5050-m.svg";
 
-const gold = "hsl(41 50% 65%)";
+const gold = "hsl(160 80% 42%)";
 const navy = "hsl(220 30% 12%)";
 const cobalt = "hsl(224 85% 58%)";
 const emerald = "hsl(160 80% 42%)";
