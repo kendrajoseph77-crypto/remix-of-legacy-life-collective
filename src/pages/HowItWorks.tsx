@@ -53,17 +53,14 @@ const HowItWorks = () => {
           <Link to="/">
             <img src={logoMain} alt="5050L logo" className="w-auto" style={{ height: "54px" }} />
           </Link>
-          <nav className="flex items-center gap-6">
-            <Link to="/" className="text-xs font-semibold tracking-[0.15em] uppercase text-black/70 hover:text-black transition-colors">
+          <nav className="flex items-center gap-4">
+            <Link to="/" className="text-sm font-medium underline text-black/70 hover:text-black transition-colors">
               Home
             </Link>
-            <Link
-              to="/#join"
-              className="text-xs font-semibold tracking-[0.15em] uppercase text-black/70 hover:text-black transition-colors"
-            >
+            <Link to="/#join" className="text-sm font-medium underline text-black/70 hover:text-black transition-colors">
               Join Now
             </Link>
-            <Link to="/login" className="text-xs font-semibold tracking-[0.15em] uppercase text-black/70 hover:text-black transition-colors">
+            <Link to="/login" className="text-sm font-medium underline text-black/70 hover:text-black transition-colors">
               Log In
             </Link>
           </nav>
