@@ -149,10 +149,6 @@ const HowItWorks = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               The Cooperative
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-sm">
-              YOU are in the center. Your 2 direct invites form the inner circle.
-              Their 2 invites each fill the outer circle — 6 members total.
-            </p>
           </div>
           <TwoRingWheelhouse />
         </div>
