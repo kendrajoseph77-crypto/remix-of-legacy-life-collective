@@ -10,30 +10,45 @@ import { Link } from "react-router-dom";
 const businesses = [
   {
     name: "5050 Fast",
-    tagline: "Clean entry. Foundation. Confidence.",
+    color: "hsl(224 85% 58%)",
     gradient: "linear-gradient(135deg, hsl(224 85% 58%), hsl(224 78% 48%), hsl(224 90% 38%))",
     shadow: "hsl(224 78% 48% / 0.4)",
     highlight: "hsl(224 80% 68% / 0.5)",
-    levels: "$25 · $50 · $100",
     logo: logoF,
+    vaults: [
+      { contribution: "$25", payout: "$75", per: "6 × $12.50" },
+      { contribution: "$50", payout: "$150", per: "6 × $25" },
+      { contribution: "$100", payout: "$300", per: "6 × $50" },
+    ],
+    total: "$525",
   },
   {
     name: "5050 Core",
-    tagline: "Design. Structure. Momentum.",
+    color: "hsl(160 80% 42%)",
     gradient: "linear-gradient(135deg, hsl(160 80% 42%), hsl(160 84% 30%), hsl(160 90% 22%))",
     shadow: "hsl(160 84% 30% / 0.4)",
     highlight: "hsl(160 75% 50% / 0.5)",
-    levels: "$250 · $500 · $1,000",
     logo: logoC,
+    vaults: [
+      { contribution: "$250", payout: "$750", per: "6 × $125" },
+      { contribution: "$500", payout: "$1,500", per: "6 × $250" },
+      { contribution: "$1,000", payout: "$3,000", per: "6 × $500" },
+    ],
+    total: "$5,250",
   },
   {
     name: "5050 Max",
-    tagline: "Foresight. Authority. Legacy.",
+    color: "hsl(41 50% 65%)",
     gradient: "linear-gradient(135deg, hsl(41 50% 65%), hsl(39 55% 52%), hsl(35 55% 40%))",
     shadow: "hsl(39 55% 52% / 0.4)",
     highlight: "hsl(42 45% 75% / 0.5)",
-    levels: "$2,500 · $5,000 · $10,000",
     logo: logoM,
+    vaults: [
+      { contribution: "$2,500", payout: "$7,500", per: "6 × $1,250" },
+      { contribution: "$5,000", payout: "$15,000", per: "6 × $2,500" },
+      { contribution: "$10,000", payout: "$30,000", per: "6 × $5,000" },
+    ],
+    total: "$52,500",
   },
 ];
 
@@ -117,30 +132,39 @@ const Index = () => {
             {businesses.map((biz, i) => (
               <div
                 key={i}
-                className="rounded-lg bg-card border border-border p-10 flex flex-col items-center text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group"
+                className="rounded-xl border-2 p-3 md:p-4 bg-card transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+                style={{ borderColor: biz.color }}
               >
-                {/* Logo */}
-                <img
-                  src={biz.logo}
-                  alt={`${biz.name} logo`}
-                  className="w-auto mb-6"
-                  style={{ height: "80px" }}
-                />
-                <h3 className="text-2xl font-semibold text-foreground mb-2">{biz.name}</h3>
-                
-                <p className="text-muted-foreground/60 text-xs tracking-wide mb-8">{biz.levels}</p>
-                <div className="mt-auto w-full">
-                  <Link
-                    to={`/register/${biz.name.split(" ")[1].toLowerCase()}`}
-                    className="block w-full py-4 rounded-md font-bold tracking-widest text-xs text-white text-center transition-all duration-300 hover:brightness-110"
-                    style={{
-                      background: biz.gradient,
-                      boxShadow: `0 4px 16px ${biz.shadow}, inset 0 1px 0 ${biz.highlight}`,
-                    }}
-                  >
-                    ACTIVATE {biz.name.split(" ")[1].toUpperCase()}
-                  </Link>
+                <div className="relative mb-3">
+                  <img src={biz.logo} alt={`${biz.name} logo`} className="absolute left-0 top-1/2 -translate-y-1/2 w-auto" style={{ height: "48px" }} />
+                  <h3 className="text-xl font-bold text-center" style={{ color: biz.color }}>{biz.name}</h3>
                 </div>
+                <div className="grid grid-cols-3 gap-1.5 mb-4">
+                  {biz.vaults.map((v, vi) => (
+                    <div key={vi} className="p-1.5 rounded-lg border border-border bg-muted/20 flex flex-col items-center justify-center">
+                      <p className="text-xs font-semibold truncate w-full text-center" style={{ color: biz.color }}>{v.contribution}</p>
+                      <p className="text-[9px] text-muted-foreground mb-0.5">Cooperative</p>
+                      <p className="text-sm md:text-base font-bold text-foreground truncate w-full text-center">{v.payout}</p>
+                      <p className="text-[9px] text-muted-foreground">Over and Over</p>
+                      <p className="text-[9px] text-muted-foreground/50 mt-0.5 truncate w-full text-center">{v.per}</p>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-center mb-4">
+                  <span className="text-xs text-muted-foreground mr-1">Receive</span>
+                  <span className="text-xl font-bold" style={{ color: biz.color }}>{biz.total}</span>
+                  <span className="text-xs font-normal text-muted-foreground ml-1">Each Cycle</span>
+                </p>
+                <Link
+                  to={`/register/${biz.name.split(" ")[1].toLowerCase()}`}
+                  className="block w-full py-4 rounded-md font-bold tracking-widest text-xs text-white text-center transition-all duration-300 hover:brightness-110"
+                  style={{
+                    background: biz.gradient,
+                    boxShadow: `0 4px 16px ${biz.shadow}, inset 0 1px 0 ${biz.highlight}`,
+                  }}
+                >
+                  ACTIVATE {biz.name.split(" ")[1].toUpperCase()}
+                </Link>
               </div>
             ))}
           </div>
