@@ -163,9 +163,6 @@ const HowItWorks = () => {
           <h2 className="text-3xl md:text-5xl font-bold mb-4 md:whitespace-nowrap" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
             When One Completes, Another Opens
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto text-sm leading-relaxed mb-12">
-            When a cooperative fills, a new one opens — automatically. The cycle never ends.
-          </p>
 
           <div className="w-16 h-[1px] mx-auto mb-12" style={{ background: "linear-gradient(90deg, transparent, hsl(39 55% 52%), transparent)" }} />
 
