@@ -119,8 +119,11 @@ export const TwoRingWheelhouse = () => {
   }, []);
 
   const clipId = useRef(`clip-${Math.random().toString(36).slice(2)}`).current;
-  const ACCENT = "hsl(224 85% 68%)";
-  const DARK = "hsl(0 0% 20%)";
+  const ACCENT = "hsl(39 55% 52%)";
+  const DARK = "hsl(0 0% 6%)";
+  const GOLD_LIGHT = "hsl(39 60% 65%)";
+  const GOLD_DARK = "hsl(39 50% 38%)";
+  const BLACK = "hsl(0 0% 8%)";
 
   const elbowPaths = [
     `M ${innerNodes[0].x - innerR},${innerNodes[0].y} L 210,${innerNodes[0].y} L 210,${outerNodes[0].y} L ${outerNodes[0].x + outerR},${outerNodes[0].y}`,
@@ -176,7 +179,7 @@ export const TwoRingWheelhouse = () => {
           <svg viewBox="-20 -100 740 720" className="w-full max-w-md mx-auto">
             <defs>
               <marker id="wh-arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                <polygon points="0 0, 10 3.5, 0 7" fill={DARK} />
+                <polygon points="0 0, 10 3.5, 0 7" fill={GOLD} />
               </marker>
               <clipPath id="wh-top-half">
                 <rect x="0" y="0" width="700" height={youPos.y} />
@@ -184,65 +187,74 @@ export const TwoRingWheelhouse = () => {
               <clipPath id="wh-bottom-half">
                 <rect x="0" y={youPos.y} width="700" height={520 - youPos.y} />
               </clipPath>
+              <radialGradient id="wh-bg-glow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor={GOLD} stopOpacity="0.08" />
+                <stop offset="100%" stopColor={BLACK} stopOpacity="0" />
+              </radialGradient>
+              <linearGradient id="wh-gold-grad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor={GOLD_LIGHT} />
+                <stop offset="100%" stopColor={GOLD_DARK} />
+              </linearGradient>
             </defs>
 
+            {/* Background glow */}
+            <circle cx={youPos.x} cy={youPos.y} r="360" fill="url(#wh-bg-glow)" />
 
             {/* Inner circle (01-02) */}
-            <circle cx={youPos.x} cy={youPos.y} r="190" fill={BLUE} opacity="0.04" clipPath="url(#wh-top-half)" />
-            <circle cx={youPos.x} cy={youPos.y} r="190" fill={GREEN} opacity="0.04" clipPath="url(#wh-bottom-half)" />
+            <circle cx={youPos.x} cy={youPos.y} r="190" fill={BLACK} opacity="0.06" clipPath="url(#wh-top-half)" />
+            <circle cx={youPos.x} cy={youPos.y} r="190" fill={BLACK} opacity="0.06" clipPath="url(#wh-bottom-half)" />
 
-            {/* Outer circle (03-06) */}
             {/* Outer circle with 4 quadrant sections */}
-            <circle cx={youPos.x} cy={youPos.y} r="340" fill="none" stroke={GOLD} strokeWidth="2.5" opacity="0.5" />
+            <circle cx={youPos.x} cy={youPos.y} r="340" fill="none" stroke="url(#wh-gold-grad)" strokeWidth="3" opacity="0.6" />
             {/* Top-right quadrant */}
             <path d={`M ${youPos.x},${youPos.y} L ${youPos.x},${youPos.y - 340} A 340,340 0 0,1 ${youPos.x + 340},${youPos.y} Z`}
-              fill={GOLD} opacity="0.08" />
+              fill={BLACK} opacity="0.06" />
             {/* Bottom-right quadrant */}
             <path d={`M ${youPos.x},${youPos.y} L ${youPos.x + 340},${youPos.y} A 340,340 0 0,1 ${youPos.x},${youPos.y + 340} Z`}
-              fill={GOLD} opacity="0.15" />
+              fill={GOLD} opacity="0.06" />
             {/* Bottom-left quadrant */}
             <path d={`M ${youPos.x},${youPos.y} L ${youPos.x},${youPos.y + 340} A 340,340 0 0,1 ${youPos.x - 340},${youPos.y} Z`}
-              fill={GOLD} opacity="0.08" />
+              fill={BLACK} opacity="0.06" />
             {/* Top-left quadrant */}
             <path d={`M ${youPos.x},${youPos.y} L ${youPos.x - 340},${youPos.y} A 340,340 0 0,1 ${youPos.x},${youPos.y - 340} Z`}
-              fill={GOLD} opacity="0.15" />
+              fill={GOLD} opacity="0.06" />
             {/* Dividing lines */}
-            <line x1={youPos.x} y1={youPos.y - 340} x2={youPos.x} y2={youPos.y + 340} stroke={GOLD} strokeWidth="1" opacity="0.2" />
-            <line x1={youPos.x - 340} y1={youPos.y} x2={youPos.x + 340} y2={youPos.y} stroke={GOLD} strokeWidth="1" opacity="0.2" />
+            <line x1={youPos.x} y1={youPos.y - 340} x2={youPos.x} y2={youPos.y + 340} stroke={GOLD} strokeWidth="1" opacity="0.15" />
+            <line x1={youPos.x - 340} y1={youPos.y} x2={youPos.x + 340} y2={youPos.y} stroke={GOLD} strokeWidth="1" opacity="0.15" />
 
             <line x1={youPos.x - 195} y1={youPos.y} x2={youPos.x - youR - 5} y2={youPos.y}
-              stroke="hsl(0 0% 60%)" strokeWidth="1" strokeDasharray="4 3" opacity="0.4" />
+              stroke={GOLD} strokeWidth="1" strokeDasharray="4 3" opacity="0.3" />
             <line x1={youPos.x + youR + 5} y1={youPos.y} x2={youPos.x + 195} y2={youPos.y}
-              stroke="hsl(0 0% 60%)" strokeWidth="1" strokeDasharray="4 3" opacity="0.4" />
+              stroke={GOLD} strokeWidth="1" strokeDasharray="4 3" opacity="0.3" />
 
             <path d={`M ${youPos.x - 190},${youPos.y} A 190,190 0 0,1 ${youPos.x + 190},${youPos.y}`}
-              fill="none" stroke={BLUE} strokeWidth="1.5" strokeDasharray="6 4" opacity="0.2" />
+              fill="none" stroke={GOLD} strokeWidth="2" strokeDasharray="6 4" opacity="0.3" />
             <path d={`M ${youPos.x + 190},${youPos.y} A 190,190 0 0,1 ${youPos.x - 190},${youPos.y}`}
-              fill="none" stroke={GREEN} strokeWidth="1.5" strokeDasharray="6 4" opacity="0.2" />
+              fill="none" stroke={GOLD} strokeWidth="2" strokeDasharray="6 4" opacity="0.3" />
 
             <line x1={youPos.x} y1={youPos.y - youR} x2={innerNodes[0].x} y2={innerNodes[0].y + innerR}
-              stroke={DARK} strokeWidth="2" markerEnd="url(#wh-arrow)"
-              opacity={0 < visibleCount ? 0.5 : 0.08}
+              stroke={GOLD} strokeWidth="2" markerEnd="url(#wh-arrow)"
+              opacity={0 < visibleCount ? 0.7 : 0.1}
               style={{ transition: "opacity 0.6s" }} />
             <line x1={youPos.x} y1={youPos.y + youR} x2={innerNodes[1].x} y2={innerNodes[1].y - innerR}
-              stroke={DARK} strokeWidth="2" markerEnd="url(#wh-arrow)"
-              opacity={1 < visibleCount ? 0.5 : 0.08}
+              stroke={GOLD} strokeWidth="2" markerEnd="url(#wh-arrow)"
+              opacity={1 < visibleCount ? 0.7 : 0.1}
               style={{ transition: "opacity 0.6s" }} />
 
             {elbowPaths.map((d, i) => (
-              <path key={`elbow-${i}`} d={d} fill="none" stroke={DARK} strokeWidth="2"
+              <path key={`elbow-${i}`} d={d} fill="none" stroke={GOLD} strokeWidth="2"
                 markerEnd="url(#wh-arrow)"
                 opacity={i + 2 < visibleCount ? 0.5 : 0.08}
                 style={{ transition: "opacity 0.6s" }} />
             ))}
 
             {/* YOU node */}
-            <circle cx={youPos.x} cy={youPos.y} r={youR} fill="white" stroke={GOLD} strokeWidth="3.5" />
+            <circle cx={youPos.x} cy={youPos.y} r={youR} fill={BLACK} stroke={GOLD} strokeWidth="3.5" />
             <text x={youPos.x} y={visibleCount > 0 ? youPos.y - 7 : youPos.y + 1} textAnchor="middle" dominantBaseline="middle"
-              className="font-bold" fontSize="20" fill="hsl(0 0% 8%)">YOU</text>
+              className="font-bold" fontSize="20" fill={GOLD}>YOU</text>
             {visibleCount > 0 && (
               <text x={youPos.x} y={youPos.y + 16} textAnchor="middle" dominantBaseline="middle"
-                fontSize="14" fontWeight="700" fill={GOLD}
+                fontSize="14" fontWeight="700" fill={GOLD_LIGHT}
                 key={`you-pct-${visibleCount}`}>
                 {visibleCount * 50}%
               </text>
@@ -255,13 +267,13 @@ export const TwoRingWheelhouse = () => {
               return (
                 <g key={`inner-${i}`} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.6s ease" }}>
                   <clipPath id={`${clipId}-i-${i}`}><circle cx={node.x} cy={node.y} r={innerR - 2} /></clipPath>
-                  <circle cx={node.x} cy={node.y} r={innerR} fill="white" stroke={BLUE} strokeWidth="2.5" />
+                  <circle cx={node.x} cy={node.y} r={innerR} fill={BLACK} stroke={GOLD} strokeWidth="2.5" />
                   <image href={node.avatar} x={node.x - innerR + 2} y={node.y - innerR + 2}
                     width={(innerR - 2) * 2} height={(innerR - 2) * 2}
                     clipPath={`url(#${clipId}-i-${i})`} preserveAspectRatio="xMidYMid slice" />
-                  <circle cx={node.x - innerR * 0.75} cy={node.y - innerR * 0.75} r="13" fill={DARK} />
+                  <circle cx={node.x - innerR * 0.75} cy={node.y - innerR * 0.75} r="13" fill={BLACK} stroke={GOLD} strokeWidth="1" />
                   <text x={node.x - innerR * 0.75} y={node.y - innerR * 0.75 + 1} textAnchor="middle"
-                    dominantBaseline="middle" fontSize="11" fill="white" fontWeight="700">{node.label}</text>
+                    dominantBaseline="middle" fontSize="11" fill={GOLD} fontWeight="700">{node.label}</text>
                   {(() => {
                     const childIndices = i === 0 ? [0, 1] : [2, 3];
                     const childCount = childIndices.filter(ci => ci + 2 < visibleCount).length;
@@ -269,14 +281,14 @@ export const TwoRingWheelhouse = () => {
                     const yOff = i === 0 ? node.y - innerR - 24 : node.y + innerR + 24;
                     return (
                       <g key={`inner-pct-${i}-${pct}`}>
-                        <rect x={node.x - 28} y={yOff - 14} width="56" height="28" rx="14" fill={BLUE} />
+                        <rect x={node.x - 28} y={yOff - 14} width="56" height="28" rx="14" fill={BLACK} stroke={GOLD} strokeWidth="1.5" />
                         <text x={node.x} y={yOff + 1} textAnchor="middle" dominantBaseline="middle"
-                          fontSize="14" fill="white" fontWeight="700">{pct}%</text>
+                          fontSize="14" fill={GOLD} fontWeight="700">{pct}%</text>
                       </g>
                     );
                   })()}
                   {justAppeared && (
-                    <circle cx={node.x} cy={node.y} r={innerR} fill="none" stroke={BLUE} strokeWidth="2" opacity="0.5">
+                    <circle cx={node.x} cy={node.y} r={innerR} fill="none" stroke={GOLD} strokeWidth="2" opacity="0.5">
                       <animate attributeName="r" from={`${innerR}`} to={`${innerR + 18}`} dur="0.8s" fill="freeze" />
                       <animate attributeName="opacity" from="0.5" to="0" dur="0.8s" fill="freeze" />
                     </circle>
@@ -293,15 +305,15 @@ export const TwoRingWheelhouse = () => {
               return (
                 <g key={`outer-${i}`} opacity={isVisible ? 1 : 0} style={{ transition: "opacity 0.6s ease" }}>
                   <clipPath id={`${clipId}-o-${i}`}><circle cx={node.x} cy={node.y} r={outerR - 2} /></clipPath>
-                  <circle cx={node.x} cy={node.y} r={outerR} fill="white" stroke={GREEN} strokeWidth="2.5" />
+                  <circle cx={node.x} cy={node.y} r={outerR} fill={BLACK} stroke={GOLD} strokeWidth="2.5" />
                   <image href={node.avatar} x={node.x - outerR + 2} y={node.y - outerR + 2}
                     width={(outerR - 2) * 2} height={(outerR - 2) * 2}
                     clipPath={`url(#${clipId}-o-${i})`} preserveAspectRatio="xMidYMid slice" />
-                  <circle cx={node.x - outerR * 0.75} cy={node.y - outerR * 0.75} r="12" fill={DARK} />
+                  <circle cx={node.x - outerR * 0.75} cy={node.y - outerR * 0.75} r="12" fill={BLACK} stroke={GOLD} strokeWidth="1" />
                   <text x={node.x - outerR * 0.75} y={node.y - outerR * 0.75 + 1} textAnchor="middle"
-                    dominantBaseline="middle" fontSize="10" fill="white" fontWeight="700">{node.label}</text>
+                    dominantBaseline="middle" fontSize="10" fill={GOLD} fontWeight="700">{node.label}</text>
                   {justAppeared && (
-                    <circle cx={node.x} cy={node.y} r={outerR} fill="none" stroke={GREEN} strokeWidth="2" opacity="0.5">
+                    <circle cx={node.x} cy={node.y} r={outerR} fill="none" stroke={GOLD} strokeWidth="2" opacity="0.5">
                       <animate attributeName="r" from={`${outerR}`} to={`${outerR + 16}`} dur="0.8s" fill="freeze" />
                       <animate attributeName="opacity" from="0.5" to="0" dur="0.8s" fill="freeze" />
                     </circle>
