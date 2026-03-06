@@ -254,7 +254,7 @@ const HowItWorks = () => {
                 </div>
                 <p className="text-center">
                   <span className="text-xs text-muted-foreground mr-1">Receive</span>
-                  <span className="text-xl font-bold" style={{ color: "hsl(41 50% 65%)" }}>{level.total}</span>
+                  <span className="text-xl font-bold" style={{ color: level.color }}>{level.total}</span>
                   <span className="text-xs font-normal text-muted-foreground ml-1">Each Cycle</span>
                 </p>
               </div>
