@@ -52,19 +52,6 @@ const businesses = [
   },
 ];
 
-      {/* ── How Coop5050 Works ── */}
-      <section className="py-16 px-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-foreground">
-            How Coop5050 Works
-          </h2>
-          <p className="text-muted-foreground text-base leading-relaxed mb-3">
-            A high-impact Cooperative Crowdfunding System built for speed — generating significant short and mid-term income to meet your immediate financial needs.
-          </p>
-          <p className="text-muted-foreground text-sm italic">Money for Everything!</p>
-        </div>
-      </section>
-
 const Index = () => {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
