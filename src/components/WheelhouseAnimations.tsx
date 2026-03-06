@@ -76,12 +76,12 @@ export const TwoRingWheelhouse = () => {
   const allPositions = [...innerNodes, ...outerNodes];
 
   const earningMessages = [
-    { member: "Member 01", amount: "$12.50", note: "50% of their contribution goes to YOU" },
-    { member: "Member 02", amount: "$12.50", note: "50% of their contribution goes to YOU" },
-    { member: "Member 03", amount: "$12.50", note: "50% of their contribution goes to YOU" },
-    { member: "Member 04", amount: "$12.50", note: "50% of their contribution goes to YOU" },
-    { member: "Member 05", amount: "$12.50", note: "50% of their contribution goes to YOU" },
-    { member: "Member 06", amount: "$12.50", note: "50% of their contribution goes to YOU" },
+    { title: "You invited #1", note: "You receive 50% of their contribution" },
+    { title: "You invited #2", note: "You receive 50% of their contribution" },
+    { title: "#1 invited #3", note: "#1 gets 50% and you get 50%" },
+    { title: "#1 invited #4", note: "#1 gets 50% and you get 50%" },
+    { title: "#2 invited #5", note: "#2 gets 50% and you get 50%" },
+    { title: "#2 invited #6", note: "#2 gets 50% and you get 50%" },
   ];
 
   const startAnimation = () => {
@@ -145,9 +145,7 @@ export const TwoRingWheelhouse = () => {
               >
                 <div className="w-2 h-2 rounded-full mt-1.5 flex-shrink-0" style={{ background: GOLD }} />
                 <div>
-                  <p className="text-sm font-semibold text-foreground">
-                    {msg.member} activated — <span style={{ color: GOLD }}>{msg.amount}</span>
-                  </p>
+                  <p className="text-sm font-semibold text-foreground">{msg.title}</p>
                   <p className="text-xs text-muted-foreground">{msg.note}</p>
                 </div>
               </div>
