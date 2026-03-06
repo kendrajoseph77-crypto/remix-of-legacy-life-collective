@@ -256,7 +256,7 @@ export const TwoRingWheelhouse = () => {
                   i < visibleCount ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
                 }`}
               >
-                <div className="w-2 h-2 rounded-full mt-1.5 flex-shrink-0" style={{ background: GOLD }} />
+                <div className="w-2 h-2 rounded-full mt-1.5 flex-shrink-0" style={{ background: GOLD_LOCAL }} />
                 <div>
                   <p className="text-sm font-semibold text-foreground">{msg.title}</p>
                   <p className="text-xs text-muted-foreground">{msg.note}</p>
