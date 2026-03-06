@@ -19,8 +19,8 @@ export const MobiusLoopVisual = () => (
   <div className="flex flex-col items-center gap-6 text-center">
     <div className="flex items-center gap-3 px-7 py-3 rounded-full"
       style={{ border: `1px solid hsl(160 80% 42% / 0.5)` }}>
-      <Infinity size={24} strokeWidth={1.5} style={{ color: GREEN }} />
-      <span className="text-[11px] font-semibold tracking-[0.25em] uppercase" style={{ color: GREEN }}>
+      <Infinity size={24} strokeWidth={1.5} style={{ color: GOLD }} />
+      <span className="text-[11px] font-semibold tracking-[0.25em] uppercase" style={{ color: GOLD }}>
         Infinite Earning Potential
       </span>
     </div>
