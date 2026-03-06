@@ -188,7 +188,7 @@ export const TwoRingWheelhouse = () => {
 
             <text x="350" y="38" textAnchor="middle" fontSize="17" fill="hsl(0 0% 30%)"
               fontFamily="'Plus Jakarta Sans', sans-serif" fontWeight="600" letterSpacing="0.06em">
-              2 × 2 Wheelhouse
+              2 × 2 Cooperative
             </text>
 
             {/* Inner circle (01-02) */}
