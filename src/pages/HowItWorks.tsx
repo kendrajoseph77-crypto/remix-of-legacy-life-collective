@@ -62,7 +62,7 @@ const HowItWorks = () => {
               <p className="text-base tracking-[0.3em] uppercase font-medium" style={{ color: "hsl(41 50% 65%)" }}>Cooperative Crowdfunding</p>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-              How 5050 Works
+              5050 Works
             </h1>
             <p className="text-muted-foreground text-base leading-relaxed max-w-2xl mx-auto mb-4">
               A high-impact Cooperative Crowdfunding System built for speed — generating significant short and mid-term income to meet your immediate financial needs.
