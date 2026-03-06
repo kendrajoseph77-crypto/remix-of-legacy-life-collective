@@ -130,31 +130,32 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {businesses.map((biz, i) => (
-              <div
-                key={i}
-                className="rounded-xl border-2 p-3 md:p-4 bg-card transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-                style={{ borderColor: biz.color }}
-              >
-                <div className="relative mb-3">
-                  <img src={biz.logo} alt={`${biz.name} logo`} className="absolute left-0 top-1/2 -translate-y-1/2 w-auto" style={{ height: "48px" }} />
-                  <h3 className="text-xl font-bold text-center" style={{ color: biz.color }}>{biz.name}</h3>
+              <div key={i} className="flex flex-col gap-3">
+                <div
+                  className="rounded-xl border-2 p-3 md:p-4 bg-card transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+                  style={{ borderColor: biz.color }}
+                >
+                  <div className="relative mb-3">
+                    <img src={biz.logo} alt={`${biz.name} logo`} className="absolute left-0 top-1/2 -translate-y-1/2 w-auto" style={{ height: "48px" }} />
+                    <h3 className="text-xl font-bold text-center" style={{ color: biz.color }}>{biz.name}</h3>
+                  </div>
+                  <div className="grid grid-cols-3 gap-1.5 mb-4">
+                    {biz.vaults.map((v, vi) => (
+                      <div key={vi} className="p-1.5 rounded-lg border border-border bg-muted/20 flex flex-col items-center justify-center">
+                        <p className="text-xs font-semibold truncate w-full text-center" style={{ color: biz.color }}>{v.contribution}</p>
+                        <p className="text-[9px] text-muted-foreground mb-0.5">Cooperative</p>
+                        <p className="text-sm md:text-base font-bold text-foreground truncate w-full text-center">{v.payout}</p>
+                        <p className="text-[9px] text-muted-foreground">Over and Over</p>
+                        <p className="text-[9px] text-muted-foreground/50 mt-0.5 truncate w-full text-center">{v.per}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-center">
+                    <span className="text-xs text-muted-foreground mr-1">Receive</span>
+                    <span className="text-xl font-bold" style={{ color: biz.color }}>{biz.total}</span>
+                    <span className="text-xs font-normal text-muted-foreground ml-1">Each Cycle</span>
+                  </p>
                 </div>
-                <div className="grid grid-cols-3 gap-1.5 mb-4">
-                  {biz.vaults.map((v, vi) => (
-                    <div key={vi} className="p-1.5 rounded-lg border border-border bg-muted/20 flex flex-col items-center justify-center">
-                      <p className="text-xs font-semibold truncate w-full text-center" style={{ color: biz.color }}>{v.contribution}</p>
-                      <p className="text-[9px] text-muted-foreground mb-0.5">Cooperative</p>
-                      <p className="text-sm md:text-base font-bold text-foreground truncate w-full text-center">{v.payout}</p>
-                      <p className="text-[9px] text-muted-foreground">Over and Over</p>
-                      <p className="text-[9px] text-muted-foreground/50 mt-0.5 truncate w-full text-center">{v.per}</p>
-                    </div>
-                  ))}
-                </div>
-                <p className="text-center mb-4">
-                  <span className="text-xs text-muted-foreground mr-1">Receive</span>
-                  <span className="text-xl font-bold" style={{ color: biz.color }}>{biz.total}</span>
-                  <span className="text-xs font-normal text-muted-foreground ml-1">Each Cycle</span>
-                </p>
                 <Link
                   to={`/register/${biz.name.split(" ")[1].toLowerCase()}`}
                   className="block w-full py-4 rounded-md font-bold tracking-widest text-xs text-white text-center transition-all duration-300 hover:brightness-110"
