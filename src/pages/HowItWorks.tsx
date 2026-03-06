@@ -141,7 +141,7 @@ const HowItWorks = () => {
         </div>
       </section>
 
-      {Cooperativivivse Visualization */}
+      {/* Cooperative Visualization */}
       <section className="py-14">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
