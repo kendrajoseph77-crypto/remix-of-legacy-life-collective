@@ -196,7 +196,7 @@ export const TwoRingWheelhouse = () => {
             <circle cx={youPos.x} cy={youPos.y} r="190" fill={GREEN} opacity="0.04" clipPath="url(#wh-bottom-half)" />
 
             {/* Outer circle (03-06) */}
-            <circle cx={youPos.x} cy={youPos.y} r="340" fill="none" stroke={GOLD} strokeWidth="1.5" strokeDasharray="6 4" opacity="0.25" />
+            <circle cx={youPos.x} cy={youPos.y} r="340" fill="none" stroke={GOLD} strokeWidth="2.5" opacity="0.5" />
 
             <line x1={youPos.x - 195} y1={youPos.y} x2={youPos.x - youR - 5} y2={youPos.y}
               stroke="hsl(0 0% 60%)" strokeWidth="1" strokeDasharray="4 3" opacity="0.4" />
