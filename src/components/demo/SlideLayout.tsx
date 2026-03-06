@@ -14,7 +14,7 @@ const SlideLayout = ({ children, className = "" }: SlideLayoutProps) => (
 export const SlideLabel = ({ children }: { children: ReactNode }) => (
   <p
     className="text-sm md:text-base tracking-[0.35em] uppercase font-semibold mb-5"
-    style={{ color: "hsl(41 50% 65%)" }}
+    style={{ color: "hsl(160 80% 42%)" }}
   >
     {children}
   </p>
