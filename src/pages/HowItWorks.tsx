@@ -66,7 +66,7 @@ const HowItWorks = () => {
               5050 Works...
             </h1>
             <p className="text-muted-foreground text-base leading-relaxed max-w-2xl mx-auto mb-4">
-              For 100% of the people, 100% of the time, who complete the 3 simple, doable steps.
+              for 100% of the people, 100% of the time, who complete the 3 simple, doable steps.
             </p>
             <div className="flex items-center justify-center gap-6 mb-8">
               <p className="text-muted-foreground text-lg md:text-xl italic font-bold">Money for Everything!</p>
