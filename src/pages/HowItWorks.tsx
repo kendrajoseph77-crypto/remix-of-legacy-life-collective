@@ -49,7 +49,7 @@ const HowItWorks = () => {
 
       {/* Hero with 3 Images */}
       <section className="pt-20 pb-4 relative overflow-hidden">
-        <Link to="/" className="absolute top-4 left-6 z-20">
+        <Link to="/" className="fixed top-4 left-6 z-50">
           <img src={logoMain} alt="5050L logo" className="w-auto" style={{ height: "64px", filter: "drop-shadow(0 0 16px hsl(38 70% 60% / 0.4))" }} />
         </Link>
         <div className="max-w-4xl mx-auto px-6">
