@@ -377,93 +377,65 @@ export const MultiCycleWheelhouse = () => {
 
   const totalEarned = completedCycles.length * TOTAL_NODES * 50 + visibleCount * 50;
 
-  // Position completed thumbnails around the main wheel
-  const thumbnailPositions = [
-    { top: '-2rem', left: '-6rem' },      // top-left
-    { top: '-2rem', right: '-6rem' },     // top-right
-    { bottom: '-2rem', left: '-6rem' },   // bottom-left
-    { bottom: '-2rem', right: '-6rem' },  // bottom-right
-  ];
-
   return (
     <div ref={ref} className="flex flex-col items-center gap-4">
-      <p className="text-xs tracking-[0.2em] uppercase font-medium text-muted-foreground mb-2">
-        Cooperative {cycle + 1} of {TOTAL_CYCLES}
-      </p>
-
-      {/* Main wheel with surrounding completed thumbnails */}
-      <div className="relative w-full max-w-md mx-auto">
-        <WheelhouseSVG visibleCount={visibleCount} />
-
-        {/* Completed thumbnails positioned around the wheel */}
-        {completedCycles.map((c, i) => {
-          const pos = thumbnailPositions[i % thumbnailPositions.length];
-          return (
-            <div
-              key={c}
-              className="absolute hidden md:block transition-all duration-700"
-              style={{
-                ...pos,
-                opacity: 0.45,
-              }}
-            >
-              <div className="w-20 h-20 relative">
-                <WheelhouseSVG visibleCount={TOTAL_NODES} />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-[9px] font-bold tracking-wider uppercase px-1.5 py-0.5 rounded-full border"
-                    style={{ color: GOLD, borderColor: GOLD, background: "hsl(0 0% 6% / 0.8)" }}>
-                    #{c + 1} ✓
-                  </span>
-                </div>
+      <div className="flex flex-col md:flex-row items-start gap-6 w-full">
+        {/* Left side — active wheelhouse + total earned */}
+        <div className="flex flex-col items-center md:w-[50%] flex-shrink-0">
+          <p className="text-xs tracking-[0.2em] uppercase font-medium text-muted-foreground mb-2">
+            Cooperative {cycle + 1} of {TOTAL_CYCLES}
+          </p>
+          <WheelhouseSVG visibleCount={visibleCount} />
+          {totalEarned > 0 && (
+            <div className="mt-4 pt-3 border-t border-border w-full text-center">
+              <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Total Earned</p>
+              <div className="flex items-center justify-center gap-3">
+                <p className="text-2xl font-bold" style={{ color: GOLD }}>{totalEarned}%</p>
+                {animationDone && (
+                  <button
+                    onClick={() => {
+                      hasAnimated.current = false;
+                      startAnimation();
+                    }}
+                    className="flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase transition-all duration-300 hover:scale-105 border border-border bg-muted/30 text-muted-foreground hover:text-foreground"
+                  >
+                    <RotateCcw size={14} />
+                    Replay
+                  </button>
+                )}
               </div>
             </div>
-          );
-        })}
+          )}
+        </div>
 
-        {/* Mobile: show completed thumbnails in a row below */}
+        {/* Right side — completed thumbnails in a grid */}
         {completedCycles.length > 0 && (
-          <div className="flex md:hidden flex-wrap items-center justify-center gap-3 mt-4">
-            {completedCycles.map((c) => (
-              <div key={c} className="relative">
-                <div className="w-14 h-14 opacity-50">
-                  <WheelhouseSVG visibleCount={TOTAL_NODES} />
+          <div className="flex-1 flex flex-col items-center justify-center">
+            <div className="grid grid-cols-3 gap-4 items-center">
+              {completedCycles.map((c) => (
+                <div key={c} className="relative w-24 h-24 md:w-28 md:h-28 transition-all duration-700 animate-scale-in">
+                  <div className="opacity-50">
+                    <WheelhouseSVG visibleCount={TOTAL_NODES} />
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-[9px] font-bold tracking-wider uppercase px-2 py-1 rounded-full border"
+                      style={{ color: GOLD, borderColor: GOLD, background: "hsl(0 0% 6% / 0.8)" }}>
+                      #{c + 1} ✓
+                    </span>
+                  </div>
                 </div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-[8px] font-bold tracking-wider uppercase px-1 py-0.5 rounded-full border"
-                    style={{ color: GOLD, borderColor: GOLD, background: "hsl(0 0% 6% / 0.8)" }}>
-                    #{c + 1} ✓
-                  </span>
+              ))}
+              {animationDone && (
+                <div className="flex items-center justify-center col-span-1">
+                  <p className="text-base md:text-lg font-semibold italic text-muted-foreground">
+                    And so on and so on....
+                  </p>
                 </div>
-              </div>
-            ))}
+              )}
+            </div>
           </div>
-        )}
-
-        {animationDone && (
-          <p className="text-sm font-semibold italic text-muted-foreground text-center mt-3">and so on...</p>
         )}
       </div>
-
-      {totalEarned > 0 && (
-        <div className="mt-2 pt-3 border-t border-border w-full max-w-md text-center">
-          <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Total Earned</p>
-          <div className="flex items-center justify-center gap-3">
-            <p className="text-2xl font-bold" style={{ color: GOLD }}>{totalEarned}%</p>
-            {animationDone && (
-              <button
-                onClick={() => {
-                  hasAnimated.current = false;
-                  startAnimation();
-                }}
-                className="flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase transition-all duration-300 hover:scale-105 border border-border bg-muted/30 text-muted-foreground hover:text-foreground"
-              >
-                <RotateCcw size={14} />
-                Replay
-              </button>
-            )}
-          </div>
-        </div>
-      )}
     </div>
   );
 };
