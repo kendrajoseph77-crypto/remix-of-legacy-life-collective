@@ -213,9 +213,9 @@ const HowItWorks = () => {
                 vaults: [
                   { contribution: "$25", payout: "$75", per: "6 × $12.50" },
                   { contribution: "$50", payout: "$150", per: "6 × $25" },
-                  { contribution: "$150", payout: "$450", per: "6 × $75" },
+                  { contribution: "$100", payout: "$300", per: "6 × $50" },
                 ],
-                total: "$675",
+                total: "$525",
               },
               {
                 name: "5050 Core", color: "hsl(160 80% 42%)", logo: logoC,
