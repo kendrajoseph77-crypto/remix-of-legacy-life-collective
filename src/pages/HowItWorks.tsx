@@ -89,7 +89,7 @@ const HowItWorks = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-5">
               100% Instantly Goes to You…
             </h2>
-            <p className="text-3xl md:text-4xl font-bold mb-4" style={{ color: "hsl(41 50% 65%)" }}>Our members!</p>
+            <p className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Our members!</p>
             <p className="text-muted-foreground leading-relaxed mb-4">
               Coop5050™ is transparent, fully automated, and cannot be manipulated.
               There is no middleman — you immediately receive all your money.
