@@ -10,16 +10,19 @@ const steps = [
   {
     number: "01",
     title: "Register & Activate",
+    keyword: "Become",
     desc: "Make a contribution at your chosen level to become an Active Contributor.",
   },
   {
     number: "02",
     title: "Invite 2 Members",
+    keyword: "Build",
     desc: "Help 2 or more people become Active Contributors and join the wheelhouse.",
   },
   {
     number: "03",
     title: "Your Team Grows",
+    keyword: "Bond",
     desc: "Your 2 each help 2 or more, and the cycle of giving and receiving continues.",
   },
 ];
@@ -114,9 +117,10 @@ const HowItWorks = () => {
                   <div className="hidden md:block absolute top-8 left-full w-full h-px bg-gradient-to-r from-border to-transparent z-10" />
                 )}
                 <div className="rounded-xl p-6 bg-background border border-border">
-                  <div className="text-5xl font-bold mb-3 text-muted-foreground/30">
+                  <div className="text-5xl font-bold mb-1 text-muted-foreground/30">
                     {step.number}
                   </div>
+                  <p className="text-xs font-bold tracking-[0.2em] uppercase mb-3" style={{ color: "hsl(41 50% 65%)" }}>{step.keyword}</p>
                   <h3 className="text-lg font-bold mb-2 text-foreground">{step.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
                 </div>
