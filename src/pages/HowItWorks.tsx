@@ -1,5 +1,4 @@
 import Navbar from "@/components/Navbar";
-import Navbar from "@/components/Navbar";
 import { Link } from "react-router-dom";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import { TwoRingWheelhouse, MobiusLoopVisual } from "@/components/WheelhouseAnimations";
