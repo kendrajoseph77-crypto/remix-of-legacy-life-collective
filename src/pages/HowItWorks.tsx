@@ -131,7 +131,7 @@ const HowItWorks = () => {
                     <span className="text-5xl font-bold text-muted-foreground/30">{step.number}</span>
                     <span className="text-5xl font-bold" style={{ color: "hsl(41 50% 65%)" }}>{step.keyword}</span>
                   </div>
-                  <p className="text-xs font-bold tracking-[0.2em] uppercase mb-3" style={{ color: "hsl(41 50% 65%)" }}>{step.keyword}</p>
+                  
                   <h3 className="text-lg font-bold mb-2 text-foreground">{step.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
                 </div>
