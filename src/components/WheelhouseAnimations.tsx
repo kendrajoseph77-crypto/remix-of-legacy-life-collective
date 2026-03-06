@@ -262,22 +262,16 @@ export const TwoRingWheelhouse = () => {
                   <circle cx={node.x - innerR * 0.75} cy={node.y - innerR * 0.75} r="13" fill={DARK} />
                   <text x={node.x - innerR * 0.75} y={node.y - innerR * 0.75 + 1} textAnchor="middle"
                     dominantBaseline="middle" fontSize="11" fill="white" fontWeight="700">{node.label}</text>
-                  <g transform={`translate(${node.x + innerR * 0.65}, ${node.y + innerR * 0.65})`}>
-                    <rect x="-17" y="-10" width="34" height="20" rx="10" fill={BLUE} />
-                    <text x="0" y="1" textAnchor="middle" dominantBaseline="middle"
-                      fontSize="10" fill="white" fontWeight="700">50%</text>
-                  </g>
                   {(() => {
                     const childIndices = i === 0 ? [0, 1] : [2, 3];
                     const childCount = childIndices.filter(ci => ci + 2 < visibleCount).length;
-                    if (childCount === 0) return null;
-                    const pct = childCount * 50;
-                    const yOff = i === 0 ? node.y - innerR - 22 : node.y + innerR + 22;
+                    const pct = 50 + childCount * 50;
+                    const yOff = i === 0 ? node.y - innerR - 24 : node.y + innerR + 24;
                     return (
-                      <g>
-                        <rect x={node.x - 22} y={yOff - 10} width="44" height="20" rx="10" fill={GREEN} />
+                      <g key={`inner-pct-${i}-${pct}`}>
+                        <rect x={node.x - 28} y={yOff - 14} width="56" height="28" rx="14" fill={BLUE} />
                         <text x={node.x} y={yOff + 1} textAnchor="middle" dominantBaseline="middle"
-                          fontSize="10" fill="white" fontWeight="700">+{pct}%</text>
+                          fontSize="14" fill="white" fontWeight="700">{pct}%</text>
                       </g>
                     );
                   })()}
@@ -306,11 +300,6 @@ export const TwoRingWheelhouse = () => {
                   <circle cx={node.x - outerR * 0.75} cy={node.y - outerR * 0.75} r="12" fill={DARK} />
                   <text x={node.x - outerR * 0.75} y={node.y - outerR * 0.75 + 1} textAnchor="middle"
                     dominantBaseline="middle" fontSize="10" fill="white" fontWeight="700">{node.label}</text>
-                  <g transform={`translate(${node.x}, ${node.y + outerR + 18})`}>
-                    <rect x="-17" y="-10" width="34" height="20" rx="10" fill={GREEN} />
-                    <text x="0" y="1" textAnchor="middle" dominantBaseline="middle"
-                      fontSize="10" fill="white" fontWeight="700">50%</text>
-                  </g>
                   {justAppeared && (
                     <circle cx={node.x} cy={node.y} r={outerR} fill="none" stroke={GREEN} strokeWidth="2" opacity="0.5">
                       <animate attributeName="r" from={`${outerR}`} to={`${outerR + 16}`} dur="0.8s" fill="freeze" />
