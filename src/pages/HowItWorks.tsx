@@ -89,7 +89,7 @@ const HowItWorks = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-3">
               100% Instantly Goes to You…
             </h2>
-            <p className="text-3xl md:text-4xl font-bold italic mb-6 text-foreground">Our members!</p>
+            <h2 className="text-3xl md:text-4xl font-bold italic mb-6 text-foreground">Our members!</h2>
             <div className="rounded-xl overflow-hidden border border-border">
               <div className="flex">
                 <div className="flex-1 p-6 text-center bg-muted/20">
