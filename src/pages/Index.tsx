@@ -188,7 +188,7 @@ const Index = () => {
           {/* Login + How It Works — compact cluster */}
           <div className="flex flex-col items-center gap-3 mt-12">
             <p className="text-muted-foreground text-sm">
-              Already have an account?{" "}
+              Already a member?{" "}
               <Link to="/login" className="text-foreground hover:underline font-medium">Log in</Link>
             </p>
             <Link
