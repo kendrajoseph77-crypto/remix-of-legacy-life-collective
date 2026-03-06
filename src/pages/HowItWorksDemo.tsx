@@ -62,7 +62,7 @@ const HowItWorksDemo = () => {
       <div className="h-1 w-full relative" style={{ background: "hsl(0 0% 100% / 0.05)" }}>
         <div
           className="h-full transition-all duration-500 ease-out"
-          style={{ width: `${progress}%`, background: `linear-gradient(90deg, ${gold}, hsl(39 55% 52%))` }}
+          style={{ width: `${progress}%`, background: `linear-gradient(90deg, ${gold}, hsl(160 80% 30%))` }}
         />
       </div>
 
