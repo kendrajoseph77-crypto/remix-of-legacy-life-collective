@@ -277,7 +277,8 @@ export const TwoRingWheelhouse = () => {
                   {(() => {
                     const childIndices = i === 0 ? [0, 1] : [2, 3];
                     const childCount = childIndices.filter(ci => ci + 2 < visibleCount).length;
-                    const pct = 50 + childCount * 50;
+                    if (childCount === 0) return null;
+                    const pct = childCount * 50;
                     const yOff = i === 0 ? node.y - innerR - 24 : node.y + innerR + 24;
                     return (
                       <g key={`inner-pct-${i}-${pct}`}>
