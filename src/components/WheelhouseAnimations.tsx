@@ -186,10 +186,6 @@ export const TwoRingWheelhouse = () => {
               </clipPath>
             </defs>
 
-            <text x="350" y="38" textAnchor="middle" fontSize="17" fill="hsl(0 0% 30%)"
-              fontFamily="'Plus Jakarta Sans', sans-serif" fontWeight="600" letterSpacing="0.06em">
-              2 × 2 Cooperative
-            </text>
 
             {/* Inner circle (01-02) */}
             <circle cx={youPos.x} cy={youPos.y} r="190" fill={BLUE} opacity="0.04" clipPath="url(#wh-top-half)" />
