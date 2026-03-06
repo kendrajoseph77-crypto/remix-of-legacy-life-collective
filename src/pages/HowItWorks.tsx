@@ -174,12 +174,21 @@ const HowItWorks = () => {
 
           <div className="max-w-xl mx-auto mt-16 p-8 rounded-2xl border border-border/60 bg-gradient-to-b from-muted/40 to-transparent text-center">
             <h3 className="text-xl md:text-2xl font-bold mb-3" style={{ color: "hsl(41 50% 65%)", fontFamily: "'Cormorant Garamond', serif" }}>
+              More Money — Not More Work!
+            </h3>
+            <p className="text-muted-foreground leading-relaxed text-sm">
+              Invite as many friends as you like. You will always receive half of every contribution. The more friends invite friends, the more contributions flow to you — over and over again.
+            </p>
+          </div>
+
+          <div className="max-w-xl mx-auto mt-8 p-8 rounded-2xl border border-border/60 bg-gradient-to-b from-muted/40 to-transparent text-center">
+            <h3 className="text-xl md:text-2xl font-bold mb-3" style={{ color: "hsl(41 50% 65%)", fontFamily: "'Cormorant Garamond', serif" }}>
               You Never Lose Your Team!
             </h3>
-            <p className="text-muted-foreground leading-relaxed text-sm mb-4">
+            <p className="text-muted-foreground leading-relaxed text-sm">
               Each and every time your Income Center fills with 6 Active Contributors, another automatically re-opens for you to receive another 6 contributions — more money not more work! The Mobius Loop ensures you always follow your inviter and your team always follows you!
             </p>
-            <p className="text-lg font-bold" style={{ color: "hsl(41 50% 65%)" }}>
+            <p className="text-lg font-bold mt-4" style={{ color: "hsl(41 50% 65%)" }}>
               Infinite Earning Potential
             </p>
           </div>
