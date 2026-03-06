@@ -290,7 +290,7 @@ const HowItWorks = () => {
               to="/#join"
               className="inline-flex items-center gap-2 px-10 py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:scale-105 bg-primary text-primary-foreground"
             >
-              Join Us & Start Receiving <ArrowRight size={16} />
+              Join Us & Get Busy With It! <ArrowRight size={16} />
             </Link>
           </div>
         </div>
