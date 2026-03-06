@@ -65,7 +65,7 @@ const HowItWorks = () => {
               5050 Works...
             </h1>
             <p className="text-muted-foreground text-base leading-relaxed max-w-2xl mx-auto mb-4">
-              A high-impact Cooperative Crowdfunding System built for speed — generating significant short and mid-term income to meet your immediate financial needs.
+              For 100% of the people, 100% of the time, who complete the 3 simple, doable steps.
             </p>
             <p className="text-muted-foreground text-sm italic mb-8">Money for Everything!</p>
             <Link
