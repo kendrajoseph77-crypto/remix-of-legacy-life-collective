@@ -300,11 +300,6 @@ export const TwoRingWheelhouse = () => {
                   <circle cx={node.x - outerR * 0.75} cy={node.y - outerR * 0.75} r="12" fill={DARK} />
                   <text x={node.x - outerR * 0.75} y={node.y - outerR * 0.75 + 1} textAnchor="middle"
                     dominantBaseline="middle" fontSize="10" fill="white" fontWeight="700">{node.label}</text>
-                  <g transform={`translate(${node.x}, ${node.y + outerR + 18})`}>
-                    <rect x="-17" y="-10" width="34" height="20" rx="10" fill={GREEN} />
-                    <text x="0" y="1" textAnchor="middle" dominantBaseline="middle"
-                      fontSize="10" fill="white" fontWeight="700">50%</text>
-                  </g>
                   {justAppeared && (
                     <circle cx={node.x} cy={node.y} r={outerR} fill="none" stroke={GREEN} strokeWidth="2" opacity="0.5">
                       <animate attributeName="r" from={`${outerR}`} to={`${outerR + 16}`} dur="0.8s" fill="freeze" />
