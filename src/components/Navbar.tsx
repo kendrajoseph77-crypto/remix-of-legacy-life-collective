@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Logo from "@/components/Logo";
 
-const Navbar = () => {
+const Navbar = ({ hideLogo = false }: { hideLogo?: boolean }) => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -18,9 +18,11 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
-        <Link to="/" className="flex items-center group">
-          <Logo darkBg />
-        </Link>
+        {!hideLogo && (
+          <Link to="/" className="flex items-center group">
+            <Logo darkBg />
+          </Link>
+        )}
       </div>
     </nav>
   );
