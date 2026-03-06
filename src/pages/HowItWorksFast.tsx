@@ -167,11 +167,13 @@ const HowItWorksFast = () => {
       </section>
 
       {/* Cooperative Visualization */}
-      <section className="pt-14 pb-6">
-        <div className="max-w-5xl mx-auto px-6">
+      <section className="pt-14 pb-6 relative overflow-hidden" style={{ background: `linear-gradient(180deg, hsl(224 85% 58% / 0.06) 0%, hsl(224 85% 58% / 0.02) 100%)` }}>
+        <div className="absolute inset-0" style={{ background: `radial-gradient(ellipse 60% 50% at 50% 40%, hsl(224 85% 58% / 0.08) 0%, transparent 70%)` }} />
+        <div className="max-w-5xl mx-auto px-6 relative z-10">
           <div className="text-center mb-14">
-            <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3">World Famous Mobius Loop</p>
+            <p className="text-sm tracking-[0.3em] uppercase font-medium mb-3" style={{ color: BLUE }}>World Famous Mobius Loop</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">When One Completes, Another One Opens</h2>
+            <div className="w-16 h-[1px] mx-auto" style={{ background: `linear-gradient(90deg, transparent, ${BLUE}, transparent)` }} />
           </div>
           <div className="mb-14">
             <MultiCycleWheelhouse />
