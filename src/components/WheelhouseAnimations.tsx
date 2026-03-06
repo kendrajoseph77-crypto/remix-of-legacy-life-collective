@@ -12,15 +12,15 @@ const avatars = [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6];
 
 const BLUE = "hsl(224 85% 58%)";
 const GREEN = "hsl(160 80% 42%)";
-// GOLD kept as reference but overridden to GREEN for Core theme
+const GOLD = "hsl(39 55% 52%)";
 
 /* ── Mobius Loop — statement section ── */
 export const MobiusLoopVisual = () => (
   <div className="flex flex-col items-center gap-6 text-center">
     <div className="flex items-center gap-3 px-7 py-3 rounded-full"
-      style={{ border: `1px solid hsl(160 80% 42% / 0.5)` }}>
-      <Infinity size={24} strokeWidth={1.5} style={{ color: GREEN }} />
-      <span className="text-[11px] font-semibold tracking-[0.25em] uppercase" style={{ color: GREEN }}>
+      style={{ border: `1px solid hsl(39 55% 52% / 0.5)` }}>
+      <Infinity size={24} strokeWidth={1.5} style={{ color: GOLD }} />
+      <span className="text-[11px] font-semibold tracking-[0.25em] uppercase" style={{ color: GOLD }}>
         Infinite Earning Potential
       </span>
     </div>
@@ -29,9 +29,9 @@ export const MobiusLoopVisual = () => (
 /* ── Single Wheelhouse SVG (extracted for reuse) ── */
 const WheelhouseSVG = ({ visibleCount, scale = 1, opacity = 1 }: { visibleCount: number; scale?: number; opacity?: number }) => {
   const clipId = useRef(`clip-${Math.random().toString(36).slice(2)}`).current;
-  const ACCENT = GREEN;
-  const GOLD_LIGHT = "hsl(160 70% 55%)";
-  const GOLD_DARK = "hsl(160 80% 30%)";
+  const ACCENT = GOLD;
+  const GOLD_LIGHT = "hsl(39 60% 60%)";
+  const GOLD_DARK = "hsl(39 55% 38%)";
   const BLACK = "hsl(0 0% 8%)";
 
   const youPos = { x: 350, y: 260 };
@@ -192,7 +192,7 @@ const WheelhouseSVG = ({ visibleCount, scale = 1, opacity = 1 }: { visibleCount:
 
 export const TwoRingWheelhouse = () => {
   const TOTAL_NODES = 6;
-  const GOLD = GREEN;
+  const GOLD_LOCAL = GOLD;
 
   const [visibleCount, setVisibleCount] = useState(0);
   const [animationDone, setAnimationDone] = useState(false);
@@ -256,7 +256,7 @@ export const TwoRingWheelhouse = () => {
                   i < visibleCount ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
                 }`}
               >
-                <div className="w-2 h-2 rounded-full mt-1.5 flex-shrink-0" style={{ background: GOLD }} />
+                <div className="w-2 h-2 rounded-full mt-1.5 flex-shrink-0" style={{ background: GOLD_LOCAL }} />
                 <div>
                   <p className="text-sm font-semibold text-foreground">{msg.title}</p>
                   <p className="text-xs text-muted-foreground">{msg.note}</p>
@@ -268,7 +268,7 @@ export const TwoRingWheelhouse = () => {
             <div className="mt-6 pt-4 border-t border-border">
               <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Total Earned</p>
               <div className="flex items-center gap-3">
-                <p className="text-2xl font-bold" style={{ color: GOLD }}>{visibleCount * 50}%</p>
+                <p className="text-2xl font-bold" style={{ color: GOLD_LOCAL }}>{visibleCount * 50}%</p>
                 {animationDone && (
                   <button
                     onClick={() => {
@@ -299,7 +299,7 @@ export const TwoRingWheelhouse = () => {
 export const MultiCycleWheelhouse = () => {
   const TOTAL_NODES = 6;
   const TOTAL_CYCLES = 5;
-  const GOLD = GREEN;
+  const GOLD_LOCAL = GOLD;
 
   const [cycle, setCycle] = useState(0);
   const [visibleCount, setVisibleCount] = useState(0);
@@ -377,8 +377,8 @@ export const MultiCycleWheelhouse = () => {
               <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Total Earned</p>
               <div className="flex items-center justify-center gap-3">
                 <div className="flex items-center gap-2">
-                  <p className="text-2xl font-bold" style={{ color: GOLD }}>{totalEarned}%</p>
-                  <Infinity size={22} strokeWidth={1.5} style={{ color: GOLD }} />
+                  <p className="text-2xl font-bold" style={{ color: GOLD_LOCAL }}>{totalEarned}%</p>
+                  <Infinity size={22} strokeWidth={1.5} style={{ color: GOLD_LOCAL }} />
                 </div>
                 {animationDone && (
                   <button
@@ -408,7 +408,7 @@ export const MultiCycleWheelhouse = () => {
                   </div>
                   <div className="absolute inset-0 flex items-center justify-center">
                     <span className="text-[9px] font-bold tracking-wider uppercase px-2 py-1 rounded-full border"
-                      style={{ color: GREEN, borderColor: GREEN, background: "hsl(0 0% 6% / 0.8)" }}>
+                      style={{ color: GOLD, borderColor: GOLD, background: "hsl(0 0% 6% / 0.8)" }}>
                       #{c + 1} ✓
                     </span>
                   </div>
@@ -419,7 +419,7 @@ export const MultiCycleWheelhouse = () => {
                   <p className="text-base md:text-lg font-semibold italic text-muted-foreground whitespace-nowrap">
                     And so on and so on....
                   </p>
-                  <p className="text-base md:text-lg font-bold whitespace-nowrap" style={{ color: GREEN }}>
+                  <p className="text-base md:text-lg font-bold whitespace-nowrap" style={{ color: GOLD }}>
                     More money not more work!
                   </p>
                 </div>
