@@ -67,7 +67,7 @@ const HowItWorks = () => {
             <p className="text-muted-foreground text-base leading-relaxed max-w-2xl mx-auto mb-4">
               For 100% of the people, 100% of the time, who complete the 3 simple, doable steps.
             </p>
-            <p className="text-muted-foreground text-lg md:text-xl italic mb-8">Money for Everything!</p>
+            <p className="text-muted-foreground text-lg md:text-xl italic font-bold mb-8">Money for Everything!</p>
             <Link
               to="/#join"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:scale-105 bg-primary text-primary-foreground"
