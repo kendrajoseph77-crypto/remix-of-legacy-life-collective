@@ -244,7 +244,7 @@ const HowItWorks = () => {
                 <div className="grid grid-cols-3 gap-1.5 mb-4">
                   {level.vaults.map((v, i) => (
                     <div key={i} className="p-1.5 rounded-lg border border-border bg-muted/20 flex flex-col items-center justify-center">
-                      <p className="text-xs font-semibold truncate w-full text-center" style={{ color: "hsl(41 50% 65%)" }}>{v.contribution}</p>
+                      <p className="text-xs font-semibold truncate w-full text-center" style={{ color: level.color }}>{v.contribution}</p>
                       <p className="text-[9px] text-muted-foreground mb-0.5">Cooperative</p>
                       <p className="text-sm md:text-base font-bold text-foreground truncate w-full text-center">{v.payout}</p>
                       <p className="text-[9px] text-muted-foreground">Over and Over</p>
