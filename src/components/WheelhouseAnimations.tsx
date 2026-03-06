@@ -419,7 +419,7 @@ export const MultiCycleWheelhouse = () => {
                   <p className="text-base md:text-lg font-semibold italic text-muted-foreground whitespace-nowrap">
                     And so on and so on....
                   </p>
-                  <p className="text-base md:text-lg font-bold whitespace-nowrap" style={{ color: GOLD }}>
+                  <p className="text-base md:text-lg font-bold whitespace-nowrap" style={{ color: GREEN }}>
                     More money not more work!
                   </p>
                 </div>
