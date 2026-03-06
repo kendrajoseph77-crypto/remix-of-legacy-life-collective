@@ -49,7 +49,7 @@ const HowItWorks = () => {
 
       {/* Hero with 3 Images */}
       <section className="pt-20 pb-4 relative overflow-hidden">
-        <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-3 bg-white shadow-sm">
+        <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-3 bg-white">
           <Link to="/">
             <img src={logoMain} alt="5050L logo" className="w-auto" style={{ height: "54px" }} />
           </Link>
