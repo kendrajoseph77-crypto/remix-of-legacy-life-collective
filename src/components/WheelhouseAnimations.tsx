@@ -313,7 +313,7 @@ export const TwoRingWheelhouse = () => {
                   <text x={node.x - outerR * 0.75} y={node.y - outerR * 0.75 + 1} textAnchor="middle"
                     dominantBaseline="middle" fontSize="10" fill={GOLD} fontWeight="700">{node.label}</text>
                   {justAppeared && (
-                    <circle cx={node.x} cy={node.y} r={outerR} fill="none" stroke={GREEN} strokeWidth="2" opacity="0.5">
+                    <circle cx={node.x} cy={node.y} r={outerR} fill="none" stroke={GOLD} strokeWidth="2" opacity="0.5">
                       <animate attributeName="r" from={`${outerR}`} to={`${outerR + 16}`} dur="0.8s" fill="freeze" />
                       <animate attributeName="opacity" from="0.5" to="0" dur="0.8s" fill="freeze" />
                     </circle>
