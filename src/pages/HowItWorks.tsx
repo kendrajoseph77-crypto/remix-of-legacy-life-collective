@@ -85,10 +85,10 @@ const HowItWorks = () => {
       <section className="py-14 max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div>
-            <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3">The 50/50 Promise</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-5">
-              Your Contribution Is Split 50/50
+              100% Instantly Goes Back to You…
             </h2>
+            <p className="text-lg font-semibold mb-4" style={{ color: "hsl(41 50% 65%)" }}>Our members!</p>
             <p className="text-muted-foreground leading-relaxed mb-4">
               Coop5050™ is transparent, fully automated, and cannot be manipulated.
               There is no middleman — you immediately receive all your money.
