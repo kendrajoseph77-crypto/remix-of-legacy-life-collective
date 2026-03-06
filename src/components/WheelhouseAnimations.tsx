@@ -268,7 +268,7 @@ export const TwoRingWheelhouse = () => {
             <div className="mt-6 pt-4 border-t border-border">
               <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Total Earned</p>
               <div className="flex items-center gap-3">
-                <p className="text-2xl font-bold" style={{ color: GOLD }}>{visibleCount * 50}%</p>
+                <p className="text-2xl font-bold" style={{ color: GOLD_LOCAL }}>{visibleCount * 50}%</p>
                 {animationDone && (
                   <button
                     onClick={() => {
