@@ -430,7 +430,7 @@ export const MultiCycleWheelhouse = () => {
               ))}
               {animationDone && (
                 <div className="flex flex-col items-center justify-center col-span-1 gap-2">
-                  <p className="text-base md:text-lg font-semibold italic text-muted-foreground">
+                  <p className="text-base md:text-lg font-semibold italic text-muted-foreground whitespace-nowrap">
                     And so on and so on....
                   </p>
                   <p className="text-sm md:text-base font-bold" style={{ color: GOLD }}>
