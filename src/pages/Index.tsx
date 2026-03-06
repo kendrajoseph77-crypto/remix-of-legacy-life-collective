@@ -119,7 +119,7 @@ const Index = () => {
       </section>
 
       {/* ── How Coop5050 Works ── */}
-      <section className="py-16 px-6">
+      <section className="py-8 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-bold mb-4 text-foreground">
             Cooperative Crowdfunding is...
