@@ -236,22 +236,24 @@ const HowItWorks = () => {
                 total: "$52,500",
               },
             ].map((level, li) => (
-              <div key={li} className="rounded-xl border-2 p-4 md:p-5 text-center bg-background" style={{ borderColor: level.color }}>
-                <img src={level.logo} alt={`${level.name} logo`} className="w-auto mx-auto mb-3" style={{ height: "60px" }} />
-                <h3 className="text-2xl font-bold mb-4" style={{ color: level.color }}>{level.name}</h3>
-                <div className="grid grid-cols-3 gap-2 mb-6">
+              <div key={li} className="rounded-xl border-2 p-3 md:p-4 text-center bg-background" style={{ borderColor: level.color }}>
+                <div className="flex items-center justify-center gap-2 mb-3">
+                  <img src={level.logo} alt={`${level.name} logo`} className="w-auto" style={{ height: "36px" }} />
+                  <h3 className="text-xl font-bold" style={{ color: level.color }}>{level.name}</h3>
+                </div>
+                <div className="grid grid-cols-3 gap-1.5 mb-4">
                   {level.vaults.map((v, i) => (
-                    <div key={i} className="p-2 rounded-lg border border-border bg-muted/20 flex flex-col items-center justify-center">
+                    <div key={i} className="p-1.5 rounded-lg border border-border bg-muted/20 flex flex-col items-center justify-center">
                       <p className="text-xs font-semibold truncate w-full" style={{ color: "hsl(41 50% 65%)" }}>{v.contribution}</p>
-                      <p className="text-[9px] text-muted-foreground mb-1">Cooperative</p>
-                      <p className="text-base md:text-lg font-bold text-foreground truncate w-full">{v.payout}</p>
+                      <p className="text-[9px] text-muted-foreground mb-0.5">Cooperative</p>
+                      <p className="text-sm md:text-base font-bold text-foreground truncate w-full">{v.payout}</p>
                       <p className="text-[9px] text-muted-foreground">Over and Over</p>
                       <p className="text-[9px] text-muted-foreground/50 mt-0.5 truncate w-full">{v.per}</p>
                     </div>
                   ))}
                 </div>
-                <p className="text-sm text-muted-foreground">Receive</p>
-                <p className="text-2xl font-bold" style={{ color: "hsl(41 50% 65%)" }}>{level.total} <span className="text-sm font-normal text-muted-foreground">Each Cycle</span></p>
+                <p className="text-xs text-muted-foreground">Receive</p>
+                <p className="text-xl font-bold" style={{ color: "hsl(41 50% 65%)" }}>{level.total} <span className="text-xs font-normal text-muted-foreground">Each Cycle</span></p>
               </div>
             ))}
           </div>
