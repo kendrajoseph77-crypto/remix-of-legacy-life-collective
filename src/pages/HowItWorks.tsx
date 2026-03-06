@@ -71,7 +71,7 @@ const HowItWorks = () => {
               <p className="text-muted-foreground text-lg md:text-xl italic font-bold">Money for Everything!</p>
               <Link
                 to="/#join"
-                className="inline-flex items-center px-4 pt-2.5 pb-2 rounded-sm font-bold tracking-widest uppercase text-[11px] transition-all duration-300 hover:scale-105 text-background"
+                className="inline-flex items-center px-4 pt-2.5 pb-2 rounded-sm font-bold tracking-widest uppercase text-[11px] transition-all duration-300 hover:scale-105 text-background -translate-y-px"
                 style={{ background: "linear-gradient(180deg, hsl(39 55% 62%), hsl(39 55% 42%))", boxShadow: "0 3px 0 hsl(39 55% 32%), inset 0 1px 0 hsl(39 55% 72%)" }}
               >
                 Join Us Now
