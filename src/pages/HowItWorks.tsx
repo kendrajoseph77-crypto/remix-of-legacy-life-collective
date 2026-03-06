@@ -149,7 +149,7 @@ const HowItWorks = () => {
           <div className="text-center mb-10">
             <p className="text-muted-foreground text-xs tracking-[0.35em] uppercase font-medium mb-2">The Mobius Loop</p>
             <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
-              When One Completes, Another Opens
+              The Cooperative
             </h2>
             <div className="w-16 h-[1px] mx-auto mb-12" style={{ background: "linear-gradient(90deg, transparent, hsl(39 55% 52%), transparent)" }} />
           </div>
