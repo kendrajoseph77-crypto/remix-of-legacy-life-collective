@@ -149,7 +149,7 @@ const HowItWorks = () => {
 
         <div className="max-w-3xl mx-auto px-6 relative z-10 text-center">
           <p className="text-muted-foreground text-xs tracking-[0.35em] uppercase font-medium mb-2">The Mobius Loop</p>
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 whitespace-nowrap" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 md:whitespace-nowrap" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
             When One Completes, Another Opens
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto text-sm leading-relaxed mb-12">
