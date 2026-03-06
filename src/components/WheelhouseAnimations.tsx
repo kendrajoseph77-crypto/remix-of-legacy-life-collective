@@ -173,7 +173,7 @@ export const TwoRingWheelhouse = () => {
 
         {/* Right side — wheelhouse diagram (smaller) */}
         <div className="w-full md:w-[55%] flex-shrink-0">
-          <svg viewBox="0 0 700 520" className="w-full max-w-md mx-auto">
+          <svg viewBox="-20 -100 740 720" className="w-full max-w-md mx-auto">
             <defs>
               <marker id="wh-arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
                 <polygon points="0 0, 10 3.5, 0 7" fill={DARK} />
