@@ -155,15 +155,6 @@ const HowItWorks = () => {
           </div>
 
           <TwoRingWheelhouse />
-
-          <div className="max-w-xl mx-auto mt-16 p-8 rounded-2xl border border-border/60 bg-gradient-to-b from-muted/40 to-transparent text-center">
-            <h3 className="text-xl md:text-2xl font-bold mb-3" style={{ color: "hsl(41 50% 65%)", fontFamily: "'Cormorant Garamond', serif" }}>
-              More Money — Not More Work!
-            </h3>
-            <p className="text-muted-foreground leading-relaxed text-sm">
-              Invite as many friends as you like. You will always receive half of every contribution. The more friends invite friends, the more contributions flow to you — over and over again.
-            </p>
-          </div>
         </div>
       </section>
 
@@ -177,6 +168,15 @@ const HowItWorks = () => {
             </h2>
           </div>
           <MobiusLoopVisual />
+
+          <div className="max-w-xl mx-auto mt-16 p-8 rounded-2xl border border-border/60 bg-gradient-to-b from-muted/40 to-transparent text-center">
+            <h3 className="text-xl md:text-2xl font-bold mb-3" style={{ color: "hsl(41 50% 65%)", fontFamily: "'Cormorant Garamond', serif" }}>
+              More Money — Not More Work!
+            </h3>
+            <p className="text-muted-foreground leading-relaxed text-sm">
+              Invite as many friends as you like. You will always receive half of every contribution. The more friends invite friends, the more contributions flow to you — over and over again.
+            </p>
+          </div>
         </div>
       </section>
 
