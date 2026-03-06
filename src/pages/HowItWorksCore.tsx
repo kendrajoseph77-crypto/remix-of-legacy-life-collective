@@ -58,7 +58,7 @@ const HowItWorksCore = () => {
       <section className="pt-20 pb-4 relative overflow-hidden">
         <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-3 bg-white">
           <Link to="/">
-            <img src={logoC} alt="5050 Core logo" className="w-auto" style={{ height: "54px" }} />
+            <img src={logoC} alt="5050 Core logo" className="w-auto" style={{ height: "600px" }} />
           </Link>
           <nav className="flex items-center gap-4">
             <Link to="/" className="text-sm font-medium underline text-black/70 hover:text-black transition-colors">
