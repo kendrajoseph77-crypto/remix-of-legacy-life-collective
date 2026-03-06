@@ -166,7 +166,7 @@ export const TwoRingWheelhouse = () => {
                   </button>
                 )}
               </div>
-              <p className="text-xs text-muted-foreground">of your contribution back</p>
+              
             </div>
           )}
         </div>
