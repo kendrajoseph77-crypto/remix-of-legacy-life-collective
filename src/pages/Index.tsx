@@ -125,7 +125,7 @@ const Index = () => {
             Cooperative Crowdfunding is...
           </h2>
           <p className="text-muted-foreground text-base leading-relaxed mb-3">
-            A high-impact Cooperative Crowdfunding System built for speed — generating significant short and mid-term income to meet your immediate financial needs.
+            a revolutionary way to earn income, pay your monthly expenses, eliminate debt, and fund your best life. Instead of competing, we cooperate—each doing a little so everyone can receive a lot.
           </p>
           <p className="text-muted-foreground text-sm italic">Money for Everything!</p>
         </div>
