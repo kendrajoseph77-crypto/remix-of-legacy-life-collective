@@ -76,12 +76,13 @@ export const TwoRingWheelhouse = () => {
   const allPositions = [...innerNodes, ...outerNodes];
 
   const earningMessages = [
-    { member: "Member 01", amount: "$12.50", note: "50% of their contribution goes to YOU" },
-    { member: "Member 02", amount: "$12.50", note: "50% of their contribution goes to YOU" },
-    { member: "Member 03", amount: "$12.50", note: "50% of their contribution goes to YOU" },
-    { member: "Member 04", amount: "$12.50", note: "50% of their contribution goes to YOU" },
-    { member: "Member 05", amount: "$12.50", note: "50% of their contribution goes to YOU" },
-    { member: "Member 06", amount: "$12.50", note: "50% of their contribution goes to YOU" },
+  const earningMessages = [
+    { title: "You invited #1", note: "You receive 50% of their contribution" },
+    { title: "You invited #2", note: "You receive 50% of their contribution" },
+    { title: "#1 invited #3", note: "#1 gets 50% and you get 50%" },
+    { title: "#1 invited #4", note: "#1 gets 50% and you get 50%" },
+    { title: "#2 invited #5", note: "#2 gets 50% and you get 50%" },
+    { title: "#2 invited #6", note: "#2 gets 50% and you get 50%" },
   ];
 
   const startAnimation = () => {
