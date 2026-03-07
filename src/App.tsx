@@ -18,11 +18,7 @@ import NotFound from "./pages/NotFound";
 import HowItWorksDemo from "./pages/HowItWorksDemo";
 import HowItWorksLife from "./pages/HowItWorksLife";
 import HowItWorksFast from "./pages/HowItWorksFast";
-
-
-const queryClient = new QueryClient();
-
-const App = () => (
+= () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
@@ -35,8 +31,7 @@ const App = () => (
           <Route path="/how-it-works-demo" element={<HowItWorksDemo />} />
           <Route path="/how-it-works-life" element={<HowItWorksLife />} />
           <Route path="/how-it-works-fast" element={<HowItWorksFast />} />
-          <Route path="/how-it-works-core" element={<HowItWorksCore />} />
-          <Route path="/join" element={<Join />} />
+          <Route path="/how-it-works-core" element={<HowItWork
           <Route path="/login" element={<Login />} />
           <Route path="/register/fast" element={<RegisterFast />} />
           <Route path="/register/core" element={<RegisterCore />} />
