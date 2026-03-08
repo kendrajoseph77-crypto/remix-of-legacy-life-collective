@@ -17,6 +17,7 @@ import CoreDashboard from "./pages/ArchitectDashboard";
 import NotFound from "./pages/NotFound";
 import HowItWorksLife from "./pages/HowItWorksLife";
 import HowItWorksFast from "./pages/HowItWorksFast";
+import HowItWorksCore from "./pages/HowItWorksCore";
 import LandingFast from "./pages/LandingFast";
 import LandingCore from "./pages/LandingCore";
 
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/how-it-works-life" element={<HowItWorksLife />} />
           <Route path="/how-it-works-fast" element={<HowItWorksFast />} />
+          <Route path="/how-it-works-core" element={<HowItWorksCore />} />
           <Route path="/landing/fast" element={<LandingFast />} />
           <Route path="/landing/core" element={<LandingCore />} />
           <Route path="/join" element={<Join />} />
