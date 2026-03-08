@@ -39,6 +39,7 @@ const App = () => (
           <Route path="/how-it-works-core" element={<HowItWorksCore />} />
           <Route path="/landing/fast" element={<LandingFast />} />
           <Route path="/landing/core" element={<LandingCore />} />
+          <Route path="/landing/max" element={<LandingMax />} />
           <Route path="/join" element={<Join />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register/fast" element={<RegisterFast />} />
