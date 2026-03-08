@@ -10,6 +10,9 @@ import heroPerson1 from "@/assets/hero-person-1.jpg";
 import heroPerson2 from "@/assets/hero-person-2.jpg";
 import classyAsianWoman from "@/assets/classy-asian-woman.jpg";
 import heroPerson3 from "@/assets/hero-person-3.jpg";
+import explainerFast from "@/assets/explainer-fast.mp4";
+import explainerCore from "@/assets/explainer-core.mp4";
+import explainerMax from "@/assets/explainer-max.mp4";
 
 
 const steps = [
@@ -205,6 +208,48 @@ const HowItWorks = () => {
               <span className="text-foreground text-sm">{item}</span>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Explainer Videos */}
+      <section className="py-14">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <p className="text-muted-foreground text-sm tracking-[0.3em] uppercase font-medium mb-3">See It In Action</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">How Each System Works</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto text-sm">
+              Watch how the Mobius Loop and 300% returns work at every level.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { name: "5050 Fast", color: "hsl(224 85% 58%)", video: explainerFast, logo: logoF },
+              { name: "5050 Core", color: "hsl(160 80% 42%)", video: explainerCore, logo: logoC },
+              { name: "5050 Max", color: "hsl(41 50% 65%)", video: explainerMax, logo: logoM },
+            ].map((system) => (
+              <div key={system.name} className="rounded-xl border-2 overflow-hidden bg-background" style={{ borderColor: system.color }}>
+                <div className="relative">
+                  <video
+                    controls
+                    playsInline
+                    preload="metadata"
+                    className="w-full aspect-video object-cover"
+                    style={{ background: "hsl(0 0% 5%)" }}
+                  >
+                    <source src={system.video} type="video/mp4" />
+                  </video>
+                </div>
+                <div className="p-4 flex items-center gap-3">
+                  <img src={system.logo} alt={`${system.name} logo`} className="h-8 w-auto" />
+                  <div>
+                    <h3 className="text-sm font-bold" style={{ color: system.color }}>{system.name}</h3>
+                    <p className="text-xs text-muted-foreground">How it works explainer</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
