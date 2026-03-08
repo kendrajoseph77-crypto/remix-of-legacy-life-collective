@@ -156,7 +156,7 @@ const LandingFast = () => {
               <Link to="/login" className="text-foreground hover:underline font-medium">Log in</Link>
             </p>
             <Link
-              to="/how-it-works"
+              to="/how-it-works-fast"
               className="group inline-flex items-center gap-3 px-8 py-4 rounded-xl border border-border bg-card hover:bg-muted/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
             >
               <div className="w-10 h-10 rounded-full flex items-center justify-center gold-chrome-bg shrink-0">
