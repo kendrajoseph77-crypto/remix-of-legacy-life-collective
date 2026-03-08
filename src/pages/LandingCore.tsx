@@ -20,14 +20,13 @@ const LandingCore = () => {
         <video
           autoPlay
           muted
-          loop
           playsInline
           controls={false}
           disablePictureInPicture
           disableRemotePlayback
           className="absolute inset-0 w-full h-full object-cover"
           style={{ pointerEvents: "none", WebkitAppearance: "none" }}
-          ref={(el) => { if (el) { el.removeAttribute("controls"); el.play().catch(() => {}); } }}
+          ref={(el) => { if (el) { el.removeAttribute("controls"); el.playbackRate = 0.75; el.play().catch(() => {}); } }}
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
