@@ -88,7 +88,7 @@ const HowItWorksCore = () => {
             <div className="flex items-center justify-center gap-6 mb-8">
               <p className="text-muted-foreground text-lg md:text-xl italic font-bold">Money for Everything!</p>
               <Link
-                to="/#join"
+                to="/register/core"
                 className="inline-flex items-center px-4 pt-2.5 pb-2 rounded-sm font-bold tracking-widest uppercase text-[11px] transition-all duration-300 hover:scale-105 text-white -translate-y-px"
                 style={{ background: `linear-gradient(180deg, ${GREEN}, hsl(160 80% 32%))` }}
               >
