@@ -66,7 +66,7 @@ const HowItWorksMax = () => {
             <Link to="/" className="text-sm font-medium underline text-white/70 hover:text-white transition-colors">
               Home
             </Link>
-            <Link to="/#join" className="text-sm font-medium underline text-white/70 hover:text-white transition-colors">
+            <Link to="/register/max" className="text-sm font-medium underline text-white/70 hover:text-white transition-colors">
               Join Now
             </Link>
             <Link to="/login" className="text-sm font-medium underline text-white/70 hover:text-white transition-colors">
