@@ -1,10 +1,7 @@
 import { Link } from "react-router-dom";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import { TwoRingWheelhouse, MobiusLoopVisual, MultiCycleWheelhouse } from "@/components/WheelhouseAnimations";
-import logoF from "@/assets/logo-5050-f.svg";
-import logoC from "@/assets/logo-5050-c.svg";
 import logoM from "@/assets/logo-5050-m.svg";
-import logoMain from "@/assets/logo-5050-main.svg";
 import heroPerson1 from "@/assets/hero-person-1.jpg";
 import heroPerson2 from "@/assets/hero-person-2.jpg";
 import heroPerson3 from "@/assets/hero-person-3.jpg";
@@ -43,7 +40,19 @@ const automations = [
   "Automatic Transaction History",
 ];
 
-const HowItWorksLife = () => {
+const maxLevel = {
+  name: "5050 Max",
+  color: GOLD,
+  logo: logoM,
+  vaults: [
+    { contribution: "$2,500", payout: "$7,500", per: "6 × $1,250" },
+    { contribution: "$5,000", payout: "$15,000", per: "6 × $2,500" },
+    { contribution: "$10,000", payout: "$30,000", per: "6 × $5,000" },
+  ],
+  total: "$52,500",
+};
+
+const HowItWorksMax = () => {
   return (
     <div className="min-h-screen bg-[hsl(0_0%_6%)] text-white">
 
@@ -51,7 +60,7 @@ const HowItWorksLife = () => {
       <section className="pt-20 pb-4 relative overflow-hidden">
         <div className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-3 bg-[hsl(0_0%_6%)] border-b border-white/10">
           <Link to="/">
-            <img src={logoMain} alt="5050L logo" className="w-auto" style={{ height: "54px" }} />
+            <img src={logoM} alt="5050 Max logo" className="w-auto" style={{ height: "54px" }} />
           </Link>
           <nav className="flex items-center gap-4">
             <Link to="/" className="text-sm font-medium underline text-white/70 hover:text-white transition-colors">
@@ -72,12 +81,9 @@ const HowItWorksLife = () => {
             <img src={heroPerson3} alt="Friends celebrating" className="w-full h-full object-cover" />
           </div>
 
-          {/* Text */}
           <div className="text-center">
             <p className="text-base tracking-[0.3em] uppercase font-medium mb-6" style={{ color: GOLD }}>Cooperative Crowdfunding</p>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-              5050 Works...
-            </h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">5050 Max Works...</h1>
             <p className="text-white/60 text-base leading-relaxed max-w-2xl mx-auto mb-4">
               for 100% of the people, 100% of the time, who complete the 3 simple, doable steps.
             </p>
@@ -99,9 +105,7 @@ const HowItWorksLife = () => {
       <section className="pt-14 md:pt-20 pb-6 max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-3">
-              100% Instantly Goes to You…
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-3">100% Instantly Goes to You…</h2>
             <h2 className="text-3xl md:text-4xl font-bold italic mb-6" style={{ color: GOLD }}>Our members!</h2>
             <div className="rounded-xl overflow-hidden border border-white/10">
               <div className="flex">
@@ -111,7 +115,7 @@ const HowItWorksLife = () => {
                 </div>
                 <div className="w-px bg-white/10" />
                 <div className="flex-1 p-6 text-center bg-white/[0.03]">
-                  <p className="text-4xl font-bold" style={{ color: "hsl(160 80% 42%)" }}>50%</p>
+                  <p className="text-4xl font-bold" style={{ color: GOLD }}>50%</p>
                   <p className="text-white/50 text-sm mt-2">Instant Payout to <span className="text-white font-medium">Teammate</span></p>
                 </div>
               </div>
@@ -128,9 +132,7 @@ const HowItWorksLife = () => {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-10">
             <p className="text-white/50 text-sm tracking-[0.3em] uppercase font-medium mb-3">Affordable. Understandable. Rewarding.</p>
-            <h2 className="text-3xl md:text-4xl font-bold">
-              Just 3 Simple Steps
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold">Just 3 Simple Steps</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -159,9 +161,7 @@ const HowItWorksLife = () => {
         <div className="max-w-5xl mx-auto px-6 relative z-10">
           <div className="text-center mb-10">
             <p className="text-white/50 text-xs tracking-[0.35em] uppercase font-medium mb-2">2 x 2</p>
-            <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: heading }}>
-              The Cooperative
-            </h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: heading }}>The Cooperative</h2>
             <div className="w-16 h-[1px] mx-auto mb-12" style={{ background: `linear-gradient(90deg, transparent, ${GOLD}, transparent)` }} />
           </div>
           <TwoRingWheelhouse />
@@ -173,9 +173,7 @@ const HowItWorksLife = () => {
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
             <p className="text-white/50 text-sm tracking-[0.3em] uppercase font-medium mb-3">World Famous Mobius Loop</p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              When One Completes, Another One Opens
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">When One Completes, Another One Opens</h2>
           </div>
           <div className="mb-14">
             <MultiCycleWheelhouse />
@@ -188,23 +186,20 @@ const HowItWorksLife = () => {
       <section className="py-14 max-w-6xl mx-auto px-6">
         <div className="text-center mb-10">
           <p className="text-white/50 text-sm tracking-[0.3em] uppercase font-medium mb-3">Technology</p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-3">
-            Everything Is Automated
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-3">Everything Is Automated</h2>
           <p className="text-white/40 text-base italic">You Invite. We Ignite.</p>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-2xl mx-auto">
           {automations.map((item, i) => (
             <div key={i} className="flex items-center gap-3 p-4 rounded-lg bg-white/[0.03] border border-white/10">
-              <CheckCircle size={16} style={{ color: "hsl(160 80% 42%)" }} className="flex-shrink-0" />
+              <CheckCircle size={16} style={{ color: GOLD }} className="flex-shrink-0" />
               <span className="text-white text-sm">{item}</span>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Income Levels + Final CTA */}
+      {/* Income Level + Final CTA */}
       <section className="py-14 border-y border-white/10">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-4">
@@ -215,69 +210,36 @@ const HowItWorksLife = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
-            {[
-              {
-                name: "5050 Fast", color: "hsl(224 85% 58%)", logo: logoF,
-                vaults: [
-                  { contribution: "$25", payout: "$75", per: "6 × $12.50" },
-                  { contribution: "$50", payout: "$150", per: "6 × $25" },
-                  { contribution: "$100", payout: "$300", per: "6 × $50" },
-                ],
-                total: "$525",
-              },
-              {
-                name: "5050 Core", color: "hsl(160 80% 42%)", logo: logoC,
-                vaults: [
-                  { contribution: "$250", payout: "$750", per: "6 × $125" },
-                  { contribution: "$500", payout: "$1,500", per: "6 × $250" },
-                  { contribution: "$1,000", payout: "$3,000", per: "6 × $500" },
-                ],
-                total: "$5,250",
-              },
-              {
-                name: "5050 Max", color: GOLD, logo: logoM,
-                vaults: [
-                  { contribution: "$2,500", payout: "$7,500", per: "6 × $1,250" },
-                  { contribution: "$5,000", payout: "$15,000", per: "6 × $2,500" },
-                  { contribution: "$10,000", payout: "$30,000", per: "6 × $5,000" },
-                ],
-                total: "$52,500",
-              },
-            ].map((level, li) => (
-              <div key={li} className="rounded-xl border-2 p-3 md:p-4 bg-white/[0.03]" style={{ borderColor: level.color }}>
-                <div className="relative mb-3">
-                  <img src={level.logo} alt={`${level.name} logo`} className="absolute left-0 top-1/2 -translate-y-1/2 w-auto" style={{ height: "48px" }} />
-                  <h3 className="text-xl font-bold text-center" style={{ color: level.color }}>{level.name}</h3>
-                </div>
-                <div className="grid grid-cols-3 gap-1.5 mb-4">
-                  {level.vaults.map((v, i) => (
-                    <div key={i} className="p-1.5 rounded-lg border border-white/10 bg-white/[0.03] flex flex-col items-center justify-center">
-                      <p className="text-xs font-semibold truncate w-full text-center" style={{ color: level.color }}>{v.contribution}</p>
-                      <p className="text-[9px] text-white/40 mb-0.5">Cooperative</p>
-                      <p className="text-sm md:text-base font-bold text-white truncate w-full text-center">{v.payout}</p>
-                      <p className="text-[9px] text-white/40">Over and Over</p>
-                      <p className="text-[9px] text-white/30 mt-0.5 truncate w-full text-center">{v.per}</p>
-                    </div>
-                  ))}
-                </div>
-                <p className="text-center">
-                  <span className="text-xs text-white/50 mr-1">Receive</span>
-                  <span className="text-xl font-bold" style={{ color: level.color }}>{level.total}</span>
-                  <span className="text-xs font-normal text-white/50 ml-1">Each Cycle</span>
-                </p>
+          <div className="flex justify-center mt-10">
+            <div className="rounded-xl border-2 p-3 md:p-4 bg-white/[0.03] max-w-sm w-full" style={{ borderColor: maxLevel.color }}>
+              <div className="relative mb-3">
+                <img src={maxLevel.logo} alt={`${maxLevel.name} logo`} className="absolute left-0 top-1/2 -translate-y-1/2 w-auto" style={{ height: "48px" }} />
+                <h3 className="text-xl font-bold text-center" style={{ color: maxLevel.color }}>{maxLevel.name}</h3>
               </div>
-            ))}
+              <div className="grid grid-cols-3 gap-1.5 mb-4">
+                {maxLevel.vaults.map((v, i) => (
+                  <div key={i} className="p-1.5 rounded-lg border border-white/10 bg-white/[0.03] flex flex-col items-center justify-center">
+                    <p className="text-xs font-semibold truncate w-full text-center" style={{ color: maxLevel.color }}>{v.contribution}</p>
+                    <p className="text-[9px] text-white/40 mb-0.5">Cooperative</p>
+                    <p className="text-sm md:text-base font-bold text-white truncate w-full text-center">{v.payout}</p>
+                    <p className="text-[9px] text-white/40">Over and Over</p>
+                    <p className="text-[9px] text-white/30 mt-0.5 truncate w-full text-center">{v.per}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="text-center">
+                <span className="text-xs text-white/50 mr-1">Receive</span>
+                <span className="text-xl font-bold" style={{ color: maxLevel.color }}>{maxLevel.total}</span>
+                <span className="text-xs font-normal text-white/50 ml-1">Each Cycle</span>
+              </p>
+            </div>
           </div>
 
-          {/* Final CTA */}
           <div className="text-center mt-14">
             <h3 className="text-2xl md:text-3xl font-bold mb-2" style={{ color: GOLD }}>
               Earn From 100's or Even 1,000's of Cooperatives
             </h3>
-            <p className="text-lg font-bold text-white mb-8">
-              Wouldn't that change your life!
-            </p>
+            <p className="text-lg font-bold text-white mb-8">Wouldn't that change your life!</p>
             <Link
               to="/#join"
               className="inline-flex items-center gap-2 px-10 py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:scale-105"
@@ -288,9 +250,8 @@ const HowItWorksLife = () => {
           </div>
         </div>
       </section>
-
     </div>
   );
 };
 
-export default HowItWorksLife;
+export default HowItWorksMax;
