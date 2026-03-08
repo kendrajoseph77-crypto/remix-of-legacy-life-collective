@@ -33,7 +33,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
-          <Route path="/how-it-works-limax" element={<HowItWorksMax>} />
+          <Route path="/how-it-works-max" element={<HowItWorksMax />} />
           <Route path="/how-it-works-fast" element={<HowItWorksFast />} />
           <Route path="/how-it-works-core" element={<HowItWorksCore />} />
           <Route path="/landing/fast" element={<LandingFast />} />
