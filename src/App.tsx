@@ -15,7 +15,7 @@ import Dashboard from "./pages/Dashboard";
 import FastDashboard from "./pages/BuilderDashboard";
 import CoreDashboard from "./pages/ArchitectDashboard";
 import NotFound from "./pages/NotFound";
-import HowItWorksLife from "./pages/HowItWorksLife";
+import HowItWorksMax from "./pages/HowItWorksMax";
 import HowItWorksFast from "./pages/HowItWorksFast";
 import HowItWorksCore from "./pages/HowItWorksCore";
 import LandingFast from "./pages/LandingFast";
@@ -33,7 +33,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
-          <Route path="/how-it-works-life" element={<HowItWorksLife />} />
+          <Route path="/how-it-works-max" element={<HowItWorksMax />} />
           <Route path="/how-it-works-fast" element={<HowItWorksFast />} />
           <Route path="/how-it-works-core" element={<HowItWorksCore />} />
           <Route path="/landing/fast" element={<LandingFast />} />
