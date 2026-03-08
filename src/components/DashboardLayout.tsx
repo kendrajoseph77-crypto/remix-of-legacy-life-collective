@@ -132,6 +132,7 @@ const sidebarLinks: SidebarItem[] = [
 
 const DashboardLayout = ({ theme }: { theme: ThemeConfig }) => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [expandedItems, setExpandedItems] = useState<string[]>([]);
   const userName = "Elizabeth";
   const userLastName = "Grace";
   const userKey = "1008";
