@@ -55,24 +55,6 @@ const businesses = [
 const Index = () => {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
-      {/* Sticky logo sidebar */}
-      <div className="fixed right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3">
-        {[
-          { logo: logoF, label: "Fast", path: "/register/fast", color: "hsl(224 85% 58%)" },
-          { logo: logoC, label: "Core", path: "/register/core", color: "hsl(160 80% 42%)" },
-          { logo: logoM, label: "Max", path: "/register/max", color: "hsl(39 55% 52%)" },
-        ].map((item) => (
-          <Link
-            key={item.label}
-            to={item.path}
-            className="group flex items-center justify-center w-14 h-14 rounded-full bg-card border border-border shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
-            title={`Register ${item.label}`}
-          >
-            <img src={item.logo} alt={`5050 ${item.label}`} className="h-8 w-auto" />
-          </Link>
-        ))}
-      </div>
-
       {/* ── Hero with Video Background ── */}
       <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-8 pb-16 overflow-hidden">
         <video
