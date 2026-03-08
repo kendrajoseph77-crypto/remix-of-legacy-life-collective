@@ -1,5 +1,6 @@
 import RegisterLayout from "@/components/RegisterLayout";
 import bgImage from "@/assets/register-bg-mogul.jpg";
+import logoM from "@/assets/logo-5050-m-white.svg";
 
 const theme = {
   name: "Max",
@@ -10,6 +11,7 @@ const theme = {
   royaltyLevels: [2500, 5000, 10000],
   licensingFee: "$250",
   bgImage,
+  systemLogo: logoM,
 };
 
 const RegisterMogul = () => <RegisterLayout theme={theme} />;
