@@ -20,6 +20,7 @@ import HowItWorksFast from "./pages/HowItWorksFast";
 import HowItWorksCore from "./pages/HowItWorksCore";
 import LandingFast from "./pages/LandingFast";
 import LandingCore from "./pages/LandingCore";
+import LandingMax from "./pages/LandingMax";
 
 const queryClient = new QueryClient();
 
