@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import { TwoRingWheelhouse, MobiusLoopVisual, MultiCycleWheelhouse } from "@/components/WheelhouseAnimations";
+import logoF from "@/assets/logo-5050-f.svg";
+import logoC from "@/assets/logo-5050-c.svg";
+import logoM from "@/assets/logo-5050-m.svg";
 import logoMain from "@/assets/logo-5050-main.svg";
 import heroPerson1 from "@/assets/hero-person-1.jpg";
 import heroPerson2 from "@/assets/hero-person-2.jpg";
@@ -13,31 +16,31 @@ const heading = "'Cormorant Garamond', Georgia, serif";
 const steps = [
   {
     number: "01",
-    title: "Activate Your Seat",
-    keyword: "Begin",
-    desc: "Make a one-time contribution at the level that fits your budget. You're instantly placed inside a live Cooperative.",
+    title: "Register & Activate",
+    keyword: "Become",
+    desc: "Make a contribution at your chosen level to become an Active Contributor.",
   },
   {
     number: "02",
-    title: "Bring 2 Partners",
-    keyword: "Grow",
-    desc: "Introduce just 2 people who activate at the same level. Their contributions flow directly to you and a teammate — 50/50.",
+    title: "Invite 2 Members",
+    keyword: "Build",
+    desc: "Help 2 or more people become Active Contributors and join the cooperative.",
   },
   {
     number: "03",
-    title: "Watch It Multiply",
-    keyword: "Earn",
-    desc: "Your 2 partners each bring 2 more. Six positions fill, your Cooperative closes, and a brand-new one opens automatically.",
+    title: "Your Team Grows",
+    keyword: "Bond",
+    desc: "Your 2 each help 2 or more, and the cycle of giving and receiving continues.",
   },
 ];
 
 const automations = [
-  "Automated Cooperative Placement",
-  "Automated 50/50 Distribution",
-  "Automated Re-Entry into New Cooperatives",
-  "Automated Suspend & Reactivation",
-  "Automated Real-Time Notifications",
-  "Automated Full Transaction Ledger",
+  "Automated Positioning",
+  "Automated Sending & Receiving",
+  "Automated Re-Entry",
+  "Automated Suspend & Un-Suspend",
+  "Automated Email Notifications",
+  "Automatic Transaction History",
 ];
 
 const HowItWorksLife = () => {
@@ -73,19 +76,19 @@ const HowItWorksLife = () => {
           <div className="text-center">
             <p className="text-base tracking-[0.3em] uppercase font-medium mb-6" style={{ color: GOLD }}>Cooperative Crowdfunding</p>
             <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-              The Simplest Path to Real Income
+              5050 Works...
             </h1>
             <p className="text-white/60 text-base leading-relaxed max-w-2xl mx-auto mb-4">
-              No selling. No recruiting quotas. No complicated funnels. Just a transparent, member-driven system where everyone who completes 3 doable steps earns.
+              for 100% of the people, 100% of the time, who complete the 3 simple, doable steps.
             </p>
             <div className="flex items-center justify-center gap-6 mb-8">
-              <p className="text-white/50 text-lg md:text-xl italic font-bold">Financial Freedom Starts Here</p>
+              <p className="text-white/50 text-lg md:text-xl italic font-bold">Money for Everything!</p>
               <Link
                 to="/#join"
                 className="inline-flex items-center px-4 pt-2.5 pb-2 rounded-sm font-bold tracking-widest uppercase text-[11px] transition-all duration-300 hover:scale-105 text-background -translate-y-px"
                 style={{ background: `linear-gradient(180deg, ${GOLD}, hsl(39 55% 42%))` }}
               >
-                Get Started
+                Join Us Now
               </Link>
             </div>
           </div>
@@ -97,19 +100,19 @@ const HowItWorksLife = () => {
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-3">
-              Every Dollar Goes to Members…
+              100% Instantly Goes to You…
             </h2>
-            <h2 className="text-3xl md:text-4xl font-bold italic mb-6" style={{ color: GOLD }}>Zero middlemen. Zero fees.</h2>
+            <h2 className="text-3xl md:text-4xl font-bold italic mb-6" style={{ color: GOLD }}>Our members!</h2>
             <div className="rounded-xl overflow-hidden border border-white/10">
               <div className="flex">
                 <div className="flex-1 p-6 text-center bg-white/[0.03]">
                   <p className="text-4xl font-bold" style={{ color: GOLD }}>50%</p>
-                  <p className="text-white/50 text-sm mt-2">Instantly to <span className="text-white font-medium">YOU</span></p>
+                  <p className="text-white/50 text-sm mt-2">Instant Payout to <span className="text-white font-medium">YOU</span></p>
                 </div>
                 <div className="w-px bg-white/10" />
                 <div className="flex-1 p-6 text-center bg-white/[0.03]">
                   <p className="text-4xl font-bold" style={{ color: "hsl(160 80% 42%)" }}>50%</p>
-                  <p className="text-white/50 text-sm mt-2">Instantly to <span className="text-white font-medium">Your Teammate</span></p>
+                  <p className="text-white/50 text-sm mt-2">Instant Payout to <span className="text-white font-medium">Teammate</span></p>
                 </div>
               </div>
             </div>
@@ -124,9 +127,9 @@ const HowItWorksLife = () => {
       <section className="py-14 border-y border-white/10">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-10">
-            <p className="text-white/50 text-sm tracking-[0.3em] uppercase font-medium mb-3">Simple. Affordable. Life-Changing.</p>
+            <p className="text-white/50 text-sm tracking-[0.3em] uppercase font-medium mb-3">Affordable. Understandable. Rewarding.</p>
             <h2 className="text-3xl md:text-4xl font-bold">
-              Three Steps. That's It.
+              Just 3 Simple Steps
             </h2>
           </div>
 
@@ -155,9 +158,9 @@ const HowItWorksLife = () => {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_40%,hsl(39_55%_52%/0.06)_0%,transparent_70%)]" />
         <div className="max-w-5xl mx-auto px-6 relative z-10">
           <div className="text-center mb-10">
-            <p className="text-white/50 text-xs tracking-[0.35em] uppercase font-medium mb-2">2 × 2</p>
+            <p className="text-white/50 text-xs tracking-[0.35em] uppercase font-medium mb-2">2 x 2</p>
             <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: heading }}>
-              Inside the Cooperative
+              The Cooperative
             </h2>
             <div className="w-16 h-[1px] mx-auto mb-12" style={{ background: `linear-gradient(90deg, transparent, ${GOLD}, transparent)` }} />
           </div>
@@ -169,9 +172,9 @@ const HowItWorksLife = () => {
       <section className="pt-14 pb-6">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
-            <p className="text-white/50 text-sm tracking-[0.3em] uppercase font-medium mb-3">The Infinite Engine</p>
+            <p className="text-white/50 text-sm tracking-[0.3em] uppercase font-medium mb-3">World Famous Mobius Loop</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              One Closes. Another Opens Instantly.
+              When One Completes, Another One Opens
             </h2>
           </div>
           <div className="mb-14">
@@ -184,11 +187,11 @@ const HowItWorksLife = () => {
       {/* Everything Automated */}
       <section className="py-14 max-w-6xl mx-auto px-6">
         <div className="text-center mb-10">
-          <p className="text-white/50 text-sm tracking-[0.3em] uppercase font-medium mb-3">Powered by Technology</p>
+          <p className="text-white/50 text-sm tracking-[0.3em] uppercase font-medium mb-3">Technology</p>
           <h2 className="text-3xl md:text-4xl font-bold mb-3">
-            Completely Hands-Free
+            Everything Is Automated
           </h2>
-          <p className="text-white/40 text-base italic">You Invite. The System Does the Rest.</p>
+          <p className="text-white/40 text-base italic">You Invite. We Ignite.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-w-2xl mx-auto">
@@ -206,16 +209,16 @@ const HowItWorksLife = () => {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-4">
             <p className="text-white/50 text-sm tracking-[0.3em] uppercase font-medium mb-3">100% Instant Payout · 50/50 · 300% Per Cycle</p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Choose Your Level</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Where You Fit In</h2>
             <p className="text-white/50 max-w-xl mx-auto text-sm">
-              Start where you're comfortable. Your ultimate goal: be active on all 3 Income Centers at the same time.
+              One time out of pocket. Your ultimate goal is to be active on all 3 Income Centers simultaneously.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
             {[
               {
-                name: "5050 Fast", color: "hsl(224 85% 58%)",
+                name: "5050 Fast", color: "hsl(224 85% 58%)", logo: logoF,
                 vaults: [
                   { contribution: "$25", payout: "$75", per: "6 × $12.50" },
                   { contribution: "$50", payout: "$150", per: "6 × $25" },
@@ -224,7 +227,7 @@ const HowItWorksLife = () => {
                 total: "$525",
               },
               {
-                name: "5050 Core", color: "hsl(160 80% 42%)",
+                name: "5050 Core", color: "hsl(160 80% 42%)", logo: logoC,
                 vaults: [
                   { contribution: "$250", payout: "$750", per: "6 × $125" },
                   { contribution: "$500", payout: "$1,500", per: "6 × $250" },
@@ -233,7 +236,7 @@ const HowItWorksLife = () => {
                 total: "$5,250",
               },
               {
-                name: "5050 Max", color: GOLD,
+                name: "5050 Max", color: GOLD, logo: logoM,
                 vaults: [
                   { contribution: "$2,500", payout: "$7,500", per: "6 × $1,250" },
                   { contribution: "$5,000", payout: "$15,000", per: "6 × $2,500" },
@@ -244,6 +247,7 @@ const HowItWorksLife = () => {
             ].map((level, li) => (
               <div key={li} className="rounded-xl border-2 p-3 md:p-4 bg-white/[0.03]" style={{ borderColor: level.color }}>
                 <div className="relative mb-3">
+                  <img src={level.logo} alt={`${level.name} logo`} className="absolute left-0 top-1/2 -translate-y-1/2 w-auto" style={{ height: "48px" }} />
                   <h3 className="text-xl font-bold text-center" style={{ color: level.color }}>{level.name}</h3>
                 </div>
                 <div className="grid grid-cols-3 gap-1.5 mb-4">
@@ -269,17 +273,17 @@ const HowItWorksLife = () => {
           {/* Final CTA */}
           <div className="text-center mt-14">
             <h3 className="text-2xl md:text-3xl font-bold mb-2" style={{ color: GOLD }}>
-              Receive From Hundreds — Even Thousands — of Cooperatives
+              Earn From 100's or Even 1,000's of Cooperatives
             </h3>
             <p className="text-lg font-bold text-white mb-8">
-              That's not a dream. That's the system.
+              Wouldn't that change your life!
             </p>
             <Link
               to="/#join"
               className="inline-flex items-center gap-2 px-10 py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:scale-105"
               style={{ background: `linear-gradient(180deg, ${GOLD}, hsl(39 55% 42%))`, color: "hsl(0 0% 6%)" }}
             >
-              Join the Cooperative <ArrowRight size={16} />
+              Join Us & Get Busy With It! <ArrowRight size={16} />
             </Link>
           </div>
         </div>
