@@ -59,10 +59,10 @@ const LandingCore = () => {
 
           <div className="absolute top-4 left-6 z-20">
             <img
-              src={logoImg}
-              alt="5050L logo"
+              src={logoC}
+              alt="5050 Core logo"
               className="w-auto"
-              style={{ height: "72px", filter: "drop-shadow(0 0 16px hsl(38 70% 60% / 0.4))" }}
+              style={{ height: "72px", filter: "drop-shadow(0 0 16px hsl(160 80% 42% / 0.4))" }}
             />
           </div>
 
