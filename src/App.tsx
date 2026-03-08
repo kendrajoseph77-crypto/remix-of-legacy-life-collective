@@ -17,6 +17,7 @@ import CoreDashboard from "./pages/ArchitectDashboard";
 import NotFound from "./pages/NotFound";
 import HowItWorksLife from "./pages/HowItWorksLife";
 import HowItWorksFast from "./pages/HowItWorksFast";
+import HowItWorksCore from "./pages/HowItWorksCore";
 import LandingFast from "./pages/LandingFast";
 import LandingCore from "./pages/LandingCore";
 
