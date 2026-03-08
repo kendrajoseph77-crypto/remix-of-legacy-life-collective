@@ -153,21 +153,60 @@ const DashboardLayout = ({ theme }: { theme: ThemeConfig }) => {
             <Logo darkBg className="!h-12" />
           )}
         </Link>
-        <nav className="flex-1 py-4 space-y-0.5 px-2">
-          {sidebarLinks.map((item) => (
-            <button
-              key={item.label}
-              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm transition-colors ${
-                item.active
-                  ? "text-foreground font-medium"
-                  : "text-primary-foreground/60 hover:text-primary-foreground/90"
-              }`}
-              style={item.active ? { background: theme.gradient, color: theme.textOnGradient, boxShadow: `inset 0 1px 0 ${theme.primaryLight}40` } : {}}
-            >
-              <item.icon size={16} />
-              {item.label}
-            </button>
-          ))}
+        <nav className="flex-1 py-4 space-y-0.5 px-2 overflow-y-auto">
+          {sidebarLinks.map((item) => {
+            const hasChildren = item.children && item.children.length > 0;
+            const isExpanded = expandedItems.includes(item.label);
+
+            const toggleExpand = () => {
+              setExpandedItems((prev) =>
+                prev.includes(item.label)
+                  ? prev.filter((l) => l !== item.label)
+                  : [...prev, item.label]
+              );
+            };
+
+            return (
+              <div key={item.label}>
+                <button
+                  onClick={hasChildren ? toggleExpand : undefined}
+                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm transition-colors ${
+                    item.active || isExpanded
+                      ? "text-foreground font-medium"
+                      : "text-primary-foreground/60 hover:text-primary-foreground/90"
+                  }`}
+                  style={
+                    item.active || isExpanded
+                      ? { background: theme.gradient, color: theme.textOnGradient, boxShadow: `inset 0 1px 0 ${theme.primaryLight}40` }
+                      : {}
+                  }
+                >
+                  <item.icon size={16} />
+                  <span className="flex-1 text-left">{item.label}</span>
+                  {hasChildren && (
+                    <ChevronDown
+                      size={14}
+                      className={`transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`}
+                    />
+                  )}
+                </button>
+                {hasChildren && isExpanded && (
+                  <div className="ml-3 mt-0.5 space-y-0.5">
+                    {item.children!.map((child) => (
+                      <button
+                        key={child.label}
+                        className="w-full flex items-center gap-3 px-3 py-2 rounded-md text-xs text-primary-foreground/50 hover:text-primary-foreground/80 transition-colors"
+                      >
+                        <span className="w-1 h-1 rounded-full bg-primary-foreground/30" />
+                        <child.icon size={14} className="opacity-60" />
+                        {child.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </nav>
         <div className="px-2 pb-4 space-y-0.5">
           <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-primary-foreground/60 hover:text-primary-foreground/90">
