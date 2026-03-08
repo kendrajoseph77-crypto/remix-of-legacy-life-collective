@@ -1,5 +1,5 @@
-import { Star, Gem, Crown } from "lucide-react";
 import DashboardLayout from "@/components/DashboardLayout";
+import logoC from "@/assets/logo-5050-c.svg";
 
 const theme = {
   name: "Core",
@@ -11,10 +11,11 @@ const theme = {
   gradientLight: "linear-gradient(135deg, hsl(160 75% 50%), hsl(160 80% 42%))",
   textOnGradient: "hsl(160 30% 98%)",
   levels: [
-    { label: "Level 250", amount: "$0.00 / $250.00", icon: Star },
-    { label: "Level 500", amount: "$0.00 / $500.00", icon: Gem },
-    { label: "Level 1,000", amount: "$0.00 / $1,000.00", icon: Crown },
+    { amount: 250, label: "$250" },
+    { amount: 500, label: "$500" },
+    { amount: 1000, label: "$1,000" },
   ],
+  systemLogo: logoC,
 };
 
 const ArchitectDashboard = () => <DashboardLayout theme={theme} />;

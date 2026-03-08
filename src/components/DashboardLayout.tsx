@@ -6,27 +6,25 @@ import {
   Users,
   Wallet,
   Send,
-  Inbox,
-  UsersRound,
-  Megaphone,
+  Heart,
+  UserPlus,
+  Briefcase,
   Coins,
-  CreditCard,
-  UserCog,
+  UserCircle,
   LayoutGrid,
-  ChevronRight,
-  Star,
-  Gem,
-  Crown,
-  Lightbulb,
+  Zap,
+  RefreshCw,
   LogOut,
   HelpCircle,
-  FileQuestion,
-  Wrench,
-  UserCircle,
+  EyeOff,
   Menu,
 } from "lucide-react";
-import { Progress } from "@/components/ui/progress";
 import Logo from "@/components/Logo";
+
+interface LevelConfig {
+  amount: number;
+  label: string;
+}
 
 interface ThemeConfig {
   name: string;
@@ -37,38 +35,27 @@ interface ThemeConfig {
   gradient: string;
   gradientLight: string;
   textOnGradient: string;
-  levels: { label: string; amount: string; icon: typeof Star }[];
+  levels: LevelConfig[];
+  systemLogo?: string;
 }
 
 const sidebarLinks = [
   { label: "Dashboard", icon: LayoutGrid, active: true },
-  { label: "Contributions", icon: Coins },
+  { label: "Contributions", icon: Heart },
   { label: "Income Centers", icon: LayoutGrid },
-  { label: "Wallet", icon: Wallet },
-  { label: "Tokens", icon: Gem },
-  { label: "Team", icon: UsersRound },
+  { label: "Wallet", icon: Briefcase },
+  { label: "Tokens", icon: Coins },
+  { label: "Team", icon: Users },
   { label: "Profile", icon: UserCircle },
-  { label: "Toolz", icon: Wrench },
-  { label: "FAQs", icon: FileQuestion },
   { label: "Help", icon: HelpCircle },
-];
-
-const quickActions = [
-  { label: "Send Contributions", desc: "Send pending contributions", icon: ArrowUpRight },
-  { label: "Receive Contributions", desc: "Mark contributions received", icon: ArrowDownLeft },
-  { label: "My Team", desc: "View team members", icon: UsersRound },
-  { label: "Income Centers", desc: "0 open centers", icon: LayoutGrid },
-  { label: "Marketing Tools", desc: "Share & grow your team", icon: Megaphone },
-  { label: "Buy Tokens", desc: "Purchase coop tokens", icon: Coins },
-  { label: "My Wallet", desc: "Deposit & manage funds", icon: CreditCard },
-  { label: "My Profile", desc: "Update your info", icon: UserCog },
 ];
 
 const DashboardLayout = ({ theme }: { theme: ThemeConfig }) => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const userName = "Kendra";
-
-  const getGreeting = () => "Hello";
+  const userName = "Elizabeth";
+  const userLastName = "Grace";
+  const userKey = "1008";
+  const siteUrl = `https://5050life.com/${userKey}`;
 
   return (
     <div className="flex min-h-screen bg-muted/40 font-sans">
@@ -79,7 +66,11 @@ const DashboardLayout = ({ theme }: { theme: ThemeConfig }) => {
         } transition-all duration-300 bg-foreground text-primary-foreground flex flex-col`}
       >
         <Link to="/" className="p-4 flex items-center justify-center border-b border-white/10">
-          <Logo darkBg className="!h-12" />
+          {theme.systemLogo ? (
+            <img src={theme.systemLogo} alt={`5050 ${theme.name} logo`} className="h-12 w-auto" />
+          ) : (
+            <Logo darkBg className="!h-12" />
+          )}
         </Link>
         <nav className="flex-1 py-4 space-y-0.5 px-2">
           {sidebarLinks.map((item) => (
@@ -113,7 +104,11 @@ const DashboardLayout = ({ theme }: { theme: ThemeConfig }) => {
           </button>
           <div className="flex items-center gap-3 text-sm text-muted-foreground">
             <span>Your QR Code</span>
-            <span className="font-semibold text-foreground">{userName} Joseph</span>
+            <LayoutGrid size={16} style={{ color: theme.primary }} />
+            <div className="text-right">
+              <span className="font-semibold text-foreground">{userName} {userLastName}</span>
+              <p className="text-[10px] text-muted-foreground">{siteUrl}</p>
+            </div>
           </div>
         </header>
 
@@ -122,125 +117,143 @@ const DashboardLayout = ({ theme }: { theme: ThemeConfig }) => {
           {/* Welcome banner */}
           <div className="rounded-xl p-6 flex items-center justify-between" style={{ background: "hsl(0 0% 8%)" }}>
             <div>
-              <span
-                className="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded mb-2"
-                style={{ background: theme.gradient, color: theme.textOnGradient }}
-              >
-                Free Member
-              </span>
-              <h2 className="text-xl font-semibold text-white mt-1">
-                {getGreeting()}, {userName}!
+              <div className="flex items-center gap-3 mb-2">
+                <span
+                  className="inline-block text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded"
+                  style={{ background: theme.gradient, color: theme.textOnGradient }}
+                >
+                  Active Member
+                </span>
+                <span className="text-white/40 text-xs flex items-center gap-1">
+                  🔗 {siteUrl}
+                </span>
+              </div>
+              <h2 className="text-2xl font-semibold text-white" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+                Hello, {userName}!
               </h2>
-              <p className="text-white/30 text-xs mt-2">🔑 Key: 6399365</p>
             </div>
             <div className="hidden md:flex items-center gap-3">
               <button
-                className="px-4 py-2 rounded-lg text-sm font-medium active:translate-y-[2px] transition-transform"
+                className="px-5 py-2.5 rounded-lg text-sm font-medium active:translate-y-[2px] transition-transform flex items-center gap-2"
                 style={{ background: theme.gradient, color: theme.textOnGradient, boxShadow: `inset 0 1px 0 ${theme.primaryLight}40, 0 4px 0 ${theme.primaryDark}` }}
               >
-                <ArrowUpRight size={14} className="inline mr-1.5 -mt-0.5" /> Send
+                <Send size={14} /> Send
               </button>
               <button
-                className="px-4 py-2 rounded-lg text-sm font-medium active:translate-y-[2px] transition-transform"
-                style={{ background: theme.gradient, color: theme.textOnGradient, boxShadow: `inset 0 1px 0 ${theme.primaryLight}40, 0 4px 0 ${theme.primaryDark}` }}
+                className="px-5 py-2.5 rounded-lg text-sm font-medium active:translate-y-[2px] transition-transform flex items-center gap-2 border-2"
+                style={{ borderColor: theme.primary, color: theme.primary, boxShadow: `0 4px 0 ${theme.primaryDark}40` }}
               >
-                <ArrowDownLeft size={14} className="inline mr-1.5 -mt-0.5" /> Receive
-              </button>
-              <button
-                className="px-4 py-2 rounded-lg text-sm font-medium border border-white/20 text-white hover:bg-white/5 active:translate-y-[2px] transition-transform"
-                style={{ boxShadow: "0 4px 0 rgba(255,255,255,0.08)" }}
-              >
-                <Users size={14} className="inline mr-1.5 -mt-0.5" /> Add Member
+                <ArrowDownLeft size={14} /> Receive
               </button>
             </div>
           </div>
 
+          {/* Quick Actions Row */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {[
+              { label: "Deposit Money", icon: Briefcase },
+              { label: "Pay It Forward", icon: Heart },
+              { label: "Add Teammate", icon: UserPlus },
+            ].map((action) => (
+              <button
+                key={action.label}
+                className="bg-background rounded-xl p-4 border border-border flex items-center justify-center gap-2 text-sm font-medium text-foreground hover:bg-muted/50 transition-colors"
+              >
+                <action.icon size={16} style={{ color: theme.primary }} />
+                {action.label}
+              </button>
+            ))}
+          </div>
+
           {/* My Levels */}
-          <div className="bg-background rounded-xl p-5 border border-border">
+          <div>
             <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-1.5">
-              <Gem size={14} style={{ color: theme.primary }} /> My Levels
+              🏆 My Levels
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {theme.levels.map((level, i) => {
-                const isActive = i === 0 || i === 2;
-                const showAutoUpgrade = i < 2;
+                const isActive = false;
+                const showUpgrade = i < theme.levels.length;
                 return (
                   <div
                     key={level.label}
-                    className={`rounded-xl border p-4 ${!isActive ? "border-muted bg-muted/40 opacity-70" : "border-border"}`}
-                    style={{ borderTop: `3px solid ${isActive ? theme.primary : "hsl(0 0% 70%)"}` }}
+                    className="rounded-xl border border-border bg-background p-5 flex flex-col"
+                    style={{ borderTop: `3px solid ${isActive ? theme.primary : "hsl(0 0% 80%)"}` }}
                   >
-                    <div className="flex items-center gap-3">
-                      <div
-                        className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
-                        style={{ background: theme.primaryBg }}
-                      >
-                        <level.icon size={16} style={{ color: theme.primary }} />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className={`text-lg font-bold ${isActive ? "text-foreground" : "text-muted-foreground"}`}>
-                          {level.label.replace("Level ", "$").replace(",", ",")}
-                        </p>
-                        <span
-                          className="text-[10px] font-semibold px-2 py-0.5 rounded-full"
-                          style={
-                            isActive
-                              ? { background: "hsl(152 60% 42% / 0.12)", color: "hsl(152 55% 38%)" }
-                              : { background: "hsl(0 45% 50% / 0.10)", color: "hsl(0 50% 48%)" }
-                          }
-                        >
-                          {isActive ? "✓ Active" : "○ Inactive"}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between mt-3 text-[10px] text-muted-foreground">
-                      <span>↻ Auto-Renew</span>
-                      <div
-                        className="w-8 h-[18px] rounded-full relative cursor-pointer"
-                        style={{ background: theme.gradient }}
-                      >
-                        <div className="absolute right-0.5 top-[3px] w-3 h-3 rounded-full bg-white shadow" />
-                      </div>
-                    </div>
-                    {showAutoUpgrade && (
-                      <div className="flex items-center justify-between mt-2 text-[10px] text-muted-foreground">
-                        <span>⚡ Auto-Upgrade</span>
-                        <div
-                          className="w-8 h-[18px] rounded-full relative cursor-pointer"
-                          style={{ background: theme.gradient }}
-                        >
-                          <div className="absolute right-0.5 top-[3px] w-3 h-3 rounded-full bg-white shadow" />
+                    <div className="flex items-start justify-between mb-1">
+                      <p className="text-2xl font-bold text-foreground">${level.amount.toLocaleString()}</p>
+                      <div className="flex flex-col gap-1.5 items-end">
+                        <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
+                          <RefreshCw size={10} /> Reentry
+                          <div
+                            className="w-9 h-[20px] rounded-full relative cursor-pointer bg-muted"
+                          >
+                            <div className="absolute left-0.5 top-[3px] w-3.5 h-3.5 rounded-full bg-white shadow" />
+                          </div>
                         </div>
+                        {showUpgrade && (
+                          <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
+                            <Zap size={10} /> Upgrade
+                            <div
+                              className="w-9 h-[20px] rounded-full relative cursor-pointer bg-muted"
+                            >
+                              <div className="absolute left-0.5 top-[3px] w-3.5 h-3.5 rounded-full bg-white shadow" />
+                            </div>
+                          </div>
+                        )}
                       </div>
-                    )}
+                    </div>
+
+                    <span
+                      className="text-[10px] font-semibold px-2 py-0.5 rounded-full w-fit mb-4"
+                      style={
+                        isActive
+                          ? { background: "hsl(152 60% 42% / 0.12)", color: "hsl(152 55% 38%)" }
+                          : { background: "hsl(0 45% 50% / 0.10)", color: "hsl(0 50% 48%)" }
+                      }
+                    >
+                      {isActive ? "✓ Active" : "⊘ Inactive"}
+                    </span>
+
+                    <button
+                      className="w-full py-3 rounded-lg text-sm font-bold tracking-wide flex items-center justify-center gap-1.5 mt-auto active:translate-y-[1px] transition-transform"
+                      style={{ background: theme.gradient, color: theme.textOnGradient, boxShadow: `inset 0 1px 0 ${theme.primaryLight}40` }}
+                    >
+                      <Zap size={14} /> Activate ${level.amount.toLocaleString()}
+                    </button>
                   </div>
                 );
               })}
             </div>
           </div>
 
-          {/* Stats row */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* Stats Row */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
-              { label: "RECEIVED", value: "$0.00", icon: ArrowDownLeft },
-              { label: "TOTAL SENT", value: "$0.00", icon: ArrowUpRight },
-              { label: "TEAM MEMBERS", value: "6", icon: Users, sub: "● 0 Active  ○ 6 Direct" },
-              { label: "WALLET BALANCE", value: "$0.00", icon: Wallet, link: "+ Add Funds" },
+              { label: "Earnings", icon: ArrowDownLeft, value: "•••", hasHide: true },
+              { label: "Team", icon: Users, value: "•••", hasHide: true },
+              { label: "Balance", icon: Briefcase, value: "•••", hasHide: true, link: "+ Deposit" },
             ].map((stat) => (
-              <div key={stat.label} className="bg-background rounded-xl p-4 border border-border" style={{ borderTop: `3px solid ${theme.primary}` }}>
-                <div
-                  className="w-9 h-9 rounded-lg flex items-center justify-center mb-3"
-                  style={{ background: theme.primaryBg }}
-                >
-                  <stat.icon size={18} style={{ color: theme.primary }} />
+              <div
+                key={stat.label}
+                className="bg-background rounded-xl p-4 border border-border"
+                style={{ borderTop: `3px solid ${theme.primary}` }}
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <div
+                      className="w-8 h-8 rounded-lg flex items-center justify-center"
+                      style={{ background: theme.primaryBg }}
+                    >
+                      <stat.icon size={16} style={{ color: theme.primary }} />
+                    </div>
+                    <span className="text-sm font-medium text-foreground">{stat.label}</span>
+                  </div>
+                  {stat.hasHide && <EyeOff size={14} className="text-muted-foreground/40 cursor-pointer" />}
                 </div>
-                <p className="text-[11px] text-muted-foreground tracking-wide">{stat.label}</p>
-                <p className="text-xl font-semibold mt-0.5" style={{ color: theme.primary }}>
-                  {stat.value}
-                </p>
-                {stat.sub && <p className="text-[10px] text-muted-foreground mt-1">{stat.sub}</p>}
+                <p className="text-lg font-semibold text-foreground">{stat.value}</p>
                 {stat.link && (
-                  <button className="text-[11px] mt-1 font-medium" style={{ color: theme.primary }}>
+                  <button className="text-xs mt-1 font-medium" style={{ color: theme.primary }}>
                     {stat.link}
                   </button>
                 )}
@@ -248,100 +261,12 @@ const DashboardLayout = ({ theme }: { theme: ThemeConfig }) => {
             ))}
           </div>
 
-          {/* Quick Actions */}
-          <div>
-            <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-1.5">
-              <Star size={14} style={{ color: theme.primary }} /> Quick Actions
-            </h3>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-              {quickActions.map((a) => (
-                <button
-                  key={a.label}
-                  className="bg-background rounded-xl p-4 border border-border flex items-center gap-3 transition-colors text-left group"
-                >
-                  <div
-                    className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0"
-                    style={{ background: theme.primaryBg }}
-                  >
-                    <a.icon size={15} style={{ color: theme.primary }} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-foreground">{a.label}</p>
-                    <p className="text-[11px] text-muted-foreground">{a.desc}</p>
-                  </div>
-                  <ChevronRight size={14} className="text-muted-foreground/40 group-hover:text-muted-foreground" />
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Bottom row */}
-          <div className="grid lg:grid-cols-2 gap-4">
-            {/* Team Overview */}
-            <div className="bg-background rounded-xl p-5 border border-border">
-              <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-1.5">
-                <UsersRound size={14} style={{ color: theme.primary }} /> Team Overview
-              </h3>
-              <div className="grid grid-cols-4 gap-4 text-center">
-                {[
-                  { label: "ACTIVE RATE", value: "0%" },
-                  { label: "DIRECT REFERRALS", value: "6" },
-                  { label: "TOTAL TEAM", value: "6" },
-                  { label: "OPEN ICS", value: "0" },
-                ].map((s) => (
-                  <div key={s.label}>
-                    <p className="text-lg font-semibold" style={{ color: theme.primary }}>
-                      {s.value}
-                    </p>
-                    <p className="text-[10px] text-muted-foreground tracking-wide mt-1">{s.label}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="flex gap-3 mt-5">
-                <button
-                  className="px-4 py-2 rounded-lg text-xs font-medium"
-                  style={{ background: theme.gradient, color: theme.textOnGradient, boxShadow: `inset 0 1px 0 ${theme.primaryLight}40` }}
-                >
-                  View Full Team →
-                </button>
-                <button className="text-xs font-medium" style={{ color: theme.primary }}>
-                  View Income Centers
-                </button>
-              </div>
-            </div>
-
-            {/* Goals & Progress */}
-            <div className="bg-background rounded-xl p-5 border border-border">
-              <h3 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-1.5">
-                <Star size={14} style={{ color: theme.primary }} /> Goals & Progress
-              </h3>
-              <div className="space-y-4">
-                {theme.levels.map((g) => (
-                  <div key={g.label}>
-                    <div className="flex items-center justify-between mb-1">
-                      <div className="flex items-center gap-2">
-                        <g.icon size={14} style={{ color: theme.primary }} />
-                        <span className="text-sm font-medium">{g.label}</span>
-                      </div>
-                      <span className="text-xs text-muted-foreground">0%</span>
-                    </div>
-                    <Progress value={0} className="h-1.5 bg-muted" />
-                    <p className="text-[10px] text-muted-foreground mt-0.5">{g.amount}</p>
-                  </div>
-                ))}
-              </div>
-              <p className="text-xs mt-4 flex items-center gap-1" style={{ color: theme.primary }}>
-                <Lightbulb size={12} /> Invite 2 members to accelerate your progress to the next level!
-              </p>
-            </div>
-          </div>
-
           {/* Footer */}
           <footer className="text-center text-[11px] text-muted-foreground pt-6 pb-2 space-x-4">
             <span>Terms</span>
             <span>Privacy</span>
             <span>Guarantee</span>
-            <p className="mt-1">© 2001–2026 Coop5050™. All rights reserved.</p>
+            <p className="mt-1">© 2001–2026 5050{theme.name}™. All rights reserved.</p>
           </footer>
         </main>
       </div>
