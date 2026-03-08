@@ -64,7 +64,7 @@ const HowItWorksFast = () => {
             <Link to="/" className="text-sm font-medium underline text-black/70 hover:text-black transition-colors">
               Home
             </Link>
-            <Link to="/#join" className="text-sm font-medium underline text-black/70 hover:text-black transition-colors">
+            <Link to="/register/fast" className="text-sm font-medium underline text-black/70 hover:text-black transition-colors">
               Join Now
             </Link>
             <Link to="/login" className="text-sm font-medium underline text-black/70 hover:text-black transition-colors">
