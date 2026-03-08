@@ -56,9 +56,9 @@ const LandingCore = () => {
             >
               Join Now
             </a>
-            <p className="text-white/70 text-xs">
+            <p className="text-foreground text-xs">
               Already a member?{" "}
-              <Link to="/login" className="text-white underline hover:text-white/90 font-medium">Log in here</Link>
+              <Link to="/login" className="text-foreground underline hover:text-foreground/80 font-medium">Log in here</Link>
             </p>
           </div>
 
