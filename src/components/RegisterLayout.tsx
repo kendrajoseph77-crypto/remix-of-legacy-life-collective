@@ -17,6 +17,7 @@ interface RegisterTheme {
   royaltyLevels: number[];
   licensingFee: string;
   bgImage: string;
+  systemLogo?: string;
 }
 
 const RegisterLayout = ({ theme }: { theme: RegisterTheme }) => {
@@ -157,7 +158,11 @@ const RegisterLayout = ({ theme }: { theme: RegisterTheme }) => {
           >
             {/* Logo */}
             <Link to="/" className="flex justify-center mb-4">
-              <Logo className="!h-14" />
+              {theme.systemLogo ? (
+                <img src={theme.systemLogo} alt={`5050 ${theme.name} logo`} className="h-14 w-auto" />
+              ) : (
+                <Logo className="!h-14" />
+              )}
             </Link>
 
             <h1
