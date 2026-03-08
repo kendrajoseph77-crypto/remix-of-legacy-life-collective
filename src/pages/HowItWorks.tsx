@@ -10,9 +10,6 @@ import heroPerson1 from "@/assets/hero-person-1.jpg";
 import heroPerson2 from "@/assets/hero-person-2.jpg";
 import classyAsianWoman from "@/assets/classy-asian-woman.jpg";
 import heroPerson3 from "@/assets/hero-person-3.jpg";
-import explainerFast from "@/assets/explainer-fast.mp4";
-import explainerCore from "@/assets/explainer-core.mp4";
-import explainerMax from "@/assets/explainer-max.mp4";
 
 
 const steps = [
