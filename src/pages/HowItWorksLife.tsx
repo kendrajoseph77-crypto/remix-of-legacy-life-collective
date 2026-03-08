@@ -76,7 +76,7 @@ const HowItWorksLife = () => {
               The Simplest Path to Real Income
             </h1>
             <p className="text-white/60 text-base leading-relaxed max-w-2xl mx-auto mb-4">
-              No selling. No recruiting quotas. No complicated funnels. Just a transparent, member-driven system where everyone who completes 3 doable steps earns — guaranteed.
+              No selling. No recruiting quotas. No complicated funnels. Just a transparent, member-driven system where everyone who completes 3 doable steps earns.
             </p>
             <div className="flex items-center justify-center gap-6 mb-8">
               <p className="text-white/50 text-lg md:text-xl italic font-bold">Financial Freedom Starts Here</p>
