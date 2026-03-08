@@ -90,7 +90,7 @@ const HowItWorksMax = () => {
             <div className="flex items-center justify-center gap-6 mb-8">
               <p className="text-white/50 text-lg md:text-xl italic font-bold">Money for Everything!</p>
               <Link
-                to="/#join"
+                to="/register/max"
                 className="inline-flex items-center px-4 pt-2.5 pb-2 rounded-sm font-bold tracking-widest uppercase text-[11px] transition-all duration-300 hover:scale-105 text-background -translate-y-px"
                 style={{ background: `linear-gradient(180deg, ${GOLD}, hsl(39 55% 42%))` }}
               >
