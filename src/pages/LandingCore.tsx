@@ -46,7 +46,14 @@ const LandingCore = () => {
                 style={{ height: "108px", filter: "drop-shadow(0 0 12px hsl(38 70% 60% / 0.5))" }}
               />
             </div>
-            <a href="#join" className="mt-1 px-8 py-3 rounded-md text-sm font-bold tracking-wide btn-gold inline-block">
+            <a
+              href="#join"
+              className="mt-1 px-8 py-3 rounded-md text-sm font-bold tracking-wide inline-block text-white transition-all duration-300 hover:brightness-110"
+              style={{
+                background: "linear-gradient(135deg, hsl(160 80% 50%), hsl(160 80% 42%), hsl(160 80% 34%))",
+                boxShadow: "0 4px 16px hsl(160 80% 42% / 0.4), inset 0 1px 0 hsl(160 80% 60% / 0.5)",
+              }}
+            >
               Join Now
             </a>
             <p className="text-white/70 text-xs">
