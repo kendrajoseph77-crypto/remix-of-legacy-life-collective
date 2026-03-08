@@ -1,5 +1,5 @@
-import { Star, Gem, Crown } from "lucide-react";
 import DashboardLayout from "@/components/DashboardLayout";
+import logoM from "@/assets/logo-5050-m.svg";
 
 const theme = {
   name: "Max",
@@ -11,10 +11,11 @@ const theme = {
   gradientLight: "linear-gradient(135deg, hsl(41 50% 65%), hsl(39 55% 52%))",
   textOnGradient: "hsl(35 30% 10%)",
   levels: [
-    { label: "Level 2,500", amount: "$0.00 / $2,500.00", icon: Star },
-    { label: "Level 5,000", amount: "$0.00 / $5,000.00", icon: Gem },
-    { label: "Level 10,000", amount: "$0.00 / $10,000.00", icon: Crown },
+    { amount: 2500, label: "$2,500" },
+    { amount: 5000, label: "$5,000" },
+    { amount: 10000, label: "$10,000" },
   ],
+  systemLogo: logoM,
 };
 
 const Dashboard = () => <DashboardLayout theme={theme} />;

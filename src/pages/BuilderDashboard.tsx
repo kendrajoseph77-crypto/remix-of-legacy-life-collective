@@ -1,5 +1,5 @@
-import { Star, Gem, Crown } from "lucide-react";
 import DashboardLayout from "@/components/DashboardLayout";
+import logoF from "@/assets/logo-5050-f.svg";
 
 const theme = {
   name: "Fast",
@@ -11,10 +11,11 @@ const theme = {
   gradientLight: "linear-gradient(135deg, hsl(224 80% 68%), hsl(224 85% 58%))",
   textOnGradient: "hsl(224 30% 98%)",
   levels: [
-    { label: "Level 25", amount: "$0.00 / $25.00", icon: Star },
-    { label: "Level 50", amount: "$0.00 / $50.00", icon: Gem },
-    { label: "Level 100", amount: "$0.00 / $100.00", icon: Crown },
+    { amount: 25, label: "$25" },
+    { amount: 50, label: "$50" },
+    { amount: 100, label: "$100" },
   ],
+  systemLogo: logoF,
 };
 
 const BuilderDashboard = () => <DashboardLayout theme={theme} />;
