@@ -3,7 +3,7 @@ import { CheckCircle, ArrowRight } from "lucide-react";
 import { TwoRingWheelhouse, MobiusLoopVisual, MultiCycleWheelhouse } from "@/components/WheelhouseAnimations";
 import logoF from "@/assets/logo-5050-f.svg";
 import logoC from "@/assets/logo-5050-c.svg";
-import logoM from "@/assets/logo-5050-m.svg";
+import logoM from "@/assets/logo-max-gold.png";
 import logoMain from "@/assets/logo-5050-main.svg";
 import heroPerson1 from "@/assets/hero-person-1.jpg";
 import heroPerson2 from "@/assets/hero-person-2.jpg";
