@@ -66,7 +66,7 @@ const HowItWorksMax = () => {
             <Link to="/" className="text-sm font-medium underline text-white/70 hover:text-white transition-colors">
               Home
             </Link>
-            <Link to="/#join" className="text-sm font-medium underline text-white/70 hover:text-white transition-colors">
+            <Link to="/register/max" className="text-sm font-medium underline text-white/70 hover:text-white transition-colors">
               Join Now
             </Link>
             <Link to="/login" className="text-sm font-medium underline text-white/70 hover:text-white transition-colors">
@@ -90,7 +90,7 @@ const HowItWorksMax = () => {
             <div className="flex items-center justify-center gap-6 mb-8">
               <p className="text-white/50 text-lg md:text-xl italic font-bold">Money for Everything!</p>
               <Link
-                to="/#join"
+                to="/register/max"
                 className="inline-flex items-center px-4 pt-2.5 pb-2 rounded-sm font-bold tracking-widest uppercase text-[11px] transition-all duration-300 hover:scale-105 text-background -translate-y-px"
                 style={{ background: `linear-gradient(180deg, ${GOLD}, hsl(39 55% 42%))` }}
               >
@@ -241,7 +241,7 @@ const HowItWorksMax = () => {
             </h3>
             <p className="text-lg font-bold text-white mb-8">Wouldn't that change your life!</p>
             <Link
-              to="/#join"
+              to="/register/max"
               className="inline-flex items-center gap-2 px-10 py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:scale-105"
               style={{ background: `linear-gradient(180deg, ${GOLD}, hsl(39 55% 42%))`, color: "hsl(0 0% 6%)" }}
             >
