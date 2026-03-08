@@ -18,6 +18,8 @@ import NotFound from "./pages/NotFound";
 import HowItWorksDemo from "./pages/HowItWorksDemo";
 import HowItWorksLife from "./pages/HowItWorksLife";
 import HowItWorksFast from "./pages/HowItWorksFast";
+import LandingFast from "./pages/LandingFast";
+import LandingCore from "./pages/LandingCore";
 
 const queryClient = new QueryClient();
 
