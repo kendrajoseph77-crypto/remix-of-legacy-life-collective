@@ -57,9 +57,9 @@ const LandingFast = () => {
             >
               Join Now
             </a>
-            <p className="text-white/70 text-xs">
+            <p className="text-white text-xs bg-black/40 backdrop-blur-sm rounded-full px-4 py-1.5">
               Already a member?{" "}
-              <Link to="/login" className="text-white underline hover:text-white/90 font-medium">Log in here</Link>
+              <Link to="/login" className="text-white underline hover:text-white/80 font-medium">Log in here</Link>
             </p>
           </div>
 
@@ -74,7 +74,7 @@ const LandingFast = () => {
             />
           </div>
 
-          <div className="absolute top-4 right-6 z-20 flex items-center gap-4">
+          <div className="absolute top-4 right-6 z-20 flex items-center gap-4 bg-black/40 backdrop-blur-sm rounded-full px-5 py-2">
             <Link to="/how-it-works" className="text-white/80 hover:text-white text-sm font-medium underline transition-colors">
               How It Works
             </Link>
