@@ -18,6 +18,27 @@ import {
   HelpCircle,
   EyeOff,
   Menu,
+  ChevronDown,
+  CreditCard,
+  SendHorizonal,
+  Archive,
+  CheckCircle2,
+  ChevronsDown,
+  DoorOpen,
+  DoorClosed,
+  PlusCircle,
+  ArrowUp,
+  ArrowLeftRight,
+  FileText,
+  Clock,
+  ShoppingCart,
+  List,
+  CornerUpRight,
+  UserPlus2,
+  Key,
+  Wifi,
+  Settings,
+  type LucideIcon,
 } from "lucide-react";
 import Logo from "@/components/Logo";
 
@@ -39,14 +60,73 @@ interface ThemeConfig {
   systemLogo?: string;
 }
 
-const sidebarLinks = [
+interface SidebarItem {
+  label: string;
+  icon: LucideIcon;
+  active?: boolean;
+  children?: { label: string; icon: LucideIcon }[];
+}
+
+const sidebarLinks: SidebarItem[] = [
   { label: "Dashboard", icon: LayoutGrid, active: true },
-  { label: "Contributions", icon: Heart },
-  { label: "Income Centers", icon: LayoutGrid },
-  { label: "Wallet", icon: Briefcase },
-  { label: "Tokens", icon: Coins },
-  { label: "Team", icon: Users },
-  { label: "Profile", icon: UserCircle },
+  {
+    label: "Contributions",
+    icon: Heart,
+    children: [
+      { label: "Methods", icon: CreditCard },
+      { label: "To Send", icon: SendHorizonal },
+      { label: "To Receive", icon: Archive },
+      { label: "Sent", icon: CheckCircle2 },
+      { label: "Received", icon: ChevronsDown },
+    ],
+  },
+  {
+    label: "Income Centers",
+    icon: LayoutGrid,
+    children: [
+      { label: "Open", icon: DoorOpen },
+      { label: "Closed", icon: DoorClosed },
+    ],
+  },
+  {
+    label: "Wallet",
+    icon: Briefcase,
+    children: [
+      { label: "Deposit", icon: PlusCircle },
+      { label: "Withdraw", icon: ArrowUp },
+      { label: "Transfer", icon: ArrowLeftRight },
+      { label: "Invoices", icon: FileText },
+      { label: "Transactions", icon: Clock },
+    ],
+  },
+  {
+    label: "Tokens",
+    icon: Coins,
+    children: [
+      { label: "Purchase", icon: ShoppingCart },
+      { label: "My Tokens", icon: List },
+      { label: "Assign", icon: CornerUpRight },
+      { label: "Activate Account", icon: Zap },
+    ],
+  },
+  {
+    label: "Team",
+    icon: Users,
+    children: [
+      { label: "My Team", icon: Users },
+      { label: "Register New", icon: UserPlus },
+    ],
+  },
+  {
+    label: "Profile",
+    icon: UserCircle,
+    children: [
+      { label: "Profile", icon: UserCircle },
+      { label: "Change Password", icon: Key },
+      { label: "One-Time Login Keys", icon: Wifi },
+      { label: "Settings", icon: Settings },
+    ],
+  },
   { label: "Help", icon: HelpCircle },
 ];
 
