@@ -241,7 +241,7 @@ const HowItWorksMax = () => {
             </h3>
             <p className="text-lg font-bold text-white mb-8">Wouldn't that change your life!</p>
             <Link
-              to="/#join"
+              to="/register/max"
               className="inline-flex items-center gap-2 px-10 py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:scale-105"
               style={{ background: `linear-gradient(180deg, ${GOLD}, hsl(39 55% 42%))`, color: "hsl(0 0% 6%)" }}
             >

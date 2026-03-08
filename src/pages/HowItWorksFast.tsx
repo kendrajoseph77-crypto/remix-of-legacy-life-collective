@@ -241,7 +241,7 @@ const HowItWorksFast = () => {
             </h3>
             <p className="text-lg font-bold text-foreground mb-8">Wouldn't that change your life!</p>
             <Link
-              to="/#join"
+              to="/register/fast"
               className="inline-flex items-center gap-2 px-10 py-4 rounded-sm font-bold tracking-widest uppercase text-sm transition-all duration-300 hover:scale-105 text-white"
               style={{ background: BLUE }}
             >
