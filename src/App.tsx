@@ -15,7 +15,7 @@ import Dashboard from "./pages/Dashboard";
 import FastDashboard from "./pages/BuilderDashboard";
 import CoreDashboard from "./pages/ArchitectDashboard";
 import NotFound from "./pages/NotFound";
-;
+import HowItWorksLife from "./pages/HowItWorksLife";
 import HowItWorksFast from "./pages/HowItWorksFast";
 import LandingFast from "./pages/LandingFast";
 import LandingCore from "./pages/LandingCore";
