@@ -257,7 +257,7 @@ const DashboardLayout = ({ theme }: { theme: ThemeConfig }) => {
                 className="px-5 py-2.5 rounded-lg text-sm font-medium active:translate-y-[2px] transition-transform flex items-center gap-2"
                 style={{ background: theme.gradient, color: theme.textOnGradient, boxShadow: `inset 0 1px 0 ${theme.primaryLight}40, 0 4px 0 ${theme.primaryDark}` }}
               >
-                <Send size={14} /> Send
+                <ArrowUpRight size={14} /> Send
               </button>
               <button
                 className="px-5 py-2.5 rounded-lg text-sm font-medium active:translate-y-[2px] transition-transform flex items-center gap-2 border-2"
