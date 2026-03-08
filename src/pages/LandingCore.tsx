@@ -73,7 +73,7 @@ const LandingCore = () => {
             />
           </div>
 
-          <div className="absolute top-4 right-6 z-20 flex items-center gap-4">
+          <div className="absolute top-4 right-6 z-20 flex items-center gap-4 bg-black/40 backdrop-blur-sm rounded-full px-5 py-2">
             <Link to="/how-it-works" className="text-white/80 hover:text-white text-sm font-medium underline transition-colors">
               How It Works
             </Link>
