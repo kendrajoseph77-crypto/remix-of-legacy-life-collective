@@ -1,5 +1,6 @@
 import RegisterLayout from "@/components/RegisterLayout";
 import bgImage from "@/assets/register-bg-macro.jpg";
+import logoC from "@/assets/logo-5050-c.svg";
 
 const theme = {
   name: "Core",
@@ -10,6 +11,7 @@ const theme = {
   royaltyLevels: [250, 500, 1000],
   licensingFee: "$100",
   bgImage,
+  systemLogo: logoC,
 };
 
 const RegisterMacro = () => <RegisterLayout theme={theme} />;
