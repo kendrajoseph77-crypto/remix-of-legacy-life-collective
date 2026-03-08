@@ -17,6 +17,7 @@ interface RegisterTheme {
   royaltyLevels: number[];
   licensingFee: string;
   bgImage: string;
+  systemLogo?: string;
 }
 
 const RegisterLayout = ({ theme }: { theme: RegisterTheme }) => {
