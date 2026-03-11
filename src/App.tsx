@@ -52,6 +52,7 @@ const App = () => (
           <Route path="/max-background" element={<MaxBackground />} />
           <Route path="/core-background" element={<CoreBackground />} />
           <Route path="/fast-background" element={<FastBackground />} />
+          <Route path="/core-video" element={<CoreVideo />} />
           <Route path="/dashboard/max" element={<Dashboard />} />
           <Route path="/dashboard/fast" element={<FastDashboard />} />
           <Route path="/dashboard/core" element={<CoreDashboard />} />
