@@ -24,6 +24,7 @@ import LandingMax from "./pages/LandingMax";
 import MaxBackground from "./pages/MaxBackground";
 import CoreBackground from "./pages/CoreBackground";
 import FastBackground from "./pages/FastBackground";
+import CoreVideo from "./pages/CoreVideo";
 
 const queryClient = new QueryClient();
 
