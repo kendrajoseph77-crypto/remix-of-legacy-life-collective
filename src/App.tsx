@@ -21,6 +21,7 @@ import HowItWorksCore from "./pages/HowItWorksCore";
 import LandingFast from "./pages/LandingFast";
 import LandingCore from "./pages/LandingCore";
 import LandingMax from "./pages/LandingMax";
+import MaxBackground from "./pages/MaxBackground";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +46,7 @@ const App = () => (
           <Route path="/register/fast" element={<RegisterFast />} />
           <Route path="/register/core" element={<RegisterCore />} />
           <Route path="/register/max" element={<RegisterMax />} />
+          <Route path="/max-background" element={<MaxBackground />} />
           <Route path="/dashboard/max" element={<Dashboard />} />
           <Route path="/dashboard/fast" element={<FastDashboard />} />
           <Route path="/dashboard/core" element={<CoreDashboard />} />
