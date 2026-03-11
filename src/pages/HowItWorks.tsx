@@ -23,7 +23,7 @@ const steps = [
     number: "02",
     title: "Invite 2 Members",
     keyword: "Build",
-    desc: "Help 2 or more people become Active Contributors and join the cooperativvvve.",
+    desc: "Help 2 or more people become Active Contributors and join the cooperative.",
   },
   {
     number: "03",
