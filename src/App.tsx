@@ -46,6 +46,7 @@ const App = () => (
           <Route path="/register/fast" element={<RegisterFast />} />
           <Route path="/register/core" element={<RegisterCore />} />
           <Route path="/register/max" element={<RegisterMax />} />
+          <Route path="/max-background" element={<MaxBackground />} />
           <Route path="/dashboard/max" element={<Dashboard />} />
           <Route path="/dashboard/fast" element={<FastDashboard />} />
           <Route path="/dashboard/core" element={<CoreDashboard />} />
