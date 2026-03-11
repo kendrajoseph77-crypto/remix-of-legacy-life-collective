@@ -137,9 +137,6 @@ const HowItWorks = () => {
             {steps.map((step, i) => (
               <div key={i} className="relative">
                 {i < steps.length - 1 && (
-                {false && (
-                  <div className="hidden md:block absolute top-8 left-full w-full h-px bg-gradient-to-r from-border to-transparent z-10" />
-                )}
                 )}
                 <div className="rounded-xl p-6 bg-background border border-border">
                   <div className="flex items-baseline gap-3 mb-1">
