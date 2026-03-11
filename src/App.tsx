@@ -21,6 +21,7 @@ import HowItWorksCore from "./pages/HowItWorksCore";
 import LandingFast from "./pages/LandingFast";
 import LandingCore from "./pages/LandingCore";
 import LandingMax from "./pages/LandingMax";
+import MaxBackground from "./pages/MaxBackground";
 
 const queryClient = new QueryClient();
 
