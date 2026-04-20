@@ -74,13 +74,13 @@ const WelcomeBack = () => {
       <Navbar />
 
       {/* HERO */}
-      <section className="relative pt-40 pb-28 overflow-hidden section-dark">
+      <section className="relative pt-32 pb-20 overflow-hidden section-dark">
         {/* Abstract Möbius / cycle hero animation */}
         <MobiusHero />
 
-        <div className="relative max-w-5xl mx-auto px-6 text-center">
+        <div className="relative max-w-4xl mx-auto px-6 text-center">
           <div
-            className="inline-flex items-center gap-2 px-5 py-2 mb-10 rounded-full text-xs tracking-[0.3em] uppercase"
+            className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full text-[10px] tracking-[0.3em] uppercase"
             style={{
               background: "hsl(0 0% 100% / 0.08)",
               border: "1px solid hsl(41 50% 65% / 0.3)",
@@ -88,18 +88,11 @@ const WelcomeBack = () => {
             }}
           >
             <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "hsl(41 50% 65%)" }} />
-            <span>Cooperative Universal Income · CUI</span>
+            <span>Welcome back</span>
           </div>
 
-          <p
-            className="text-2xl md:text-3xl italic mb-4 text-white/90"
-            style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}
-          >
-            Welcome back,
-          </p>
-
           <h1
-            className="text-7xl md:text-[10rem] leading-[0.85] mb-10 tracking-tight"
+            className="text-7xl md:text-[9rem] leading-[0.85] mb-6 tracking-tight"
             style={{
               fontFamily: "'Plus Jakarta Sans', sans-serif",
               fontWeight: 800,
@@ -110,16 +103,10 @@ const WelcomeBack = () => {
           </h1>
 
           <p
-            className="text-2xl md:text-4xl italic mb-6 text-white/90 max-w-3xl mx-auto leading-[1.15]"
+            className="text-2xl md:text-4xl italic mb-8 text-white/90 max-w-2xl mx-auto leading-[1.1]"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}
           >
-            The original income engine<br />of the cooperative economy
-          </p>
-          <p
-            className="text-xs md:text-sm tracking-[0.4em] uppercase mb-10 font-semibold"
-            style={{ color: "hsl(41 50% 65%)" }}
-          >
-            Refined &nbsp;·&nbsp; Accelerated
+            Your seat is <span className="gold-gradient">still on the wheel.</span>
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -127,16 +114,12 @@ const WelcomeBack = () => {
               href={reactivateUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-gold px-12 py-5 rounded-full font-bold tracking-wider uppercase text-sm inline-flex items-center gap-3"
+              className="btn-gold px-10 py-4 rounded-full font-bold tracking-wider uppercase text-sm inline-flex items-center gap-3"
             >
               Reactivate Now
               <ArrowRight className="w-4 h-4" />
             </a>
           </div>
-
-          <p className="text-xs tracking-[0.2em] uppercase mt-6 text-white/40">
-            Opens coop5050.com in a new window
-          </p>
         </div>
       </section>
 
