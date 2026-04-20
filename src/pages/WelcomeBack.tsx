@@ -265,9 +265,7 @@ const WelcomeBack = () => {
             <span className="gold-gradient italic">Life the way you deserve it.</span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            Pay your monthly bills. Eliminate debt. Fund your best life. The cooperative
-            doesn't ask you to compete — it asks you to participate. And participation,
-            compounded across a team, changes everything.
+            Pay the bills. Kill the debt. Fund the life. Don't compete — participate.
           </p>
         </div>
       </section>
