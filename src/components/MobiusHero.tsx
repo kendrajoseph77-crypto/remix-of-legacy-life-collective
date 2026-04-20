@@ -2,23 +2,28 @@ import { useEffect, useState } from "react";
 
 /**
  * MobiusHero — abstract animated background for the Welcome Back hero.
- * Pure ring sequence: 9 concentric vault rings light up one at a time
- * with a soft cobalt glow, then hold and reset. No arms, no nodes.
+ * Three concentric levels of the matrix fill in sequence with a soft
+ * cobalt glow filling each ring (not lines). Holds when complete, then resets.
  */
 const ACCENT = "hsl(224 78% 58%)";
-const ACCENT_DEEP = "hsl(224 78% 38%)";
 const ACCENT_LIGHT = "hsl(220 90% 75%)";
 
 const CX = 600;
 const CY = 300;
 
-const RING_COUNT = 9;
-const STEP_MS = 700;
-const COMPLETE_HOLD_MS = 2200;
+// 3 levels of the matrix
+const LEVELS = [
+  { rOuter: 90,  rInner: 0 },    // Level 1 — YOU (core disc)
+  { rOuter: 180, rInner: 105 },  // Level 2 — inner ring
+  { rOuter: 280, rInner: 195 },  // Level 3 — outer ring
+];
+
+const STEP_MS = 1100;
+const COMPLETE_HOLD_MS = 2400;
 const RESET_FADE_MS = 1400;
 
 const MobiusHero = () => {
-  const [step, setStep] = useState(0); // 0..RING_COUNT (rings lit so far)
+  const [step, setStep] = useState(0); // 0..3 (levels lit so far)
   const [completed, setCompleted] = useState(false);
 
   useEffect(() => {
@@ -27,7 +32,7 @@ const MobiusHero = () => {
 
     const tick = (current: number) => {
       if (!mounted) return;
-      if (current <= RING_COUNT) {
+      if (current <= LEVELS.length) {
         setStep(current);
         timer = window.setTimeout(() => tick(current + 1), STEP_MS);
       } else {
@@ -50,12 +55,12 @@ const MobiusHero = () => {
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      {/* Soft atmospheric wash — minimal */}
+      {/* Soft atmospheric base wash */}
       <div
         className="absolute top-1/2 left-1/2 w-[44rem] h-[44rem] rounded-full blur-3xl"
         style={{
           background: `radial-gradient(circle, ${ACCENT} 0%, transparent 68%)`,
-          opacity: 0.18,
+          opacity: 0.14,
           transform: "translate(-50%, -50%)",
         }}
       />
@@ -66,112 +71,82 @@ const MobiusHero = () => {
         preserveAspectRatio="xMidYMid slice"
       >
         <defs>
-          {/* Per-ring soft outer glow */}
-          <filter id="ring-soft-glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="6" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
+          {/* Each level gets a radial glow gradient — bright at the ring, soft toward edges */}
+          {LEVELS.map((lvl, i) => {
+            const id = `level-${i}-glow`;
+            // Center the glow inside the band thickness
+            return (
+              <radialGradient
+                key={id}
+                id={id}
+                cx="50%"
+                cy="50%"
+                r="50%"
+              >
+                {i === 0 ? (
+                  // Core disc: brightest at center
+                  <>
+                    <stop offset="0%" stopColor={ACCENT_LIGHT} stopOpacity="0.55" />
+                    <stop offset="55%" stopColor={ACCENT} stopOpacity="0.28" />
+                    <stop offset="100%" stopColor={ACCENT} stopOpacity="0" />
+                  </>
+                ) : (
+                  // Annular bands: soft glow filling the band
+                  <>
+                    <stop offset="0%" stopColor={ACCENT} stopOpacity="0" />
+                    <stop offset={`${(lvl.rInner / lvl.rOuter) * 100 - 6}%`} stopColor={ACCENT} stopOpacity="0" />
+                    <stop offset={`${((lvl.rInner + (lvl.rOuter - lvl.rInner) / 2) / lvl.rOuter) * 100}%`} stopColor={ACCENT_LIGHT} stopOpacity="0.32" />
+                    <stop offset="100%" stopColor={ACCENT} stopOpacity="0" />
+                  </>
+                )}
+              </radialGradient>
+            );
+          })}
         </defs>
 
-        {/* Faint base rings — always present, structural skeleton */}
-        {Array.from({ length: RING_COUNT }).map((_, i) => {
-          const r = 60 + i * 30;
-          return (
-            <circle
-              key={`base-${i}`}
-              cx={CX}
-              cy={CY}
-              r={r}
-              fill="none"
-              stroke={ACCENT}
-              strokeWidth="0.6"
-              strokeOpacity="0.08"
-              strokeDasharray="2 8"
-            />
-          );
-        })}
+        {/* Faint base ring outlines — barely there, just structural hint */}
+        {LEVELS.map((lvl, i) => (
+          <circle
+            key={`base-${i}`}
+            cx={CX}
+            cy={CY}
+            r={lvl.rOuter}
+            fill="none"
+            stroke={ACCENT}
+            strokeWidth="0.6"
+            strokeOpacity="0.07"
+            strokeDasharray="2 10"
+          />
+        ))}
 
-        {/* Lit rings — fill in sequence */}
-        {Array.from({ length: RING_COUNT }).map((_, i) => {
-          const r = 60 + i * 30;
+        {/* Lit levels — each fills its ring with a soft glow */}
+        {LEVELS.map((lvl, i) => {
           const isLit = i < step;
           return (
             <g
               key={`lit-${i}`}
               style={{
-                opacity: isLit ? (completed ? 0.9 : 1) : 0,
-                transition: "opacity 0.9s ease",
+                opacity: isLit ? (completed ? 0.85 : 1) : 0,
+                transition: "opacity 1.4s ease",
               }}
             >
-              {/* outer wide soft halo */}
               <circle
                 cx={CX}
                 cy={CY}
-                r={r}
-                fill="none"
-                stroke={ACCENT_LIGHT}
-                strokeWidth="3"
-                strokeOpacity="0.18"
-                filter="url(#ring-soft-glow)"
-              />
-              {/* mid glow */}
-              <circle
-                cx={CX}
-                cy={CY}
-                r={r}
-                fill="none"
-                stroke={ACCENT_LIGHT}
-                strokeWidth="1.2"
-                strokeOpacity="0.55"
-              />
-              {/* crisp core line */}
-              <circle
-                cx={CX}
-                cy={CY}
-                r={r}
-                fill="none"
-                stroke={ACCENT_LIGHT}
-                strokeWidth="0.6"
-                strokeOpacity="0.95"
+                r={lvl.rOuter}
+                fill={`url(#level-${i}-glow)`}
               />
             </g>
           );
         })}
-
-        {/* Completion breath — when all 9 are lit, the whole stack pulses softly outward */}
-        {completed && (
-          <g>
-            <circle
-              cx={CX}
-              cy={CY}
-              r={60 + (RING_COUNT - 1) * 30}
-              fill="none"
-              stroke={ACCENT_LIGHT}
-              strokeWidth="1.5"
-              opacity="0.5"
-            >
-              <animate
-                attributeName="r"
-                from={60 + (RING_COUNT - 1) * 30}
-                to={60 + (RING_COUNT - 1) * 30 + 80}
-                dur="1.8s"
-                fill="freeze"
-              />
-              <animate attributeName="opacity" from="0.55" to="0" dur="1.8s" fill="freeze" />
-            </circle>
-          </g>
-        )}
       </svg>
 
-      {/* Subtle vignette for hero text legibility */}
+      {/* Subtle vignette */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse at center, transparent 38%, hsl(0 0% 0% / 0.4) 100%)",
+            "radial-gradient(ellipse at center, transparent 42%, hsl(0 0% 0% / 0.38) 100%)",
         }}
       />
     </div>
