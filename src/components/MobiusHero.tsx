@@ -2,59 +2,23 @@ import { useEffect, useState } from "react";
 
 /**
  * MobiusHero — abstract animated background for the Welcome Back hero.
- * Visualizes the Cooperative Matrix filling: 1 core → 2 inner → 4 outer (×6),
- * then completes and resets in an endless cycle. No infinity symbols,
- * no random orbits — just the brand structure, breathing.
+ * Pure ring sequence: 9 concentric vault rings light up one at a time
+ * with a soft cobalt glow, then hold and reset. No arms, no nodes.
  */
-const GOLD = "hsl(224 78% 58%)";
-const GOLD_DEEP = "hsl(224 78% 38%)";
-const GOLD_LIGHT = "hsl(220 90% 75%)";
+const ACCENT = "hsl(224 78% 58%)";
+const ACCENT_DEEP = "hsl(224 78% 38%)";
+const ACCENT_LIGHT = "hsl(220 90% 75%)";
 
 const CX = 600;
 const CY = 300;
 
-// Matrix layout — same topology as WheelhouseAnimations (YOU + 2 inner + 4 outer)
-const inner = [
-  { x: CX, y: CY - 150 }, // top
-  { x: CX, y: CY + 150 }, // bottom
-];
-const outer = [
-  { x: CX - 260, y: CY - 220, parent: 0 }, // top-left
-  { x: CX + 260, y: CY - 220, parent: 0 }, // top-right
-  { x: CX - 260, y: CY + 220, parent: 1 }, // bottom-left
-  { x: CX + 260, y: CY + 220, parent: 1 }, // bottom-right
-];
-
-// Connection paths (right-angle elbows like the brand wheelhouse)
-const buildElbow = (
-  x1: number, y1: number, x2: number, y2: number, midX?: number
-) => {
-  const mx = midX ?? (x1 + x2) / 2;
-  return `M ${x1} ${y1} L ${mx} ${y1} L ${mx} ${y2} L ${x2} ${y2}`;
-};
-
-const innerPaths = [
-  // YOU -> inner top
-  `M ${CX} ${CY - 40} L ${CX} ${inner[0].y + 30}`,
-  // YOU -> inner bottom
-  `M ${CX} ${CY + 40} L ${CX} ${inner[1].y - 30}`,
-];
-
-const outerPaths = [
-  buildElbow(inner[0].x - 25, inner[0].y, outer[0].x + 25, outer[0].y, CX - 130),
-  buildElbow(inner[0].x + 25, inner[0].y, outer[1].x - 25, outer[1].y, CX + 130),
-  buildElbow(inner[1].x - 25, inner[1].y, outer[2].x + 25, outer[2].y, CX - 130),
-  buildElbow(inner[1].x + 25, inner[1].y, outer[3].x - 25, outer[3].y, CX + 130),
-];
-
-// Sequence: 0 = nothing, 1 = YOU, 2-3 = inner, 4-7 = outer, 8 = complete pulse, 9 = reset
-const TOTAL_STEPS = 8;
-const STEP_MS = 900;
-const COMPLETE_HOLD_MS = 1800;
-const RESET_FADE_MS = 1200;
+const RING_COUNT = 9;
+const STEP_MS = 700;
+const COMPLETE_HOLD_MS = 2200;
+const RESET_FADE_MS = 1400;
 
 const MobiusHero = () => {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(0); // 0..RING_COUNT (rings lit so far)
   const [completed, setCompleted] = useState(false);
 
   useEffect(() => {
@@ -63,12 +27,10 @@ const MobiusHero = () => {
 
     const tick = (current: number) => {
       if (!mounted) return;
-      if (current < TOTAL_STEPS) {
+      if (current <= RING_COUNT) {
         setStep(current);
         timer = window.setTimeout(() => tick(current + 1), STEP_MS);
       } else {
-        // Completed all 7 nodes — hold, pulse, then reset
-        setStep(TOTAL_STEPS);
         setCompleted(true);
         timer = window.setTimeout(() => {
           if (!mounted) return;
@@ -86,19 +48,14 @@ const MobiusHero = () => {
     };
   }, []);
 
-  // step thresholds: YOU at 1, inner at 2-3, outer at 4-7
-  const youOn = step >= 1;
-  const innerOn = (i: number) => step >= 2 + i;
-  const outerOn = (i: number) => step >= 4 + i;
-  const innerLineOn = (i: number) => step >= 2 + i;
-  const outerLineOn = (i: number) => step >= 4 + i;
-
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {/* Soft atmospheric wash — minimal */}
       <div
         className="absolute top-1/2 left-1/2 w-[44rem] h-[44rem] rounded-full blur-3xl"
         style={{
-          background: `radial-gradient(circle, hsl(224 78% 55% / 0.18) 0%, transparent 68%)`,
+          background: `radial-gradient(circle, ${ACCENT} 0%, transparent 68%)`,
+          opacity: 0.18,
           transform: "translate(-50%, -50%)",
         }}
       />
@@ -109,136 +66,112 @@ const MobiusHero = () => {
         preserveAspectRatio="xMidYMid slice"
       >
         <defs>
-          <radialGradient id="core-glow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor={GOLD_LIGHT} stopOpacity="0.55" />
-            <stop offset="100%" stopColor={GOLD} stopOpacity="0" />
-          </radialGradient>
-
-          <radialGradient id="node-glow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor={GOLD_LIGHT} stopOpacity="0.45" />
-            <stop offset="100%" stopColor={GOLD} stopOpacity="0" />
-          </radialGradient>
-
-          <linearGradient id="line-flow" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor={GOLD_DEEP} stopOpacity="0.15" />
-            <stop offset="50%" stopColor={GOLD_LIGHT} stopOpacity="0.55" />
-            <stop offset="100%" stopColor={GOLD_DEEP} stopOpacity="0.15" />
-          </linearGradient>
+          {/* Per-ring soft outer glow */}
+          <filter id="ring-soft-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="6" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
         </defs>
 
-        <g
-          style={{
-            transform: "scale(0.72)",
-            transformOrigin: "600px 300px",
-            opacity: completed ? 0.7 : 0.85,
-            transition: "opacity 1.2s ease",
-          }}
-        >
-          {Array.from({ length: 9 }).map((_, i) => {
-            const r = 70 + i * 38;
-            const isVault = i % 3 === 2;
-            return (
+        {/* Faint base rings — always present, structural skeleton */}
+        {Array.from({ length: RING_COUNT }).map((_, i) => {
+          const r = 60 + i * 30;
+          return (
+            <circle
+              key={`base-${i}`}
+              cx={CX}
+              cy={CY}
+              r={r}
+              fill="none"
+              stroke={ACCENT}
+              strokeWidth="0.6"
+              strokeOpacity="0.08"
+              strokeDasharray="2 8"
+            />
+          );
+        })}
+
+        {/* Lit rings — fill in sequence */}
+        {Array.from({ length: RING_COUNT }).map((_, i) => {
+          const r = 60 + i * 30;
+          const isLit = i < step;
+          return (
+            <g
+              key={`lit-${i}`}
+              style={{
+                opacity: isLit ? (completed ? 0.9 : 1) : 0,
+                transition: "opacity 0.9s ease",
+              }}
+            >
+              {/* outer wide soft halo */}
               <circle
-                key={`ring-${i}`}
                 cx={CX}
                 cy={CY}
                 r={r}
                 fill="none"
-                stroke={GOLD}
-                strokeWidth={isVault ? 1 : 0.6}
-                strokeOpacity={isVault ? 0.14 : 0.06}
-                strokeDasharray={isVault ? "none" : "2 10"}
+                stroke={ACCENT_LIGHT}
+                strokeWidth="3"
+                strokeOpacity="0.18"
+                filter="url(#ring-soft-glow)"
               />
-            );
-          })}
+              {/* mid glow */}
+              <circle
+                cx={CX}
+                cy={CY}
+                r={r}
+                fill="none"
+                stroke={ACCENT_LIGHT}
+                strokeWidth="1.2"
+                strokeOpacity="0.55"
+              />
+              {/* crisp core line */}
+              <circle
+                cx={CX}
+                cy={CY}
+                r={r}
+                fill="none"
+                stroke={ACCENT_LIGHT}
+                strokeWidth="0.6"
+                strokeOpacity="0.95"
+              />
+            </g>
+          );
+        })}
 
-          {innerPaths.map((d, i) => (
-            <path key={`s-i-${i}`} d={d} fill="none" stroke={GOLD} strokeWidth="1" strokeOpacity="0.12" />
-          ))}
-          {outerPaths.map((d, i) => (
-            <path key={`s-o-${i}`} d={d} fill="none" stroke={GOLD} strokeWidth="1" strokeOpacity="0.12" />
-          ))}
-
-          {innerPaths.map((d, i) => (
-            <path
-              key={`a-i-${i}`}
-              d={d}
+        {/* Completion breath — when all 9 are lit, the whole stack pulses softly outward */}
+        {completed && (
+          <g>
+            <circle
+              cx={CX}
+              cy={CY}
+              r={60 + (RING_COUNT - 1) * 30}
               fill="none"
-              stroke="url(#line-flow)"
-              strokeWidth="1"
-              strokeLinecap="round"
-              style={{
-                opacity: innerLineOn(i) ? 1 : 0,
-                transition: "opacity 1.1s ease",
-              }}
-            />
-          ))}
-          {outerPaths.map((d, i) => (
-            <path
-              key={`a-o-${i}`}
-              d={d}
-              fill="none"
-              stroke="url(#line-flow)"
-              strokeWidth="0.9"
-              strokeLinecap="round"
-              style={{
-                opacity: outerLineOn(i) ? 1 : 0,
-                transition: "opacity 1.1s ease",
-              }}
-            />
-          ))}
-
-          {outer.map((node, i) => {
-            const on = outerOn(i);
-            return (
-              <g
-                key={`o-${i}`}
-                style={{
-                  opacity: on ? 0.75 : 0,
-                  transition: "opacity 0.9s ease",
-                }}
-              >
-                <circle cx={node.x} cy={node.y} r="9" fill="url(#node-glow)" />
-                <circle cx={node.x} cy={node.y} r="1.8" fill={GOLD_LIGHT} fillOpacity="0.9" />
-              </g>
-            );
-          })}
-
-          {inner.map((node, i) => {
-            const on = innerOn(i);
-            return (
-              <g
-                key={`i-${i}`}
-                style={{
-                  opacity: on ? 0.82 : 0,
-                  transition: "opacity 0.9s ease",
-                }}
-              >
-                <circle cx={node.x} cy={node.y} r="11" fill="url(#node-glow)" />
-                <circle cx={node.x} cy={node.y} r="2.2" fill={GOLD_LIGHT} fillOpacity="0.95" />
-              </g>
-            );
-          })}
-
-          <g
-            style={{
-              opacity: youOn ? 0.9 : 0.2,
-              transition: "opacity 1s ease",
-            }}
-          >
-            <circle cx={CX} cy={CY} r="18" fill="url(#core-glow)" />
-            <circle cx={CX} cy={CY} r="3" fill={GOLD_LIGHT}>
-              <animate attributeName="opacity" values="0.45;0.8;0.45" dur="4s" repeatCount="indefinite" />
+              stroke={ACCENT_LIGHT}
+              strokeWidth="1.5"
+              opacity="0.5"
+            >
+              <animate
+                attributeName="r"
+                from={60 + (RING_COUNT - 1) * 30}
+                to={60 + (RING_COUNT - 1) * 30 + 80}
+                dur="1.8s"
+                fill="freeze"
+              />
+              <animate attributeName="opacity" from="0.55" to="0" dur="1.8s" fill="freeze" />
             </circle>
           </g>
-        </g>
+        )}
       </svg>
 
+      {/* Subtle vignette for hero text legibility */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse at center, transparent 40%, hsl(0 0% 0% / 0.35) 100%)",
+            "radial-gradient(ellipse at center, transparent 38%, hsl(0 0% 0% / 0.4) 100%)",
         }}
       />
     </div>
