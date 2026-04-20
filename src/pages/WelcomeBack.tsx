@@ -215,27 +215,29 @@ const WelcomeBack = () => {
             className="text-xs tracking-[0.35em] uppercase mb-5 font-semibold"
             style={{ color: "hsl(41 50% 65%)" }}
           >
-            Your Seat Is Reserved
+            You're Already Family
           </p>
           <h2
             className="text-5xl md:text-7xl leading-[1.02] mb-8 text-white"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 500 }}
           >
-            The platform evolved.
+            Step back into
             <br />
-            <span className="gold-gradient italic">So should you.</span>
+            <span className="gold-gradient italic">the cycle.</span>
           </h2>
           <p className="text-lg text-white/60 mb-10 max-w-xl mx-auto">
-            Returning members get priority access, a founder credit, and immediate placement.
-            No waitlist. No catch.
+            You helped build this. Your seat never closed — it just got sharper,
+            faster, and built to compound.
           </p>
-          <Link
-            to="/join"
+          <a
+            href="https://www.coop5050.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn-gold px-12 py-5 rounded-full font-semibold tracking-wider uppercase text-sm inline-flex items-center gap-2"
           >
-            Claim Your Return
+            Reactivate at coop5050.com
             <ArrowRight className="w-4 h-4" />
-          </Link>
+          </a>
         </div>
       </section>
 
