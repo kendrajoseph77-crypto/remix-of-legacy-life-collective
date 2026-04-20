@@ -339,11 +339,11 @@ const WelcomeBack = () => {
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-3xl md:text-5xl leading-tight italic text-foreground/90"
              style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}>
-            "The ones in motion<br />
-            <span className="gold-gradient">are the ones receiving.</span>"
+            "The wheel doesn't wait.<br />
+            <span className="gold-gradient">Neither should you.</span>"
           </p>
           <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mt-8">
-            — 25 Years In · Still Moving
+            — 25 Years In Motion
           </p>
         </div>
       </section>
