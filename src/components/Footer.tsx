@@ -29,6 +29,9 @@ const Footer = () => {
           <p className="text-muted-foreground text-xs italic">
             "Money when you want it. Life the way you deserve it."
           </p>
+          <p className="text-muted-foreground text-xs tracking-[0.25em] uppercase font-semibold">
+            Powered by <span className="text-foreground">CUI</span>
+          </p>
         </div>
       </div>
     </footer>
