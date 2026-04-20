@@ -96,9 +96,9 @@ const MobiusHero = () => {
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
       <div
-        className="absolute top-[56%] left-[62%] w-[42rem] h-[42rem] rounded-full blur-3xl"
+        className="absolute top-[55%] left-[60%] w-[44rem] h-[44rem] rounded-full blur-3xl"
         style={{
-          background: `radial-gradient(circle, hsl(41 50% 65% / 0.08) 0%, transparent 68%)`,
+          background: `radial-gradient(circle, hsl(41 50% 65% / 0.18) 0%, transparent 68%)`,
           transform: "translate(-50%, -50%)",
         }}
       />
@@ -110,26 +110,26 @@ const MobiusHero = () => {
       >
         <defs>
           <radialGradient id="core-glow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor={GOLD_LIGHT} stopOpacity="0.22" />
+            <stop offset="0%" stopColor={GOLD_LIGHT} stopOpacity="0.55" />
             <stop offset="100%" stopColor={GOLD} stopOpacity="0" />
           </radialGradient>
 
           <radialGradient id="node-glow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor={GOLD_LIGHT} stopOpacity="0.16" />
+            <stop offset="0%" stopColor={GOLD_LIGHT} stopOpacity="0.45" />
             <stop offset="100%" stopColor={GOLD} stopOpacity="0" />
           </radialGradient>
 
           <linearGradient id="line-flow" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor={GOLD_DEEP} stopOpacity="0.04" />
-            <stop offset="50%" stopColor={GOLD_LIGHT} stopOpacity="0.18" />
-            <stop offset="100%" stopColor={GOLD_DEEP} stopOpacity="0.04" />
+            <stop offset="0%" stopColor={GOLD_DEEP} stopOpacity="0.15" />
+            <stop offset="50%" stopColor={GOLD_LIGHT} stopOpacity="0.55" />
+            <stop offset="100%" stopColor={GOLD_DEEP} stopOpacity="0.15" />
           </linearGradient>
         </defs>
 
         <g
           transform="translate(150 56) scale(0.72)"
           style={{
-            opacity: completed ? 0.28 : 0.34,
+            opacity: completed ? 0.7 : 0.85,
             transition: "opacity 1.2s ease",
           }}
         >
@@ -144,18 +144,18 @@ const MobiusHero = () => {
                 r={r}
                 fill="none"
                 stroke={GOLD}
-                strokeWidth={isVault ? 0.8 : 0.5}
-                strokeOpacity={isVault ? 0.04 : 0.018}
+                strokeWidth={isVault ? 1 : 0.6}
+                strokeOpacity={isVault ? 0.14 : 0.06}
                 strokeDasharray={isVault ? "none" : "2 10"}
               />
             );
           })}
 
           {innerPaths.map((d, i) => (
-            <path key={`s-i-${i}`} d={d} fill="none" stroke={GOLD} strokeWidth="0.8" strokeOpacity="0.035" />
+            <path key={`s-i-${i}`} d={d} fill="none" stroke={GOLD} strokeWidth="1" strokeOpacity="0.12" />
           ))}
           {outerPaths.map((d, i) => (
-            <path key={`s-o-${i}`} d={d} fill="none" stroke={GOLD} strokeWidth="0.8" strokeOpacity="0.035" />
+            <path key={`s-o-${i}`} d={d} fill="none" stroke={GOLD} strokeWidth="1" strokeOpacity="0.12" />
           ))}
 
           {innerPaths.map((d, i) => (
@@ -237,7 +237,7 @@ const MobiusHero = () => {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse at center, transparent 24%, hsl(0 0% 0% / 0.62) 100%)",
+            "radial-gradient(ellipse at center, transparent 40%, hsl(0 0% 0% / 0.35) 100%)",
         }}
       />
     </div>
