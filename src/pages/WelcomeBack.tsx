@@ -31,7 +31,7 @@ const upgrades = [
   {
     icon: Shield,
     tag: "PROVEN ENGINE",
-    title: "Built to move. Built to last.",
+    title: "Built to last. Built to scale.",
     body: "25 years of refinement. Faster, tighter, smoother every cycle.",
   },
   {
@@ -44,25 +44,25 @@ const upgrades = [
     icon: TrendingUp,
     tag: "9 VAULTS · 3 SYSTEMS",
     title: "A ladder built for speed.",
-    body: "Start at $25. Climb to $52,500 receive cycles. Move at your pace — but move.",
+    body: "Start at $25. Climb to $52,500 receive cycles. Scale at your own pace.",
   },
   {
     icon: Users,
     tag: "50 / 50 SPLIT",
-    title: "You move. Your team moves.",
-    body: "Every contribution pays both sides. Forward motion, doubled.",
+    title: "You earn. Your team earns.",
+    body: "Every contribution pays both sides. Forward flow, doubled.",
   },
   {
     icon: Clock,
     tag: "LIVE SUPPORT",
     title: "Real humans. Fast answers.",
-    body: "Member care and onboarding — keeping every seat moving forward.",
+    body: "Member care and onboarding — keeping every seat active.",
   },
   {
     icon: Heart,
     tag: "YOUR SEAT IS WAITING",
     title: "Step in. Catch the cycle.",
-    body: "The team is moving. The system is hot. Your seat is still on the wheel.",
+    body: "The team is active. The system is hot. Your seat is still on the wheel.",
   },
 ];
 
@@ -174,7 +174,7 @@ const WelcomeBack = () => {
             className="text-2xl md:text-4xl italic mb-6 text-white max-w-3xl mx-auto leading-tight"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}
           >
-            Built to move.<br />Engineered to keep moving.
+            Built to deliver.<br />Engineered to keep going.
           </p>
 
           <p className="text-base md:text-lg text-white/60 max-w-xl mx-auto mb-10 leading-relaxed">
@@ -249,7 +249,7 @@ const WelcomeBack = () => {
           </div>
 
           <p className="text-center text-white/40 text-sm italic mt-10 max-w-2xl mx-auto">
-            9 vaults. Infinite cycles. The same team — still moving forward together.
+            9 vaults. Infinite cycles. The same team — still here, still cycling.
           </p>
         </div>
       </section>
@@ -384,7 +384,7 @@ const WelcomeBack = () => {
             <span className="gold-gradient italic">Don't watch from the sidelines.</span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            Cycles are filling fast. Teams are moving. Every day you wait is a cycle you don't catch.
+            Cycles are filling fast. Teams are forming. Every day you wait is a cycle you don't catch.
           </p>
         </div>
       </section>
@@ -397,13 +397,13 @@ const WelcomeBack = () => {
               className="text-xs tracking-[0.35em] uppercase mb-5 font-semibold"
               style={{ color: "hsl(39 55% 45%)" }}
             >
-              Built To Move
+              Built To Deliver
             </p>
             <h2
               className="text-5xl md:text-6xl leading-[1.05] mb-6"
               style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 600 }}
             >
-              Six reasons it keeps <span className="italic">moving.</span>
+              Six reasons it keeps <span className="italic">delivering.</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Engineered for momentum. Built to scale. Designed to deliver.
@@ -455,7 +455,7 @@ const WelcomeBack = () => {
             <span className="gold-gradient">Neither should you.</span>"
           </p>
           <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mt-8">
-            — 25 Years In Motion
+            — 25 Years · Still Cycling
           </p>
         </div>
       </section>
@@ -484,10 +484,10 @@ const WelcomeBack = () => {
           >
             One click.
             <br />
-            <span className="gold-gradient italic">Back in motion.</span>
+            <span className="gold-gradient italic">Back in the cycle.</span>
           </h2>
           <p className="text-lg text-white/70 mb-10 max-w-xl mx-auto leading-relaxed">
-            The wheel is turning. The team is moving. Step on while it's hot.
+            The wheel is turning. The team is here. Step on while it's hot.
           </p>
           <a
             href={reactivateUrl}
