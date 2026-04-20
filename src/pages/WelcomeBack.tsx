@@ -105,243 +105,270 @@ const WelcomeBack = () => {
         </div>
       </section>
 
-      {/* RECEIVE BAR — the real numbers */}
-      <section className="section-dark border-y border-white/10 py-16 px-6 relative">
+      {/* COBALT BAND — bridge from dark hero into light page */}
+      <section
+        className="py-6 px-6 relative overflow-hidden"
+        style={{ background: "linear-gradient(90deg, hsl(224 78% 38%) 0%, hsl(224 78% 48%) 50%, hsl(224 78% 38%) 100%)" }}
+      >
+        <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-center">
+          <span className="text-[11px] tracking-[0.4em] uppercase font-bold text-white/95">
+            ✦ 25 Years Active
+          </span>
+          <span className="text-white/40">·</span>
+          <span className="text-[11px] tracking-[0.4em] uppercase font-bold text-white/95">
+            Cycles Firing Daily
+          </span>
+          <span className="text-white/40">·</span>
+          <span className="text-[11px] tracking-[0.4em] uppercase font-bold text-white/95">
+            Your Seat Held
+          </span>
+        </div>
+      </section>
+
+      {/* RECEIVE BAR — light, vibrant, color-coded tier cards */}
+      <section className="py-24 px-6 relative" style={{ background: "hsl(40 30% 97%)" }}>
         <div className="max-w-6xl mx-auto">
           <p
-            className="text-xs tracking-[0.35em] uppercase mb-4 font-semibold text-center"
-            style={{ color: "hsl(41 50% 65%)" }}
+            className="text-[11px] tracking-[0.4em] uppercase mb-4 font-bold text-center"
+            style={{ color: "hsl(39 55% 38%)" }}
           >
             Pick Your Lane · Receive Per Cycle
           </p>
           <h2
-            className="text-4xl md:text-5xl text-white text-center mb-4"
-            style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 500 }}
+            className="text-5xl md:text-6xl text-center mb-3"
+            style={{
+              fontFamily: "'Cormorant Garamond', Georgia, serif",
+              fontWeight: 500,
+              color: "hsl(20 15% 12%)",
+            }}
           >
-            Three doors. <span className="gold-gradient italic">One engine.</span>
+            Three doors. <span className="italic" style={{ color: "hsl(39 55% 38%)" }}>One engine.</span>
           </h2>
-          <p className="text-center text-white/55 max-w-xl mx-auto mb-14">
-            Pick your entry point — from a single test cycle to full-tier income flow.
+          <p className="text-center text-base mb-14 max-w-xl mx-auto" style={{ color: "hsl(20 10% 40%)" }}>
+            From a single test cycle to full-tier income flow.
           </p>
 
           <div className="grid md:grid-cols-3 gap-6">
             {tiers.map((tier) => (
               <div
                 key={tier.name}
-                className="p-8 rounded-2xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] transition-all hover:-translate-y-1 backdrop-blur-sm"
+                className="relative overflow-hidden rounded-2xl bg-white transition-all duration-300 hover:-translate-y-2"
+                style={{
+                  boxShadow: "0 4px 24px -8px hsl(20 15% 20% / 0.12), 0 0 0 1px hsl(20 15% 90%)",
+                }}
               >
-                <div
-                  className="text-[10px] tracking-[0.3em] uppercase mb-4 font-bold"
-                  style={{ color: tier.color }}
-                >
-                  {tier.name}
+                {/* Top accent bar */}
+                <div className="h-2 w-full" style={{ background: tier.color }} />
+                <div className="p-8">
+                  <div
+                    className="text-[10px] tracking-[0.3em] uppercase mb-5 font-bold"
+                    style={{ color: tier.color }}
+                  >
+                    {tier.name}
+                  </div>
+                  <div
+                    className="text-6xl md:text-7xl mb-2"
+                    style={{
+                      fontFamily: "'Plus Jakarta Sans', sans-serif",
+                      fontWeight: 800,
+                      letterSpacing: "-0.03em",
+                      color: "hsl(20 15% 12%)",
+                    }}
+                  >
+                    {tier.receive}
+                  </div>
+                  <div
+                    className="text-xs tracking-[0.25em] uppercase mb-5"
+                    style={{ color: "hsl(20 10% 50%)" }}
+                  >
+                    {tier.sub}
+                  </div>
+                  <p className="leading-relaxed text-sm" style={{ color: "hsl(20 10% 35%)" }}>
+                    {tier.tagline}
+                  </p>
                 </div>
-                <div
-                  className="text-6xl md:text-7xl mb-2 gold-gradient"
-                  style={{
-                    fontFamily: "'Plus Jakarta Sans', sans-serif",
-                    fontWeight: 800,
-                    letterSpacing: "-0.03em",
-                  }}
-                >
-                  {tier.receive}
-                </div>
-                <div className="text-xs tracking-[0.25em] uppercase text-white/50 mb-5">
-                  {tier.sub}
-                </div>
-                <p className="text-white/70 leading-relaxed text-sm">{tier.tagline}</p>
               </div>
             ))}
           </div>
-
-          <p className="text-center text-white/40 text-sm italic mt-10 max-w-2xl mx-auto">
-            9 vaults. Infinite cycles. The same team — still here, still cycling.
-          </p>
         </div>
       </section>
 
-      {/* CUI — COOPERATIVE UNIVERSAL INCOME */}
-      <section className="py-28 px-6 relative overflow-hidden bg-background">
-        <div className="absolute inset-0 pointer-events-none opacity-30">
-          <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50rem] h-[50rem] rounded-full blur-3xl"
-            style={{
-              background:
-                "radial-gradient(circle, hsl(41 50% 65% / 0.5) 0%, hsl(160 84% 30% / 0.2) 45%, transparent 75%)",
-            }}
-          />
+      {/* EMERALD BAND — declares CUI */}
+      <section
+        className="py-6 px-6 relative overflow-hidden"
+        style={{ background: "linear-gradient(90deg, hsl(160 84% 22%) 0%, hsl(160 84% 30%) 50%, hsl(160 84% 22%) 100%)" }}
+      >
+        <div className="max-w-6xl mx-auto text-center">
+          <span className="text-[11px] tracking-[0.45em] uppercase font-bold text-white/95">
+            ✦ Powered By CUI · The New Economy ✦
+          </span>
         </div>
+      </section>
 
+      {/* CUI — Cooperative Universal Income (light, bold) */}
+      <section className="py-24 px-6 relative overflow-hidden" style={{ background: "hsl(0 0% 100%)" }}>
         <div className="relative max-w-5xl mx-auto">
           <div className="text-center mb-14">
             <p
-              className="text-xs tracking-[0.35em] uppercase mb-5 font-semibold"
-              style={{ color: "hsl(41 50% 45%)" }}
+              className="text-[11px] tracking-[0.4em] uppercase mb-5 font-bold"
+              style={{ color: "hsl(160 84% 30%)" }}
             >
-              Powered By CUI
+              Cooperative Universal Income
             </p>
             <h2
               className="text-5xl md:text-7xl leading-[1.02] mb-6"
-              style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 500 }}
+              style={{
+                fontFamily: "'Cormorant Garamond', Georgia, serif",
+                fontWeight: 500,
+                color: "hsl(20 15% 12%)",
+              }}
             >
-              Cooperative
-              <br />
-              <span className="gold-gradient italic">Universal Income.</span>
+              A new way to <span className="italic" style={{ color: "hsl(160 84% 30%)" }}>earn together.</span>
             </h2>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-              A new way to earn in the shared economy — where people fund and support each other directly, instead of waiting on big business or government programs.
+            <p className="text-lg md:text-xl leading-relaxed max-w-3xl mx-auto" style={{ color: "hsl(20 10% 38%)" }}>
+              People fund and support each other directly — instead of waiting on big business or government programs.
             </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-5 mb-12">
-            <div
-              className="p-7 rounded-2xl border bg-card"
-              style={{ borderColor: "hsl(224 78% 48% / 0.25)" }}
-            >
-              <p
-                className="text-[10px] tracking-[0.3em] uppercase mb-3 font-bold"
-                style={{ color: "hsl(224 78% 48%)" }}
-              >
-                Peer · To · Peer
-              </p>
-              <h3
-                className="text-2xl mb-3 leading-tight"
-                style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 600 }}
-              >
-                Direct, not centralized.
-              </h3>
-              <p className="text-muted-foreground leading-relaxed text-sm">
-                Members fund members. No middleman. No gatekeeper. Just the network and the cycle.
-              </p>
-            </div>
-
-            <div
-              className="p-7 rounded-2xl border bg-card"
-              style={{ borderColor: "hsl(160 84% 30% / 0.25)" }}
-            >
-              <p
-                className="text-[10px] tracking-[0.3em] uppercase mb-3 font-bold"
-                style={{ color: "hsl(160 84% 30%)" }}
-              >
-                Shared Engine
-              </p>
-              <h3
-                className="text-2xl mb-3 leading-tight"
-                style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 600 }}
-              >
-                Everyone plugs in.
-              </h3>
-              <p className="text-muted-foreground leading-relaxed text-sm">
-                Individuals, communities, charities, businesses — all on the same cooperative structure.
-              </p>
-            </div>
-
-            <div
-              className="p-7 rounded-2xl border bg-card"
-              style={{ borderColor: "hsl(39 55% 45% / 0.3)" }}
-            >
-              <p
-                className="text-[10px] tracking-[0.3em] uppercase mb-3 font-bold"
-                style={{ color: "hsl(39 55% 45%)" }}
-              >
-                Recurring Income
-              </p>
-              <h3
-                className="text-2xl mb-3 leading-tight"
-                style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 600 }}
-              >
-                Cooperation pays.
-              </h3>
-              <p className="text-muted-foreground leading-relaxed text-sm">
-                Modest contributions in. Ongoing flow out. Build earnings alongside — or instead of — the day job.
-              </p>
-            </div>
-          </div>
-
-          <div className="text-center">
-            <p
-              className="text-2xl md:text-3xl italic max-w-3xl mx-auto leading-snug text-foreground/85"
-              style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}
-            >
-              CUI turns cooperation itself <span className="gold-gradient">into an income engine.</span>
-            </p>
-            <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground mt-6">
-              COOP5050 · The original CUI platform
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* WHY NOW */}
-      <section className="py-24 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <p
-            className="text-xs tracking-[0.35em] uppercase mb-5 font-semibold"
-            style={{ color: "hsl(160 84% 30%)" }}
-          >
-            Why Now
-          </p>
-          <h2
-            className="text-5xl md:text-7xl leading-[1.02] mb-8"
-            style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 500 }}
-          >
-            The wheel is turning.
-            <br />
-            <span className="gold-gradient italic">Don't watch from the sidelines.</span>
-          </h2>
-          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            Cycles are filling fast. Teams are forming. Every day you wait is a cycle you don't catch.
-          </p>
-        </div>
-      </section>
-
-      {/* UPGRADES GRID */}
-      <section className="py-20 px-6 bg-muted/30 border-y border-border">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <p
-              className="text-xs tracking-[0.35em] uppercase mb-5 font-semibold"
-              style={{ color: "hsl(39 55% 45%)" }}
-            >
-              Rebuilt · Reloaded · Ready
-            </p>
-            <h2
-              className="text-5xl md:text-6xl leading-[1.05] mb-6"
-              style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 600 }}
-            >
-              New engine. <span className="italic">Same seat.</span>
-            </h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {upgrades.map((item) => {
+            {[
+              {
+                color: "hsl(224 78% 48%)",
+                tag: "Peer · To · Peer",
+                title: "Direct, not centralized.",
+                body: "Members fund members. No middleman. No gatekeeper.",
+              },
+              {
+                color: "hsl(160 84% 30%)",
+                tag: "Shared Engine",
+                title: "Everyone plugs in.",
+                body: "Individuals, communities, charities, businesses — same structure.",
+              },
+              {
+                color: "hsl(39 55% 45%)",
+                tag: "Recurring Income",
+                title: "Cooperation pays.",
+                body: "Modest contributions in. Ongoing flow out. Build alongside the day job.",
+              },
+            ].map((card) => (
+              <div
+                key={card.tag}
+                className="relative overflow-hidden rounded-2xl bg-white p-8 transition-all duration-300 hover:-translate-y-1"
+                style={{
+                  boxShadow: "0 4px 20px -8px hsl(20 15% 20% / 0.1), 0 0 0 1px hsl(20 15% 92%)",
+                }}
+              >
+                <div
+                  className="absolute top-0 left-0 h-full w-1"
+                  style={{ background: card.color }}
+                />
+                <p
+                  className="text-[10px] tracking-[0.3em] uppercase mb-4 font-bold"
+                  style={{ color: card.color }}
+                >
+                  {card.tag}
+                </p>
+                <h3
+                  className="text-2xl mb-3 leading-tight"
+                  style={{
+                    fontFamily: "'Cormorant Garamond', Georgia, serif",
+                    fontWeight: 600,
+                    color: "hsl(20 15% 12%)",
+                  }}
+                >
+                  {card.title}
+                </h3>
+                <p className="leading-relaxed text-sm" style={{ color: "hsl(20 10% 38%)" }}>
+                  {card.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* GOLD BAND — declares the upgrade */}
+      <section
+        className="py-6 px-6 relative overflow-hidden"
+        style={{ background: "linear-gradient(90deg, hsl(35 55% 38%) 0%, hsl(41 60% 52%) 50%, hsl(35 55% 38%) 100%)" }}
+      >
+        <div className="max-w-6xl mx-auto text-center">
+          <span className="text-[11px] tracking-[0.45em] uppercase font-bold" style={{ color: "hsl(20 25% 10%)" }}>
+            ✦ Rebuilt · Reloaded · Ready ✦
+          </span>
+        </div>
+      </section>
+
+      {/* REASSURANCE GRID — numbered editorial cards on cream */}
+      <section className="py-24 px-6" style={{ background: "hsl(40 30% 97%)" }}>
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2
+              className="text-5xl md:text-6xl leading-[1.05] mb-4"
+              style={{
+                fontFamily: "'Cormorant Garamond', Georgia, serif",
+                fontWeight: 500,
+                color: "hsl(20 15% 12%)",
+              }}
+            >
+              New engine. <span className="italic" style={{ color: "hsl(39 55% 38%)" }}>Same seat.</span>
+            </h2>
+            <p className="text-lg max-w-xl mx-auto" style={{ color: "hsl(20 10% 40%)" }}>
+              The platform is sharper than you remember. Your spot, exactly as you left it.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {upgrades.map((item, idx) => {
               const Icon = item.icon;
+              const accentColor = ["hsl(224 78% 48%)", "hsl(160 84% 30%)", "hsl(39 55% 45%)"][idx];
               return (
                 <div
                   key={item.title}
-                  className="group p-8 rounded-2xl bg-card border border-border hover:border-foreground/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-20px_hsl(39_55%_30%/0.35)]"
+                  className="group relative overflow-hidden rounded-2xl bg-white p-8 transition-all duration-300 hover:-translate-y-2"
+                  style={{
+                    boxShadow: "0 4px 24px -8px hsl(20 15% 20% / 0.12), 0 0 0 1px hsl(20 15% 90%)",
+                  }}
                 >
+                  {/* Big numeral watermark */}
+                  <div
+                    className="absolute -top-2 -right-2 text-[8rem] leading-none font-black opacity-[0.06] pointer-events-none"
+                    style={{
+                      fontFamily: "'Plus Jakarta Sans', sans-serif",
+                      color: accentColor,
+                    }}
+                  >
+                    0{idx + 1}
+                  </div>
+
                   <div
                     className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
                     style={{
-                      background: "linear-gradient(135deg, hsl(41 50% 65%), hsl(35 55% 40%))",
+                      background: accentColor,
+                      boxShadow: `0 8px 20px -8px ${accentColor}`,
                     }}
                   >
                     <Icon className="w-5 h-5 text-white" />
                   </div>
                   <p
-                    className="text-[10px] tracking-[0.3em] uppercase mb-3 font-semibold"
-                    style={{ color: "hsl(39 55% 45%)" }}
+                    className="text-[10px] tracking-[0.3em] uppercase mb-3 font-bold"
+                    style={{ color: accentColor }}
                   >
                     {item.tag}
                   </p>
                   <h3
                     className="text-2xl mb-3 leading-tight"
-                    style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 600 }}
+                    style={{
+                      fontFamily: "'Cormorant Garamond', Georgia, serif",
+                      fontWeight: 600,
+                      color: "hsl(20 15% 12%)",
+                    }}
                   >
                     {item.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">{item.body}</p>
+                  <p className="leading-relaxed" style={{ color: "hsl(20 10% 38%)" }}>
+                    {item.body}
+                  </p>
                 </div>
               );
             })}
