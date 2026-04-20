@@ -9,60 +9,60 @@ const tiers = [
     color: "hsl(224 78% 48%)",
     receive: "$525",
     sub: "per cycle",
-    tagline: "The on-ramp.",
+    tagline: "Start small. Prove it again.",
   },
   {
     name: "5050 Core",
     color: "hsl(160 84% 30%)",
     receive: "$5,250",
     sub: "per cycle",
-    tagline: "The engine.",
+    tagline: "The system most members live inside.",
   },
   {
     name: "5050 Max",
     color: "hsl(39 55% 52%)",
     receive: "$52,500",
     sub: "per cycle",
-    tagline: "The summit.",
+    tagline: "Long-game wealth. Generational scale.",
   },
 ];
 
 const upgrades = [
   {
+    icon: Shield,
+    tag: "REBUILT FOUNDATION",
+    title: "Stable. Audited. Supported.",
+    body: "Every weak point from the early years — closed. The platform you remember, hardened.",
+  },
+  {
     icon: InfinityIcon,
     tag: "MÖBIUS RELOAD",
-    title: "Infinite cycles.",
-    body: "When one fills, the next opens. Your team follows.",
+    title: "Cycles that don't stop.",
+    body: "One fills, the next opens. Automatic. No waiting list. No dead air.",
   },
   {
     icon: TrendingUp,
-    tag: "9 VAULTS",
-    title: "Deeper progression.",
-    body: "Three vaults per system. Each one unlocks bigger receive amounts.",
+    tag: "9 VAULTS · 3 SYSTEMS",
+    title: "Designed to scale with you.",
+    body: "Start at $25. Grow into $52,500 receive cycles. The ladder is already built.",
   },
   {
     icon: Users,
     tag: "50 / 50 SPLIT",
-    title: "You receive. Your team receives.",
-    body: "Every contribution pays both sides. That's why it works.",
+    title: "You win when they win.",
+    body: "Every contribution pays both sides. The math is why members stay.",
   },
   {
     icon: Clock,
-    tag: "FASTER RE-ENTRY",
-    title: "Your seat never closed.",
-    body: "Pick your tier. Click reactivate. Under 90 seconds.",
-  },
-  {
-    icon: Shield,
-    tag: "HARDENED PLATFORM",
-    title: "Built to pay out.",
-    body: "25 years of Cooperative Crowdfunding™, refined.",
+    tag: "LIVE SUPPORT",
+    title: "Real humans. Real answers.",
+    body: "Member care, onboarding, and reactivation help — every day the system runs.",
   },
   {
     icon: Heart,
-    tag: "COME HOME",
-    title: "You're already family.",
-    body: "The movement is still here — bigger than when you left.",
+    tag: "YOUR SEAT IS WAITING",
+    title: "Walk back in. Pick up where you left off.",
+    body: "The team that started with you is still here. Bigger. Quieter. Working.",
   },
 ];
 
@@ -171,10 +171,14 @@ const WelcomeBack = () => {
           </h1>
 
           <p
-            className="text-2xl md:text-4xl italic mb-10 text-white max-w-3xl mx-auto leading-tight"
+            className="text-2xl md:text-4xl italic mb-6 text-white max-w-3xl mx-auto leading-tight"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}
           >
-            Each doing a little,<br />so everyone can receive a lot.
+            Quieter than before.<br />Stronger than ever.
+          </p>
+
+          <p className="text-base md:text-lg text-white/60 max-w-xl mx-auto mb-10 leading-relaxed">
+            Whatever pushed you away — we heard it, fixed it, and kept building. The system you almost trusted is now the one members are quietly retiring on.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -202,14 +206,17 @@ const WelcomeBack = () => {
             className="text-xs tracking-[0.35em] uppercase mb-4 font-semibold text-center"
             style={{ color: "hsl(41 50% 65%)" }}
           >
-            What You Receive · Each Cycle
+            Pick Your Lane · Receive Per Cycle
           </p>
           <h2
-            className="text-4xl md:text-5xl text-white text-center mb-14"
+            className="text-4xl md:text-5xl text-white text-center mb-4"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 500 }}
           >
-            Three systems. <span className="gold-gradient italic">One movement.</span>
+            Three doors. <span className="gold-gradient italic">One long game.</span>
           </h2>
+          <p className="text-center text-white/55 max-w-xl mx-auto mb-14">
+            Built to scale with you — from a first cautious step back, to retirement-level cycles.
+          </p>
 
           <div className="grid md:grid-cols-3 gap-6">
             {tiers.map((tier) => (
@@ -242,7 +249,7 @@ const WelcomeBack = () => {
           </div>
 
           <p className="text-center text-white/40 text-sm italic mt-10 max-w-2xl mx-auto">
-            9 vaults. Infinite cycles. One team that travels with you.
+            9 vaults. Infinite cycles. The same team — still moving forward together.
           </p>
         </div>
       </section>
@@ -260,12 +267,12 @@ const WelcomeBack = () => {
             className="text-5xl md:text-7xl leading-[1.02] mb-8"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 500 }}
           >
-            Money for everything.
+            The quiet ones
             <br />
-            <span className="gold-gradient italic">Life the way you deserve it.</span>
+            <span className="gold-gradient italic">are still here. Still receiving.</span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            Pay the bills. Kill the debt. Fund the life. Don't compete — participate.
+            While the noise moved on, the system kept paying. Slower. Steadier. Built for the people who stayed — and the ones ready to come back.
           </p>
         </div>
       </section>
@@ -278,16 +285,16 @@ const WelcomeBack = () => {
               className="text-xs tracking-[0.35em] uppercase mb-5 font-semibold"
               style={{ color: "hsl(39 55% 45%)" }}
             >
-              What's Changed
+              What's Different Now
             </p>
             <h2
               className="text-5xl md:text-6xl leading-[1.05] mb-6"
               style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 600 }}
             >
-              Six reasons to step <span className="italic">back in.</span>
+              If you left frustrated, <span className="italic">read this.</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              What worked, working harder.
+              Same mission. Stronger structure. Real support behind every seat.
             </p>
           </div>
 
@@ -332,11 +339,11 @@ const WelcomeBack = () => {
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-3xl md:text-5xl leading-tight italic text-foreground/90"
              style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}>
-            "Instead of competing,<br />
-            <span className="gold-gradient">we cooperate.</span>"
+            "The members who stayed quiet<br />
+            <span className="gold-gradient">are the ones still receiving.</span>"
           </p>
           <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mt-8">
-            — The Founding Principle · Since 2000
+            — 25 Years In · Still Cooperating
           </p>
         </div>
       </section>
@@ -357,18 +364,18 @@ const WelcomeBack = () => {
             className="text-xs tracking-[0.35em] uppercase mb-5 font-semibold"
             style={{ color: "hsl(41 50% 65%)" }}
           >
-            You're Already Family
+            Your Seat Is Still Yours
           </p>
           <h2
             className="text-5xl md:text-7xl leading-[1.02] mb-8 text-white"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 500 }}
           >
-            Step back into
+            One decision.
             <br />
-            <span className="gold-gradient italic">the cycle.</span>
+            <span className="gold-gradient italic">Years of cycles ahead.</span>
           </h2>
           <p className="text-lg text-white/70 mb-10 max-w-xl mx-auto leading-relaxed">
-            The team is here. The math still works. All that's missing is you.
+            The structure is sound. The support is real. The long game is already in motion — with or without you in it.
           </p>
           <a
             href={reactivateUrl}
