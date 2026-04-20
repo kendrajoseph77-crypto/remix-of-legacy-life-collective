@@ -127,8 +127,9 @@ const MobiusHero = () => {
         </defs>
 
         <g
-          transform="translate(0 0) scale(0.72)" transform-origin="600 300" style={{ transformOrigin: "600px 300px" }}
           style={{
+            transform: "scale(0.72)",
+            transformOrigin: "600px 300px",
             opacity: completed ? 0.7 : 0.85,
             transition: "opacity 1.2s ease",
           }}
