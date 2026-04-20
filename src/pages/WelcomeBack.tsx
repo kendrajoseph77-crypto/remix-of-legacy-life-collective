@@ -1,4 +1,4 @@
-import { ArrowRight, Heart, Infinity as InfinityIcon, Users, TrendingUp, Clock, Shield } from "lucide-react";
+import { ArrowRight, Infinity as InfinityIcon, Users, Armchair } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MobiusHero from "@/components/MobiusHero";
@@ -29,40 +29,22 @@ const tiers = [
 
 const upgrades = [
   {
-    icon: Shield,
-    tag: "PROVEN ENGINE",
-    title: "Built to last. Built to scale.",
-    body: "25 years of refinement. Faster, tighter, smoother every cycle.",
+    icon: Users,
+    tag: "TEAM STILL ACTIVE",
+    title: "They never left.",
+    body: "The same crew is still here — cycling, supporting, building. Walk back in.",
   },
   {
     icon: InfinityIcon,
-    tag: "MÖBIUS RELOAD",
-    title: "Cycles that don't stop.",
-    body: "One fills, the next opens — instantly. The momentum never breaks.",
+    tag: "CYCLES STILL FIRING",
+    title: "The wheel never stopped.",
+    body: "Möbius reload is live. One fills, the next opens — every day, all day.",
   },
   {
-    icon: TrendingUp,
-    tag: "9 VAULTS · 3 SYSTEMS",
-    title: "A ladder built for speed.",
-    body: "Start at $25. Climb to $52,500 receive cycles. Scale at your own pace.",
-  },
-  {
-    icon: Users,
-    tag: "50 / 50 SPLIT",
-    title: "You earn. Your team earns.",
-    body: "Every contribution pays both sides. Forward flow, doubled.",
-  },
-  {
-    icon: Clock,
-    tag: "LIVE SUPPORT",
-    title: "Real humans. Fast answers.",
-    body: "Member care and onboarding — keeping every seat active.",
-  },
-  {
-    icon: Heart,
-    tag: "YOUR SEAT IS WAITING",
-    title: "Step in. Catch the cycle.",
-    body: "The team is active. The system is hot. Your seat is still on the wheel.",
+    icon: Armchair,
+    tag: "YOUR SEAT PRESERVED",
+    title: "Right where you left it.",
+    body: "Your spot held. Your history intact. One click and you're back on the wheel.",
   },
 ];
 
@@ -321,20 +303,17 @@ const WelcomeBack = () => {
               className="text-xs tracking-[0.35em] uppercase mb-5 font-semibold"
               style={{ color: "hsl(39 55% 45%)" }}
             >
-              Built To Deliver
+              Still Here · Still Yours
             </p>
             <h2
               className="text-5xl md:text-6xl leading-[1.05] mb-6"
               style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 600 }}
             >
-              Six reasons it keeps <span className="italic">delivering.</span>
+              Nothing changed <span className="italic">but the date.</span>
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Engineered for momentum. Built to scale. Designed to deliver.
-            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6">
             {upgrades.map((item) => {
               const Icon = item.icon;
               return (
