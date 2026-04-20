@@ -11,11 +11,9 @@ const ACCENT_LIGHT = "hsl(220 90% 75%)";
 const CX = 600;
 const CY = 300;
 
-// 3 levels of the matrix
+// Single core level
 const LEVELS = [
-  { rOuter: 90,  rInner: 0 },    // Level 1 — YOU (core disc)
-  { rOuter: 180, rInner: 105 },  // Level 2 — inner ring
-  { rOuter: 280, rInner: 195 },  // Level 3 — outer ring
+  { rOuter: 90, rInner: 0 }, // Level 1 — YOU (core disc)
 ];
 
 const STEP_MS = 1100;
