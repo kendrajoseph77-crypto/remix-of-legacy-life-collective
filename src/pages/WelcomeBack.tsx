@@ -349,19 +349,6 @@ const WelcomeBack = () => {
         </div>
       </section>
 
-      {/* EMOTIONAL QUOTE BAND */}
-      <section className="py-24 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-3xl md:text-5xl leading-tight italic text-foreground/90"
-             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}>
-            "The wheel doesn't wait.<br />
-            <span className="gold-gradient">Neither should you.</span>"
-          </p>
-          <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mt-8">
-            — 25 Years · Still Cycling
-          </p>
-        </div>
-      </section>
 
       {/* FINAL CTA */}
       <section className="section-dark py-28 px-6 relative overflow-hidden">
