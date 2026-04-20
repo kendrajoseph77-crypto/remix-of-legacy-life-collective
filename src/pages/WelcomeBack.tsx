@@ -75,15 +75,68 @@ const WelcomeBack = () => {
 
       {/* HERO */}
       <section className="relative pt-40 pb-28 overflow-hidden section-dark">
-        {/* Gold burst */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70rem] h-[70rem] rounded-full blur-3xl opacity-30"
+        {/* Animated gold burst + rays */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {/* Pulsing radial core */}
+          <motion.div
+            className="absolute top-1/2 left-1/2 w-[70rem] h-[70rem] rounded-full blur-3xl"
             style={{
+              translateX: "-50%",
+              translateY: "-50%",
               background:
                 "radial-gradient(circle, hsl(41 50% 65%) 0%, hsl(39 55% 40%) 40%, transparent 70%)",
             }}
+            initial={{ opacity: 0.2, scale: 0.9 }}
+            animate={{ opacity: [0.2, 0.38, 0.2], scale: [0.9, 1.05, 0.9] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           />
+
+          {/* Rotating rays */}
+          <motion.div
+            className="absolute top-1/2 left-1/2 w-[90rem] h-[90rem]"
+            style={{ translateX: "-50%", translateY: "-50%" }}
+            animate={{ rotate: 360 }}
+            transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
+          >
+            {Array.from({ length: 12 }).map((_, i) => (
+              <motion.span
+                key={i}
+                className="absolute top-1/2 left-1/2 origin-left h-[2px] w-[45rem]"
+                style={{
+                  rotate: `${i * 30}deg`,
+                  background:
+                    "linear-gradient(to right, transparent 0%, hsl(41 50% 65% / 0.35) 40%, hsl(41 50% 75% / 0.55) 60%, transparent 100%)",
+                }}
+                animate={{ opacity: [0.15, 0.6, 0.15] }}
+                transition={{
+                  duration: 4 + (i % 3),
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: i * 0.25,
+                }}
+              />
+            ))}
+          </motion.div>
+
+          {/* Counter-rotating fine rays */}
+          <motion.div
+            className="absolute top-1/2 left-1/2 w-[70rem] h-[70rem]"
+            style={{ translateX: "-50%", translateY: "-50%" }}
+            animate={{ rotate: -360 }}
+            transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
+          >
+            {Array.from({ length: 18 }).map((_, i) => (
+              <span
+                key={i}
+                className="absolute top-1/2 left-1/2 origin-left h-px w-[35rem]"
+                style={{
+                  rotate: `${i * 20 + 10}deg`,
+                  background:
+                    "linear-gradient(to right, transparent 0%, hsl(41 60% 80% / 0.25) 50%, transparent 100%)",
+                }}
+              />
+            ))}
+          </motion.div>
         </div>
 
         <div className="relative max-w-5xl mx-auto px-6 text-center">
