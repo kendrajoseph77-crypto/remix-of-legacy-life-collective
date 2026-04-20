@@ -6,9 +6,9 @@ import { useEffect, useState } from "react";
  * then completes and resets in an endless cycle. No infinity symbols,
  * no random orbits — just the brand structure, breathing.
  */
-const GOLD = "hsl(41 50% 65%)";
-const GOLD_DEEP = "hsl(39 55% 40%)";
-const GOLD_LIGHT = "hsl(41 60% 78%)";
+const GOLD = "hsl(224 78% 58%)";
+const GOLD_DEEP = "hsl(224 78% 38%)";
+const GOLD_LIGHT = "hsl(220 90% 75%)";
 
 const CX = 600;
 const CY = 300;
@@ -98,7 +98,7 @@ const MobiusHero = () => {
       <div
         className="absolute top-1/2 left-1/2 w-[44rem] h-[44rem] rounded-full blur-3xl"
         style={{
-          background: `radial-gradient(circle, hsl(41 50% 65% / 0.18) 0%, transparent 68%)`,
+          background: `radial-gradient(circle, hsl(224 78% 55% / 0.18) 0%, transparent 68%)`,
           transform: "translate(-50%, -50%)",
         }}
       />
