@@ -29,16 +29,16 @@ const tiers = [
 
 const upgrades = [
   {
+    icon: InfinityIcon,
+    tag: "REBUILT ENGINE",
+    title: "Faster. Smarter. Smoother.",
+    body: "Front to back — rebuilt for speed. Cycles fire quicker, the team scales tighter, the platform feels new.",
+  },
+  {
     icon: Users,
     tag: "TEAM STILL ACTIVE",
     title: "They never left.",
     body: "The same crew is still here — cycling, supporting, building. Walk back in.",
-  },
-  {
-    icon: InfinityIcon,
-    tag: "CYCLES STILL FIRING",
-    title: "The wheel never stopped.",
-    body: "Möbius reload is live. One fills, the next opens — every day, all day.",
   },
   {
     icon: Armchair,
@@ -303,13 +303,13 @@ const WelcomeBack = () => {
               className="text-xs tracking-[0.35em] uppercase mb-5 font-semibold"
               style={{ color: "hsl(39 55% 45%)" }}
             >
-              Still Here · Still Yours
+              Rebuilt · Reloaded · Ready
             </p>
             <h2
               className="text-5xl md:text-6xl leading-[1.05] mb-6"
               style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 600 }}
             >
-              Nothing changed <span className="italic">but the date.</span>
+              New engine. <span className="italic">Same seat.</span>
             </h2>
           </div>
 
