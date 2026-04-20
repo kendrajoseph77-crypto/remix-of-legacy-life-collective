@@ -254,6 +254,118 @@ const WelcomeBack = () => {
         </div>
       </section>
 
+      {/* CUI — COOPERATIVE UNIVERSAL INCOME */}
+      <section className="py-28 px-6 relative overflow-hidden bg-background">
+        <div className="absolute inset-0 pointer-events-none opacity-30">
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50rem] h-[50rem] rounded-full blur-3xl"
+            style={{
+              background:
+                "radial-gradient(circle, hsl(41 50% 65% / 0.5) 0%, hsl(160 84% 30% / 0.2) 45%, transparent 75%)",
+            }}
+          />
+        </div>
+
+        <div className="relative max-w-5xl mx-auto">
+          <div className="text-center mb-14">
+            <p
+              className="text-xs tracking-[0.35em] uppercase mb-5 font-semibold"
+              style={{ color: "hsl(41 50% 45%)" }}
+            >
+              Introducing CUI
+            </p>
+            <h2
+              className="text-5xl md:text-7xl leading-[1.02] mb-6"
+              style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 500 }}
+            >
+              Cooperative
+              <br />
+              <span className="gold-gradient italic">Universal Income.</span>
+            </h2>
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+              A new way to earn in the shared economy — where people fund and support each other directly, instead of waiting on big business or government programs.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-5 mb-12">
+            <div
+              className="p-7 rounded-2xl border bg-card"
+              style={{ borderColor: "hsl(224 78% 48% / 0.25)" }}
+            >
+              <p
+                className="text-[10px] tracking-[0.3em] uppercase mb-3 font-bold"
+                style={{ color: "hsl(224 78% 48%)" }}
+              >
+                Peer · To · Peer
+              </p>
+              <h3
+                className="text-2xl mb-3 leading-tight"
+                style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 600 }}
+              >
+                Direct, not centralized.
+              </h3>
+              <p className="text-muted-foreground leading-relaxed text-sm">
+                Members fund members. No middleman. No gatekeeper. Just the network and the cycle.
+              </p>
+            </div>
+
+            <div
+              className="p-7 rounded-2xl border bg-card"
+              style={{ borderColor: "hsl(160 84% 30% / 0.25)" }}
+            >
+              <p
+                className="text-[10px] tracking-[0.3em] uppercase mb-3 font-bold"
+                style={{ color: "hsl(160 84% 30%)" }}
+              >
+                Shared Engine
+              </p>
+              <h3
+                className="text-2xl mb-3 leading-tight"
+                style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 600 }}
+              >
+                Everyone plugs in.
+              </h3>
+              <p className="text-muted-foreground leading-relaxed text-sm">
+                Individuals, communities, charities, businesses — all on the same cooperative structure.
+              </p>
+            </div>
+
+            <div
+              className="p-7 rounded-2xl border bg-card"
+              style={{ borderColor: "hsl(39 55% 45% / 0.3)" }}
+            >
+              <p
+                className="text-[10px] tracking-[0.3em] uppercase mb-3 font-bold"
+                style={{ color: "hsl(39 55% 45%)" }}
+              >
+                Recurring Income
+              </p>
+              <h3
+                className="text-2xl mb-3 leading-tight"
+                style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 600 }}
+              >
+                Cooperation pays.
+              </h3>
+              <p className="text-muted-foreground leading-relaxed text-sm">
+                Modest contributions in. Ongoing flow out. Build earnings alongside — or instead of — the day job.
+              </p>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <p
+              className="text-2xl md:text-3xl italic max-w-3xl mx-auto leading-snug text-foreground/85"
+              style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}
+            >
+              CUI turns cooperation itself <span className="gold-gradient">into an income engine.</span>
+            </p>
+            <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground mt-6">
+              COOP5050 · The original CUI platform
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* WHY NOW */}
       <section className="py-24 px-6">
         <div className="max-w-4xl mx-auto text-center">
