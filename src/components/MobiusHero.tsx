@@ -204,34 +204,33 @@ const MobiusHero = () => {
             <g
               key={`o-${i}`}
               style={{
-                opacity: on ? 1 : 0,
+                opacity: on ? 0.7 : 0,
                 transition: "opacity 0.6s ease",
               }}
             >
-              <circle cx={node.x} cy={node.y} r="40" fill="url(#node-glow)" />
+              <circle cx={node.x} cy={node.y} r="18" fill="url(#node-glow)" opacity="0.5" />
               <circle
                 cx={node.x}
                 cy={node.y}
-                r="14"
+                r="6"
                 fill="hsl(0 0% 6%)"
                 stroke={GOLD_LIGHT}
-                strokeWidth="1.5"
-                filter="url(#soft-glow)"
+                strokeWidth="1"
               />
-              <circle cx={node.x} cy={node.y} r="4" fill={GOLD_LIGHT} />
+              <circle cx={node.x} cy={node.y} r="2" fill={GOLD_LIGHT} />
               {/* expanding ripple on appearance */}
               {on && (
                 <circle
                   cx={node.x}
                   cy={node.y}
-                  r="14"
+                  r="6"
                   fill="none"
                   stroke={GOLD_LIGHT}
-                  strokeWidth="1.5"
-                  opacity="0.5"
+                  strokeWidth="1"
+                  opacity="0.4"
                 >
-                  <animate attributeName="r" from="14" to="42" dur="1s" fill="freeze" />
-                  <animate attributeName="opacity" from="0.6" to="0" dur="1s" fill="freeze" />
+                  <animate attributeName="r" from="6" to="22" dur="1s" fill="freeze" />
+                  <animate attributeName="opacity" from="0.4" to="0" dur="1s" fill="freeze" />
                 </circle>
               )}
             </g>
@@ -245,67 +244,64 @@ const MobiusHero = () => {
             <g
               key={`i-${i}`}
               style={{
-                opacity: on ? 1 : 0,
+                opacity: on ? 0.75 : 0,
                 transition: "opacity 0.6s ease",
               }}
             >
-              <circle cx={node.x} cy={node.y} r="55" fill="url(#node-glow)" />
+              <circle cx={node.x} cy={node.y} r="22" fill="url(#node-glow)" opacity="0.5" />
               <circle
                 cx={node.x}
                 cy={node.y}
-                r="20"
+                r="8"
                 fill="hsl(0 0% 6%)"
                 stroke={GOLD_LIGHT}
-                strokeWidth="2"
-                filter="url(#soft-glow)"
+                strokeWidth="1.2"
               />
-              <circle cx={node.x} cy={node.y} r="6" fill={GOLD_LIGHT} />
+              <circle cx={node.x} cy={node.y} r="3" fill={GOLD_LIGHT} />
               {on && (
                 <circle
                   cx={node.x}
                   cy={node.y}
-                  r="20"
+                  r="8"
                   fill="none"
                   stroke={GOLD_LIGHT}
-                  strokeWidth="2"
-                  opacity="0.6"
+                  strokeWidth="1.2"
+                  opacity="0.5"
                 >
-                  <animate attributeName="r" from="20" to="55" dur="1s" fill="freeze" />
-                  <animate attributeName="opacity" from="0.7" to="0" dur="1s" fill="freeze" />
+                  <animate attributeName="r" from="8" to="26" dur="1s" fill="freeze" />
+                  <animate attributeName="opacity" from="0.5" to="0" dur="1s" fill="freeze" />
                 </circle>
               )}
             </g>
           );
         })}
 
-        {/* YOU — central core */}
+        {/* YOU — central core (subtle, doesn't compete with text) */}
         <g
           style={{
-            opacity: youOn ? 1 : 0.15,
+            opacity: youOn ? 0.6 : 0.1,
             transition: "opacity 0.8s ease",
           }}
         >
-          <circle cx={CX} cy={CY} r="100" fill="url(#core-glow)" />
+          <circle cx={CX} cy={CY} r="40" fill="url(#core-glow)" opacity="0.5" />
           <circle
             cx={CX}
             cy={CY}
-            r="32"
+            r="12"
             fill="hsl(0 0% 6%)"
             stroke={GOLD_LIGHT}
-            strokeWidth="2.5"
-            filter="url(#soft-glow)"
+            strokeWidth="1.5"
           />
-          {/* Slow breathing core dot */}
-          <circle cx={CX} cy={CY} r="10" fill={GOLD_LIGHT}>
+          <circle cx={CX} cy={CY} r="4" fill={GOLD_LIGHT}>
             <animate
               attributeName="opacity"
-              values="0.6;1;0.6"
+              values="0.5;1;0.5"
               dur="3s"
               repeatCount="indefinite"
             />
             <animate
               attributeName="r"
-              values="9;12;9"
+              values="3;5;3"
               dur="3s"
               repeatCount="indefinite"
             />
