@@ -96,7 +96,7 @@ const MobiusHero = () => {
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
       <div
-        className="absolute top-[55%] left-[60%] w-[44rem] h-[44rem] rounded-full blur-3xl"
+        className="absolute top-1/2 left-1/2 w-[44rem] h-[44rem] rounded-full blur-3xl"
         style={{
           background: `radial-gradient(circle, hsl(41 50% 65% / 0.18) 0%, transparent 68%)`,
           transform: "translate(-50%, -50%)",
@@ -127,7 +127,7 @@ const MobiusHero = () => {
         </defs>
 
         <g
-          transform="translate(150 56) scale(0.72)"
+          transform="translate(0 0) scale(0.72)" transform-origin="600 300" style={{ transformOrigin: "600px 300px" }}
           style={{
             opacity: completed ? 0.7 : 0.85,
             transition: "opacity 1.2s ease",
