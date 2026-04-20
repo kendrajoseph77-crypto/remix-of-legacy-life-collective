@@ -149,7 +149,7 @@ const WelcomeBack = () => {
             }}
           >
             <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "hsl(41 50% 65%)" }} />
-            <span>25 Years · Cooperative Crowdfunding™</span>
+            <span>Cooperative Universal Income · CUI</span>
           </div>
 
           <p
@@ -178,7 +178,7 @@ const WelcomeBack = () => {
           </p>
 
           <p className="text-base md:text-lg text-white/60 max-w-xl mx-auto mb-10 leading-relaxed">
-            Faster cycles. Tighter teams. A system in full motion — and your seat is still on it.
+            The original income engine of the cooperative economy — refined, accelerated, and now powering <span className="text-white/85 font-medium">Cooperative Universal Income</span>.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
