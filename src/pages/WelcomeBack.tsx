@@ -9,7 +9,7 @@ const tiers = [
     color: "hsl(224 78% 48%)",
     receive: "$525",
     sub: "per cycle",
-    tagline: "The on-ramp. Small contributions, real momentum.",
+    tagline: "The on-ramp.",
   },
   {
     name: "5050 Core",
