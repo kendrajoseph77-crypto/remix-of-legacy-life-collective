@@ -95,12 +95,11 @@ const MobiusHero = () => {
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      {/* Soft atmospheric gold wash — minimal */}
       <div
-        className="absolute top-1/2 left-1/2 w-[55rem] h-[55rem] rounded-full blur-3xl opacity-20"
+        className="absolute top-[56%] left-[62%] w-[42rem] h-[42rem] rounded-full blur-3xl"
         style={{
+          background: `radial-gradient(circle, hsl(41 50% 65% / 0.08) 0%, transparent 68%)`,
           transform: "translate(-50%, -50%)",
-          background: `radial-gradient(circle, ${GOLD} 0%, transparent 65%)`,
         }}
       />
 
@@ -111,240 +110,134 @@ const MobiusHero = () => {
       >
         <defs>
           <radialGradient id="core-glow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor={GOLD_LIGHT} stopOpacity="0.9" />
-            <stop offset="60%" stopColor={GOLD} stopOpacity="0.3" />
+            <stop offset="0%" stopColor={GOLD_LIGHT} stopOpacity="0.22" />
             <stop offset="100%" stopColor={GOLD} stopOpacity="0" />
           </radialGradient>
 
           <radialGradient id="node-glow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor={GOLD_LIGHT} stopOpacity="0.8" />
+            <stop offset="0%" stopColor={GOLD_LIGHT} stopOpacity="0.16" />
             <stop offset="100%" stopColor={GOLD} stopOpacity="0" />
           </radialGradient>
 
           <linearGradient id="line-flow" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor={GOLD_DEEP} stopOpacity="0.2" />
-            <stop offset="50%" stopColor={GOLD_LIGHT} stopOpacity="1" />
-            <stop offset="100%" stopColor={GOLD_DEEP} stopOpacity="0.2" />
+            <stop offset="0%" stopColor={GOLD_DEEP} stopOpacity="0.04" />
+            <stop offset="50%" stopColor={GOLD_LIGHT} stopOpacity="0.18" />
+            <stop offset="100%" stopColor={GOLD_DEEP} stopOpacity="0.04" />
           </linearGradient>
-
-          <filter id="soft-glow" x="-100%" y="-100%" width="300%" height="300%">
-            <feGaussianBlur stdDeviation="3" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
         </defs>
 
-        {/* 9 faint vault rings — the bigger architecture, always present */}
-        {Array.from({ length: 9 }).map((_, i) => {
-          const r = 70 + i * 38;
-          const isVault = i % 3 === 2;
-          return (
-            <circle
-              key={`ring-${i}`}
-              cx={CX}
-              cy={CY}
-              r={r}
-              fill="none"
-              stroke={GOLD}
-              strokeWidth={isVault ? 1 : 0.5}
-              strokeOpacity={isVault ? 0.08 : 0.03}
-              strokeDasharray={isVault ? "none" : "2 8"}
-              style={{
-                opacity: completed ? 0.5 : 1,
-                transition: "opacity 1s ease",
-              }}
-            />
-          );
-        })}
-
-        {/* Faint static skeleton — always shows the structure */}
-        {innerPaths.map((d, i) => (
-          <path key={`s-i-${i}`} d={d} fill="none" stroke={GOLD} strokeWidth="1" strokeOpacity="0.08" />
-        ))}
-        {outerPaths.map((d, i) => (
-          <path key={`s-o-${i}`} d={d} fill="none" stroke={GOLD} strokeWidth="1" strokeOpacity="0.08" />
-        ))}
-
-        {/* Active connection lines — fade in as flow reaches them */}
-        {innerPaths.map((d, i) => (
-          <path
-            key={`a-i-${i}`}
-            d={d}
-            fill="none"
-            stroke="url(#line-flow)"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            style={{
-              opacity: innerLineOn(i) && !completed ? 0.85 : completed ? 0.4 : 0,
-              transition: "opacity 0.7s ease",
-            }}
-          />
-        ))}
-        {outerPaths.map((d, i) => (
-          <path
-            key={`a-o-${i}`}
-            d={d}
-            fill="none"
-            stroke="url(#line-flow)"
-            strokeWidth="1.2"
-            strokeLinecap="round"
-            style={{
-              opacity: outerLineOn(i) && !completed ? 0.7 : completed ? 0.3 : 0,
-              transition: "opacity 0.7s ease",
-            }}
-          />
-        ))}
-
-        {/* Outer nodes (4) */}
-        {outer.map((node, i) => {
-          const on = outerOn(i);
-          return (
-            <g
-              key={`o-${i}`}
-              style={{
-                opacity: on ? 0.7 : 0,
-                transition: "opacity 0.6s ease",
-              }}
-            >
-              <circle cx={node.x} cy={node.y} r="18" fill="url(#node-glow)" opacity="0.5" />
-              <circle
-                cx={node.x}
-                cy={node.y}
-                r="6"
-                fill="hsl(0 0% 6%)"
-                stroke={GOLD_LIGHT}
-                strokeWidth="1"
-              />
-              <circle cx={node.x} cy={node.y} r="2" fill={GOLD_LIGHT} />
-              {/* expanding ripple on appearance */}
-              {on && (
-                <circle
-                  cx={node.x}
-                  cy={node.y}
-                  r="6"
-                  fill="none"
-                  stroke={GOLD_LIGHT}
-                  strokeWidth="1"
-                  opacity="0.4"
-                >
-                  <animate attributeName="r" from="6" to="22" dur="1s" fill="freeze" />
-                  <animate attributeName="opacity" from="0.4" to="0" dur="1s" fill="freeze" />
-                </circle>
-              )}
-            </g>
-          );
-        })}
-
-        {/* Inner nodes (2) */}
-        {inner.map((node, i) => {
-          const on = innerOn(i);
-          return (
-            <g
-              key={`i-${i}`}
-              style={{
-                opacity: on ? 0.75 : 0,
-                transition: "opacity 0.6s ease",
-              }}
-            >
-              <circle cx={node.x} cy={node.y} r="22" fill="url(#node-glow)" opacity="0.5" />
-              <circle
-                cx={node.x}
-                cy={node.y}
-                r="8"
-                fill="hsl(0 0% 6%)"
-                stroke={GOLD_LIGHT}
-                strokeWidth="1.2"
-              />
-              <circle cx={node.x} cy={node.y} r="3" fill={GOLD_LIGHT} />
-              {on && (
-                <circle
-                  cx={node.x}
-                  cy={node.y}
-                  r="8"
-                  fill="none"
-                  stroke={GOLD_LIGHT}
-                  strokeWidth="1.2"
-                  opacity="0.5"
-                >
-                  <animate attributeName="r" from="8" to="26" dur="1s" fill="freeze" />
-                  <animate attributeName="opacity" from="0.5" to="0" dur="1s" fill="freeze" />
-                </circle>
-              )}
-            </g>
-          );
-        })}
-
-        {/* YOU — central core (subtle, doesn't compete with text) */}
         <g
+          transform="translate(150 56) scale(0.72)"
           style={{
-            opacity: youOn ? 0.6 : 0.1,
-            transition: "opacity 0.8s ease",
+            opacity: completed ? 0.28 : 0.34,
+            transition: "opacity 1.2s ease",
           }}
         >
-          <circle cx={CX} cy={CY} r="40" fill="url(#core-glow)" opacity="0.5" />
-          <circle
-            cx={CX}
-            cy={CY}
-            r="12"
-            fill="hsl(0 0% 6%)"
-            stroke={GOLD_LIGHT}
-            strokeWidth="1.5"
-          />
-          <circle cx={CX} cy={CY} r="4" fill={GOLD_LIGHT}>
-            <animate
-              attributeName="opacity"
-              values="0.5;1;0.5"
-              dur="3s"
-              repeatCount="indefinite"
-            />
-            <animate
-              attributeName="r"
-              values="3;5;3"
-              dur="3s"
-              repeatCount="indefinite"
-            />
-          </circle>
-        </g>
+          {Array.from({ length: 9 }).map((_, i) => {
+            const r = 70 + i * 38;
+            const isVault = i % 3 === 2;
+            return (
+              <circle
+                key={`ring-${i}`}
+                cx={CX}
+                cy={CY}
+                r={r}
+                fill="none"
+                stroke={GOLD}
+                strokeWidth={isVault ? 0.8 : 0.5}
+                strokeOpacity={isVault ? 0.04 : 0.018}
+                strokeDasharray={isVault ? "none" : "2 10"}
+              />
+            );
+          })}
 
-        {/* COMPLETION pulse — when matrix is full, the whole thing breathes once */}
-        {completed && (
-          <g>
-            <circle
-              cx={CX}
-              cy={CY}
-              r="100"
+          {innerPaths.map((d, i) => (
+            <path key={`s-i-${i}`} d={d} fill="none" stroke={GOLD} strokeWidth="0.8" strokeOpacity="0.035" />
+          ))}
+          {outerPaths.map((d, i) => (
+            <path key={`s-o-${i}`} d={d} fill="none" stroke={GOLD} strokeWidth="0.8" strokeOpacity="0.035" />
+          ))}
+
+          {innerPaths.map((d, i) => (
+            <path
+              key={`a-i-${i}`}
+              d={d}
               fill="none"
-              stroke={GOLD_LIGHT}
-              strokeWidth="2"
-              opacity="0.6"
-            >
-              <animate attributeName="r" from="100" to="380" dur="1.6s" fill="freeze" />
-              <animate attributeName="opacity" from="0.7" to="0" dur="1.6s" fill="freeze" />
-            </circle>
-            <circle
-              cx={CX}
-              cy={CY}
-              r="100"
-              fill="none"
-              stroke={GOLD}
+              stroke="url(#line-flow)"
               strokeWidth="1"
-              opacity="0.4"
-            >
-              <animate attributeName="r" from="100" to="500" dur="1.6s" fill="freeze" begin="0.3s" />
-              <animate attributeName="opacity" from="0.5" to="0" dur="1.6s" fill="freeze" begin="0.3s" />
+              strokeLinecap="round"
+              style={{
+                opacity: innerLineOn(i) ? 1 : 0,
+                transition: "opacity 1.1s ease",
+              }}
+            />
+          ))}
+          {outerPaths.map((d, i) => (
+            <path
+              key={`a-o-${i}`}
+              d={d}
+              fill="none"
+              stroke="url(#line-flow)"
+              strokeWidth="0.9"
+              strokeLinecap="round"
+              style={{
+                opacity: outerLineOn(i) ? 1 : 0,
+                transition: "opacity 1.1s ease",
+              }}
+            />
+          ))}
+
+          {outer.map((node, i) => {
+            const on = outerOn(i);
+            return (
+              <g
+                key={`o-${i}`}
+                style={{
+                  opacity: on ? 0.75 : 0,
+                  transition: "opacity 0.9s ease",
+                }}
+              >
+                <circle cx={node.x} cy={node.y} r="9" fill="url(#node-glow)" />
+                <circle cx={node.x} cy={node.y} r="1.8" fill={GOLD_LIGHT} fillOpacity="0.9" />
+              </g>
+            );
+          })}
+
+          {inner.map((node, i) => {
+            const on = innerOn(i);
+            return (
+              <g
+                key={`i-${i}`}
+                style={{
+                  opacity: on ? 0.82 : 0,
+                  transition: "opacity 0.9s ease",
+                }}
+              >
+                <circle cx={node.x} cy={node.y} r="11" fill="url(#node-glow)" />
+                <circle cx={node.x} cy={node.y} r="2.2" fill={GOLD_LIGHT} fillOpacity="0.95" />
+              </g>
+            );
+          })}
+
+          <g
+            style={{
+              opacity: youOn ? 0.9 : 0.2,
+              transition: "opacity 1s ease",
+            }}
+          >
+            <circle cx={CX} cy={CY} r="18" fill="url(#core-glow)" />
+            <circle cx={CX} cy={CY} r="3" fill={GOLD_LIGHT}>
+              <animate attributeName="opacity" values="0.45;0.8;0.45" dur="4s" repeatCount="indefinite" />
             </circle>
           </g>
-        )}
+        </g>
       </svg>
 
-      {/* Subtle vignette for hero text legibility */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse at center, transparent 35%, hsl(0 0% 0% / 0.5) 100%)",
+            "radial-gradient(ellipse at center, transparent 24%, hsl(0 0% 0% / 0.62) 100%)",
         }}
       />
     </div>
