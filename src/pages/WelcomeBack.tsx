@@ -30,39 +30,39 @@ const tiers = [
 const upgrades = [
   {
     icon: Shield,
-    tag: "STABLE FOUNDATION",
-    title: "Built for the long run.",
-    body: "Refined over 25 years. The platform you remember — quietly stronger every cycle.",
+    tag: "PROVEN ENGINE",
+    title: "Built to move. Built to last.",
+    body: "25 years of refinement. Faster, tighter, smoother every cycle.",
   },
   {
     icon: InfinityIcon,
     tag: "MÖBIUS RELOAD",
     title: "Cycles that don't stop.",
-    body: "One fills, the next opens. Automatic. The momentum carries forward.",
+    body: "One fills, the next opens — instantly. The momentum never breaks.",
   },
   {
     icon: TrendingUp,
     tag: "9 VAULTS · 3 SYSTEMS",
-    title: "Designed to scale with you.",
-    body: "Start at $25. Grow into $52,500 receive cycles. The ladder is already built.",
+    title: "A ladder built for speed.",
+    body: "Start at $25. Climb to $52,500 receive cycles. Move at your pace — but move.",
   },
   {
     icon: Users,
     tag: "50 / 50 SPLIT",
-    title: "You win when they win.",
-    body: "Every contribution pays both sides. The math is why members stay.",
+    title: "You move. Your team moves.",
+    body: "Every contribution pays both sides. Forward motion, doubled.",
   },
   {
     icon: Clock,
     tag: "LIVE SUPPORT",
-    title: "Real humans. Real answers.",
-    body: "Member care and onboarding — every day the system runs.",
+    title: "Real humans. Fast answers.",
+    body: "Member care and onboarding — keeping every seat moving forward.",
   },
   {
     icon: Heart,
     tag: "YOUR SEAT IS WAITING",
-    title: "Pick up where you left off.",
-    body: "The team that started with you is still here. Bigger. Quieter. Working.",
+    title: "Step in. Catch the cycle.",
+    body: "The team is moving. The system is hot. Your seat is still on the wheel.",
   },
 ];
 
@@ -174,11 +174,11 @@ const WelcomeBack = () => {
             className="text-2xl md:text-4xl italic mb-6 text-white max-w-3xl mx-auto leading-tight"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}
           >
-            Quieter than before.<br />Stronger than ever.
+            Built to move.<br />Engineered to keep moving.
           </p>
 
           <p className="text-base md:text-lg text-white/60 max-w-xl mx-auto mb-10 leading-relaxed">
-            Sound structure. Steady support. A long-game system the most patient members are quietly retiring on.
+            Faster cycles. Tighter teams. A system in full motion — and your seat is still on it.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -267,12 +267,12 @@ const WelcomeBack = () => {
             className="text-5xl md:text-7xl leading-[1.02] mb-8"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 500 }}
           >
-            Steady cycles.
+            The wheel is turning.
             <br />
-            <span className="gold-gradient italic">A long-game worth returning to.</span>
+            <span className="gold-gradient italic">Don't watch from the sidelines.</span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            The system kept moving — patient, scalable, supported. Built for members who think in years, not weeks.
+            Cycles are filling fast. Teams are moving. Every day you wait is a cycle you don't catch.
           </p>
         </div>
       </section>
@@ -285,16 +285,16 @@ const WelcomeBack = () => {
               className="text-xs tracking-[0.35em] uppercase mb-5 font-semibold"
               style={{ color: "hsl(39 55% 45%)" }}
             >
-              Built To Last
+              Built To Move
             </p>
             <h2
               className="text-5xl md:text-6xl leading-[1.05] mb-6"
               style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 600 }}
             >
-              Six reasons it keeps <span className="italic">working.</span>
+              Six reasons it keeps <span className="italic">moving.</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Sound structure. Real support. A ladder built to scale.
+              Engineered for momentum. Built to scale. Designed to deliver.
             </p>
           </div>
 
@@ -339,11 +339,11 @@ const WelcomeBack = () => {
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-3xl md:text-5xl leading-tight italic text-foreground/90"
              style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}>
-            "The patient ones<br />
-            <span className="gold-gradient">are the ones still receiving.</span>"
+            "The ones in motion<br />
+            <span className="gold-gradient">are the ones receiving.</span>"
           </p>
           <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mt-8">
-            — 25 Years In · Still Cooperating
+            — 25 Years In · Still Moving
           </p>
         </div>
       </section>
@@ -370,12 +370,12 @@ const WelcomeBack = () => {
             className="text-5xl md:text-7xl leading-[1.02] mb-8 text-white"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 500 }}
           >
-            One decision.
+            One click.
             <br />
-            <span className="gold-gradient italic">Years of cycles ahead.</span>
+            <span className="gold-gradient italic">Back in motion.</span>
           </h2>
           <p className="text-lg text-white/70 mb-10 max-w-xl mx-auto leading-relaxed">
-            The structure is sound. The support is real. The long game is already in motion.
+            The wheel is turning. The team is moving. Step on while it's hot.
           </p>
           <a
             href={reactivateUrl}
