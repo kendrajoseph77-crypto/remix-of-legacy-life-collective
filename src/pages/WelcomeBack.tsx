@@ -23,7 +23,7 @@ const tiers = [
     color: "hsl(39 55% 52%)",
     receive: "$52,500",
     sub: "per cycle",
-    tagline: "Long-game wealth. Generational scale.",
+    tagline: "Top-tier scale. Real wealth.",
   },
 ];
 
@@ -212,10 +212,10 @@ const WelcomeBack = () => {
             className="text-4xl md:text-5xl text-white text-center mb-4"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 500 }}
           >
-            Three doors. <span className="gold-gradient italic">One long game.</span>
+            Three doors. <span className="gold-gradient italic">One engine.</span>
           </h2>
           <p className="text-center text-white/55 max-w-xl mx-auto mb-14">
-            Built to scale with you — from a first cautious step back, to retirement-level cycles.
+            Pick your entry point — from a single test cycle to full-tier income flow.
           </p>
 
           <div className="grid md:grid-cols-3 gap-6">
