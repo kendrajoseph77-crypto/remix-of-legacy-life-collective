@@ -242,8 +242,7 @@ const WelcomeBack = () => {
           </div>
 
           <p className="text-center text-white/40 text-sm italic mt-10 max-w-2xl mx-auto">
-            The same cooperative you remember — now with 9 vaults, infinite Möbius cycles,
-            and a team that travels with you.
+            9 vaults. Infinite cycles. One team that travels with you.
           </p>
         </div>
       </section>
