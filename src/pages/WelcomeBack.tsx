@@ -178,7 +178,7 @@ const WelcomeBack = () => {
               className="text-xs tracking-[0.35em] uppercase mb-5 font-semibold"
               style={{ color: "hsl(41 50% 45%)" }}
             >
-              Introducing CUI
+              Powered By CUI
             </p>
             <h2
               className="text-5xl md:text-7xl leading-[1.02] mb-6"
