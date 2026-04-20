@@ -113,11 +113,7 @@ const WelcomeBack = () => {
             className="text-2xl md:text-4xl italic mb-6 text-white max-w-3xl mx-auto leading-tight"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}
           >
-            Built to deliver.<br />Engineered to keep going.
-          </p>
-
-          <p className="text-base md:text-lg text-white/60 max-w-xl mx-auto mb-10 leading-relaxed">
-            The original income engine of the cooperative economy — refined, accelerated, and now powering <span className="text-white/85 font-medium">Cooperative Universal Income</span>.
+            The original income engine of the cooperative economy:<br />refined &amp; accelerated.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
