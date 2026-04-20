@@ -21,35 +21,8 @@ const COMPLETE_HOLD_MS = 2400;
 const RESET_FADE_MS = 1400;
 
 const MobiusHero = () => {
-  const [step, setStep] = useState(0); // 0..3 (levels lit so far)
-  const [completed, setCompleted] = useState(false);
-
-  useEffect(() => {
-    let mounted = true;
-    let timer: number;
-
-    const tick = (current: number) => {
-      if (!mounted) return;
-      if (current <= LEVELS.length) {
-        setStep(current);
-        timer = window.setTimeout(() => tick(current + 1), STEP_MS);
-      } else {
-        setCompleted(true);
-        timer = window.setTimeout(() => {
-          if (!mounted) return;
-          setCompleted(false);
-          setStep(0);
-          timer = window.setTimeout(() => tick(1), RESET_FADE_MS);
-        }, COMPLETE_HOLD_MS);
-      }
-    };
-
-    timer = window.setTimeout(() => tick(1), 600);
-    return () => {
-      mounted = false;
-      clearTimeout(timer);
-    };
-  }, []);
+  const step = LEVELS.length;
+  const completed = false;
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
