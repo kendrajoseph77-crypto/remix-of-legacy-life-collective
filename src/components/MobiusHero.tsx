@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+// no hooks needed — static render
 
 /**
  * MobiusHero — abstract animated background for the Welcome Back hero.
