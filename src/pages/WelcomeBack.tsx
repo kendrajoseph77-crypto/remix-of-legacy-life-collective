@@ -62,46 +62,62 @@ const WelcomeBack = () => {
 
         <div className="relative max-w-5xl mx-auto px-6 text-center">
           <div
-            className="inline-flex items-center gap-2 px-5 py-2 mb-8 rounded-full text-xs tracking-[0.3em] uppercase"
+            className="inline-flex items-center gap-2 px-5 py-2 mb-10 rounded-full text-xs tracking-[0.3em] uppercase"
             style={{
               background: "hsl(0 0% 100% / 0.08)",
-              border: "1px solid hsl(0 0% 100% / 0.15)",
+              border: "1px solid hsl(41 50% 65% / 0.3)",
               color: "hsl(41 50% 65%)",
             }}
           >
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Exclusive · Returning Members</span>
+            <span className="w-1.5 h-1.5 rounded-full" style={{ background: "hsl(41 50% 65%)" }} />
+            <span>Powered by CUI</span>
           </div>
 
-          <h1
-            className="text-6xl md:text-8xl leading-[0.95] mb-8 text-white"
-            style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 500 }}
+          <p
+            className="text-2xl md:text-3xl italic mb-4 text-white/90"
+            style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}
           >
-            Welcome back.
-            <br />
-            <span className="gold-gradient italic">Everything changed.</span>
+            Welcome back,
+          </p>
+
+          <h1
+            className="text-7xl md:text-9xl leading-[0.9] mb-8 tracking-tight"
+            style={{
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
+              fontWeight: 800,
+              letterSpacing: "-0.03em",
+            }}
+          >
+            <span className="gold-gradient">COOP5050</span>
           </h1>
 
-          <p className="text-lg md:text-xl max-w-2xl mx-auto mb-12 text-white/70 leading-relaxed">
-            We rebuilt the platform from the ground up. New tiers, stronger economics,
-            a tighter community — and a returning member credit waiting for you.
+          <p
+            className="text-xl md:text-2xl italic mb-6 text-white/90 max-w-3xl mx-auto"
+            style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}
+          >
+            The system you know — reborn, sharpened, and built to compound.
+          </p>
+
+          <p className="text-base md:text-lg max-w-2xl mx-auto mb-12 text-white/60 leading-relaxed">
+            You helped build this movement. Now meet the upgrades that take it from a
+            cooperative to an unstoppable engine.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link
-              to="/join"
-              className="btn-gold px-10 py-4 rounded-full font-semibold tracking-wider uppercase text-sm inline-flex items-center gap-2"
+            <a
+              href="https://www.coop5050.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-gold px-12 py-5 rounded-full font-bold tracking-wider uppercase text-sm inline-flex items-center gap-3"
             >
-              Rejoin Now
+              Reactivate Now
               <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              to="/how-it-works"
-              className="btn-outline-white px-10 py-4 rounded-full font-semibold tracking-wider uppercase text-sm"
-            >
-              See What's New
-            </Link>
+            </a>
           </div>
+
+          <p className="text-xs tracking-[0.2em] uppercase mt-6 text-white/40">
+            Opens www.coop5050.com in a new window
+          </p>
         </div>
       </section>
 
