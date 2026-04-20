@@ -1,62 +1,87 @@
-import { Link } from "react-router-dom";
-import { Sparkles, TrendingUp, Zap, Gift, ArrowRight, Crown, Users, Lock } from "lucide-react";
+import { ArrowRight, Heart, Infinity as InfinityIcon, Users, TrendingUp, Clock, Shield } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
+const tiers = [
+  {
+    name: "5050 Fast",
+    color: "hsl(224 78% 48%)",
+    receive: "$525",
+    sub: "per cycle",
+    tagline: "The on-ramp. Small contributions, real momentum.",
+  },
+  {
+    name: "5050 Core",
+    color: "hsl(160 84% 30%)",
+    receive: "$5,250",
+    sub: "per cycle",
+    tagline: "The engine. Where cooperation starts compounding.",
+  },
+  {
+    name: "5050 Max",
+    color: "hsl(39 55% 52%)",
+    receive: "$52,500",
+    sub: "per cycle",
+    tagline: "The summit. Legacy-level returns, over and over.",
+  },
+];
+
 const upgrades = [
   {
-    icon: Crown,
-    tag: "NEW TIERS",
-    title: "Fast, Core & Max",
-    body: "Three reimagined membership levels — each with sharper benefits, clearer paths, and bigger upside than before.",
+    icon: InfinityIcon,
+    tag: "MÖBIUS RELOAD",
+    title: "Infinite Cycles, Zero Friction",
+    body: "When a cooperative fills, a new one opens automatically. Your team follows you across every loop — no rebuilding, no restarting.",
   },
   {
     icon: TrendingUp,
-    tag: "BETTER ECONOMICS",
-    title: "Improved Payout Structure",
-    body: "Redesigned distribution tiers mean your contributions go further. More leverage, more returns, more aligned incentives.",
-  },
-  {
-    icon: Zap,
-    tag: "FASTER ONBOARDING",
-    title: "One-Click Re-Entry",
-    body: "Your history is already on file. Rejoin in under 90 seconds and pick up exactly where you left off.",
+    tag: "9 VAULTS",
+    title: "Deeper Progression",
+    body: "Three vaults per system. Each one you complete unlocks bigger cooperatives and bigger receive amounts. The math only gets better.",
   },
   {
     icon: Users,
-    tag: "COMMUNITY",
-    title: "Private Member Circles",
-    body: "New cooperative pods connect you with members at your level. Real conversations, real deals, real momentum.",
+    tag: "50 / 50 SPLIT",
+    title: "You Receive. Your Team Receives.",
+    body: "Every contribution pays both sides. You earn 50%. Your team earns 50%. Nobody gets left behind — that's why it works.",
   },
   {
-    icon: Lock,
-    tag: "SECURITY",
-    title: "Hardened Platform",
-    body: "End-to-end encryption, enhanced verification, and a fully audited infrastructure keep your position protected.",
+    icon: Clock,
+    tag: "FASTER RE-ENTRY",
+    title: "Your Seat Never Closed",
+    body: "Your history is on file. Pick your tier, click reactivate, and drop straight back into the cycle. Under 90 seconds.",
   },
   {
-    icon: Gift,
-    tag: "RETURNING BONUS",
-    title: "Legacy Member Credit",
-    body: "Come back this quarter and receive a founder credit applied to your first cycle. Our way of saying welcome home.",
+    icon: Shield,
+    tag: "HARDENED PLATFORM",
+    title: "Protected, Audited, Trusted",
+    body: "25 years of Cooperative Crowdfunding™ refined into a platform built to protect your position and pay out on time, every time.",
+  },
+  {
+    icon: Heart,
+    tag: "COME HOME",
+    title: "You're Already Family",
+    body: "You helped build this. The people in your line still remember. Step back in and you'll find the movement waiting — bigger than when you left.",
   },
 ];
 
 const WelcomeBack = () => {
+  const reactivateUrl = "https://www.coop5050.com/#join";
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      {/* Hero */}
-      <section className="relative pt-40 pb-24 overflow-hidden section-dark">
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
+      {/* HERO */}
+      <section className="relative pt-40 pb-28 overflow-hidden section-dark">
+        {/* Gold burst */}
+        <div className="absolute inset-0 pointer-events-none">
           <div
-            className="absolute top-1/4 -left-20 w-96 h-96 rounded-full blur-3xl"
-            style={{ background: "hsl(39 55% 52%)" }}
-          />
-          <div
-            className="absolute bottom-0 right-0 w-[30rem] h-[30rem] rounded-full blur-3xl"
-            style={{ background: "hsl(160 84% 30%)" }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70rem] h-[70rem] rounded-full blur-3xl opacity-30"
+            style={{
+              background:
+                "radial-gradient(circle, hsl(41 50% 65%) 0%, hsl(39 55% 40%) 40%, transparent 70%)",
+            }}
           />
         </div>
 
@@ -69,8 +94,8 @@ const WelcomeBack = () => {
               color: "hsl(41 50% 65%)",
             }}
           >
-            <span className="w-1.5 h-1.5 rounded-full" style={{ background: "hsl(41 50% 65%)" }} />
-            <span>Powered by CUI</span>
+            <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "hsl(41 50% 65%)" }} />
+            <span>25 Years · Cooperative Crowdfunding™</span>
           </div>
 
           <p
@@ -81,31 +106,31 @@ const WelcomeBack = () => {
           </p>
 
           <h1
-            className="text-7xl md:text-9xl leading-[0.9] mb-8 tracking-tight"
+            className="text-7xl md:text-[10rem] leading-[0.85] mb-10 tracking-tight"
             style={{
               fontFamily: "'Plus Jakarta Sans', sans-serif",
               fontWeight: 800,
-              letterSpacing: "-0.03em",
+              letterSpacing: "-0.04em",
             }}
           >
             <span className="gold-gradient">COOP5050</span>
           </h1>
 
           <p
-            className="text-xl md:text-2xl italic mb-6 text-white/90 max-w-3xl mx-auto"
+            className="text-2xl md:text-4xl italic mb-6 text-white max-w-3xl mx-auto leading-tight"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}
           >
-            The system you know — reborn, sharpened, and built to compound.
+            Each doing a little,<br />so everyone can receive a lot.
           </p>
 
           <p className="text-base md:text-lg max-w-2xl mx-auto mb-12 text-white/60 leading-relaxed">
-            You helped build this movement. Now meet the upgrades that take it from a
-            cooperative to an unstoppable engine.
+            The movement you helped build is still here — sharper, faster, and built to compound.
+            Your seat didn't close. It just got more valuable.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a
-              href="https://www.coop5050.com"
+              href={reactivateUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-gold px-12 py-5 rounded-full font-bold tracking-wider uppercase text-sm inline-flex items-center gap-3"
@@ -116,53 +141,107 @@ const WelcomeBack = () => {
           </div>
 
           <p className="text-xs tracking-[0.2em] uppercase mt-6 text-white/40">
-            Opens www.coop5050.com in a new window
+            Opens coop5050.com in a new window
           </p>
         </div>
       </section>
 
-      {/* Stats strip */}
-      <section className="border-y border-border bg-muted/30">
-        <div className="max-w-6xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {[
-            { value: "3", label: "New Tiers" },
-            { value: "2×", label: "Better Returns" },
-            { value: "90s", label: "Re-Entry Time" },
-            { value: "100%", label: "Legacy Honored" },
-          ].map((stat) => (
-            <div key={stat.label}>
+      {/* RECEIVE BAR — the real numbers */}
+      <section className="section-dark border-y border-white/10 py-16 px-6 relative">
+        <div className="max-w-6xl mx-auto">
+          <p
+            className="text-xs tracking-[0.35em] uppercase mb-4 font-semibold text-center"
+            style={{ color: "hsl(41 50% 65%)" }}
+          >
+            What You Receive · Each Cycle
+          </p>
+          <h2
+            className="text-4xl md:text-5xl text-white text-center mb-14"
+            style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 500 }}
+          >
+            Three systems. <span className="gold-gradient italic">One movement.</span>
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {tiers.map((tier) => (
               <div
-                className="text-4xl md:text-5xl mb-1"
-                style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 600 }}
+                key={tier.name}
+                className="p-8 rounded-2xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] transition-all hover:-translate-y-1 backdrop-blur-sm"
               >
-                {stat.value}
+                <div
+                  className="text-[10px] tracking-[0.3em] uppercase mb-4 font-bold"
+                  style={{ color: tier.color }}
+                >
+                  {tier.name}
+                </div>
+                <div
+                  className="text-6xl md:text-7xl mb-2 gold-gradient"
+                  style={{
+                    fontFamily: "'Plus Jakarta Sans', sans-serif",
+                    fontWeight: 800,
+                    letterSpacing: "-0.03em",
+                  }}
+                >
+                  {tier.receive}
+                </div>
+                <div className="text-xs tracking-[0.25em] uppercase text-white/50 mb-5">
+                  {tier.sub}
+                </div>
+                <p className="text-white/70 leading-relaxed text-sm">{tier.tagline}</p>
               </div>
-              <div className="text-xs tracking-[0.25em] uppercase text-muted-foreground">
-                {stat.label}
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          <p className="text-center text-white/40 text-sm italic mt-10 max-w-2xl mx-auto">
+            The same cooperative you remember — now with 9 vaults, infinite Möbius cycles,
+            and a team that travels with you.
+          </p>
         </div>
       </section>
 
-      {/* Upgrades grid */}
+      {/* WHY NOW */}
       <section className="py-24 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <p
+            className="text-xs tracking-[0.35em] uppercase mb-5 font-semibold"
+            style={{ color: "hsl(160 84% 30%)" }}
+          >
+            Why Now
+          </p>
+          <h2
+            className="text-5xl md:text-7xl leading-[1.02] mb-8"
+            style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 500 }}
+          >
+            Money for everything.
+            <br />
+            <span className="gold-gradient italic">Life the way you deserve it.</span>
+          </h2>
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+            Pay your monthly bills. Eliminate debt. Fund your best life. The cooperative
+            doesn't ask you to compete — it asks you to participate. And participation,
+            compounded across a team, changes everything.
+          </p>
+        </div>
+      </section>
+
+      {/* UPGRADES GRID */}
+      <section className="py-20 px-6 bg-muted/30 border-y border-border">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <p
               className="text-xs tracking-[0.35em] uppercase mb-5 font-semibold"
-              style={{ color: "hsl(160 84% 30%)" }}
+              style={{ color: "hsl(39 55% 45%)" }}
             >
-              What's New
+              What's Changed
             </p>
             <h2
               className="text-5xl md:text-6xl leading-[1.05] mb-6"
               style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 600 }}
             >
-              Six reasons to come home.
+              Six reasons to step <span className="italic">back in.</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We didn't just update the platform. We rebuilt it around what our members actually asked for.
+              We didn't change what made it work. We made what works — work harder.
             </p>
           </div>
 
@@ -172,7 +251,7 @@ const WelcomeBack = () => {
               return (
                 <div
                   key={item.title}
-                  className="group p-8 rounded-2xl bg-card border border-border hover:border-foreground/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-20px_hsl(0_0%_0%/0.25)]"
+                  className="group p-8 rounded-2xl bg-card border border-border hover:border-foreground/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-20px_hsl(39_55%_30%/0.35)]"
                 >
                   <div
                     className="w-12 h-12 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
@@ -202,12 +281,29 @@ const WelcomeBack = () => {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="section-dark py-24 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-30 pointer-events-none">
+      {/* EMOTIONAL QUOTE BAND */}
+      <section className="py-24 px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-3xl md:text-5xl leading-tight italic text-foreground/90"
+             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}>
+            "Instead of competing,<br />
+            <span className="gold-gradient">we cooperate.</span>"
+          </p>
+          <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mt-8">
+            — The Founding Principle · Since 2000
+          </p>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="section-dark py-28 px-6 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-40 pointer-events-none">
           <div
-            className="absolute top-0 left-1/2 -translate-x-1/2 w-[50rem] h-[50rem] rounded-full blur-3xl"
-            style={{ background: "hsl(39 55% 52%)" }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[55rem] h-[55rem] rounded-full blur-3xl"
+            style={{
+              background:
+                "radial-gradient(circle, hsl(41 50% 65%) 0%, hsl(39 55% 40%) 40%, transparent 70%)",
+            }}
           />
         </div>
         <div className="relative max-w-3xl mx-auto text-center">
@@ -215,27 +311,32 @@ const WelcomeBack = () => {
             className="text-xs tracking-[0.35em] uppercase mb-5 font-semibold"
             style={{ color: "hsl(41 50% 65%)" }}
           >
-            Your Seat Is Reserved
+            You're Already Family
           </p>
           <h2
             className="text-5xl md:text-7xl leading-[1.02] mb-8 text-white"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 500 }}
           >
-            The platform evolved.
+            Step back into
             <br />
-            <span className="gold-gradient italic">So should you.</span>
+            <span className="gold-gradient italic">the cycle.</span>
           </h2>
-          <p className="text-lg text-white/60 mb-10 max-w-xl mx-auto">
-            Returning members get priority access, a founder credit, and immediate placement.
-            No waitlist. No catch.
+          <p className="text-lg text-white/70 mb-10 max-w-xl mx-auto leading-relaxed">
+            The team is still here. The system is stronger. The math still works —
+            and now it works faster. All that's missing is you.
           </p>
-          <Link
-            to="/join"
-            className="btn-gold px-12 py-5 rounded-full font-semibold tracking-wider uppercase text-sm inline-flex items-center gap-2"
+          <a
+            href={reactivateUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-gold px-12 py-5 rounded-full font-bold tracking-wider uppercase text-sm inline-flex items-center gap-3"
           >
-            Claim Your Return
+            Reactivate at coop5050.com
             <ArrowRight className="w-4 h-4" />
-          </Link>
+          </a>
+          <p className="text-xs tracking-[0.2em] uppercase mt-6 text-white/40">
+            Fast · Core · Max — pick your lane
+          </p>
         </div>
       </section>
 
