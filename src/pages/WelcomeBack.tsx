@@ -88,7 +88,7 @@ const WelcomeBack = () => {
             className="text-2xl md:text-4xl italic mb-8 text-white/90 max-w-2xl mx-auto leading-[1.1]"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}
           >
-            Your seat is <span className="gold-gradient">still on the wheel.</span>
+            We saved <span className="gold-gradient">your spot.</span>
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
