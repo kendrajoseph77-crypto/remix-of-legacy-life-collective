@@ -1,4 +1,5 @@
 import { ArrowRight, Heart, Infinity as InfinityIcon, Users, TrendingUp, Clock, Shield } from "lucide-react";
+import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
