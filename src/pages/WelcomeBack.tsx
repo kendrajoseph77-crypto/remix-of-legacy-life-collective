@@ -287,7 +287,7 @@ const WelcomeBack = () => {
               Six reasons to step <span className="italic">back in.</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We didn't change what made it work. We made what works — work harder.
+              What worked, working harder.
             </p>
           </div>
 
