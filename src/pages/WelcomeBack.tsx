@@ -16,14 +16,14 @@ const tiers = [
     color: "hsl(160 84% 30%)",
     receive: "$5,250",
     sub: "per cycle",
-    tagline: "The engine. Where cooperation starts compounding.",
+    tagline: "The engine.",
   },
   {
     name: "5050 Max",
     color: "hsl(39 55% 52%)",
     receive: "$52,500",
     sub: "per cycle",
-    tagline: "The summit. Legacy-level returns, over and over.",
+    tagline: "The summit.",
   },
 ];
 
