@@ -171,15 +171,10 @@ const WelcomeBack = () => {
           </h1>
 
           <p
-            className="text-2xl md:text-4xl italic mb-6 text-white max-w-3xl mx-auto leading-tight"
+            className="text-2xl md:text-4xl italic mb-10 text-white max-w-3xl mx-auto leading-tight"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}
           >
             Each doing a little,<br />so everyone can receive a lot.
-          </p>
-
-          <p className="text-base md:text-lg max-w-2xl mx-auto mb-12 text-white/60 leading-relaxed">
-            The movement you helped build is still here — sharper, faster, and built to compound.
-            Your seat didn't close. It just got more valuable.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
