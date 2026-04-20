@@ -368,8 +368,7 @@ const WelcomeBack = () => {
             <span className="gold-gradient italic">the cycle.</span>
           </h2>
           <p className="text-lg text-white/70 mb-10 max-w-xl mx-auto leading-relaxed">
-            The team is still here. The system is stronger. The math still works —
-            and now it works faster. All that's missing is you.
+            The team is here. The math still works. All that's missing is you.
           </p>
           <a
             href={reactivateUrl}
