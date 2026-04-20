@@ -110,10 +110,16 @@ const WelcomeBack = () => {
           </h1>
 
           <p
-            className="text-2xl md:text-4xl italic mb-6 text-white max-w-3xl mx-auto leading-tight"
+            className="text-2xl md:text-4xl italic mb-6 text-white/90 max-w-3xl mx-auto leading-[1.15]"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}
           >
-            The original income engine of the cooperative economy:<br />refined &amp; accelerated.
+            The original income engine<br />of the cooperative economy
+          </p>
+          <p
+            className="text-xs md:text-sm tracking-[0.4em] uppercase mb-10 font-semibold"
+            style={{ color: "hsl(41 50% 65%)" }}
+          >
+            Refined &nbsp;·&nbsp; Accelerated
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
