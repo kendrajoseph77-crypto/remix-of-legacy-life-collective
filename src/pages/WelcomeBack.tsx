@@ -30,15 +30,15 @@ const tiers = [
 const upgrades = [
   {
     icon: Shield,
-    tag: "REBUILT FOUNDATION",
-    title: "Stable. Audited. Supported.",
-    body: "Every weak point from the early years — closed. The platform you remember, hardened.",
+    tag: "STABLE FOUNDATION",
+    title: "Built for the long run.",
+    body: "Refined over 25 years. The platform you remember — quietly stronger every cycle.",
   },
   {
     icon: InfinityIcon,
     tag: "MÖBIUS RELOAD",
     title: "Cycles that don't stop.",
-    body: "One fills, the next opens. Automatic. No waiting list. No dead air.",
+    body: "One fills, the next opens. Automatic. The momentum carries forward.",
   },
   {
     icon: TrendingUp,
@@ -56,12 +56,12 @@ const upgrades = [
     icon: Clock,
     tag: "LIVE SUPPORT",
     title: "Real humans. Real answers.",
-    body: "Member care, onboarding, and reactivation help — every day the system runs.",
+    body: "Member care and onboarding — every day the system runs.",
   },
   {
     icon: Heart,
     tag: "YOUR SEAT IS WAITING",
-    title: "Walk back in. Pick up where you left off.",
+    title: "Pick up where you left off.",
     body: "The team that started with you is still here. Bigger. Quieter. Working.",
   },
 ];
@@ -178,7 +178,7 @@ const WelcomeBack = () => {
           </p>
 
           <p className="text-base md:text-lg text-white/60 max-w-xl mx-auto mb-10 leading-relaxed">
-            Whatever pushed you away — we heard it, fixed it, and kept building. The system you almost trusted is now the one members are quietly retiring on.
+            Sound structure. Steady support. A long-game system the most patient members are quietly retiring on.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -267,12 +267,12 @@ const WelcomeBack = () => {
             className="text-5xl md:text-7xl leading-[1.02] mb-8"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 500 }}
           >
-            The quiet ones
+            Steady cycles.
             <br />
-            <span className="gold-gradient italic">are still here. Still receiving.</span>
+            <span className="gold-gradient italic">A long-game worth returning to.</span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            While the noise moved on, the system kept paying. Slower. Steadier. Built for the people who stayed — and the ones ready to come back.
+            The system kept moving — patient, scalable, supported. Built for members who think in years, not weeks.
           </p>
         </div>
       </section>
@@ -285,16 +285,16 @@ const WelcomeBack = () => {
               className="text-xs tracking-[0.35em] uppercase mb-5 font-semibold"
               style={{ color: "hsl(39 55% 45%)" }}
             >
-              What's Different Now
+              Built To Last
             </p>
             <h2
               className="text-5xl md:text-6xl leading-[1.05] mb-6"
               style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 600 }}
             >
-              If you left frustrated, <span className="italic">read this.</span>
+              Six reasons it keeps <span className="italic">working.</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Same mission. Stronger structure. Real support behind every seat.
+              Sound structure. Real support. A ladder built to scale.
             </p>
           </div>
 
@@ -339,7 +339,7 @@ const WelcomeBack = () => {
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-3xl md:text-5xl leading-tight italic text-foreground/90"
              style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}>
-            "The members who stayed quiet<br />
+            "The patient ones<br />
             <span className="gold-gradient">are the ones still receiving.</span>"
           </p>
           <p className="text-sm tracking-[0.3em] uppercase text-muted-foreground mt-8">
@@ -375,7 +375,7 @@ const WelcomeBack = () => {
             <span className="gold-gradient italic">Years of cycles ahead.</span>
           </h2>
           <p className="text-lg text-white/70 mb-10 max-w-xl mx-auto leading-relaxed">
-            The structure is sound. The support is real. The long game is already in motion — with or without you in it.
+            The structure is sound. The support is real. The long game is already in motion.
           </p>
           <a
             href={reactivateUrl}
