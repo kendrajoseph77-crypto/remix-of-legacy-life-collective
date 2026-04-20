@@ -9,21 +9,21 @@ const tiers = [
     color: "hsl(224 78% 48%)",
     receive: "$525",
     sub: "per cycle",
-    tagline: "The on-ramp. Small contributions, real momentum.",
+    tagline: "The on-ramp.",
   },
   {
     name: "5050 Core",
     color: "hsl(160 84% 30%)",
     receive: "$5,250",
     sub: "per cycle",
-    tagline: "The engine. Where cooperation starts compounding.",
+    tagline: "The engine.",
   },
   {
     name: "5050 Max",
     color: "hsl(39 55% 52%)",
     receive: "$52,500",
     sub: "per cycle",
-    tagline: "The summit. Legacy-level returns, over and over.",
+    tagline: "The summit.",
   },
 ];
 
@@ -31,38 +31,38 @@ const upgrades = [
   {
     icon: InfinityIcon,
     tag: "MÖBIUS RELOAD",
-    title: "Infinite Cycles, Zero Friction",
-    body: "When a cooperative fills, a new one opens automatically. Your team follows you across every loop — no rebuilding, no restarting.",
+    title: "Infinite cycles.",
+    body: "When one fills, the next opens. Your team follows.",
   },
   {
     icon: TrendingUp,
     tag: "9 VAULTS",
-    title: "Deeper Progression",
-    body: "Three vaults per system. Each one you complete unlocks bigger cooperatives and bigger receive amounts. The math only gets better.",
+    title: "Deeper progression.",
+    body: "Three vaults per system. Each one unlocks bigger receive amounts.",
   },
   {
     icon: Users,
     tag: "50 / 50 SPLIT",
-    title: "You Receive. Your Team Receives.",
-    body: "Every contribution pays both sides. You earn 50%. Your team earns 50%. Nobody gets left behind — that's why it works.",
+    title: "You receive. Your team receives.",
+    body: "Every contribution pays both sides. That's why it works.",
   },
   {
     icon: Clock,
     tag: "FASTER RE-ENTRY",
-    title: "Your Seat Never Closed",
-    body: "Your history is on file. Pick your tier, click reactivate, and drop straight back into the cycle. Under 90 seconds.",
+    title: "Your seat never closed.",
+    body: "Pick your tier. Click reactivate. Under 90 seconds.",
   },
   {
     icon: Shield,
     tag: "HARDENED PLATFORM",
-    title: "Protected, Audited, Trusted",
-    body: "25 years of Cooperative Crowdfunding™ refined into a platform built to protect your position and pay out on time, every time.",
+    title: "Built to pay out.",
+    body: "25 years of Cooperative Crowdfunding™, refined.",
   },
   {
     icon: Heart,
     tag: "COME HOME",
-    title: "You're Already Family",
-    body: "You helped build this. The people in your line still remember. Step back in and you'll find the movement waiting — bigger than when you left.",
+    title: "You're already family.",
+    body: "The movement is still here — bigger than when you left.",
   },
 ];
 
@@ -171,15 +171,10 @@ const WelcomeBack = () => {
           </h1>
 
           <p
-            className="text-2xl md:text-4xl italic mb-6 text-white max-w-3xl mx-auto leading-tight"
+            className="text-2xl md:text-4xl italic mb-10 text-white max-w-3xl mx-auto leading-tight"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontWeight: 400 }}
           >
             Each doing a little,<br />so everyone can receive a lot.
-          </p>
-
-          <p className="text-base md:text-lg max-w-2xl mx-auto mb-12 text-white/60 leading-relaxed">
-            The movement you helped build is still here — sharper, faster, and built to compound.
-            Your seat didn't close. It just got more valuable.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -247,8 +242,7 @@ const WelcomeBack = () => {
           </div>
 
           <p className="text-center text-white/40 text-sm italic mt-10 max-w-2xl mx-auto">
-            The same cooperative you remember — now with 9 vaults, infinite Möbius cycles,
-            and a team that travels with you.
+            9 vaults. Infinite cycles. One team that travels with you.
           </p>
         </div>
       </section>
@@ -271,9 +265,7 @@ const WelcomeBack = () => {
             <span className="gold-gradient italic">Life the way you deserve it.</span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            Pay your monthly bills. Eliminate debt. Fund your best life. The cooperative
-            doesn't ask you to compete — it asks you to participate. And participation,
-            compounded across a team, changes everything.
+            Pay the bills. Kill the debt. Fund the life. Don't compete — participate.
           </p>
         </div>
       </section>
@@ -295,7 +287,7 @@ const WelcomeBack = () => {
               Six reasons to step <span className="italic">back in.</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We didn't change what made it work. We made what works — work harder.
+              What worked, working harder.
             </p>
           </div>
 
@@ -376,8 +368,7 @@ const WelcomeBack = () => {
             <span className="gold-gradient italic">the cycle.</span>
           </h2>
           <p className="text-lg text-white/70 mb-10 max-w-xl mx-auto leading-relaxed">
-            The team is still here. The system is stronger. The math still works —
-            and now it works faster. All that's missing is you.
+            The team is here. The math still works. All that's missing is you.
           </p>
           <a
             href={reactivateUrl}
