@@ -271,7 +271,7 @@ const WelcomeBack = () => {
             <br />
             <span className="gold-gradient italic">A long-game worth returning to.</span>
           </h2>
-          <p className="text-lg md:text-xml text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
             The system kept moving — patient, scalable, supported. Built for members who think in years, not weeks.
           </p>
         </div>
