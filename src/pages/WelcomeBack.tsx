@@ -142,7 +142,7 @@ const WelcomeBack = () => {
               color: "hsl(20 15% 12%)",
             }}
           >
-            Three doors. <span className="italic" style={{ color: "hsl(39 55% 38%)" }}>One engine.</span>
+            Three vaults. <span className="italic" style={{ color: "hsl(39 55% 38%)" }}>One engine.</span>
           </h2>
           <p className="text-center text-base mb-14 max-w-xl mx-auto" style={{ color: "hsl(20 10% 40%)" }}>
             From a single test cycle to full-tier income flow.
