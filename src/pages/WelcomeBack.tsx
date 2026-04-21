@@ -313,7 +313,7 @@ const WelcomeBack = () => {
             >
               New engine. <span className="italic" style={{ color: "hsl(39 55% 38%)" }}>Same seat.</span>
             </h2>
-            <p className="text-lg max-w-xl mx-auto" style={{ color: "hsl(20 10% 40%)" }}>
+            <p className="text-lg max-w-3xl mx-auto whitespace-nowrap" style={{ color: "hsl(20 10% 40%)" }}>
               The platform is sharper than you remember. Your spot, exactly as you left it.
             </p>
           </div>
