@@ -26,6 +26,7 @@ import CoreBackground from "./pages/CoreBackground";
 import FastBackground from "./pages/FastBackground";
 import CoreVideo from "./pages/CoreVideo";
 import WelcomeBack from "./pages/WelcomeBack";
+import Coop5050 from "./pages/Coop5050";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +56,7 @@ const App = () => (
           <Route path="/fast-background" element={<FastBackground />} />
           <Route path="/core-video" element={<CoreVideo />} />
           <Route path="/welcome-back" element={<WelcomeBack />} />
+          <Route path="/coop5050" element={<Coop5050 />} />
           <Route path="/dashboard/max" element={<Dashboard />} />
           <Route path="/dashboard/fast" element={<FastDashboard />} />
           <Route path="/dashboard/core" element={<CoreDashboard />} />
