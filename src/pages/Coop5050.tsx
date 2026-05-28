@@ -262,8 +262,6 @@ const Coop5050 = () => {
         </div>
       </section>
 
-
-
       {/* THREE SYSTEMS */}
       <section style={sectionPadding}>
         <div style={container}>
