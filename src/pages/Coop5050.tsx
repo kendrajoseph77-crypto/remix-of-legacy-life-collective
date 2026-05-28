@@ -238,29 +238,7 @@ const Coop5050 = () => {
         </div>
       </section>
 
-      {/* TRUST & PROOF */}
-      <section style={{ ...sectionPadding, background: "hsl(0 0% 98%)" }}>
-        <div style={container}>
-          <div style={{ textAlign: "center", maxWidth: "760px", margin: "0 auto 48px" }}>
-            <span style={eyebrowStyle}>Trust and proof</span>
-            <h2 style={{ fontSize: "2.5rem", margin: "16px 0" }}>Coop5050 has real history.</h2>
-            <p style={{ color: "hsl(0 0% 45%)", fontSize: "1.05rem" }}>Twenty-five years of cooperative crowdfunding — uninterrupted.</p>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "20px" }} className="coop-grid-4">
-            {[
-              { v: "25 years", l: "Trusted track record" },
-              { v: "178 countries", l: "Global reach" },
-              { v: "9,000+ days", l: "Without missing a payday" },
-              { v: "$1.5 billion", l: "Earned by members" },
-            ].map((p, i) => (
-              <div key={i} style={{ ...cardStyle, textAlign: "center", padding: "32px 20px" }}>
-                <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "2rem", fontWeight: 600, color: "hsl(39 55% 52%)" }}>{p.v}</div>
-                <div style={{ fontSize: "0.85rem", color: "hsl(0 0% 45%)", marginTop: "8px" }}>{p.l}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* THREE SYSTEMS */}
       <section style={sectionPadding}>
