@@ -22,17 +22,17 @@ const Coop5050 = () => {
     <>
       <style>{`
         .c5050 {
-          --paper: #F4F0E8;
-          --paper-2: #FBF8F2;
-          --ink: #1F1B16;
-          --ink-soft: #5C564D;
-          --ink-faint: #8E877B;
-          --line: rgba(31, 27, 22, 0.12);
-          --accent: #1A5E54;
-          --accent-soft: #DCE8E2;
-          --accent-warm: #C2562B;
-          --display: 'Fraunces', Georgia, serif;
-          --body: 'Spline Sans', system-ui, sans-serif;
+          --paper: #FBFAF7;
+          --paper-2: #FFFFFF;
+          --ink: #141414;
+          --ink-soft: #4A4A4A;
+          --ink-faint: #8A8A8A;
+          --line: rgba(20, 20, 20, 0.10);
+          --accent: hsl(160, 84%, 30%);
+          --accent-soft: hsl(160, 50%, 92%);
+          --accent-warm: hsl(39, 55%, 52%);
+          --display: 'Cormorant Garamond', Georgia, serif;
+          --body: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
           --content: 1080px;
           background: var(--paper);
           color: var(--ink);
