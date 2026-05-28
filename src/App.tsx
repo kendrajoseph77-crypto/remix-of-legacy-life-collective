@@ -26,6 +26,7 @@ import CoreBackground from "./pages/CoreBackground";
 import FastBackground from "./pages/FastBackground";
 import CoreVideo from "./pages/CoreVideo";
 import WelcomeBack from "./pages/WelcomeBack";
+import Coop5050 from "./pages/Coop5050";
 
 const queryClient = new QueryClient();
 
