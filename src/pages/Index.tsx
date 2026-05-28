@@ -111,6 +111,9 @@ const Index = () => {
             <Link to="/how-it-works" className="text-white/80 hover:text-white text-sm font-medium underline transition-colors">
               How It Works
             </Link>
+            <Link to="/coop5050" className="text-white/80 hover:text-white text-sm font-medium underline transition-colors">
+              Reactivate
+            </Link>
             <a href="#join" className="text-white/80 hover:text-white text-sm font-medium underline transition-colors">
               Join Now
             </a>
