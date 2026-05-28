@@ -125,31 +125,6 @@ const Coop5050 = () => {
         </div>
       </section>
 
-      {/* SAVINGS + RESTART */}
-      <section style={{ ...sectionPadding, background: "hsl(0 0% 98%)" }}>
-        <div style={{ ...container, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "32px" }} className="coop-grid-2">
-          <article style={cardStyle}>
-            <span style={eyebrowStyle}>The savings message</span>
-            <h2 style={{ fontSize: "1.75rem", margin: "16px 0 24px" }}>This is not a small discount. It is a major financial advantage.</h2>
-            <ul style={{ display: "flex", flexDirection: "column", gap: "14px", listStyle: "none", padding: 0 }}>
-              <Bullet mark="•"><strong>You do not repay levels you already own.</strong></Bullet>
-              <Bullet mark="•">If you reached higher levels, your preserved value may be as much as $10,000.</Bullet>
-              <Bullet mark="•">The decision is not "Should I start again?" — it is "Do I want to unlock what I already paid for?"</Bullet>
-              <Bullet mark="•">For many members, paying the SLF instead of repurchasing levels is the strongest reason to renew now.</Bullet>
-            </ul>
-          </article>
-          <article id="restart" style={cardStyle}>
-            <span style={eyebrowStyle}>Ease of restart</span>
-            <h2 style={{ fontSize: "1.75rem", margin: "16px 0 24px" }}>Restarting is simple.</h2>
-            <ul style={{ display: "flex", flexDirection: "column", gap: "14px", listStyle: "none", padding: 0 }}>
-              <Bullet mark="1">Log in to your Coop5050 account.</Bullet>
-              <Bullet mark="2">Pay your Software Licensing Fee, starting at $45 for 3 months.</Bullet>
-              <Bullet mark="3">Use credit card, Apple Pay, Google Pay, crypto, and more.</Bullet>
-              <Bullet mark="4">Your account reactivates and paid levels begin working again.</Bullet>
-            </ul>
-          </article>
-        </div>
-      </section>
 
       {/* WHAT STAYS SAVED */}
       <section style={sectionPadding}>
