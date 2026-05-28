@@ -112,7 +112,7 @@ const Index = () => {
               How It Works
             </Link>
             <Link to="/coop5050" className="text-white/80 hover:text-white text-sm font-medium underline transition-colors">
-              Reactivate
+              coop5050.works
             </Link>
             <a href="#join" className="text-white/80 hover:text-white text-sm font-medium underline transition-colors">
               Join Now
